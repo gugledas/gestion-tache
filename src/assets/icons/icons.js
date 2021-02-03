@@ -37,7 +37,8 @@ import {
   cilChevronBottom,
   cilChevronTop,
   cilCheckCircle,
-  cilCommentSquare,
+  cilFolder,
+  cilMedicalCross,
   cilCursor,
   cilPlus,
   cilDrop,
@@ -70,7 +71,9 @@ import {
   cilUser,
   cilUserFemale,
   cilUserFollow,
-  cilXCircle
+  cilXCircle,
+  cilChevronCircleDownAlt,
+  cilChevronCircleUpAlt
 } from "@coreui/icons";
 import { logo } from "./logo";
 
@@ -90,7 +93,8 @@ export const iconsSet = Object.assign(
     cilChevronBottom,
     cilChevronTop,
     cilCheckCircle,
-    cilCommentSquare,
+    cilFolder,
+    cilMedicalCross,
     cilCursor,
     cilPlus,
     cilDrop,
@@ -123,7 +127,9 @@ export const iconsSet = Object.assign(
     cilUser,
     cilUserFemale,
     cilUserFollow,
-    cilXCircle
+    cilXCircle,
+    cilChevronCircleDownAlt,
+    cilChevronCircleUpAlt
   },
   {
     cifUs,

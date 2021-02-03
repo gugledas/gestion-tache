@@ -1,21 +1,6 @@
 <template>
   <div>
-    <CRow>
-      <AddNewProject :showSideText="true"></AddNewProject>
-    </CRow>
     <CRow class="mt-3">
-      <CCol md="7">
-        <CTableWrapper :items="getShuffledUsersData()" small caption="Tâches" />
-      </CCol>
-      <CCol md="5">
-        <CCard>
-          <CCardHeader>
-            General
-          </CCardHeader>
-          <CCardBody><CChartPieExample /></CCardBody>
-        </CCard>
-      </CCol>
-
       <!-- Tableau de projet -->
       <CCol md="12">
         <CCard>
@@ -32,10 +17,11 @@
               </a>
             </div>
           </CCardHeader>
-          <CCardBody class="table-responsive-sm">
+          <CCardBody class="table-responsive">
             <CDataTable
               class="m-0  table-borderless "
               hover
+              responsive
               :items="tableItems"
               :fields="tableFields"
               head-color="light"
@@ -71,29 +57,53 @@
                 />
               </td>
 
-              <td slot="activity" slot-scope="{ item }">
-                <div class="small text-muted">Last login</div>
-                <strong>{{ item.activity }}</strong>
+              <td slot="activity">
+                <CRow class="ml-4 d-flex justify-content-arround">
+                  <CButton
+                    color="primary"
+                    variant="ghost"
+                    shape="pill"
+                    size="sm"
+                    class="mx-2"
+                    ><CIcon name="cilList" class="mr-1 text-info "></CIcon
+                  ></CButton>
+                  <CButton
+                    color="primary"
+                    variant="ghost"
+                    shape="pill"
+                    size="sm"
+                    class="mx-2"
+                    ><CIcon name="cilFolder" class="mr-1 text-info "></CIcon
+                  ></CButton>
+                  <CButton
+                    color="primary"
+                    variant="ghost"
+                    shape="pill"
+                    size="sm"
+                    class="mx-2"
+                    ><CIcon name="cilPlus" class="mr-1 text-info "></CIcon
+                  ></CButton>
+                </CRow>
               </td>
             </CDataTable>
           </CCardBody>
         </CCard>
       </CCol>
     </CRow>
+    <SingleProject />
   </div>
 </template>
 
 <script>
 import * as Charts from "../charts/index";
 import usersData from "../users/UsersData";
-import CTableWrapper from "../base/Table.vue";
-import AddNewProject from "./AddNewProject";
+import SingleProject from "./SingleProjectPage";
+
 export default {
   name: "SHome",
   components: {
     ...Charts,
-    CTableWrapper,
-    AddNewProject
+    SingleProject
   },
   data() {
     return {

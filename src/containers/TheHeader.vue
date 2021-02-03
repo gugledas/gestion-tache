@@ -14,8 +14,10 @@
       <CIcon name="logo" height="48" alt="Logo" />
     </CHeaderBrand>
 
-    <CHeaderNav class="mr-4 ml-auto">
-      <CHeaderNavItem class="d-md-down-none mx-2">
+    <CHeaderNav class="mr-5 ml-sm-auto mt-1">
+      <AddNewProject></AddNewProject>
+
+      <!-- <CHeaderNavItem class="d-md-down-none mx-2">
         <CHeaderNavLink>
           <CForm inline class="align-middle">
             <CInput
@@ -28,20 +30,33 @@
             </CButton>
           </CForm>
         </CHeaderNavLink>
-      </CHeaderNavItem>
+      </CHeaderNavItem> -->
     </CHeaderNav>
     <CSubheader class="px-3">
       <CBreadcrumbRouter class="border-0 mb-0" />
+      <div class="ml-auto d-flex flex-wrap aling-items-end">
+        <SSearch></SSearch>
+        <CDropdown color="dark" toggler-text="Options" class="ml-sm-n5 mt-2">
+          <CDropdownItem>name</CDropdownItem>
+          <CDropdownItem>statut</CDropdownItem>
+          <CDropdownItem>Role</CDropdownItem>
+          <CDropdownDivider></CDropdownDivider>
+          <CDropdownItem>date</CDropdownItem>
+        </CDropdown>
+      </div>
     </CSubheader>
   </CHeader>
 </template>
 
 <script>
 //import TheHeaderDropdownAccnt from "./TheHeaderDropdownAccnt";
-
+import SSearch from "../views/App/SSearch";
+import AddNewProject from "../views/App/AddNewProject";
 export default {
   name: "TheHeader",
   components: {
+    SSearch,
+    AddNewProject
     //TheHeaderDropdownAccnt
   }
 };

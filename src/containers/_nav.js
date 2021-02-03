@@ -4,20 +4,32 @@ export default [
     _children: [
       {
         _name: "CSidebarNavItem",
-        name: "Home",
-        to: "/home",
-        icon: "cil-stream"
+        name: "Dashboard",
+        to: "/dashbord",
+        icon: "cil-speedometer"
       },
       {
         _name: "CSidebarNavItem",
-        name: "Dashboard",
-        to: "/dashboard",
-        icon: "cil-speedometer",
-        badge: {
-          color: "primary",
-          text: "NEW"
-        }
+        name: "Projets",
+        to: "/projets",
+        icon: "cil-folder"
       },
+      {
+        _name: "CSidebarNavItem",
+        name: "Widgets",
+        to: "/widgets",
+        icon: "cil-calculator"
+      },
+      // {
+      //   _name: "CSidebarNavItem",
+      //   name: "Dashboard",
+      //   to: "/dashboard",
+      //   icon: "cil-speedometer",
+      //   badge: {
+      //     color: "primary",
+      //     text: "NEW"
+      //   }
+      // },
       // {
       //   _name: "CSidebarNavTitle",
       //   _children: ["Theme"]
@@ -184,17 +196,7 @@ export default [
       //     }
       //   ]
       // },
-      {
-        _name: "CSidebarNavItem",
-        name: "Widgets",
-        to: "/widgets",
-        icon: "cil-calculator",
-        badge: {
-          color: "primary",
-          text: "NEW",
-          shape: "pill"
-        }
-      },
+
       {
         _name: "CSidebarNavDivider",
         _class: "m-2"

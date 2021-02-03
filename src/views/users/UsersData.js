@@ -1,153 +1,153 @@
 const usersData = [
   {
-    username: "Samppa Nori",
+    title: "Samppa Nori",
     registered: "2012/01/01",
     role: "Member",
     status: "Active"
   },
   {
-    username: "Estavan Lykos",
+    title: "Estavan Lykos",
     registered: "2012/02/01",
     role: "Staff",
     status: "Banned"
   },
   {
-    username: "Chetan Mohamed",
+    title: "Chetan Mohamed",
     registered: "2012/02/01",
     role: "Admin",
     status: "Inactive"
   },
   {
-    username: "Derick Maximinus",
+    title: "Derick Maximinus",
     registered: "2012/03/01",
     role: "Member",
     status: "Pending"
   },
   {
-    username: "Friderik Dávid",
+    title: "Friderik Dávid",
     registered: "2012/01/21",
     role: "Staff",
     status: "Active"
   },
   {
-    username: "Yiorgos Avraamu",
+    title: "Yiorgos Avraamu",
     registered: "2012/01/01",
     role: "Member",
     status: "Active"
   },
   {
-    username: "Avram Tarasios",
+    title: "Avram Tarasios",
     registered: "2012/02/01",
     role: "Staff",
     status: "Banned",
     _classes: "table-success"
   },
   {
-    username: "Quintin Ed",
+    title: "Quintin Ed",
     registered: "2012/02/01",
     role: "Admin",
     status: "Inactive"
   },
   {
-    username: "Enéas Kwadwo",
+    title: "Enéas Kwadwo",
     registered: "2012/03/01",
     role: "Member",
     status: "Pending"
   },
   {
-    username: "Agapetus Tadeáš",
+    title: "Agapetus Tadeáš",
     registered: "2012/01/21",
     role: "Staff",
     status: "Active"
   },
   {
-    username: "Carwyn Fachtna",
+    title: "Carwyn Fachtna",
     registered: "2012/01/01",
     role: "Member",
     status: "Active",
     _classes: "table-success"
   },
   {
-    username: "Nehemiah Tatius",
+    title: "Nehemiah Tatius",
     registered: "2012/02/01",
     role: "Staff",
     status: "Banned"
   },
   {
-    username: "Ebbe Gemariah",
+    title: "Ebbe Gemariah",
     registered: "2012/02/01",
     role: "Admin",
     status: "Inactive"
   },
   {
-    username: "Eustorgios Amulius",
+    title: "Eustorgios Amulius",
     registered: "2012/03/01",
     role: "Member",
     status: "Pending"
   },
   {
-    username: "Leopold Gáspár",
+    title: "Leopold Gáspár",
     registered: "2012/01/21",
     role: "Staff",
     status: "Active"
   },
   {
-    username: "Pompeius René",
+    title: "Pompeius René",
     registered: "2012/01/01",
     role: "Member",
     status: "Active"
   },
   {
-    username: "Paĉjo Jadon",
+    title: "Paĉjo Jadon",
     registered: "2012/02/01",
     role: "Staff",
     status: "Banned"
   },
   {
-    username: "Micheal Mercurius",
+    title: "Micheal Mercurius",
     registered: "2012/02/01",
     role: "Admin",
     status: "Inactive"
   },
   {
-    username: "Ganesha Dubhghall",
+    title: "Ganesha Dubhghall",
     registered: "2012/03/01",
     role: "Member",
     status: "Pending"
   },
   {
-    username: "Hiroto Šimun",
+    title: "Hiroto Šimun",
     registered: "2012/01/21",
     role: "Staff",
     status: "Active"
   },
   {
-    username: "Vishnu Serghei",
+    title: "Vishnu Serghei",
     registered: "2012/01/01",
     role: "Member",
     status: "Active"
   },
   {
-    username: "Zbyněk Phoibos",
+    title: "Zbyněk Phoibos",
     registered: "2012/02/01",
     role: "Staff",
     status: "Banned"
   },
   {
-    username: "Einar Randall",
+    title: "Einar Randall",
     registered: "2012/02/01",
     role: "Admin",
     status: "Inactive",
     _classes: "table-danger"
   },
   {
-    username: "Félix Troels",
+    title: "Félix Troels",
     registered: "2012/03/21",
     role: "Staff",
     status: "Active"
   },
   {
-    username: "Aulus Agmundr",
+    title: "Aulus Agmundr",
     registered: "2012/01/01",
     role: "Member",
     status: "Pending"

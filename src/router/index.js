@@ -58,6 +58,7 @@ const Users = () => import("@/views/users/Users");
 const User = () => import("@/views/users/User");
 // Stan components
 const Home = () => import("@/views/App/SHome");
+const ProjectList = () => import("@/views/App/SProjectList");
 
 Vue.use(Router);
 
@@ -72,11 +73,13 @@ function configRoutes() {
   return [
     {
       path: "/",
-      redirect: "/home",
+      redirect: "/dashbord",
       name: "Home",
       component: TheContainer,
       children: [
-        { path: "home", name: "Accueil", component: Home },
+        { path: "dashbord", name: "Dashbord", component: Home },
+
+        { path: "projets", name: "Projets", component: ProjectList },
         {
           path: "dashboard",
           name: "Dashboard",

@@ -6,8 +6,12 @@ import CoreuiVue from "@coreui/vue";
 import { iconsSet as icons } from "./assets/icons/icons.js";
 import store from "./store";
 
+import hljs from "highlight.js";
+import "highlight.js/styles/atom-one-dark.css";
 //Vue.config.performance = true;
+
 Vue.use(CoreuiVue);
+
 Vue.prototype.$log = console.log.bind(console);
 
 new Vue({
@@ -15,6 +19,7 @@ new Vue({
   router,
   store,
   icons,
+  hljs,
   template: "<App/>",
   components: {
     App
