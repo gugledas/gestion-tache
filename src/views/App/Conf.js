@@ -1,6 +1,9 @@
 import axios from "axios";
+// les differentes methodes doivent devenirs de petit program inclues dans un module.
+
 export default {
   baseUrl: "http://gestion-tache-new.kksa",
+
   post: function(request, datas = {}) {
     console.log("ssss");
     return new Promise(resolv => {
