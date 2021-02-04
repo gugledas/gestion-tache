@@ -1,59 +1,49 @@
 import axios from "axios";
 export default {
-  baseUrl: "http://habeukutilites.kksa",
-  ModeDebug: true,
+  baseUrl: "http://gestion-tache-new.kksa",
   post: function(request, datas = {}) {
     console.log("ssss");
     return new Promise(resolv => {
       var configs = {
-        headers: {
-          //"Content-Type": "application/json",
-          Accept: "application/json",
-          databaseConfig: "Wbu-Gestion-Tache"
-        }
+        headers: {}
       };
-      // if (configsBase.magentoAction) {
-      //   configs.headers.MagentoTokenAction = configsBase.magentoAction;
-      // }
-      // if (configsBase.showAlert === false || configsBase.showAlert === true) {
-      //   this.showAlert = configsBase.showAlert;
-      // }
-
       axios
         .post(this.baseUrl + request, datas, configs)
         .then(reponse => {
-          var ajaxTitle = this.ajaxTitle;
-          if (this.ModeDebug) {
-            console.log("Success POST", reponse);
-          }
-          if (reponse.statusText === "OK" && reponse.status === 200) {
-            ajaxTitle = "Sauvegarde ok";
-          } else {
-            ajaxTitle = reponse.statusText;
-          }
-          if (this.showAlert) {
-            this.notification(ajaxTitle);
-          }
+          console.log("Post success : ", reponse);
           resolv({ status: true, data: reponse.data, reponse: reponse });
         })
         .catch(error => {
-          if (this.ModeDebug) {
-            console.log(
-              "Error responsei: ",
-              error.response,
-              "\n error code : ",
-              error.code,
-              "\n error.stack : ",
-              error.stack
-            );
-          }
-          this.ajaxTitle = error.response
-            ? error.response.statusText
-            : error.stack;
-          this.notification(this.ajaxTitle, "warning");
-
           resolv({ status: false, error: error.response });
         });
+    });
+  },
+  postfetch: function(request) {
+    return new Promise(resolv => {
+      var headers = new Headers();
+      headers.append("databaseConfig", "Wbu-Gestion-Tache");
+      var myInit = {
+        method: "POST",
+        headers: headers,
+        mode: "cors",
+        cache: "default"
+      };
+      fetch(this.baseUrl + request, myInit).then(function(response) {
+        console.log("response : ", response);
+        resolv({ status: true, reponse: response });
+      });
+    });
+  },
+  postXMLHttpRequest: function(request) {
+    return new Promise(resolv => {
+      var invocation = new XMLHttpRequest();
+      invocation.open("POST", this.baseUrl + request, true);
+      invocation.onreadystatechange = handler;
+      invocation.send();
+      resolv("ok");
+      function handler(reponse) {
+        console.log("reponse : ", reponse);
+      }
     });
   }
 };

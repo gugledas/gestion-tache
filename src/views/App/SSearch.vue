@@ -7,8 +7,9 @@
       color="warning"
       size="sm"
       @click="LoadProjectData"
-      ><CIcon name="cilPencil"></CIcon>{{ searchValue }}</CButton
     >
+      <CIcon name="cilPencil"></CIcon> {{ searchValue }}
+    </CButton>
     <multiselect
       v-model="searchValue"
       :options="project"
@@ -28,8 +29,8 @@
       <template slot="singleLabel" slot-scope="props"
         ><span class="option__desc d-inline-flex flex-column"
           ><span class="option__title">{{ props.option.titre }}</span>
-        </span></template
-      >
+        </span>
+      </template>
       <template slot="option" slot-scope="props">
         <div class="option__desc d-inline-flex flex-column align-items-start">
           <span class="option__title mb-2">
@@ -87,48 +88,32 @@ export default {
       console.log("checkTyping : ", ev);
     },
     taca(value) {
-      console.log("taca-55");
-      this.isLoading = true;
-      this.searchValue = value;
-      var self = this;
-      clearTimeout(self.timer);
-      self.timer = setTimeout(function() {
-        console.log("taca");
-        self.LoadProjectData();
-      }, 1000);
+      console.log("user typing");
+      if (value.length > 1) {
+        this.isLoading = true;
+        this.searchValue = value;
+        var self = this;
+        clearTimeout(self.timer);
+        self.timer = setTimeout(function() {
+          console.log("recherche ajax.");
+          self.LoadProjectData();
+        }, 1000);
+      }
     },
     LoadProjectData() {
       this.isLoading = true;
       conf
-        .post("/gestion-project/search?key=" + this.searchValue, { level: 0 })
+        .post("/gestion-project/search?key=" + this.searchValue)
         .then(reponse => {
           if (reponse.status) {
-            if (reponse) {
-              //this.project = reponse.data.return["select-project"];
-              console.log("Project", reponse);
-            }
+            this.project = reponse.data;
           }
           this.isLoading = false;
         })
         .catch(function(error) {
           console.log("error", error);
+          this.isLoading = false;
         });
-      /*
-      var myInit = {
-        method: "POST",
-        headers: { databaseConfig: "Wbu-Gestion-Tache" },
-        mode: "cors",
-        cache: "default"
-      };
-
-      fetch(
-        "http://habeukutilites.kksa/gestion-project/search?key=" +
-          this.searchValue,
-        myInit
-      ).then(function(response) {
-        console.log("response : ", response);
-      });
-      /**/
     }
   }
 };
