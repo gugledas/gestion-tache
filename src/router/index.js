@@ -57,8 +57,9 @@ const Register = () => import("@/views/pages/Register");
 const Users = () => import("@/views/users/Users");
 const User = () => import("@/views/users/User");
 // Stan components
-const Home = () => import("@/views/App/SHome");
-const ProjectList = () => import("@/views/App/SProjectList");
+const Home = () => import("@/views/App/Home");
+const ProjectList = () => import("@/views/App/ProjectList");
+const SingleProjectPage = () => import("@/views/App/project/SingleProjectPage");
 
 Vue.use(Router);
 
@@ -79,7 +80,17 @@ function configRoutes() {
       children: [
         { path: "dashbord", name: "Dashbord", component: Home },
 
-        { path: "projets", name: "Projets", component: ProjectList },
+        {
+          path: "projets",
+          name: "Projets",
+          component: ProjectList,
+          children: []
+        },
+        {
+          path: "/projets/50",
+          name: "50",
+          component: SingleProjectPage
+        },
         {
           path: "dashboard",
           name: "Dashboard",

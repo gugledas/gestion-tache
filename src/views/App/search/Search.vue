@@ -1,14 +1,6 @@
 <!-- Vue component -->
 <template>
   <div class="searchForm">
-    <CButton
-      class="ml-4"
-      variant="ghost"
-      color="warning"
-      size="sm"
-      @click="LoadProjectData"
-      ><CIcon name="cilPencil"></CIcon>{{ searchValue }}</CButton
-    >
     <multiselect
       v-model="searchValue"
       :options="project"
@@ -23,7 +15,7 @@
       :internal-search="true"
       :showPointer="true"
       label="titre"
-      @search-change="taca"
+      @search-change="TypingSearch"
     >
       <template slot="singleLabel" slot-scope="props"
         ><span class="option__desc d-inline-flex flex-column"
@@ -50,8 +42,9 @@
 
 <script>
 import Multiselect from "vue-multiselect";
-import conf from "./Conf";
 import Vue from "vue";
+import config from "../config/config";
+
 // register globally
 Vue.component("multiselect", Multiselect);
 
@@ -60,7 +53,8 @@ export default {
   components: { Multiselect },
   data() {
     return {
-      searchValue: "gest",
+      value: "",
+      searchValue: "",
       options: ["list", "of", "options"],
       project: [],
       isLoading: false,
@@ -83,28 +77,25 @@ export default {
     }
   },
   methods: {
-    checkTyping(ev) {
-      console.log("checkTyping : ", ev);
-    },
-    taca(value) {
-      console.log("taca-55");
+    // Recherche des informations 1.5s après la saisie
+    TypingSearch(value) {
       this.isLoading = true;
-      this.searchValue = value;
+      this.value = value;
       var self = this;
       clearTimeout(self.timer);
       self.timer = setTimeout(function() {
-        console.log("taca");
         self.LoadProjectData();
-      }, 1000);
+      }, 1500);
     },
+    // Request for Loading data on DB
     LoadProjectData() {
       this.isLoading = true;
-      conf
-        .post("/gestion-project/search?key=" + this.searchValue, { level: 0 })
+      config
+        .post("/gestion-project/search?key=" + this.value, { level: 0 })
         .then(reponse => {
           if (reponse.status) {
             if (reponse) {
-              //this.project = reponse.data.return["select-project"];
+              this.project = reponse.data;
               console.log("Project", reponse);
             }
           }
@@ -113,22 +104,6 @@ export default {
         .catch(function(error) {
           console.log("error", error);
         });
-      /*
-      var myInit = {
-        method: "POST",
-        headers: { databaseConfig: "Wbu-Gestion-Tache" },
-        mode: "cors",
-        cache: "default"
-      };
-
-      fetch(
-        "http://habeukutilites.kksa/gestion-project/search?key=" +
-          this.searchValue,
-        myInit
-      ).then(function(response) {
-        console.log("response : ", response);
-      });
-      /**/
     }
   }
 };

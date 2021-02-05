@@ -50,8 +50,8 @@
 
 <script>
 //import TheHeaderDropdownAccnt from "./TheHeaderDropdownAccnt";
-import SSearch from "../views/App/SSearch";
-import AddNewProject from "../views/App/AddNewProject";
+import SSearch from "../views/App/search/Search";
+import AddNewProject from "../views/App/project/AddNewProject";
 export default {
   name: "TheHeader",
   components: {

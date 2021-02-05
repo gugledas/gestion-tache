@@ -1,10 +1,10 @@
 <template>
   <div>
     <CRow>
-      <CCol md="8">
+      <CCol md="12">
         <CCard>
           <CCardHeader class="card-color">
-            {{ title }}
+            {{ dataLoad.titre }}
             <div class="card-header-actions">
               <CLink
                 href="#"
@@ -61,100 +61,15 @@
         title="Nouveau projet"
         color="info"
         :show.sync="warningModal"
-        ><div>
-          <CRow :gutters="false" class="form-group">
-            <CCol sm="3"> <p>Choisir un type:</p> </CCol>
-            <CCol sm="7"
-              ><CInputRadioGroup
-                :options="options"
-                :checked.sync="selected"
-                custom
-                inline
-              />
-            </CCol>
-          </CRow>
-        </div>
-        <hr />
-        editorData:
-        <div v-html="ser"></div>
-        <div class="pl-sm-2 " v-if="selected == 'projet'">
-          <CRow>
-            <CCol sm="6" md="4">
-              <CInput label="Debut:" type="date" horizontal />
-            </CCol>
-            <CCol sm="6" md="4">
-              <CInput label="Fin:" type="date" horizontal />
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="5">
-              <CInput label="Title:" placeholder="Entrez un titre" />
-            </CCol>
-            <CCol sm="5">
-              <CInput
-                label="Nom du Client:"
-                placeholder="Select or add new Client"
-              />
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="12">
-              <label>Description:</label>
-              <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="4">
-              <CInput
-                label="Estimation du coût:"
-                append=".00"
-                description="montant"
-                prepend="$"
-              />
-            </CCol>
-          </CRow>
-        </div>
-        <div class="pl-sm-2" v-if="selected == 'tache'">
-          <CRow>
-            <CCol sm="6" md="4">
-              <CInput label="Debut:" type="date" horizontal />
-            </CCol>
-            <CCol sm="6" md="4">
-              <CInput label="Fin:" type="date" horizontal />
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="5">
-              <CInput label="Title:" placeholder="Entrez un titre" />
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="12">
-              <label>Description:</label>
-              <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>
-            </CCol>
-          </CRow>
-        </div>
-        <div class="pl-sm-2" v-if="selected == 'memos'">
-          <CRow>
-            <CCol sm="5">
-              <CInput label="Title:" placeholder="Entrez un titre" />
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="12">
-              <label>Description:</label>
-              <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>
-            </CCol>
-          </CRow>
-        </div>
+      >
+        <PopUpContent></PopUpContent>
         <template slot="footer">
           <div class="d-flex justify-content-end mr-3">
             <CButton @click="warningModal = false" class="mx-1" color="light"
               >Cancel</CButton
             >
             <CButton @click="warningModal = false" class="mx-1" color="info"
-              >Ok</CButton
+              >Save</CButton
             >
           </div>
         </template>
@@ -217,66 +132,14 @@
         title="Edition de:"
         color="success"
         :show.sync="modalEdit"
-        ><div>
-          <CRow :gutters="false" class="form-group">
-            <CCol sm="3"> <p>Choisir un type:</p> </CCol>
-            <CCol sm="7"
-              ><CInputRadioGroup
-                :options="options"
-                :checked.sync="selected"
-                custom
-                inline
-              />
-            </CCol>
-          </CRow>
-        </div>
-        <hr />
-        editorData:
-        <div v-html="ser"></div>
-        <div class="pl-sm-2 " v-if="selected == 'projet'">
-          <CRow>
-            <CCol sm="6" md="4">
-              <CInput label="Debut:" type="date" horizontal />
-            </CCol>
-            <CCol sm="6" md="4">
-              <CInput label="Fin:" type="date" horizontal />
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="5">
-              <CInput label="Title:" placeholder="Entrez un titre" />
-            </CCol>
-            <CCol sm="5">
-              <CInput
-                label="Nom du Client:"
-                placeholder="Select or add new Client"
-              />
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="12">
-              <label>Description:</label>
-              <ckeditor v-model="editorData" :config="editorConfig"></ckeditor>
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="4">
-              <CInput
-                label="Estimation du coût:"
-                append=".00"
-                description="montant"
-                type="number"
-                prepend="$"
-              />
-            </CCol>
-          </CRow>
-        </div>
+      >
+        <PopUpContent></PopUpContent>
         <template slot="footer">
           <div class="d-flex justify-content-end mr-3">
             <CButton @click="modalEdit = false" class="mx-1" color="light"
               >Cancel</CButton
             >
-            <CButton @click="modalEdit = false" class="mx-1" color="info"
+            <CButton @click="modalEdit = false" class="mx-1" color="success"
               >Save</CButton
             >
           </div>
@@ -284,7 +147,7 @@
       </CModal>
       <!-- end Modal for edditing project -->
 
-      <CCol md="4"
+      <CCol md="6"
         ><CCard>
           <CCardHeader>
             stats
@@ -296,22 +159,19 @@
 </template>
 
 <script>
-import * as Charts from "../charts/index";
-import CKEditor from "ckeditor4-vue";
+import * as Charts from "../../charts/index";
 import hljs from "highlight.js";
+import config from "../config/config";
+import PopUpContent from "./PopUpContent";
 export default {
   components: {
     ...Charts,
-    ckeditor: CKEditor.component
+    PopUpContent
   },
-  props: {
-    title: {
-      type: String,
-      default: "le titre du projet"
-    }
-  },
+  props: {},
   data() {
     return {
+      dataLoad: [],
       modalEdit: false,
       ressourceToAdd: "",
       chooseType: "text",
@@ -335,15 +195,49 @@ export default {
         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat."
     };
   },
+  mounted() {
+    this.LoadProjectData();
+  },
   computed: {
+    modalData() {
+      //var room = this.dataLoad;
+      var element = [];
+      return element;
+    },
     ser() {
       var newDiv = document.createElement("div");
       newDiv.innerHTML = this.editorData;
       newDiv.querySelectorAll("pre code").forEach(block => {
         hljs.highlightBlock(block);
       });
-      console.log(newDiv);
+
       return newDiv.outerHTML;
+    }
+  },
+  methods: {
+    // Request for Loading data on DB
+    LoadProjectData() {
+      this.isLoading = true;
+      config
+        .get("/gestion-project/project-with-childs/52", { level: 0 })
+        .then(reponse => {
+          if (reponse.status) {
+            if (reponse) {
+              // for (let i in reponse.data) {
+              //   if (reponse.data[i].idcontents == 52) {
+              //     this.dataa = reponse.data[i];
+              //     console.log("ss", this.dataa);
+              //   }
+              // }
+              this.dataLoad = reponse.data[0];
+              console.log("dataLoad", this.dataLoad);
+            }
+          }
+          this.isLoading = false;
+        })
+        .catch(function(error) {
+          console.log("error", error);
+        });
     }
   }
 };
