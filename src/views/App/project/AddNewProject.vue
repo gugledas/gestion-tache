@@ -18,13 +18,13 @@
       :show.sync="warningModal"
       :footer="false"
     >
-      <PopUpContent></PopUpContent>
+      <PopUpContent ref="child"></PopUpContent>
       <template slot="footer">
         <div class="d-flex justify-content-end mr-3 ">
           <CButton @click="warningModal = false" class="mx-1" color="light"
             >Cancel</CButton
           >
-          <CButton @click="warningModal = false" class="mx-1" color="warning"
+          <CButton @click="PostNewProject" class="mx-1" color="warning"
             >Save</CButton
           >
         </div>
@@ -78,6 +78,11 @@ export default {
       return newDiv.outerHTML;
     }
   },
-  methods: {}
+  methods: {
+    PostNewProject() {
+      this.warningModal = false;
+      this.$refs.child.PostNewProject();
+    }
+  }
 };
 </script>

@@ -18,11 +18,7 @@
               <CLink href="#" class=" btn-close m-2" @click="modalEdit = true">
                 <CIcon name="cil-pencil" />
               </CLink>
-              <CLink
-                href="#"
-                class=" btn-close m-1"
-                @click="warningModal = true"
-              >
+              <CLink href="#" class=" btn-close m-1" @click="HideTypeProject">
                 <CIcon name="cil-plus" />
               </CLink>
               <CLink
@@ -60,15 +56,15 @@
         size="lg"
         title="Nouveau projet"
         color="info"
-        :show.sync="warningModal"
+        :show.sync="addingModal"
       >
-        <PopUpContent></PopUpContent>
+        <PopUpContent ref="child"></PopUpContent>
         <template slot="footer">
           <div class="d-flex justify-content-end mr-3">
-            <CButton @click="warningModal = false" class="mx-1" color="light"
+            <CButton @click="addingModal = false" class="mx-1" color="light"
               >Cancel</CButton
             >
-            <CButton @click="warningModal = false" class="mx-1" color="info"
+            <CButton @click="AddNewTask" class="mx-1" color="info"
               >Save</CButton
             >
           </div>
@@ -133,13 +129,13 @@
         color="success"
         :show.sync="modalEdit"
       >
-        <PopUpContent></PopUpContent>
+        <PopUpContent ref="edchild"></PopUpContent>
         <template slot="footer">
           <div class="d-flex justify-content-end mr-3">
             <CButton @click="modalEdit = false" class="mx-1" color="light"
               >Cancel</CButton
             >
-            <CButton @click="modalEdit = false" class="mx-1" color="success"
+            <CButton @click="EditModalPost" class="mx-1" color="success"
               >Save</CButton
             >
           </div>
@@ -178,7 +174,7 @@ export default {
       descToggle: true,
       show: true,
       selected: "projet",
-      warningModal: false,
+      addingModal: false,
       modalRessource: false,
       isCollapsed: true,
       editorData: "<p>me al rasp sale</p>",
@@ -215,6 +211,18 @@ export default {
     }
   },
   methods: {
+    HideTypeProject() {
+      this.addingModal = true;
+      this.$refs.child.changeType();
+    },
+    EditModalPost() {
+      this.modalEdit = false;
+      this.$refs.edchild.EditProject();
+    },
+    AddNewTask() {
+      this.addingModal = false;
+      this.$refs.child.PostNewProject();
+    },
     // Request for Loading data on DB
     LoadProjectData() {
       this.isLoading = true;

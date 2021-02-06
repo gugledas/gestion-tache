@@ -14,11 +14,38 @@
       </CRow>
     </div>
     <hr />
-    editorData: {{ postData.type }}
+    editorData: {{ postData.status }}/ elle: {{ elle }} // show:
+    {{ showInputRaison }}
     <div v-html="ser"></div>
     <div class="pl-sm-2 ">
+      <CRow
+        :gutters="false"
+        class="form-group"
+        v-if="postData.type !== 'memos'"
+      >
+        <CCol sm="2"> <p>Statut:</p> </CCol>
+        <CCol sm="10"
+          ><CInputRadioGroup
+            :options="statusOpt"
+            :checked.sync="postData.status"
+            custom
+            inline
+          />
+        </CCol>
+        <CCol sm="8" md="7" v-if="showInputRaison">
+          <CTextarea
+            label="Raison:"
+            type="textarea"
+            v-model="postData.raison"
+            horizontal
+            placeholder="writes something..."
+            rows="2"
+            description="Une description de la raison du changement de status"
+          />
+        </CCol>
+      </CRow>
       <CRow v-if="postData.type !== 'memos'">
-        <CCol sm="6" md="4">
+        <CCol sm="6" md="5">
           <CInput
             label="Debut:"
             type="date"
@@ -26,7 +53,7 @@
             horizontal
           />
         </CCol>
-        <CCol sm="6" md="4">
+        <CCol sm="6" md="5">
           <CInput
             label="Fin:"
             v-model="postData.endTime"
@@ -85,6 +112,8 @@
 <script>
 import CKEditor from "ckeditor4-vue";
 import hljs from "highlight.js";
+import config from "../config/config";
+import moment from "moment";
 export default {
   props: {},
   components: {
@@ -94,6 +123,7 @@ export default {
     return {
       postData: {
         type: "project",
+        status: "0",
         startTime: "",
         endTime: "",
         clientName: "",
@@ -101,6 +131,8 @@ export default {
         price: "",
         text: "<p>content...</p>"
       },
+      allolo: "",
+      showInputRaison: false,
       editorData: "<p>content...</p>",
       selected: "projet",
       warningModal: false,
@@ -112,11 +144,27 @@ export default {
         { value: "project", label: "Projet" },
         { value: "tache", label: "Tâche" },
         { value: "memos", label: "Mémos" }
+      ],
+      statusOpt: [
+        { value: "0", label: "New" },
+        { value: "2", label: "Encours" },
+        { value: "1", label: "Terminé" },
+        { value: "3", label: "Annulé" }
       ]
     };
   },
   mounted() {},
+  watch: {
+    postData() {}
+  },
   computed: {
+    elle() {
+      var el = this.showInputRaison;
+      if (this.postData.status) {
+        el = this.aallo();
+      }
+      return el;
+    },
     ser() {
       var newDiv = document.createElement("div");
       newDiv.innerHTML = this.editorData;
@@ -131,24 +179,87 @@ export default {
       if (this.postData.type == "project") {
         el = this.postData;
       } else if (this.postData.type == "tache") {
-        el = {
-          type: this.postData.type,
-          startTime: this.postData.type,
-          endTime: this.postData.type,
-          titre: this.postData.type,
-          text: this.postData.type
-        };
+        (el.type = this.postData.type),
+          (el.startTime = this.postData.startTime),
+          (el.endTime = this.postData.endTime),
+          (el.titre = this.postData.titre),
+          (el.text = this.postData.text);
       } else {
         el = {
-          titre: this.postData.type,
-          text: this.postData.type
+          titre: this.postData.titre,
+          text: this.postData.text
         };
       }
       return el;
     }
   },
   methods: {
-    PostNewProject() {}
+    aallo() {
+      console.log("status");
+      this.showInputRaison = true;
+    },
+    EventShowInput() {
+      console.log("object");
+    },
+    changeType() {
+      this.options = [
+        { value: "tache", label: "Tâche" },
+        { value: "memos", label: "Mémos" }
+      ];
+      this.postData.type = "tache";
+    },
+    EditProject() {
+      var o = this.postData.startTime;
+      var al = moment(o, "DD-MM-YYYY  HH:mm").unix();
+
+      console.log("moment", al);
+    },
+    FormatTime(id) {
+      var data = this.postData;
+      var ddp = moment(data.startTime, "YYYY-MM-DD  HH:mm").unix();
+      var dfp = moment(data.endTime, "YYYY-MM-DD  HH:mm").unix();
+      var status = data.status;
+
+      var rest = [];
+      rest.push({
+        idcontents: id,
+        date_depart_proposer: ddp,
+        date_fin_proposer: dfp,
+        date_fin_reel: reelD,
+        status: status,
+        temps_pause: temps_pause,
+        raison: raison
+      });
+    },
+    FormatData() {
+      var result = [];
+      result.push({
+        table: "gestion_project_contents",
+        fields: {
+          text: this.postData.text,
+          titre: this.postData.titre
+        }
+      });
+      return result;
+    },
+    PostNewProject() {
+      console.log("created", this.FormatData());
+
+      config
+        .post("/gestion-project/save-update", this.FormatData())
+        .then(reponse => {
+          if (reponse.status) {
+            if (reponse) {
+              this.request = reponse.data[0];
+              console.log("dataLoad", this.dataLoad);
+            }
+          }
+          this.isLoading = false;
+        })
+        .catch(function(error) {
+          console.log("error", error);
+        });
+    }
   }
 };
 </script>
