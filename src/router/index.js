@@ -57,8 +57,11 @@ const Register = () => import("@/views/pages/Register");
 const Users = () => import("@/views/users/Users");
 const User = () => import("@/views/users/User");
 // Stan components
-const Home = () => import("@/views/App/SHome");
-const ProjectList = () => import("@/views/App/SProjectList");
+const Home = () => import("@/views/App/Home");
+const ProjectList = () => import("@/views/App/ProjectList");
+const SingleProjectPage = () => import("@/views/App/project/SingleProjectPage");
+// const SimpleProjectPagetest = () =>
+//   import("../views/App/project/SimpleProjectPagetest.vue");
 
 Vue.use(Router);
 
@@ -78,13 +81,29 @@ function configRoutes() {
       component: TheContainer,
       children: [
         { path: "dashbord", name: "Dashbord", component: Home },
-
-        { path: "projets", name: "Projets", component: ProjectList },
         {
           path: "dashboard",
           name: "Dashboard",
           component: Dashboard
         },
+        {
+          path: "projets",
+          name: "Projets",
+          component: ProjectList,
+          children: []
+        },
+        {
+          path: "/projet/:idcontents",
+          name: "Page dynamique",
+          component: SingleProjectPage,
+          props: true
+        },
+        // {
+        //   path: "/projet-page/:idcontents",
+        //   name: "Page dynamique",
+        //   component: SimpleProjectPagetest,
+        //   props: true
+        // },
         {
           path: "theme",
           redirect: "/theme/colors",
