@@ -60,6 +60,8 @@ const User = () => import("@/views/users/User");
 const Home = () => import("@/views/App/Home");
 const ProjectList = () => import("@/views/App/ProjectList");
 const SingleProjectPage = () => import("@/views/App/project/SingleProjectPage");
+// const SimpleProjectPagetest = () =>
+//   import("../views/App/project/SimpleProjectPagetest.vue");
 
 Vue.use(Router);
 
@@ -79,7 +81,11 @@ function configRoutes() {
       component: TheContainer,
       children: [
         { path: "dashbord", name: "Dashbord", component: Home },
-
+        {
+          path: "dashboard",
+          name: "Dashboard",
+          component: Dashboard
+        },
         {
           path: "projets",
           name: "Projets",
@@ -87,15 +93,17 @@ function configRoutes() {
           children: []
         },
         {
-          path: "/projets/50",
-          name: "50",
-          component: SingleProjectPage
+          path: "/projet/:idcontents",
+          name: "Page dynamique",
+          component: SingleProjectPage,
+          props: true
         },
-        {
-          path: "dashboard",
-          name: "Dashboard",
-          component: Dashboard
-        },
+        // {
+        //   path: "/projet-page/:idcontents",
+        //   name: "Page dynamique",
+        //   component: SimpleProjectPagetest,
+        //   props: true
+        // },
         {
           path: "theme",
           redirect: "/theme/colors",

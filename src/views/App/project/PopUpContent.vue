@@ -1,5 +1,5 @@
-<template>
-  <div>
+<template lang="html">
+  <div :check-valid-form="checkForSave">
     <div>
       <CRow :gutters="false" class="form-group">
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
@@ -10,12 +10,14 @@
             custom
             inline
           />
+          <small v-if="postData.type.length < 2" class="text-danger"
+            >ce champ est requis</small
+          >
         </CCol>
       </CRow>
     </div>
     <hr />
-    editorData: {{ postData.status }}/ elle: {{ elle }} // show:
-    {{ showInputRaison }}
+
     <div v-html="ser"></div>
     <div class="pl-sm-2 ">
       <CRow
@@ -68,6 +70,10 @@
             label="Title:"
             v-model="postData.titre"
             placeholder="Entrez un titre"
+            :wasValidated="wasValidated"
+            validFeedback="ok"
+            invalidFeedback="requis"
+            :isValid="inputValidation"
           />
         </CCol>
         <CCol sm="5" v-if="postData.type == 'project'">
@@ -94,34 +100,49 @@
             v-model="postData.price"
           />
         </CCol>
+        postDta://{{ postData }}
       </CRow>
     </div>
     <template slot="footer">
       <div class="d-flex justify-content-end mr-3">
-        <CButton @click="warningModal = false" class="mx-1" color="light"
-          >Cancel</CButton
-        >
-        <CButton @click="warningModal = false" class="mx-1" color="warning"
-          >Savte</CButton
-        >
+        <CButton @click="warningModal = false" class="mx-1" color="light">
+          Cancel
+        </CButton>
+        <CButton @click="warningModal = false" class="mx-1" color="warning">
+          Editer le contenu
+        </CButton>
       </div>
     </template>
   </div>
 </template>
 
 <script>
+import Utilities from "./Utilities.js";
 import CKEditor from "ckeditor4-vue";
 import hljs from "highlight.js";
 import config from "../config/config";
 import moment from "moment";
 export default {
-  props: {},
+  name: "PopUpContent",
+  props: {
+    formValues: {
+      type: Object,
+      required: true
+    },
+    btnState: {
+      type: Object,
+      default: function() {
+        return { state: false };
+      }
+    }
+  },
   components: {
     ckeditor: CKEditor.component
   },
   data() {
     return {
       postData: {
+        typeIsOk: false,
         type: "project",
         status: "0",
         startTime: "",
@@ -129,12 +150,11 @@ export default {
         clientName: "",
         titre: "",
         price: "",
-        text: "<p>content...</p>"
+        text: ""
       },
-      allolo: "",
+      wasValidated: null,
       showInputRaison: false,
-      editorData: "<p>content...</p>",
-      selected: "projet",
+      editorData: "",
       warningModal: false,
       editorConfig: {
         extraPlugins: "codesnippet",
@@ -153,17 +173,34 @@ export default {
       ]
     };
   },
-  mounted() {},
+  mounted() {
+    //
+  },
   watch: {
-    postData() {}
+    formValues: {
+      deep: true,
+      handler: function(val) {
+        console.log("formValues : ", val);
+        if (val.idcontents) {
+          this.postData["idcontents"] = val.idcontents;
+        }
+        for (const i in this.postData) {
+          if (val[i]) {
+            this.postData[i] = val[i];
+          }
+        }
+      }
+    }
   },
   computed: {
-    elle() {
-      var el = this.showInputRaison;
-      if (this.postData.status) {
-        el = this.aallo();
+    checkForSave() {
+      if (this.wasValidated == true && this.postData.type.length > 2) {
+        this.setBtnState(true);
+        return true;
+      } else {
+        this.setBtnState(false);
+        return false;
       }
-      return el;
     },
     ser() {
       var newDiv = document.createElement("div");
@@ -173,30 +210,20 @@ export default {
       });
 
       return newDiv.outerHTML;
-    },
-    noEmpty() {
-      var el = {};
-      if (this.postData.type == "project") {
-        el = this.postData;
-      } else if (this.postData.type == "tache") {
-        (el.type = this.postData.type),
-          (el.startTime = this.postData.startTime),
-          (el.endTime = this.postData.endTime),
-          (el.titre = this.postData.titre),
-          (el.text = this.postData.text);
-      } else {
-        el = {
-          titre: this.postData.titre,
-          text: this.postData.text
-        };
-      }
-      return el;
     }
   },
   methods: {
-    aallo() {
-      console.log("status");
-      this.showInputRaison = true;
+    setBtnState(val) {
+      this.btnState.state = val;
+    },
+    inputValidation(val) {
+      if (val.length <= 4) {
+        this.wasValidated = false;
+        return false;
+      } else {
+        this.wasValidated = true;
+        return true;
+      }
     },
     EventShowInput() {
       console.log("object");
@@ -209,10 +236,21 @@ export default {
       this.postData.type = "tache";
     },
     EditProject() {
-      var o = this.postData.startTime;
-      var al = moment(o, "DD-MM-YYYY  HH:mm").unix();
-
-      console.log("moment", al);
+      Utilities.formatData(this.postData).then(reponse => {
+        console.log(" EditProject : ", reponse);
+        config
+          .post("/gestion-project/save-update", reponse)
+          .then(reponse => {
+            if (reponse.status) {
+              console.log("dataLoad", reponse);
+              this.$emit("edition-ok", reponse);
+            }
+            this.isLoading = false;
+          })
+          .catch(function(error) {
+            console.log("error", error);
+          });
+      });
     },
     FormatTime(id) {
       var data = this.postData;
@@ -225,10 +263,10 @@ export default {
         idcontents: id,
         date_depart_proposer: ddp,
         date_fin_proposer: dfp,
-        date_fin_reel: reelD,
+        date_fin_reel: "reelD",
         status: status,
-        temps_pause: temps_pause,
-        raison: raison
+        temps_pause: "temps_pause",
+        raison: "raison"
       });
     },
     FormatData() {
@@ -264,4 +302,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>
+
+<!--
+ //nom du fichier en pascal.
+ //<template>
+ - le nom des attributs en kebab-case;
+ - la valeur des attributs et des variables en camelCase;
+ - function en PascalCase
+ //props, data
+ - variable en camelCase
+ //methods
+ - variable en PascalCase
+-->
