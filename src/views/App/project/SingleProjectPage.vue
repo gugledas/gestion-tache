@@ -1,54 +1,16 @@
 <template lang="html">
   <div>
-    <CRow>
+    <CRow
+      >datd: ///{{ dataOfForm }}
       <CCol md="12">
-        <CCard>
-          <CCardHeader class="card-color">
-            {{ dataLoad.titre }}
-            <div class="card-header-actions">
-              <CLink
-                href="#"
-                class=" btn-close m-2"
-                @click="descToggle = !descToggle"
-              >
-                <CIcon
-                  :name="`cil-chevron-circle-${descToggle ? 'down' : 'up'}-alt`"
-                />
-              </CLink>
-              <CLink href="#" class=" btn-close m-2" @click="modalEdit = true">
-                <CIcon name="cil-pencil" />
-              </CLink>
-              <CLink href="#" class=" btn-close m-1" @click="HideTypeProject">
-                <CIcon name="cil-plus" />
-              </CLink>
-              <CLink
-                href="#"
-                class="m-2 btn-setting"
-                @click="modalRessource = true"
-              >
-                <CIcon name="cil-settings" />
-              </CLink>
-              <CLink
-                class="m-1 btn-minimize"
-                @click="isCollapsed = !isCollapsed"
-              >
-                <CIcon
-                  :name="`cil-chevron-${isCollapsed ? 'bottom' : 'top'}`"
-                />
-              </CLink>
-              <CLink href="#" class="m-2 btn-close" v-on:click="show = false">
-                <CIcon name="cil-x-circle" />
-              </CLink>
-            </div>
-          </CCardHeader>
-          <CCollapse :show="isCollapsed" :duration="400">
-            <CCardBody>
-              <CCollapse :show="descToggle" :duration="400">
-                <div v-html="textDisplay"></div>
-              </CCollapse>
-            </CCardBody>
-          </CCollapse>
-        </CCard>
+        <card-jsx :dataLoad="dataLoad" @modal-edit-on="modalEditOn"></card-jsx>
+        <CardComponent
+          :dataLoad="dataLoad"
+          @modal-edit-on="modalEditOn"
+          @ev-modal-edit-on="evModalEditOn"
+          @modal-ressource-on="modalRessource = true"
+          @Hide-type-project="HideTypeProject"
+        ></CardComponent>
       </CCol>
 
       <!-- Start modal for adding new project -->
@@ -127,12 +89,12 @@
       <!-- Madal for edditing project -->
       <CModal
         size="lg"
-        :title="'Edition de : ' + dataLoad.titre"
+        :title="'Edition de : ' + dataOfForm.titre"
         color="success"
         :show.sync="modalEdit"
       >
         <PopUpContent
-          :form-values="dataLoad"
+          :form-values="dataOfForm"
           ref="edchild"
           @edition-ok="LoadProjectData"
           :btn-state="btnStateEdit"
@@ -153,6 +115,7 @@
           </div>
         </template>
       </CModal>
+
       <!-- end Modal for edditing project -->
 
       <CCol md="6"
@@ -171,7 +134,7 @@ import * as Charts from "../../charts/index";
 import hljs from "highlight.js";
 import config from "../config/config";
 export default {
-  name: "SimpleProjectPagetest",
+  name: "SingleProjectPagetest",
   props: {
     idcontents: {
       type: String,
@@ -180,22 +143,23 @@ export default {
   },
   components: {
     ...Charts,
-    PopUpContent: () => import("./PopUpContent.vue")
+    PopUpContent: () => import("./PopUpContent.vue"),
+    CardComponent: () => import("./CardComponent"),
+    "card-jsx": () => import("./CardJsx.vue")
   },
   data() {
     return {
+      dataOfForm: {},
       btnStateEdit: { state: false },
       dataLoad: {},
       modalEdit: false,
       ressourceToAdd: "",
       chooseType: "text",
-      descToggle: true,
       show: true,
       selected: "projet",
       addingModal: false,
       modalRessource: false,
       isCollapsed: true,
-      editorData: "<p>me al rasp sale</p>",
       editorConfig: {
         extraPlugins: "codesnippet",
         codeSnippet_theme: "monokai_sublime"
@@ -204,9 +168,7 @@ export default {
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
         { value: "memos", label: "Mémos" }
-      ],
-      loremIpsum:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat."
+      ]
     };
   },
   mounted() {
@@ -232,6 +194,14 @@ export default {
     }
   },
   methods: {
+    modalEditOn(data) {
+      console.log("data", data);
+      this.dataOfForm = data;
+      this.modalEdit = true;
+    },
+    evModalEditOn(data) {
+      console.log("ouverture du poup : ", data);
+    },
     // Hide type project if we want to create  content inside project
     HideTypeProject() {
       this.addingModal = true;

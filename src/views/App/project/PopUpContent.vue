@@ -100,6 +100,7 @@
             v-model="postData.price"
           />
         </CCol>
+        postDta://{{ postData }}
       </CRow>
     </div>
     <template slot="footer">
