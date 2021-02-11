@@ -1,18 +1,28 @@
 <template lang="html">
   <div>
-    <CRow
-      >datd: ///{{ dataOfForm }}
-      <CCol md="12">
-        <card-jsx :dataLoad="dataLoad" @modal-edit-on="modalEditOn"></card-jsx>
-        <CardComponent
+    <CRow v-if="spinner"
+      ><CSpinner
+        class="mx-auto mt-5"
+        tag="div"
+        color="primary"
+        style="width:4rem;height:4rem;"
+      />
+    </CRow>
+    <CRow v-if="!spinner">
+      <CCol md="8">
+        <card-jsx
+          :dataLoad="dataLoad"
+          @modal-edit-on="modalEditOn"
+          @Hide-type-project="HideTypeProject"
+        ></card-jsx>
+        <!-- <CardComponent
           :dataLoad="dataLoad"
           @modal-edit-on="modalEditOn"
           @ev-modal-edit-on="evModalEditOn"
           @modal-ressource-on="modalRessource = true"
           @Hide-type-project="HideTypeProject"
-        ></CardComponent>
+        ></CardComponent> -->
       </CCol>
-
       <!-- Start modal for adding new project -->
       <CModal
         size="lg"
@@ -20,7 +30,11 @@
         color="info"
         :show.sync="addingModal"
       >
-        <PopUpContent :form-values="dataLoad" ref="child"></PopUpContent>
+        <PopUpContent
+          :form-values="dataLoad"
+          ref="child"
+          @addnew-ok="LoadProjectData"
+        ></PopUpContent>
         <template slot="footer">
           <div class="d-flex justify-content-end mr-3">
             <CButton @click="addingModal = false" class="mx-1" color="light"
@@ -118,7 +132,7 @@
 
       <!-- end Modal for edditing project -->
 
-      <CCol md="6"
+      <CCol md="4"
         ><CCard>
           <CCardHeader>
             stats
@@ -133,6 +147,7 @@
 import * as Charts from "../../charts/index";
 import hljs from "highlight.js";
 import config from "../config/config";
+import Utilities from "./Utilities";
 export default {
   name: "SingleProjectPagetest",
   props: {
@@ -144,14 +159,16 @@ export default {
   components: {
     ...Charts,
     PopUpContent: () => import("./PopUpContent.vue"),
-    CardComponent: () => import("./CardComponent"),
+    //CardComponent: () => import("./CardComponent"),
     "card-jsx": () => import("./CardJsx.vue")
   },
   data() {
     return {
+      spinner: false,
       dataOfForm: {},
       btnStateEdit: { state: false },
       dataLoad: {},
+      idc: null,
       modalEdit: false,
       ressourceToAdd: "",
       chooseType: "text",
@@ -203,7 +220,9 @@ export default {
       console.log("ouverture du poup : ", data);
     },
     // Hide type project if we want to create  content inside project
-    HideTypeProject() {
+    HideTypeProject(data) {
+      this.idc = data.idcontentsparent;
+      console.log("idc", this.idc);
       this.addingModal = true;
       this.$refs.child.changeType();
     },
@@ -216,18 +235,20 @@ export default {
     },
     AddNewTask() {
       this.addingModal = false;
-      this.$refs.child.PostNewProject();
+      this.$refs.child.PostNewProject(this.idc);
     },
     // Request for Loading data on DB
     LoadProjectData() {
+      this.spinner = true;
       this.isLoading = true;
       config
         .get("/gestion-project/project-with-childs/" + this.idcontents)
         .then(reponse => {
           if (reponse.status) {
-            this.dataLoad = reponse.data[0];
+            this.dataLoad = Utilities.formCard(reponse.data);
           }
           this.isLoading = false;
+          this.spinner = false;
         })
         .catch(function(error) {
           console.log("error", error);

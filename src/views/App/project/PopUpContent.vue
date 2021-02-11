@@ -100,7 +100,6 @@
             v-model="postData.price"
           />
         </CCol>
-        postDta://{{ postData }}
       </CRow>
     </div>
     <template slot="footer">
@@ -126,7 +125,7 @@ export default {
   name: "PopUpContent",
   props: {
     formValues: {
-      type: Object,
+      type: [Object, Array],
       required: true
     },
     btnState: {
@@ -242,7 +241,7 @@ export default {
           .post("/gestion-project/save-update", reponse)
           .then(reponse => {
             if (reponse.status) {
-              console.log("dataLoad", reponse);
+              console.log("data after edit :", reponse);
               this.$emit("edition-ok", reponse);
             }
             this.isLoading = false;
@@ -269,22 +268,24 @@ export default {
         raison: "raison"
       });
     },
-    FormatData() {
+    FormatData(idc) {
       var result = [];
       result.push({
         table: "gestion_project_contents",
         fields: {
           text: this.postData.text,
-          titre: this.postData.titre
+          titre: this.postData.titre,
+          type: this.postData.type,
+          idcontentsparent: idc
         }
       });
       return result;
     },
-    PostNewProject() {
-      console.log("created", this.FormatData());
+    PostNewProject(idc) {
+      console.log("created", this.FormatData(idc));
 
       config
-        .post("/gestion-project/save-update", this.FormatData())
+        .post("/gestion-project/save-update", this.FormatData(idc))
         .then(reponse => {
           if (reponse.status) {
             if (reponse) {

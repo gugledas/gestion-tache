@@ -22,15 +22,21 @@
           <CLink href="#" class="m-2 btn-setting" @click="modalRessourceOn">
             <CIcon name="cil-settings" />
           </CLink>
-          <CLink class="m-1 btn-minimize" @click="isCollapsed = !isCollapsed">
-            <CIcon :name="`cil-chevron-${isCollapsed ? 'bottom' : 'top'}`" />
+          <CLink class="m-1 btn-minimize" @click="Collapsed">
+            <CIcon
+              :name="`cil-chevron-${isCollapsed.status ? 'bottom' : 'top'}`"
+            />
           </CLink>
-          <CLink href="#" class="m-2 btn-close" v-on:click="show = false">
-            <CIcon name="cil-x-circle" />
+          <CLink
+            href="#"
+            class="m-2 btn-close text-danger"
+            v-on:click="show = false"
+          >
+            <CIcon color="danger" name="cil-x-circle" />
           </CLink>
         </div>
       </CCardHeader>
-      <CCollapse :show="isCollapsed" :duration="400">
+      <CCollapse :show="dataLoad.open" :duration="400">
         <CCardBody>
           <CCollapse :show="descToggle" :duration="400">
             <div v-html="textDisplay"></div>
@@ -53,6 +59,12 @@ export default {
       default: function() {
         return {};
       }
+    },
+    isCollapsed: {
+      type: Object,
+      default: function() {
+        return { status: false };
+      }
     }
   },
   data() {
@@ -66,7 +78,7 @@ export default {
       selected: "projet",
       addingModal: false,
       modalRessource: false,
-      isCollapsed: true,
+      //isCollapsed: true,
       editorData: "<p>me al rasp sale</p>",
       editorConfig: {
         extraPlugins: "codesnippet",
@@ -91,8 +103,16 @@ export default {
     }
   },
   methods: {
+    Collapsed() {
+      if (this.dataLoad.open) {
+        this.dataLoad.open = false;
+      } else {
+        this.dataLoad.open = true;
+      }
+      console.log("isCollapsed : ", this.dataLoad.open);
+    },
     HideTypeProject() {
-      this.$emit("Hide-type-project");
+      this.$emit("Hide-type-project", this.dataLoad);
     },
     modalEditOn() {
       //console.log("edit : ", this.dataLoad.titre);

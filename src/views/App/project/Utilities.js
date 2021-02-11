@@ -26,6 +26,24 @@ const Utilities = {
       }
       resolv(result);
     });
+  },
+  /**
+   * un tableau
+   * @param [] cards
+   */
+  formCard: function(cards) {
+    var results = [];
+    for (const i in cards) {
+      var card = cards[i];
+      if (card.cards) {
+        card.cards = this.formCard(card.cards);
+      }
+      results.push({
+        ...card,
+        open: false
+      });
+    }
+    return results;
   }
 };
 export default Utilities;

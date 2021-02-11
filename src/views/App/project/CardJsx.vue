@@ -1,10 +1,11 @@
 <script>
 import CardComponent from "./CardComponent.vue";
+
 export default {
   name: "CardsJSX",
   props: {
     dataLoad: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
@@ -14,12 +15,11 @@ export default {
       modalEdit: false,
       ressourceToAdd: "",
       chooseType: "text",
-      descToggle: true,
+      descToggle: false,
       show: true,
       selected: "projet",
       addingModal: false,
       modalRessource: false,
-      isCollapsed: true,
       editorData: "<p>me al rasp sale</p>",
       editorConfig: {
         extraPlugins: "codesnippet",
@@ -34,13 +34,13 @@ export default {
   },
   render: function(createElement) {
     const elt = createElement;
-    var loopDatas = projects => {
+    var loopDatas = (projects, open = false) => {
       var result = [];
-
       projects.forEach(project => {
         var cards = [];
+        project.open = open;
         if (Array.isArray(project.cards)) {
-          cards = loopDatas(project.cards);
+          cards = loopDatas(project.cards, false);
         }
         result.push(
           elt(
@@ -53,6 +53,10 @@ export default {
                 "modal-edit-on": item => {
                   console.log("project edit : ", item.titre);
                   this.$emit("modal-edit-on", item);
+                },
+                "Hide-type-project": item => {
+                  console.log("hide-type-project : ", item);
+                  this.$emit("Hide-type-project", item);
                 }
               }
             },
@@ -62,7 +66,8 @@ export default {
       });
       return result;
     };
-    return elt("div", loopDatas([this.dataLoad]));
+
+    return elt("div", loopDatas(this.dataLoad, true));
   }
 };
 </script>
