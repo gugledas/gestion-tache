@@ -33,7 +33,14 @@
       </CHeaderNavItem> -->
     </CHeaderNav>
     <CSubheader class="px-3">
-      <CBreadcrumbRouter class="border-0 mb-0" />
+      <CBreadcrumbRouter
+        class="border-0 mb-0"
+        :items="[
+          { text: 'Home', to: '/' },
+          { text: 'parent', to: '#' },
+          { text: 'parent2' }
+        ]"
+      />
       <div class="ml-auto d-flex flex-wrap aling-items-end">
         <SSearch></SSearch>
         <CDropdown color="dark" toggler-text="Options" class="ml-sm-n5 mt-2">

@@ -100,19 +100,8 @@
             v-model="postData.price"
           />
         </CCol>
-        postDta://{{ postData }}
       </CRow>
     </div>
-    <template slot="footer">
-      <div class="d-flex justify-content-end mr-3">
-        <CButton @click="warningModal = false" class="mx-1" color="light">
-          Cancel
-        </CButton>
-        <CButton @click="warningModal = false" class="mx-1" color="warning">
-          Editer le contenu
-        </CButton>
-      </div>
-    </template>
   </div>
 </template>
 
@@ -126,7 +115,7 @@ export default {
   name: "PopUpContent",
   props: {
     formValues: {
-      type: Object,
+      type: [Object, Array],
       required: true
     },
     btnState: {
@@ -242,7 +231,7 @@ export default {
           .post("/gestion-project/save-update", reponse)
           .then(reponse => {
             if (reponse.status) {
-              console.log("dataLoad", reponse);
+              console.log("data after edit :", reponse);
               this.$emit("edition-ok", reponse);
             }
             this.isLoading = false;
@@ -256,47 +245,75 @@ export default {
       var data = this.postData;
       var ddp = moment(data.startTime, "YYYY-MM-DD  HH:mm").unix();
       var dfp = moment(data.endTime, "YYYY-MM-DD  HH:mm").unix();
-      var status = data.status;
+      //var status = data.status;
 
       var rest = [];
       rest.push({
         idcontents: id,
         date_depart_proposer: ddp,
-        date_fin_proposer: dfp,
-        date_fin_reel: "reelD",
-        status: status,
-        temps_pause: "temps_pause",
-        raison: "raison"
+        date_fin_proposer: dfp
+        // date_fin_reel: "reelD",
+        // status: status,
+        // temps_pause: "temps_pause",
+        // raison: "raison"
       });
     },
-    FormatData() {
+    FormatData(idc) {
+      var data = this.postData;
+      var ddp = moment(data.startTime, "YYYY-MM-DD  HH:mm").unix();
+      var dfp = moment(data.endTime, "YYYY-MM-DD  HH:mm").unix();
+      var state = parseInt(this.postData.status, 10);
       var result = [];
       result.push({
         table: "gestion_project_contents",
         fields: {
-          text: this.postData.text,
-          titre: this.postData.titre
+          text: data.text,
+          titre: data.titre,
+          type: data.type
+        },
+        childstable: {
+          colum_id_name: "idcontents",
+          tables: [
+            {
+              table: "gestion_project_times",
+              fields: {
+                date_depart_proposer: ddp,
+                date_fin_proposer: dfp,
+                status: state
+              }
+            },
+            {
+              table: "gestion_project_hierachie",
+              fields: {
+                idcontentsparent: idc,
+                ordre: 0
+              }
+            }
+          ]
         }
       });
       return result;
     },
-    PostNewProject() {
-      console.log("created", this.FormatData());
+    PostNewProject(idc) {
+      Utilities.formatAddData(this.postData, idc).then(reponse => {
+        console.log("created", reponse);
 
-      config
-        .post("/gestion-project/save-update", this.FormatData())
-        .then(reponse => {
-          if (reponse.status) {
-            if (reponse) {
-              this.request = reponse.data[0];
-              console.log("dataLoad", this.dataLoad);
+        config
+          .post("/gestion-project/save-update", reponse)
+          .then(reponse => {
+            if (reponse.status) {
+              if (reponse) {
+                this.request = reponse.data[0];
+                console.log("dataLoad", this.dataLoad);
+                this.$emit("addnew-ok");
+              }
             }
-          }
-          this.isLoading = false;
-        })
-        .catch(function(error) {
-          console.log("error", error);
-        });
+            this.isLoading = false;
+          })
+          .catch(function(error) {
+            console.log("error", error);
+          });
+      });
     }
   }
 };
