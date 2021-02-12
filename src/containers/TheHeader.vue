@@ -58,6 +58,27 @@ export default {
     SSearch,
     AddNewProject
     //TheHeaderDropdownAccnt
+  },
+  data() {
+    return {
+      items2: [
+        {
+          text: "Go to dashboard",
+          to: "/dashboard"
+        },
+        {
+          text: "Go to widgets",
+          to: "/Widgets"
+        },
+        {
+          text: "Go to Google",
+          href: "http://google.com"
+        },
+        {
+          text: "Current page"
+        }
+      ]
+    };
   }
 };
 </script>

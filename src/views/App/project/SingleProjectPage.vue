@@ -14,6 +14,7 @@
           :dataLoad="dataLoad"
           @modal-edit-on="modalEditOn"
           @Hide-type-project="HideTypeProject"
+          @suppression-ok="LoadProjectData"
         ></card-jsx>
         <!-- <CardComponent
           :dataLoad="dataLoad"
@@ -101,34 +102,36 @@
       <!-- end ressource modal -->
 
       <!-- Madal for edditing project -->
-      <CModal
-        size="lg"
-        :title="'Edition de : ' + dataOfForm.titre"
-        color="success"
-        :show.sync="modalEdit"
-      >
-        <PopUpContent
-          :form-values="dataOfForm"
-          ref="edchild"
-          @edition-ok="LoadProjectData"
-          :btn-state="btnStateEdit"
-        ></PopUpContent>
-        btn: : {{ btnStateEdit }}
-        <template slot="footer">
-          <div class="d-flex justify-content-end mr-3">
-            <CButton @click="modalEdit = false" class="mx-1" color="light">
-              Cancel
-            </CButton>
-            <CButton
-              @click="EditModalPost"
-              class="mx-1"
-              :color="btnStateEdit.state ? 'success' : 'light'"
-            >
-              Enregistrer les modifications
-            </CButton>
-          </div>
-        </template>
-      </CModal>
+      <div>
+        <CModal
+          size="lg"
+          :title="'Edition de : ' + dataOfForm.titre"
+          color="success"
+          :show.sync="modalEdit"
+        >
+          <PopUpContent
+            :form-values="dataOfForm"
+            ref="edchild"
+            @edition-ok="LoadProjectData"
+            :btn-state="btnStateEdit"
+          ></PopUpContent>
+          btn: : {{ btnStateEdit }}
+          <template slot="footer">
+            <div class="d-flex justify-content-end mr-3">
+              <CButton @click="modalEdit = false" class="mx-1" color="light">
+                Cancel
+              </CButton>
+              <CButton
+                @click="EditModalPost"
+                class="mx-1"
+                :color="btnStateEdit.state ? 'success' : 'light'"
+              >
+                Enregistrer les modifications
+              </CButton>
+            </div>
+          </template>
+        </CModal>
+      </div>
 
       <!-- end Modal for edditing project -->
 
@@ -221,7 +224,7 @@ export default {
     },
     // Hide type project if we want to create  content inside project
     HideTypeProject(data) {
-      this.idc = data.idcontentsparent;
+      this.idc = data.idcontents;
       console.log("idc", this.idc);
       this.addingModal = true;
       this.$refs.child.changeType();
