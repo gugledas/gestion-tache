@@ -57,6 +57,9 @@ export default {
                 "Hide-type-project": item => {
                   console.log("hide-type-project : ", item);
                   this.$emit("Hide-type-project", item);
+                },
+                "suppression-ok": () => {
+                  this.$emit("suppression-ok");
                 }
               }
             },

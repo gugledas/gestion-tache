@@ -2,7 +2,11 @@
   <div>
     <CCard>
       <CCardHeader class="card-color">
-        {{ dataLoad.titre }}
+        <CLink
+          :to="'/projet/' + dataLoad.idcontents"
+          class="text-dark text-decoration-none"
+          >{{ dataLoad.titre }}</CLink
+        >
         <div class="card-header-actions">
           <CLink
             href="#"
@@ -23,14 +27,12 @@
             <CIcon name="cil-settings" />
           </CLink>
           <CLink class="m-1 btn-minimize" @click="Collapsed">
-            <CIcon
-              :name="`cil-chevron-${isCollapsed.status ? 'bottom' : 'top'}`"
-            />
+            <CIcon :name="`cil-chevron-${dataLoad.open ? 'bottom' : 'top'}`" />
           </CLink>
           <CLink
             href="#"
             class="m-2 btn-close text-danger"
-            v-on:click="show = false"
+            @click="DeleteModalOn"
           >
             <CIcon color="danger" name="cil-x-circle" />
           </CLink>
@@ -45,10 +47,30 @@
         </CCardBody>
       </CCollapse>
     </CCard>
+    <CModal
+      title="Confirmer la suppression"
+      color="danger"
+      :show.sync="deleteModal"
+    >
+      êtes vous sûre de vouloir supprimer ce contenu? <br />
+      <small class="mt-2 text-center">Cette action est irréversible.</small>
+      <template slot="footer">
+        <div class="d-flex justify-content-end mr-3">
+          <CButton @click="deleteModal = false" class="mx-1" color="light"
+            >Cancel</CButton
+          >
+          <CButton @click="DeleteContent" class="mx-1" color="danger" desabled
+            >Supprimer</CButton
+          >
+        </div>
+      </template>
+    </CModal>
   </div>
 </template>
 
 <script>
+import Utilities from "./Utilities.js";
+import config from "../config/config";
 import hljs from "highlight.js";
 export default {
   name: "CardComponent",
@@ -71,6 +93,7 @@ export default {
     return {
       btnStateEdit: { state: false },
       modalEdit: false,
+      deleteModal: false,
       ressourceToAdd: "",
       chooseType: "text",
       descToggle: true,
@@ -103,13 +126,32 @@ export default {
     }
   },
   methods: {
+    DeleteModalOn() {
+      this.deleteModal = true;
+    },
+    DeleteContent() {
+      Utilities.formatDeleteData(this.dataLoad, "delete").then(reponse => {
+        console.log(" deleteProject : ", reponse);
+        config
+          .post("/gestion-project/save-update", reponse)
+          .then(reponse => {
+            if (reponse.status) {
+              console.log("data after delete :", reponse);
+              this.$emit("suppression-ok");
+            }
+            this.isLoading = false;
+          })
+          .catch(function(error) {
+            console.log("error", error);
+          });
+      });
+    },
     Collapsed() {
       if (this.dataLoad.open) {
         this.dataLoad.open = false;
       } else {
         this.dataLoad.open = true;
       }
-      console.log("isCollapsed : ", this.dataLoad.open);
     },
     HideTypeProject() {
       this.$emit("Hide-type-project", this.dataLoad);
