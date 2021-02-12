@@ -1,14 +1,6 @@
 <!-- Vue component -->
 <template>
   <div class="searchForm">
-    <CButton
-      class="ml-4"
-      variant="ghost"
-      color="warning"
-      size="sm"
-      @click="LoadProjectData"
-      ><CIcon name="cilPencil"></CIcon>{{ searchValue }}</CButton
-    >
     <multiselect
       v-model="searchValue"
       :options="project"
@@ -23,7 +15,7 @@
       :internal-search="true"
       :showPointer="true"
       label="titre"
-      @search-change="taca"
+      @search-change="TypingSearch"
     >
       <template slot="singleLabel" slot-scope="props"
         ><span class="option__desc d-inline-flex flex-column"
@@ -34,13 +26,15 @@
         <div class="option__desc d-inline-flex flex-column align-items-start">
           <span class="option__title mb-2">
             <CIcon name="cilFolder" class="mr-1 text-info "></CIcon>
-            {{ props.option.titre }}</span
-          >
+            {{ props.option.titre }}
+          </span>
           <div class="d-flex aling-items-center">
             <span class="text-info bg-light p-1 mt-2 h6">Projet</span>
-            <CButton class="ml-4" variant="ghost" color="warning" size="sm"
-              ><CIcon name="cilPencil"></CIcon
-            ></CButton>
+            <CButton class="ml-4" variant="ghost" color="warning" size="sm">
+              <router-link :to="'/projet/' + props.option.idcontents">
+                <CIcon name="cilPencil"></CIcon>
+              </router-link>
+            </CButton>
           </div>
         </div>
       </template>
@@ -50,8 +44,9 @@
 
 <script>
 import Multiselect from "vue-multiselect";
-import conf from "./Conf";
 import Vue from "vue";
+import config from "../config/config";
+
 // register globally
 Vue.component("multiselect", Multiselect);
 
@@ -60,7 +55,8 @@ export default {
   components: { Multiselect },
   data() {
     return {
-      searchValue: "gest",
+      value: "",
+      searchValue: "",
       options: ["list", "of", "options"],
       project: [],
       isLoading: false,
@@ -83,28 +79,27 @@ export default {
     }
   },
   methods: {
-    checkTyping(ev) {
-      console.log("checkTyping : ", ev);
+    // Recherche des informations 1.5s après la saisie
+    TypingSearch(value) {
+      if (value.length >= 2) {
+        this.isLoading = true;
+        this.value = value;
+        var self = this;
+        clearTimeout(self.timer);
+        self.timer = setTimeout(function() {
+          self.LoadProjectData();
+        }, 1500);
+      }
     },
-    taca(value) {
-      console.log("taca-55");
-      this.isLoading = true;
-      this.searchValue = value;
-      var self = this;
-      clearTimeout(self.timer);
-      self.timer = setTimeout(function() {
-        console.log("taca");
-        self.LoadProjectData();
-      }, 1000);
-    },
+    // Request for Loading data on DB
     LoadProjectData() {
       this.isLoading = true;
-      conf
-        .post("/gestion-project/search?key=" + this.searchValue, { level: 0 })
+      config
+        .post("/gestion-project/search?key=" + this.value, { level: 0 })
         .then(reponse => {
           if (reponse.status) {
             if (reponse) {
-              //this.project = reponse.data.return["select-project"];
+              this.project = reponse.data;
               console.log("Project", reponse);
             }
           }
@@ -113,22 +108,6 @@ export default {
         .catch(function(error) {
           console.log("error", error);
         });
-      /*
-      var myInit = {
-        method: "POST",
-        headers: { databaseConfig: "Wbu-Gestion-Tache" },
-        mode: "cors",
-        cache: "default"
-      };
-
-      fetch(
-        "http://habeukutilites.kksa/gestion-project/search?key=" +
-          this.searchValue,
-        myInit
-      ).then(function(response) {
-        console.log("response : ", response);
-      });
-      /**/
     }
   }
 };

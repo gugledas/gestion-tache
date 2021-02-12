@@ -1,0 +1,273 @@
+<template lang="html">
+  <div>
+    <CRow v-if="spinner"
+      ><CSpinner
+        class="mx-auto mt-5"
+        tag="div"
+        color="primary"
+        style="width:4rem;height:4rem;"
+      />
+    </CRow>
+    <CRow v-if="!spinner">
+      <CCol md="8">
+        <card-jsx
+          :dataLoad="dataLoad"
+          @modal-edit-on="modalEditOn"
+          @Hide-type-project="HideTypeProject"
+        ></card-jsx>
+        <!-- <CardComponent
+          :dataLoad="dataLoad"
+          @modal-edit-on="modalEditOn"
+          @ev-modal-edit-on="evModalEditOn"
+          @modal-ressource-on="modalRessource = true"
+          @Hide-type-project="HideTypeProject"
+        ></CardComponent> -->
+      </CCol>
+      <!-- Start modal for adding new project -->
+      <CModal
+        size="lg"
+        title="Nouveau projet"
+        color="info"
+        :show.sync="addingModal"
+      >
+        <PopUpContent
+          :form-values="dataLoad"
+          ref="child"
+          @addnew-ok="LoadProjectData"
+        ></PopUpContent>
+        <template slot="footer">
+          <div class="d-flex justify-content-end mr-3">
+            <CButton @click="addingModal = false" class="mx-1" color="light"
+              >Cancel</CButton
+            >
+            <CButton @click="AddNewTask" class="mx-1" color="info" desabled
+              >Save</CButton
+            >
+          </div>
+        </template>
+      </CModal>
+      <!-- end modal Add new  -->
+
+      <!-- modal for adding ressource -->
+      <CModal
+        size="lg"
+        title="Ressources"
+        color="light"
+        :show.sync="modalRessource"
+      >
+        <div class="pl-sm-2 " v-if="selected == 'projet'">
+          <CRow class="d-flex flex-nowrap">
+            <CCol md="7" class="">
+              <CInput
+                label="add new ressource"
+                :type="chooseType"
+                :placeholder="chooseType"
+                v-model="ressourceToAdd"
+              >
+                <template #append>
+                  <div>
+                    <CDropdown
+                      toggler-text="Type"
+                      class="rounded-0"
+                      color="dark"
+                      @click="ressourceToAdd = ''"
+                    >
+                      <CDropdownItem @click="chooseType = 'text'"
+                        >text</CDropdownItem
+                      >
+                      <CDropdownItem @click="chooseType = 'file'"
+                        >file</CDropdownItem
+                      >
+                    </CDropdown>
+                    <CButton color="primary">Add</CButton>
+                  </div>
+                </template>
+              </CInput>
+            </CCol>
+          </CRow>
+        </div>
+
+        <template slot="footer">
+          <div class="d-flex justify-content-end mr-3">
+            <CButton @click="modalRessource = false" class="mx-1" color="light"
+              >Cancel</CButton
+            >
+            <CButton @click="modalRessource = false" class="mx-1" color="info"
+              >ok</CButton
+            >
+          </div>
+        </template>
+      </CModal>
+      <!-- end ressource modal -->
+
+      <!-- Madal for edditing project -->
+      <CModal
+        size="lg"
+        :title="'Edition de : ' + dataOfForm.titre"
+        color="success"
+        :show.sync="modalEdit"
+      >
+        <PopUpContent
+          :form-values="dataOfForm"
+          ref="edchild"
+          @edition-ok="LoadProjectData"
+          :btn-state="btnStateEdit"
+        ></PopUpContent>
+        btn: : {{ btnStateEdit }}
+        <template slot="footer">
+          <div class="d-flex justify-content-end mr-3">
+            <CButton @click="modalEdit = false" class="mx-1" color="light">
+              Cancel
+            </CButton>
+            <CButton
+              @click="EditModalPost"
+              class="mx-1"
+              :color="btnStateEdit.state ? 'success' : 'light'"
+            >
+              Enregistrer les modifications
+            </CButton>
+          </div>
+        </template>
+      </CModal>
+
+      <!-- end Modal for edditing project -->
+
+      <CCol md="4"
+        ><CCard>
+          <CCardHeader>
+            stats
+          </CCardHeader>
+          <CCardBody><CChartPieExample /> </CCardBody> </CCard
+      ></CCol>
+    </CRow>
+  </div>
+</template>
+
+<script>
+import * as Charts from "../../charts/index";
+import hljs from "highlight.js";
+import config from "../config/config";
+import Utilities from "./Utilities";
+export default {
+  name: "SingleProjectPagetest",
+  props: {
+    idcontents: {
+      type: String,
+      default: "52"
+    }
+  },
+  components: {
+    ...Charts,
+    PopUpContent: () => import("./PopUpContent.vue"),
+    //CardComponent: () => import("./CardComponent"),
+    "card-jsx": () => import("./CardJsx.vue")
+  },
+  data() {
+    return {
+      spinner: false,
+      dataOfForm: {},
+      btnStateEdit: { state: false },
+      dataLoad: {},
+      idc: null,
+      modalEdit: false,
+      ressourceToAdd: "",
+      chooseType: "text",
+      show: true,
+      selected: "projet",
+      addingModal: false,
+      modalRessource: false,
+      isCollapsed: true,
+      editorConfig: {
+        extraPlugins: "codesnippet",
+        codeSnippet_theme: "monokai_sublime"
+      },
+      options: [
+        { value: "projet", label: "Projet" },
+        { value: "tache", label: "Tâche" },
+        { value: "memos", label: "Mémos" }
+      ]
+    };
+  },
+  mounted() {
+    this.LoadProjectData();
+  },
+  watch: {
+    //
+  },
+  computed: {
+    modalData() {
+      //var room = this.dataLoad;
+      var element = [];
+      return element;
+    },
+    textDisplay() {
+      var newDiv = document.createElement("div");
+      newDiv.innerHTML = this.dataLoad.text ? this.dataLoad.text : "";
+      newDiv.querySelectorAll("pre code").forEach(block => {
+        hljs.highlightBlock(block);
+      });
+
+      return newDiv.outerHTML;
+    }
+  },
+  methods: {
+    modalEditOn(data) {
+      console.log("data", data);
+      this.dataOfForm = data;
+      this.modalEdit = true;
+    },
+    evModalEditOn(data) {
+      console.log("ouverture du poup : ", data);
+    },
+    // Hide type project if we want to create  content inside project
+    HideTypeProject(data) {
+      this.idc = data.idcontentsparent;
+      console.log("idc", this.idc);
+      this.addingModal = true;
+      this.$refs.child.changeType();
+    },
+    // save content edieted
+    EditModalPost() {
+      if (this.btnStateEdit.state) {
+        this.modalEdit = false;
+        this.$refs.edchild.EditProject();
+      }
+    },
+    AddNewTask() {
+      this.addingModal = false;
+      this.$refs.child.PostNewProject(this.idc);
+    },
+    // Request for Loading data on DB
+    LoadProjectData() {
+      this.spinner = true;
+      this.isLoading = true;
+      config
+        .get("/gestion-project/project-with-childs/" + this.idcontents)
+        .then(reponse => {
+          if (reponse.status) {
+            this.dataLoad = Utilities.formCard(reponse.data);
+          }
+          this.isLoading = false;
+          this.spinner = false;
+        })
+        .catch(function(error) {
+          console.log("error", error);
+        });
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped></style>
+
+<!--
+ //nom du fichier en pascal.
+ //<template>
+ - le nom des attributs en kebab-case;
+ - la valeur des attributs et des variables en camelCase;
+ - function en PascalCase
+ //props, data
+ - variable en camelCase
+ //methods
+ - variable en PascalCase
+-->

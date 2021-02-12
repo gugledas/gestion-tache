@@ -1,6 +1,21 @@
 <template>
   <div>
+    <CRow>
+      <AddNewProject :showSideText="true"></AddNewProject>
+    </CRow>
     <CRow class="mt-3">
+      <CCol md="7">
+        <CTableWrapper :items="getShuffledUsersData()" small caption="Tâches" />
+      </CCol>
+      <CCol md="5">
+        <CCard>
+          <CCardHeader>
+            General
+          </CCardHeader>
+          <CCardBody><CChartPieExample /></CCardBody>
+        </CCard>
+      </CCol>
+
       <!-- Tableau de projet -->
       <CCol md="12">
         <CCard>
@@ -21,7 +36,7 @@
             <CDataTable
               class="m-0  table-borderless "
               hover
-              responsive
+              :responsive="false"
               :items="tableItems"
               :fields="tableFields"
               head-color="light"
@@ -29,14 +44,22 @@
               :header="false"
             >
               <td slot="user" slot-scope="{ item }">
-                <div>{{ item.user.name }}</div>
-                <div class="small text-muted">
-                  <span>
-                    <template v-if="item.user.new">New</template>
-                    <template v-else>Recurring</template>
-                  </span>
-                  | Crée le: {{ item.user.registered }}
-                </div>
+                <CLink
+                  :to="{
+                    path: 'projets/' + item.user.name
+                  }"
+                  class="text-decoration-none"
+                >
+                  <div>{{ item.user.name }}</div>
+
+                  <div class="small text-muted">
+                    <span>
+                      <template v-if="item.user.new">New</template>
+                      <template v-else>Recurring</template>
+                    </span>
+                    | Crée le: {{ item.user.registered }}
+                  </div>
+                </CLink>
               </td>
               <td slot="country" slot-scope="{ item }" class="text-center">
                 <CIcon :name="item.country.flag" height="25" />
@@ -90,20 +113,20 @@
         </CCard>
       </CCol>
     </CRow>
-    <SingleProject />
   </div>
 </template>
 
 <script>
 import * as Charts from "../charts/index";
 import usersData from "../users/UsersData";
-import SingleProject from "./SingleProjectPage";
-
+import CTableWrapper from "../base/Table.vue";
+import AddNewProject from "./project/AddNewProject";
 export default {
   name: "SHome",
   components: {
     ...Charts,
-    SingleProject
+    CTableWrapper,
+    AddNewProject
   },
   data() {
     return {
