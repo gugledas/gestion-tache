@@ -12,6 +12,7 @@ const Page404 = () => import("@/views/pages/Page404");
 const Page500 = () => import("@/views/pages/Page500");
 const Login = () => import("@/views/pages/Login");
 const Register = () => import("@/views/pages/Register");
+const Document = () => import("@/Steph/Docs/Document.vue");
 
 // Stan components
 const Home = () => import("@/views/App/Home");
@@ -51,9 +52,14 @@ function configRoutes() {
         },
         {
           path: "/projet/:idcontents",
-          name: "Page dynamique",
+          name: "Projet",
           component: SingleProjectPage,
           props: true
+        },
+        {
+          path: "/docs",
+          name: "Docs",
+          component: Document
         }
         // {
         //   path: "/projet-page/:idcontents",
@@ -78,6 +84,7 @@ function configRoutes() {
           name: "Page404",
           component: Page404
         },
+
         {
           path: "500",
           name: "Page500",

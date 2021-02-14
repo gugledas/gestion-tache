@@ -15,10 +15,18 @@ export default [
         icon: "cil-folder"
       },
       {
-        _name: "CSidebarNavItem",
-        name: "Widgets",
-        to: "/widgets",
-        icon: "cil-calculator"
+        _name: "CSidebarNavDropdown",
+        name: "Theme Documentation",
+        route: "/docs",
+        icon: "cil-star",
+        items: [
+          {
+            _name: "CSidebarNavItem",
+            name: "Documentation",
+            to: "/docs",
+            icon: "cil-folder"
+          }
+        ]
       },
       // {
       //   _name: "CSidebarNavItem",

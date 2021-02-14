@@ -3,7 +3,6 @@ export default {
   baseUrl: "http://gestion-tache-new.kksa",
   ModeDebug: true,
   post: function(request, datas = {}) {
-    console.log("ssss");
     return new Promise(resolv => {
       var configs = {
         headers: {}

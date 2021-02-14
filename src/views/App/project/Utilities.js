@@ -48,11 +48,38 @@ const Utilities = {
     }
     return results;
   },
-  formatAddData: function(datas, idc) {
+  /**
+   * Format les données pour la creation d'un nouveau project, taches, memos, à faire , bugs ...
+   * @param datas Array
+   * @param idc Number, id du contenu encours.
+   */
+  formatAddData: function(datas, idc = 0, level = 0) {
+    console.log("formatAddData datas :", datas, "\n idc", idc);
     return new Promise(resolv => {
-      var ddp = moment(datas.startTime, "YYYY-MM-DD  HH:mm").unix();
-      var dfp = moment(datas.endTime, "YYYY-MM-DD  HH:mm").unix();
+      var childstable = [];
       var state = parseInt(datas.status, 10);
+      level = parseInt(level, 10);
+      if (datas.startTime.length && datas.endTime) {
+        var ddp = moment(datas.startTime, "YYYY-MM-DD  HH:mm").unix();
+        var dfp = moment(datas.endTime, "YYYY-MM-DD  HH:mm").unix();
+        childstable.push({
+          table: "gestion_project_times",
+          fields: {
+            date_depart_proposer: ddp,
+            date_fin_proposer: dfp,
+            status: state
+          }
+        });
+      }
+      childstable.push({
+        table: "gestion_project_hierachie",
+        fields: {
+          idcontentsparent: idc,
+          ordre: 0,
+          level: level
+        }
+      });
+
       var result = [];
       if (datas && datas.titre) {
         var ligne = {
@@ -66,27 +93,9 @@ const Utilities = {
 
         ligne.childstable = {
           colum_id_name: "idcontents",
-          tables: [
-            {
-              table: "gestion_project_times",
-              fields: {
-                date_depart_proposer: ddp,
-                date_fin_proposer: dfp,
-                status: state
-              }
-            },
-            {
-              table: "gestion_project_hierachie",
-              fields: {
-                idcontentsparent: idc,
-                ordre: 0
-              }
-            }
-          ]
+          tables: childstable
         };
-
         result.push(ligne);
-        console.log("ligne", result);
       }
       resolv(result);
     });
