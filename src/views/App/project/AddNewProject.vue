@@ -18,15 +18,15 @@
       :show.sync="warningModal"
       :footer="false"
     >
-      <PopUpContent ref="child"></PopUpContent>
+      <PopUpContent ref="child" :formValues="formValues"></PopUpContent>
       <template slot="footer">
         <div class="d-flex justify-content-end mr-3 ">
-          <CButton @click="warningModal = false" class="mx-1" color="light"
-            >Cancel</CButton
-          >
-          <CButton @click="PostNewProject" class="mx-1" color="warning"
-            >Save</CButton
-          >
+          <CButton @click="warningModal = false" class="mx-1" color="light">
+            Cancel
+          </CButton>
+          <CButton @click="PostNewProject" class="mx-1" color="warning">
+            Save
+          </CButton>
         </div>
       </template>
     </CModal>
@@ -63,7 +63,8 @@ export default {
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
         { value: "memos", label: "Mémos" }
-      ]
+      ],
+      formValues: {}
     };
   },
   mounted() {},

@@ -4,7 +4,7 @@
 
     <CCard>
       <CCardHeader>
-        Projet
+        Projets
         <div class="card-header-actions">
           <a
             href="#"
@@ -31,22 +31,23 @@
           pagination
         >
           <td slot="user" slot-scope="{ item }">
-            <CLink
-              :to="{
-                path: 'projets/50'
-              }"
-              class="text-decoration-none"
-            >
-              <div>{{ item.titre }}</div>
-
-              <div class="small text-muted mt-1">
-                <span>
-                  <template>New</template>
-                  <template v-if="false">Recurring</template>
-                </span>
-                | Crée le: {{ item.created_at }}
-              </div>
-            </CLink>
+            <div>
+              <CLink
+                :to="{
+                  path: 'projet/' + item.idcontents
+                }"
+                class="text-decoration-none"
+              >
+                {{ item.titre }}
+              </CLink>
+            </div>
+            <div class="small text-muted mt-1">
+              <span>
+                <template>New</template>
+                <template v-if="false">Recurring</template>
+              </span>
+              | Crée le: {{ item.created_at }}
+            </div>
           </td>
           <!-- <td slot="country" slot-scope="{ item }" class="text-center">
             <CIcon :name="item.country.flag" height="25" />
@@ -105,7 +106,7 @@
 import * as Charts from "../charts/index";
 import usersData from "../users/UsersData";
 import SingleProject from "./project/SingleProjectPage";
-import config from "./config/config";
+import SelectDb from "./config/SelectDb";
 
 export default {
   name: "SHome",
@@ -124,88 +125,7 @@ export default {
   data() {
     return {
       selected: "Month",
-      tableItems: [
-        {
-          status: "dark",
-          user: {
-            name: "Agapetus Tadeáš",
-            new: true,
-            registered: "Jan 1, 2015"
-          },
-          usage: { value: 22, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
-        },
-        {
-          status: "success",
-          user: {
-            name: "Friderik Dávid",
-            new: true,
-            registered: "Jan 1, 2015"
-          },
-          usage: { value: 43, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
-        },
-        {
-          status: "info",
-          user: {
-            name: "Dávid Raplang",
-            new: true,
-            registered: "Jan 1, 2015"
-          },
-          usage: { value: 73, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
-        },
-        {
-          status: "danger",
-          user: {
-            name: "Rsichard Dávid",
-            new: true,
-            registered: "Jan 1, 2015"
-          },
-          usage: { value: 13, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
-        },
-        {
-          status: "warning",
-          user: {
-            name: "Agapetus Tadeáš",
-            new: true,
-            registered: "Jan 1, 2015"
-          },
-          usage: { value: 22, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
-        },
-        {
-          status: "danger",
-          user: {
-            name: "Agapetus Tadeáš",
-            new: true,
-            registered: "Jan 1, 2015"
-          },
-          usage: { value: 22, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
-        },
-        {
-          status: "primary",
-          user: {
-            name: "Agapetus Tadeáš",
-            new: true,
-            registered: "Jan 1, 2015"
-          },
-          usage: { value: 22, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
-        },
-        {
-          status: "success",
-          user: {
-            name: "Agapetus Tadeáš",
-            new: true,
-            registered: "Jan 1, 2015"
-          },
-          usage: { value: 22, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
-        }
-      ],
+      tableItems: [],
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
@@ -223,20 +143,10 @@ export default {
     // Request for Loading data on DB
     LoadProjectData() {
       this.isLoading = true;
-      config
-        .post("/gestion-project/search?key=''", { level: 0 })
-        .then(reponse => {
-          if (reponse.status) {
-            if (reponse) {
-              this.tableItems = reponse.data;
-              console.log("Project", reponse);
-            }
-          }
-          this.isLoading = false;
-        })
-        .catch(function(error) {
-          console.log("error", error);
-        });
+      SelectDb.selectDatas().then(response => {
+        this.tableItems = response;
+        this.isLoading = false;
+      });
     },
     color(value) {
       let $color;

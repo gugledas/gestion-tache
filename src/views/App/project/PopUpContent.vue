@@ -10,9 +10,9 @@
             custom
             inline
           />
-          <small v-if="postData.type.length < 2" class="text-danger"
-            >ce champ est requis</small
-          >
+          <small v-if="postData.type.length < 2" class="text-danger">
+            ce champ est requis
+          </small>
         </CCol>
       </CRow>
     </div>
@@ -115,7 +115,7 @@ export default {
   name: "PopUpContent",
   props: {
     formValues: {
-      type: [Object, Array],
+      type: [Object],
       required: true
     },
     btnState: {
@@ -123,6 +123,10 @@ export default {
       default: function() {
         return { state: false };
       }
+    },
+    level: {
+      type: Number,
+      default: 0
     }
   },
   components: {
@@ -295,18 +299,15 @@ export default {
       return result;
     },
     PostNewProject(idc) {
-      Utilities.formatAddData(this.postData, idc).then(reponse => {
+      Utilities.formatAddData(this.postData, idc, this.level).then(reponse => {
         console.log("created", reponse);
 
         config
           .post("/gestion-project/save-update", reponse)
           .then(reponse => {
             if (reponse.status) {
-              if (reponse) {
-                this.request = reponse.data[0];
-                console.log("dataLoad", this.dataLoad);
-                this.$emit("addnew-ok");
-              }
+              this.request = reponse.data[0];
+              this.$emit("addnew-ok");
             }
             this.isLoading = false;
           })

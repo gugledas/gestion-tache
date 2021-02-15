@@ -35,12 +35,13 @@
           :form-values="dataLoad"
           ref="child"
           @addnew-ok="LoadProjectData"
+          :level="level"
         ></PopUpContent>
         <template slot="footer">
           <div class="d-flex justify-content-end mr-3">
-            <CButton @click="addingModal = false" class="mx-1" color="light"
-              >Cancel</CButton
-            >
+            <CButton @click="addingModal = false" class="mx-1" color="light">
+              Cancel
+            </CButton>
             <CButton @click="AddNewTask" class="mx-1" color="info" desabled
               >Save</CButton
             >
@@ -114,6 +115,7 @@
             ref="edchild"
             @edition-ok="LoadProjectData"
             :btn-state="btnStateEdit"
+            :level="level"
           ></PopUpContent>
           btn: : {{ btnStateEdit }}
           <template slot="footer">
@@ -188,7 +190,8 @@ export default {
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
         { value: "memos", label: "Mémos" }
-      ]
+      ],
+      level: 0
     };
   },
   mounted() {
@@ -223,9 +226,10 @@ export default {
       console.log("ouverture du poup : ", data);
     },
     // Hide type project if we want to create  content inside project
+
     HideTypeProject(data) {
       this.idc = data.idcontents;
-      console.log("idc", this.idc);
+      this.level = parseInt(data.level) + 1;
       this.addingModal = true;
       this.$refs.child.changeType();
     },

@@ -42,7 +42,7 @@
           { text: 'parent2' }
         ]"
       />-->
-      <BreadCrumb :class="['border-0', 'mb-0']"></BreadCrumb>
+      <BreadCrumb></BreadCrumb>
       <div class="ml-auto d-flex flex-wrap aling-items-end">
         <SSearch></SSearch>
         <CDropdown color="dark" toggler-text="Options" class="ml-sm-n5 mt-2">
