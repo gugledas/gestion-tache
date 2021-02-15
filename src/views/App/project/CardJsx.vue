@@ -51,11 +51,9 @@ export default {
               },
               on: {
                 "modal-edit-on": item => {
-                  console.log("project edit : ", item.titre);
                   this.$emit("modal-edit-on", item);
                 },
                 "Hide-type-project": item => {
-                  console.log("hide-type-project : ", item);
                   this.$emit("Hide-type-project", item);
                 },
                 "suppression-ok": () => {

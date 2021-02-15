@@ -13,7 +13,7 @@
               rel="noreferrer noopener"
               target="_blank"
             >
-              <small class="text-muted">docs</small>
+              <small class="text-muted"> docs </small>
             </a>
           </div>
         </CCardHeader>
