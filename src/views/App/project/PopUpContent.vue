@@ -5,14 +5,14 @@
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
         <CCol sm="7"
           ><CInputRadioGroup
-            :options="options"
+            :options="optTest"
             :checked.sync="postData.type"
             custom
             inline
           />
-          <small v-if="postData.type.length < 2" class="text-danger"
-            >ce champ est requis</small
-          >
+          <small v-if="postData.type.length < 2" class="text-danger">
+            ce champ est requis
+          </small>
         </CCol>
       </CRow>
     </div>
@@ -111,11 +111,12 @@ import CKEditor from "ckeditor4-vue";
 import hljs from "highlight.js";
 import config from "../config/config";
 import moment from "moment";
+import ProjectOptionsType from "./ProjectOptionsType";
 export default {
   name: "PopUpContent",
   props: {
     formValues: {
-      type: [Object, Array],
+      type: [Object],
       required: true
     },
     btnState: {
@@ -123,6 +124,10 @@ export default {
       default: function() {
         return { state: false };
       }
+    },
+    level: {
+      type: Number,
+      default: 0
     }
   },
   components: {
@@ -146,13 +151,24 @@ export default {
       editorData: "",
       warningModal: false,
       editorConfig: {
-        extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
+        extraPlugins:
+          "codesnippet,print,format,font,colorbutton,justify,uploadimage,image2,sourcedialog,autogrow  ",
+        codeSnippet_theme: "monokai_sublime",
+        removePlugins: "sourcearea",
+        allowedContent: true,
+        indent: true,
+        pasteFilter: null,
+        autoGrow_maxHeight: 500,
+        autoGrow_minHeight: 150,
+        breakBeforeOpen: true,
+        breakAfterOpen: true,
+        breakBeforeClose: true,
+        breakAfterClose: true
       },
       options: [
-        { value: "project", label: "Projet" },
-        { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" }
+        // { value: "project", label: "Projet" },
+        // { value: "tache", label: "Tâche" },
+        // { value: "memos", label: "Mémos" }
       ],
       statusOpt: [
         { value: "0", label: "New" },
@@ -163,7 +179,9 @@ export default {
     };
   },
   mounted() {
-    //
+    ProjectOptionsType.loadType().then(reponse => {
+      console.log("select : ", reponse);
+    });
   },
   watch: {
     formValues: {
@@ -182,6 +200,10 @@ export default {
     }
   },
   computed: {
+    optTest() {
+      console.log("encore");
+      return ProjectOptionsType.opts;
+    },
     checkForSave() {
       if (this.wasValidated == true && this.postData.type.length > 2) {
         this.setBtnState(true);
@@ -295,18 +317,15 @@ export default {
       return result;
     },
     PostNewProject(idc) {
-      Utilities.formatAddData(this.postData, idc).then(reponse => {
+      Utilities.formatAddData(this.postData, idc, this.level).then(reponse => {
         console.log("created", reponse);
 
         config
           .post("/gestion-project/save-update", reponse)
           .then(reponse => {
             if (reponse.status) {
-              if (reponse) {
-                this.request = reponse.data[0];
-                console.log("dataLoad", this.dataLoad);
-                this.$emit("addnew-ok");
-              }
+              this.request = reponse.data[0];
+              this.$emit("addnew-ok");
             }
             this.isLoading = false;
           })
