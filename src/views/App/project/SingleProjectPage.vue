@@ -32,17 +32,22 @@
         :show.sync="addingModal"
       >
         <PopUpContent
-          :form-values="dataLoad"
+          :form-values="{}"
           ref="child"
           @addnew-ok="LoadProjectData"
           :level="level"
+          :btn-state="btnStateAdd"
         ></PopUpContent>
         <template slot="footer">
           <div class="d-flex justify-content-end mr-3">
             <CButton @click="addingModal = false" class="mx-1" color="light">
               Cancel
             </CButton>
-            <CButton @click="AddNewTask" class="mx-1" color="info" desabled
+            <CButton
+              @click="AddNewTask"
+              class="mx-1"
+              :color="btnStateAdd.state ? 'info' : 'light'"
+              desabled
               >Save</CButton
             >
           </div>
@@ -172,7 +177,8 @@ export default {
       spinner: false,
       dataOfForm: {},
       btnStateEdit: { state: false },
-      dataLoad: {},
+      btnStateAdd: { state: false },
+      dataLoad: [],
       idc: null,
       modalEdit: false,
       ressourceToAdd: "",
@@ -241,8 +247,10 @@ export default {
       }
     },
     AddNewTask() {
-      this.addingModal = false;
-      this.$refs.child.PostNewProject(this.idc);
+      if (this.btnStateAdd.state) {
+        this.addingModal = false;
+        this.$refs.child.PostNewProject(this.idc);
+      }
     },
     // Request for Loading data on DB
     LoadProjectData() {

@@ -11,7 +11,7 @@ export default {
       query += " select ";
       query += " c.idcontents, c.text, c.titre, c.created_at, ";
       query += " c.update_at, c.type, h.idhierachie, h.idcontentsparent, ";
-      query += " h.ordre, h.level ";
+      query += " h.ordre, h.level";
       query += " from ";
       query += this.formatStringTable("gestion_project_hierachie") + " as h ";
       query += " INNER JOIN ";
@@ -32,6 +32,23 @@ export default {
             " ";
         }
       }
+      query += " limit 0,50 ";
+      config.post("/gestion-project/select", query).then(reponse => {
+        console.log("selectDatas : ", reponse);
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      });
+    });
+  },
+  selectTypes: function() {
+    return new Promise(resolv => {
+      var query = "";
+      query += " select * ";
+      query += " from ";
+      query += this.formatStringTable("gestion_project_type");
       query += " limit 0,50 ";
       config.post("/gestion-project/select", query).then(reponse => {
         console.log("selectDatas : ", reponse);

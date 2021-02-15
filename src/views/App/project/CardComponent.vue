@@ -17,7 +17,7 @@
               :name="`cil-chevron-circle-${descToggle ? 'down' : 'up'}-alt`"
             />
           </CLink>
-          <CLink href="#" class=" btn-close m-2" @click="modalEditOn(dataLoad)">
+          <CLink href="#" class=" btn-close m-2" @click="modalEditOn">
             <CIcon name="cil-pencil" />
           </CLink>
           <CLink href="#" class=" btn-close m-1" @click="HideTypeProject">

@@ -5,7 +5,7 @@
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
         <CCol sm="7"
           ><CInputRadioGroup
-            :options="options"
+            :options="optTest"
             :checked.sync="postData.type"
             custom
             inline
@@ -111,6 +111,7 @@ import CKEditor from "ckeditor4-vue";
 import hljs from "highlight.js";
 import config from "../config/config";
 import moment from "moment";
+import ProjectOptionsType from "./ProjectOptionsType";
 export default {
   name: "PopUpContent",
   props: {
@@ -150,13 +151,41 @@ export default {
       editorData: "",
       warningModal: false,
       editorConfig: {
-        extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
+        extraPlugins:
+          "codesnippet,print,format,font,colorbutton,justify,image,filebrowser",
+        codeSnippet_theme: "monokai_sublime",
+        filebrowserUploadMethod: "form",
+        filebrowserBrowseUrl: "/browser/browse.php",
+        filebrowserImageBrowseUrl: "/browser/browse.php?type=Images",
+        filebrowserUploadUrl: "/uploader/upload.php",
+        filebrowserImageUploadUrl: "/uploader/upload.php?type=Images",
+        filebrowserWindowWidth: "840",
+        filebrowserWindowHeight: "480",
+        uploadUrl: "/uploader/upload.php"
+        /*
+        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        filebrowserBrowseUrl: "/apps/ckfinder/3.4.5/ckfinder.html",
+        filebrowserImageBrowseUrl:
+          "/apps/ckfinder/3.4.5/ckfinder.html?type=Images",
+        filebrowserUploadUrl:
+          "/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Files",
+        filebrowserImageUploadUrl:
+          "/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Images",
+
+        // Upload dropped or pasted images to the CKFinder connector (note that the response type is set to JSON).
+        uploadUrl:
+          "/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json",
+
+        // Reduce the list of block elements listed in the Format drop-down to the most commonly used.
+        format_tags: "p;h1;h2;h3;pre"
+        // Simplify the Image and Link dialog windows. The "Advanced" tab is not needed in most cases.
+        //removeDialogTabs: "image:advanced;link:advanced"
+        /**/
       },
       options: [
-        { value: "project", label: "Projet" },
-        { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" }
+        // { value: "project", label: "Projet" },
+        // { value: "tache", label: "Tâche" },
+        // { value: "memos", label: "Mémos" }
       ],
       statusOpt: [
         { value: "0", label: "New" },
@@ -167,7 +196,9 @@ export default {
     };
   },
   mounted() {
-    //
+    ProjectOptionsType.loadType().then(reponse => {
+      console.log("select : ", reponse);
+    });
   },
   watch: {
     formValues: {
@@ -186,6 +217,10 @@ export default {
     }
   },
   computed: {
+    optTest() {
+      console.log("encore");
+      return ProjectOptionsType.opts;
+    },
     checkForSave() {
       if (this.wasValidated == true && this.postData.type.length > 2) {
         this.setBtnState(true);
