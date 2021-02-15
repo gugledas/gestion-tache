@@ -1,5 +1,5 @@
 <template>
-  <ol class="breadcrumb">
+  <ol class="breadcrumb" :doc-title="docTitle">
     <li
       v-for="(item, index) in linkItems"
       :key="index"
@@ -44,6 +44,11 @@ export default {
     addLinkClasses: [String, Array, Object],
     addLastItemClasses: [String, Array, Object]
   },
+  data() {
+    return {
+      siteName: "Gestion des projets"
+    };
+  },
   computed: {
     lastItem() {
       return this.items ? this.items[this.items.length - 1] : null;
@@ -61,6 +66,14 @@ export default {
         this.sharedClasses,
         this.addLastItemClasses
       ];
+    },
+    docTitle() {
+      if (this.lastItem) {
+        document.title = this.lastItem.text + " | " + this.siteName;
+        return document.title;
+      } else {
+        return this.siteName;
+      }
     }
   }
 };
