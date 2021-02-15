@@ -32,7 +32,9 @@ export default {
             " ";
         }
       }
+      query += " ORDER BY  c.`idcontents` DESC";
       query += " limit 0,50 ";
+      console.log("query :: ", query);
       config.post("/gestion-project/select", query).then(reponse => {
         console.log("selectDatas : ", reponse);
         if (reponse.status) {
