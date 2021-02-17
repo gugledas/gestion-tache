@@ -30,6 +30,7 @@
         title="Nouveau projet"
         color="info"
         :show.sync="addingModal"
+        :closeOnBackdrop="false"
       >
         <PopUpContent
           :form-values="{}"
@@ -61,6 +62,7 @@
         title="Ressources"
         color="light"
         :show.sync="modalRessource"
+        :closeOnBackdrop="false"
       >
         <div class="pl-sm-2 " v-if="selected == 'projet'">
           <CRow class="d-flex flex-nowrap">
@@ -114,6 +116,7 @@
           :title="'Edition de : ' + dataOfForm.titre"
           color="success"
           :show.sync="modalEdit"
+          :closeOnBackdrop="false"
         >
           <PopUpContent
             :form-values="dataOfForm"

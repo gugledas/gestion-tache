@@ -35,9 +35,8 @@
 
 <script>
 import hljs from "highlight.js";
-import PopUpContent from "./PopUpContent";
 export default {
-  components: { PopUpContent },
+  components: { PopUpContent: () => import("./PopUpContent.vue") },
   props: {
     showSideText: {
       type: Boolean,
