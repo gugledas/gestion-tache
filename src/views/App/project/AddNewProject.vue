@@ -1,12 +1,7 @@
 <template>
   <div>
     <CRow class="ml-2 mt-n2 d-flex " alignVertical="center">
-      <CButton
-        @click="warningModal = true"
-        size="sm"
-        color="warning"
-        shape="pill"
-      >
+      <CButton @click="modalAdd = true" size="sm" color="warning" shape="pill">
         <CIcon class="text-white" name="cilPlus" :height="35" size="xl" />
       </CButton>
       <h6 class="ml-1 mt-1" v-if="showSideText">Nouveau projet</h6>
@@ -15,18 +10,26 @@
       size="lg"
       title="Nouveau projet"
       color="warning"
-      :show.sync="warningModal"
+      :show.sync="modalAdd"
       :footer="false"
     >
-      <PopUpContent ref="child"></PopUpContent>
+      <PopUpContent
+        ref="child"
+        :formValues="formValues"
+        :btn-state="btnStateAdd"
+      ></PopUpContent>
       <template slot="footer">
         <div class="d-flex justify-content-end mr-3 ">
-          <CButton @click="warningModal = false" class="mx-1" color="light"
-            >Cancel</CButton
+          <CButton @click="modalAdd = false" class="mx-1" color="light">
+            Cancel
+          </CButton>
+          <CButton
+            @click="PostNewProject"
+            class="mx-1"
+            :color="btnStateAdd.state ? 'warning' : 'light'"
           >
-          <CButton @click="PostNewProject" class="mx-1" color="warning"
-            >Save</CButton
-          >
+            Save
+          </CButton>
         </div>
       </template>
     </CModal>
@@ -52,9 +55,10 @@ export default {
         title: "",
         text: ""
       },
+      btnStateAdd: { state: false },
       editorData: "<p>content...</p>",
       selected: "projet",
-      warningModal: false,
+      modalAdd: false,
       editorConfig: {
         extraPlugins: "codesnippet",
         codeSnippet_theme: "monokai_sublime"
@@ -63,7 +67,8 @@ export default {
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
         { value: "memos", label: "Mémos" }
-      ]
+      ],
+      formValues: {}
     };
   },
   mounted() {},
@@ -80,8 +85,10 @@ export default {
   },
   methods: {
     PostNewProject() {
-      this.warningModal = false;
-      this.$refs.child.PostNewProject();
+      if (this.btnStateAdd.state) {
+        this.modalAdd = false;
+        this.$refs.child.PostNewProject();
+      }
     }
   }
 };

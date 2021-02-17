@@ -33,7 +33,16 @@
       </CHeaderNavItem> -->
     </CHeaderNav>
     <CSubheader class="px-3">
-      <CBreadcrumbRouter class="border-0 mb-0" />
+      <!--
+      <CBreadcrumbRouter
+        class="border-0 mb-0"
+        :items="[
+          { text: 'Home', to: '/' },
+          { text: 'parent', to: '#' },
+          { text: 'parent2' }
+        ]"
+      />-->
+      <BreadCrumb></BreadCrumb>
       <div class="ml-auto d-flex flex-wrap aling-items-end">
         <SSearch></SSearch>
         <CDropdown color="dark" toggler-text="Options" class="ml-sm-n5 mt-2">
@@ -52,11 +61,13 @@
 //import TheHeaderDropdownAccnt from "./TheHeaderDropdownAccnt";
 import SSearch from "../views/App/search/Search";
 import AddNewProject from "../views/App/project/AddNewProject";
+import BreadCrumb from "../Steph/Crumb/BreadCrumb";
 export default {
   name: "TheHeader",
   components: {
     SSearch,
-    AddNewProject
+    AddNewProject,
+    BreadCrumb
     //TheHeaderDropdownAccnt
   }
 };

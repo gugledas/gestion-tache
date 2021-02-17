@@ -26,13 +26,15 @@
         <div class="option__desc d-inline-flex flex-column align-items-start">
           <span class="option__title mb-2">
             <CIcon name="cilFolder" class="mr-1 text-info "></CIcon>
-            {{ props.option.titre }}</span
-          >
+            {{ props.option.titre }}
+          </span>
           <div class="d-flex aling-items-center">
             <span class="text-info bg-light p-1 mt-2 h6">Projet</span>
-            <CButton class="ml-4" variant="ghost" color="warning" size="sm"
-              ><CIcon name="cilPencil"></CIcon
-            ></CButton>
+            <CButton class="ml-4" variant="ghost" color="warning" size="sm">
+              <router-link :to="'/projet/' + props.option.idcontents">
+                <CIcon name="cilPencil"></CIcon>
+              </router-link>
+            </CButton>
           </div>
         </div>
       </template>
@@ -79,13 +81,15 @@ export default {
   methods: {
     // Recherche des informations 1.5s après la saisie
     TypingSearch(value) {
-      this.isLoading = true;
-      this.value = value;
-      var self = this;
-      clearTimeout(self.timer);
-      self.timer = setTimeout(function() {
-        self.LoadProjectData();
-      }, 1500);
+      if (value.length >= 2) {
+        this.isLoading = true;
+        this.value = value;
+        var self = this;
+        clearTimeout(self.timer);
+        self.timer = setTimeout(function() {
+          self.LoadProjectData();
+        }, 1500);
+      }
     },
     // Request for Loading data on DB
     LoadProjectData() {

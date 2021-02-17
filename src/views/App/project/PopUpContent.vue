@@ -1,21 +1,23 @@
-<template>
-  <div>
+<template lang="html">
+  <div :check-valid-form="checkForSave">
     <div>
       <CRow :gutters="false" class="form-group">
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
         <CCol sm="7"
           ><CInputRadioGroup
-            :options="options"
+            :options="optTest"
             :checked.sync="postData.type"
             custom
             inline
           />
+          <small v-if="postData.type.length < 2" class="text-danger">
+            ce champ est requis
+          </small>
         </CCol>
       </CRow>
     </div>
     <hr />
-    editorData: {{ postData.status }}/ elle: {{ elle }} // show:
-    {{ showInputRaison }}
+
     <div v-html="ser"></div>
     <div class="pl-sm-2 ">
       <CRow
@@ -68,6 +70,10 @@
             label="Title:"
             v-model="postData.titre"
             placeholder="Entrez un titre"
+            :wasValidated="wasValidated"
+            validFeedback="ok"
+            invalidFeedback="requis"
+            :isValid="inputValidation"
           />
         </CCol>
         <CCol sm="5" v-if="postData.type == 'project'">
@@ -81,7 +87,11 @@
       <CRow>
         <CCol sm="12">
           <label>Description:</label>
-          <ckeditor v-model="postData.text" :config="editorConfig"></ckeditor>
+          <ckeditor
+            v-model="postData.text"
+            @namespaceloaded="onNamespaceLoaded"
+            :config="editorConfig"
+          ></ckeditor>
         </CCol>
       </CRow>
       <CRow v-if="postData.type == 'project'">
@@ -96,32 +106,41 @@
         </CCol>
       </CRow>
     </div>
-    <template slot="footer">
-      <div class="d-flex justify-content-end mr-3">
-        <CButton @click="warningModal = false" class="mx-1" color="light"
-          >Cancel</CButton
-        >
-        <CButton @click="warningModal = false" class="mx-1" color="warning"
-          >Savte</CButton
-        >
-      </div>
-    </template>
   </div>
 </template>
 
 <script>
+import Utilities from "./Utilities.js";
 import CKEditor from "ckeditor4-vue";
 import hljs from "highlight.js";
 import config from "../config/config";
 import moment from "moment";
+import ProjectOptionsType from "./ProjectOptionsType";
 export default {
-  props: {},
+  name: "PopUpContent",
+  props: {
+    formValues: {
+      type: [Object],
+      required: true
+    },
+    btnState: {
+      type: Object,
+      default: function() {
+        return { state: false };
+      }
+    },
+    level: {
+      type: Number,
+      default: 0
+    }
+  },
   components: {
     ckeditor: CKEditor.component
   },
   data() {
     return {
       postData: {
+        typeIsOk: false,
         type: "project",
         status: "0",
         startTime: "",
@@ -129,21 +148,82 @@ export default {
         clientName: "",
         titre: "",
         price: "",
-        text: "<p>content...</p>"
+        text: ""
       },
-      allolo: "",
+      wasValidated: null,
       showInputRaison: false,
-      editorData: "<p>content...</p>",
-      selected: "projet",
+      editorData: "",
       warningModal: false,
-      editorConfig: {
-        extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
+      extraPlugins: "",
+      preEditorConfig: {
+        codeSnippet_theme: "monokai_sublime",
+        on: {
+          instanceReady: function() {
+            // Output paragraphs as <p>Text</p>.
+            this.dataProcessor.writer.setRules("p", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h1", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+
+            this.dataProcessor.writer.setRules("h2", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h3", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h4", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h5", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h6", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("div", {
+              indent: true,
+              breakBeforeOpen: true,
+              breakAfterOpen: true,
+              breakBeforeClose: true,
+              breakAfterClose: false
+            });
+          }
+        }
       },
       options: [
-        { value: "project", label: "Projet" },
-        { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" }
+        // { value: "project", label: "Projet" },
+        // { value: "tache", label: "Tâche" },
+        // { value: "memos", label: "Mémos" }
       ],
       statusOpt: [
         { value: "0", label: "New" },
@@ -153,17 +233,43 @@ export default {
       ]
     };
   },
-  mounted() {},
+  mounted() {
+    ProjectOptionsType.loadType().then(reponse => {
+      this.options = reponse;
+    });
+  },
   watch: {
-    postData() {}
+    formValues: {
+      deep: true,
+      handler: function(val) {
+        console.log("formValues : ", val);
+        if (val.idcontents) {
+          this.postData["idcontents"] = val.idcontents;
+        }
+        for (const i in this.postData) {
+          if (val[i]) {
+            this.postData[i] = val[i];
+          }
+        }
+      }
+    }
   },
   computed: {
-    elle() {
-      var el = this.showInputRaison;
-      if (this.postData.status) {
-        el = this.aallo();
+    optTest() {
+      if (ProjectOptionsType.opts.length) {
+        return ProjectOptionsType.opts;
+      } else {
+        return this.options;
       }
-      return el;
+    },
+    checkForSave() {
+      if (this.wasValidated == true && this.postData.type.length > 2) {
+        this.setBtnState(true);
+        return true;
+      } else {
+        this.setBtnState(false);
+        return false;
+      }
     },
     ser() {
       var newDiv = document.createElement("div");
@@ -174,29 +280,53 @@ export default {
 
       return newDiv.outerHTML;
     },
-    noEmpty() {
-      var el = {};
-      if (this.postData.type == "project") {
-        el = this.postData;
-      } else if (this.postData.type == "tache") {
-        (el.type = this.postData.type),
-          (el.startTime = this.postData.startTime),
-          (el.endTime = this.postData.endTime),
-          (el.titre = this.postData.titre),
-          (el.text = this.postData.text);
+    editorConfig() {
+      if (!window.location.host.includes("localhost")) {
+        return {
+          extraPlugins:
+            "codesnippet,print,format,font,colorbutton,justify,image,filebrowser,quickuploader",
+          ...this.preEditorConfig
+        };
       } else {
-        el = {
-          titre: this.postData.titre,
-          text: this.postData.text
+        return {
+          extraPlugins:
+            "codesnippet,print,format,font,colorbutton,justify,image,filebrowser",
+          ...this.preEditorConfig
         };
       }
-      return el;
     }
   },
   methods: {
-    aallo() {
-      console.log("status");
-      this.showInputRaison = true;
+    onNamespaceLoaded(CKEDITOR) {
+      // Add external `placeholder` plugin which will be available for each
+      // editor instance on the page.
+      if (!window.location.host.includes("localhost")) {
+        CKEDITOR.plugins.addExternal(
+          "quickuploader",
+          "/ckeditors/ckeditor_4.16.0_basic/ckeditor/plugins/quickuploader/plugin.js"
+        );
+      }
+      /**/
+      CKEDITOR.config.allowedContent = true;
+      CKEDITOR.config.htmlEncodeOutput = false;
+      CKEDITOR.config.entities = false;
+      // CKEDITOR.config.entities_processNumerical = 'force';
+
+      CKEDITOR.dtd.$removeEmpty.span = 0;
+      CKEDITOR.dtd.$removeEmpty.i = 0;
+      CKEDITOR.dtd.$removeEmpty.label = 0;
+    },
+    setBtnState(val) {
+      this.btnState.state = val;
+    },
+    inputValidation(val) {
+      if (val.length <= 4) {
+        this.wasValidated = false;
+        return false;
+      } else {
+        this.wasValidated = true;
+        return true;
+      }
     },
     EventShowInput() {
       console.log("object");
@@ -209,59 +339,107 @@ export default {
       this.postData.type = "tache";
     },
     EditProject() {
-      var o = this.postData.startTime;
-      var al = moment(o, "DD-MM-YYYY  HH:mm").unix();
-
-      console.log("moment", al);
+      Utilities.formatData(this.postData).then(reponse => {
+        console.log(" EditProject : ", reponse);
+        config
+          .post("/gestion-project/save-update", reponse)
+          .then(reponse => {
+            if (reponse.status) {
+              console.log("data after edit :", reponse);
+              this.$emit("edition-ok", reponse);
+            }
+            this.isLoading = false;
+          })
+          .catch(function(error) {
+            console.log("error", error);
+          });
+      });
     },
     FormatTime(id) {
       var data = this.postData;
       var ddp = moment(data.startTime, "YYYY-MM-DD  HH:mm").unix();
       var dfp = moment(data.endTime, "YYYY-MM-DD  HH:mm").unix();
-      var status = data.status;
+      //var status = data.status;
 
       var rest = [];
       rest.push({
         idcontents: id,
         date_depart_proposer: ddp,
-        date_fin_proposer: dfp,
-        date_fin_reel: reelD,
-        status: status,
-        temps_pause: temps_pause,
-        raison: raison
+        date_fin_proposer: dfp
+        // date_fin_reel: "reelD",
+        // status: status,
+        // temps_pause: "temps_pause",
+        // raison: "raison"
       });
     },
-    FormatData() {
+    FormatData(idc) {
+      var data = this.postData;
+      var ddp = moment(data.startTime, "YYYY-MM-DD  HH:mm").unix();
+      var dfp = moment(data.endTime, "YYYY-MM-DD  HH:mm").unix();
+      var state = parseInt(this.postData.status, 10);
       var result = [];
       result.push({
         table: "gestion_project_contents",
         fields: {
-          text: this.postData.text,
-          titre: this.postData.titre
+          text: data.text,
+          titre: data.titre,
+          type: data.type
+        },
+        childstable: {
+          colum_id_name: "idcontents",
+          tables: [
+            {
+              table: "gestion_project_times",
+              fields: {
+                date_depart_proposer: ddp,
+                date_fin_proposer: dfp,
+                status: state
+              }
+            },
+            {
+              table: "gestion_project_hierachie",
+              fields: {
+                idcontentsparent: idc,
+                ordre: 0
+              }
+            }
+          ]
         }
       });
       return result;
     },
-    PostNewProject() {
-      console.log("created", this.FormatData());
+    PostNewProject(idc) {
+      Utilities.formatAddData(this.postData, idc, this.level).then(reponse => {
+        console.log("created", reponse);
 
-      config
-        .post("/gestion-project/save-update", this.FormatData())
-        .then(reponse => {
-          if (reponse.status) {
-            if (reponse) {
+        config
+          .post("/gestion-project/save-update", reponse)
+          .then(reponse => {
+            if (reponse.status) {
               this.request = reponse.data[0];
-              console.log("dataLoad", this.dataLoad);
+              this.$emit("addnew-ok");
             }
-          }
-          this.isLoading = false;
-        })
-        .catch(function(error) {
-          console.log("error", error);
-        });
+            this.isLoading = false;
+          })
+          .catch(function(error) {
+            console.log("error", error);
+          });
+      });
     }
   }
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>
+
+<!--
+ //nom du fichier en pascal.
+ //<template>
+ - le nom des attributs en kebab-case;
+ - la valeur des attributs et des variables en camelCase;
+ - function en PascalCase
+ //props, data
+ - variable en camelCase
+ //methods
+ - variable en PascalCase
+-->
