@@ -30,6 +30,7 @@
         title="Nouveau projet"
         color="info"
         :show.sync="addingModal"
+        :closeOnBackdrop="false"
       >
         <PopUpContent
           :form-values="{}"
@@ -61,6 +62,7 @@
         title="Ressources"
         color="light"
         :show.sync="modalRessource"
+        :closeOnBackdrop="false"
       >
         <div class="pl-sm-2 " v-if="selected == 'projet'">
           <CRow class="d-flex flex-nowrap">
@@ -114,6 +116,7 @@
           :title="'Edition de : ' + dataOfForm.titre"
           color="success"
           :show.sync="modalEdit"
+          :closeOnBackdrop="false"
         >
           <PopUpContent
             :form-values="dataOfForm"
@@ -150,6 +153,20 @@
           <CCardBody><CChartPieExample /> </CCardBody> </CCard
       ></CCol>
     </CRow>
+    <div class="scroll-top">
+      <CButton @click="scrollTop" class="mx-1" color="warning">
+        <CIcon
+          class="text-white"
+          name="cil-chevron-top"
+<<<<<<< HEAD
+          :height="135"
+=======
+          :height="35"
+>>>>>>> steph
+          size="xl"
+        />
+      </CButton>
+    </div>
   </div>
 </template>
 
@@ -268,12 +285,34 @@ export default {
         .catch(function(error) {
           console.log("error", error);
         });
+    },
+    scrollTop() {
+<<<<<<< HEAD
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+=======
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
+>>>>>>> steph
     }
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.scroll-top {
+  position: fixed;
+<<<<<<< HEAD
+  bottom: 52px;
+  right: 20px;
+=======
+  right: 20px;
+  bottom: 52px;
+>>>>>>> steph
+}
+</style>
 
 <!--
  //nom du fichier en pascal.

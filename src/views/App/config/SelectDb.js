@@ -32,9 +32,17 @@ export default {
             " ";
         }
       }
+      query += " ORDER BY  c.`idcontents` DESC";
       query += " limit 0,50 ";
+<<<<<<< HEAD
+      //console.log("query :: ", query);
+      config.post("/gestion-project/select", query).then(reponse => {
+        //console.log("selectDatas : ", reponse);
+=======
+      console.log("query :: ", query);
       config.post("/gestion-project/select", query).then(reponse => {
         console.log("selectDatas : ", reponse);
+>>>>>>> steph
         if (reponse.status) {
           resolv(reponse.data);
         } else {
@@ -51,7 +59,11 @@ export default {
       query += this.formatStringTable("gestion_project_type");
       query += " limit 0,50 ";
       config.post("/gestion-project/select", query).then(reponse => {
+<<<<<<< HEAD
+        console.log("selectTypes : ", reponse);
+=======
         console.log("selectDatas : ", reponse);
+>>>>>>> steph
         if (reponse.status) {
           resolv(reponse.data);
         } else {

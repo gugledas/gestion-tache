@@ -29,12 +29,23 @@
             {{ props.option.titre }}
           </span>
           <div class="d-flex aling-items-center">
+<<<<<<< HEAD
+            <span class="text-info bg-light p-1 mt-2 h6">{{
+              props.option.type
+            }}</span>
+            <router-link :to="'/projet/' + props.option.idcontents">
+              <CButton class="ml-4" variant="ghost" color="warning" size="sm">
+                <CIcon name="cilPencil"></CIcon>
+              </CButton>
+            </router-link>
+=======
             <span class="text-info bg-light p-1 mt-2 h6">Projet</span>
             <CButton class="ml-4" variant="ghost" color="warning" size="sm">
               <router-link :to="'/projet/' + props.option.idcontents">
                 <CIcon name="cilPencil"></CIcon>
               </router-link>
             </CButton>
+>>>>>>> steph
           </div>
         </div>
       </template>
