@@ -158,11 +158,7 @@
         <CIcon
           class="text-white"
           name="cil-chevron-top"
-<<<<<<< HEAD
-          :height="135"
-=======
           :height="35"
->>>>>>> steph
           size="xl"
         />
       </CButton>
@@ -287,15 +283,11 @@ export default {
         });
     },
     scrollTop() {
-<<<<<<< HEAD
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-=======
       window.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth"
       });
->>>>>>> steph
     }
   }
 };
@@ -304,13 +296,8 @@ export default {
 <style lang="scss" scoped>
 .scroll-top {
   position: fixed;
-<<<<<<< HEAD
-  bottom: 52px;
-  right: 20px;
-=======
   right: 20px;
   bottom: 52px;
->>>>>>> steph
 }
 </style>
 
