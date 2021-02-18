@@ -153,6 +153,16 @@
           <CCardBody><CChartPieExample /> </CCardBody> </CCard
       ></CCol>
     </CRow>
+    <div class="scroll-top">
+      <CButton @click="scrollTop" class="mx-1" color="warning">
+        <CIcon
+          class="text-white"
+          name="cil-chevron-top"
+          :height="35"
+          size="xl"
+        />
+      </CButton>
+    </div>
   </div>
 </template>
 
@@ -271,12 +281,25 @@ export default {
         .catch(function(error) {
           console.log("error", error);
         });
+    },
+    scrollTop() {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
     }
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 52px;
+}
+</style>
 
 <!--
  //nom du fichier en pascal.
