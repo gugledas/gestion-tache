@@ -30,6 +30,7 @@
         title="Nouveau projet"
         color="info"
         :show.sync="addingModal"
+        :closeOnBackdrop="false"
       >
         <PopUpContent
           :form-values="{}"
@@ -61,6 +62,7 @@
         title="Ressources"
         color="light"
         :show.sync="modalRessource"
+        :closeOnBackdrop="false"
       >
         <div class="pl-sm-2 " v-if="selected == 'projet'">
           <CRow class="d-flex flex-nowrap">
@@ -114,6 +116,7 @@
           :title="'Edition de : ' + dataOfForm.titre"
           color="success"
           :show.sync="modalEdit"
+          :closeOnBackdrop="false"
         >
           <PopUpContent
             :form-values="dataOfForm"
@@ -150,6 +153,16 @@
           <CCardBody><CChartPieExample /> </CCardBody> </CCard
       ></CCol>
     </CRow>
+    <div class="scroll-top">
+      <CButton @click="scrollTop" class="mx-1" color="warning">
+        <CIcon
+          class="text-white"
+          name="cil-chevron-top"
+          :height="135"
+          size="xl"
+        />
+      </CButton>
+    </div>
   </div>
 </template>
 
@@ -268,12 +281,21 @@ export default {
         .catch(function(error) {
           console.log("error", error);
         });
+    },
+    scrollTop() {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.scroll-top {
+  position: fixed;
+  bottom: 52px;
+  right: 20px;
+}
+</style>
 
 <!--
  //nom du fichier en pascal.

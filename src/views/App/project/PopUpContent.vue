@@ -1,11 +1,12 @@
 <template lang="html">
   <div :check-valid-form="checkForSave">
     <div>
+      <span @click="hello"> Ckeck </span><br />
       <CRow :gutters="false" class="form-group">
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
         <CCol sm="7"
           ><CInputRadioGroup
-            :options="optTest"
+            :options="options"
             :checked.sync="postData.type"
             custom
             inline
@@ -87,7 +88,11 @@
       <CRow>
         <CCol sm="12">
           <label>Description:</label>
-          <ckeditor v-model="postData.text" :config="editorConfig"></ckeditor>
+          <ckeditor
+            v-model="postData.text"
+            @namespaceloaded="onNamespaceLoaded"
+            :config="editorConfig"
+          ></ckeditor>
         </CCol>
       </CRow>
       <CRow v-if="postData.type == 'project'">
@@ -150,20 +155,78 @@ export default {
       showInputRaison: false,
       editorData: "",
       warningModal: false,
-      editorConfig: {
-        extraPlugins:
-          "codesnippet,print,format,font,colorbutton,justify,uploadimage,image2,sourcedialog,autogrow  ",
+      extraPlugins: "",
+      preEditorConfig: {
         codeSnippet_theme: "monokai_sublime",
-        removePlugins: "sourcearea",
-        allowedContent: true,
-        indent: true,
-        pasteFilter: null,
-        autoGrow_maxHeight: 500,
-        autoGrow_minHeight: 150,
-        breakBeforeOpen: true,
-        breakAfterOpen: true,
-        breakBeforeClose: true,
-        breakAfterClose: true
+        on: {
+          instanceReady: function() {
+            // Output paragraphs as <p>Text</p>.
+            this.dataProcessor.writer.setRules("p", {
+              indent: true,
+              breakBeforeOpen: true,
+              breakAfterOpen: false,
+              breakBeforeClose: true,
+              breakAfterClose: true
+            });
+            this.dataProcessor.writer.setRules("img", {
+              indent: true,
+              breakBeforeOpen: true,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h1", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+
+            this.dataProcessor.writer.setRules("h2", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h3", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h4", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h5", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("h6", {
+              indent: true,
+              breakBeforeOpen: false,
+              breakAfterOpen: false,
+              breakBeforeClose: false,
+              breakAfterClose: false
+            });
+            this.dataProcessor.writer.setRules("div", {
+              indent: true,
+              breakBeforeOpen: true,
+              breakAfterOpen: true,
+              breakBeforeClose: true,
+              breakAfterClose: false
+            });
+          }
+        }
       },
       options: [
         // { value: "project", label: "Projet" },
@@ -180,7 +243,7 @@ export default {
   },
   mounted() {
     ProjectOptionsType.loadType().then(reponse => {
-      console.log("select : ", reponse);
+      this.options = reponse;
     });
   },
   watch: {
@@ -200,8 +263,10 @@ export default {
     }
   },
   computed: {
+    /**
+     * L'ecoute du changement sur un elment externe ne fonctionne pas.
+     */
     optTest() {
-      console.log("encore");
       return ProjectOptionsType.opts;
     },
     checkForSave() {
@@ -221,9 +286,46 @@ export default {
       });
 
       return newDiv.outerHTML;
+    },
+    editorConfig() {
+      if (!window.location.host.includes("localhost")) {
+        return {
+          extraPlugins:
+            "codesnippet,print,format,font,colorbutton,justify,image,filebrowser,quickuploader",
+          ...this.preEditorConfig
+        };
+      } else {
+        return {
+          extraPlugins:
+            "codesnippet,print,format,font,colorbutton,justify,image,filebrowser",
+          ...this.preEditorConfig
+        };
+      }
     }
   },
   methods: {
+    onNamespaceLoaded(CKEDITOR) {
+      // Add external `placeholder` plugin which will be available for each
+      // editor instance on the page.
+      if (!window.location.host.includes("localhost")) {
+        CKEDITOR.plugins.addExternal(
+          "quickuploader",
+          "/ckeditors/ckeditor_4.16.0_basic/ckeditor/plugins/quickuploader/plugin.js"
+        );
+      }
+      /**/
+      CKEDITOR.config.allowedContent = true;
+      CKEDITOR.config.htmlEncodeOutput = false;
+      CKEDITOR.config.entities = false;
+      // CKEDITOR.config.entities_processNumerical = 'force';
+
+      CKEDITOR.dtd.$removeEmpty.span = 0;
+      CKEDITOR.dtd.$removeEmpty.i = 0;
+      CKEDITOR.dtd.$removeEmpty.label = 0;
+    },
+    hello() {
+      console.log("HELLO ProjectOptionsType.opts : ", ProjectOptionsType.opts);
+    },
     setBtnState(val) {
       this.btnState.state = val;
     },
