@@ -1,7 +1,6 @@
 <template lang="html">
   <div :check-valid-form="checkForSave">
     <div>
-      <span @click="hello"> Ckeck </span><br />
       <CRow :gutters="false" class="form-group">
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
         <CCol sm="7"
@@ -163,7 +162,6 @@ export default {
             // Output paragraphs as <p>Text</p>.
             this.dataProcessor.writer.setRules("p", {
               indent: true,
-<<<<<<< HEAD
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: true,
@@ -172,9 +170,6 @@ export default {
             this.dataProcessor.writer.setRules("img", {
               indent: true,
               breakBeforeOpen: true,
-=======
-              breakBeforeOpen: false,
->>>>>>> steph
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false
@@ -267,20 +262,12 @@ export default {
     }
   },
   computed: {
-<<<<<<< HEAD
-    /**
-     * L'ecoute du changement sur un elment externe ne fonctionne pas.
-     */
-    optTest() {
-      return ProjectOptionsType.opts;
-=======
     optTest() {
       if (ProjectOptionsType.opts.length) {
         return ProjectOptionsType.opts;
       } else {
         return this.options;
       }
->>>>>>> steph
     },
     checkForSave() {
       if (this.wasValidated == true && this.postData.type.length > 2) {
@@ -336,12 +323,7 @@ export default {
       CKEDITOR.dtd.$removeEmpty.i = 0;
       CKEDITOR.dtd.$removeEmpty.label = 0;
     },
-<<<<<<< HEAD
-    hello() {
-      console.log("HELLO ProjectOptionsType.opts : ", ProjectOptionsType.opts);
-    },
-=======
->>>>>>> steph
+
     setBtnState(val) {
       this.btnState.state = val;
     },
