@@ -33,12 +33,14 @@
         :closeOnBackdrop="false"
       >
         <PopUpContent
-          :form-values="{}"
+          :form-values="dataOfFormAdd"
           ref="child"
           @addnew-ok="LoadProjectData"
           :level="level"
           :btn-state="btnStateAdd"
+          form-type="Nouveau projet"
         ></PopUpContent>
+
         <template slot="footer">
           <div class="d-flex justify-content-end mr-3">
             <CButton @click="addingModal = false" class="mx-1" color="light">
@@ -113,7 +115,7 @@
       <div>
         <CModal
           size="lg"
-          :title="'Edition de : ' + dataOfForm.titre"
+          title="Edition de : "
           color="success"
           :show.sync="modalEdit"
           :closeOnBackdrop="false"
@@ -124,8 +126,8 @@
             @edition-ok="LoadProjectData"
             :btn-state="btnStateEdit"
             :level="level"
+            form-type="Edition de"
           ></PopUpContent>
-          btn: : {{ btnStateEdit }}
           <template slot="footer">
             <div class="d-flex justify-content-end mr-3">
               <CButton @click="modalEdit = false" class="mx-1" color="light">
@@ -189,6 +191,7 @@ export default {
     return {
       spinner: false,
       dataOfForm: {},
+      dataOfFormAdd: {},
       btnStateEdit: { state: false },
       btnStateAdd: { state: false },
       dataLoad: [],
@@ -237,7 +240,7 @@ export default {
   },
   methods: {
     modalEditOn(data) {
-      console.log("data", data);
+      console.log("modalEditOn data", data);
       this.dataOfForm = data;
       this.modalEdit = true;
     },
@@ -274,6 +277,7 @@ export default {
         .then(reponse => {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
+            console.log("dL : ", this.dataLoad);
           }
           this.isLoading = false;
           this.spinner = false;

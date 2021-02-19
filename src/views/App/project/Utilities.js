@@ -5,14 +5,26 @@ const Utilities = {
    */
   formatData: function(datas) {
     return new Promise(resolv => {
+      console.log("fdate : ", datas);
       var result = [];
       if (datas && datas.titre) {
+        // var ddpe = moment.unix(datas.date_depart_proposer).format("DD/MM/YYYY HH:mm");
+        // var dfpe = moment.unix(datas.date_fin_proposer).format("DD/MM/YYYY HH:mm");
+        var ddp = moment(
+          datas.date_depart_proposer,
+          "YYYY-MM-DD  HH:mm"
+        ).unix();
+        var dfp = moment(datas.date_fin_proposer, "YYYY-MM-DD  HH:mm").unix();
         var ligne = {
           table: "gestion_project_contents",
           fields: {
             text: datas.text,
             titre: datas.titre,
-            type: datas.type
+            type: datas.type,
+            status: "0",
+            date_depart_proposer: ddp,
+            date_fin_proposer: dfp,
+            price: ""
           }
         };
         ligne.action = "update";
@@ -24,6 +36,8 @@ const Utilities = {
             }
           ];
         }
+        //mise à jour de la table gestion times
+
         result.push(ligne);
         console.log("ligne", result);
       }
@@ -59,9 +73,12 @@ const Utilities = {
       var childstable = [];
       var state = parseInt(datas.status, 10);
       level = parseInt(level, 10);
-      if (datas.startTime.length && datas.endTime) {
-        var ddp = moment(datas.startTime, "YYYY-MM-DD  HH:mm").unix();
-        var dfp = moment(datas.endTime, "YYYY-MM-DD  HH:mm").unix();
+      if (datas.date_depart_proposer.length && datas.date_fin_proposer) {
+        var ddp = moment(
+          datas.date_depart_proposer,
+          "YYYY-MM-DD  HH:mm"
+        ).unix();
+        var dfp = moment(datas.date_fin_proposer, "YYYY-MM-DD  HH:mm").unix();
         childstable.push({
           table: "gestion_project_times",
           fields: {
@@ -100,6 +117,33 @@ const Utilities = {
       resolv(result);
     });
   },
+  fomatVal: function(result, postData) {
+    return new Promise(resolv => {
+      if (result.date_depart_proposer || result.date_fin_proposer) {
+        console.log("val.date_depart_proposer ", result.date_depart_proposer);
+        // result.date_depart_proposer = moment
+        //   .unix(result.date_depart_proposer)
+        //   .format("YYYY-MM-DD");
+        // result.date_fin_proposer = moment
+        //   .unix(result.date_fin_proposer)
+        //   .format("YYYY-MM-DD");
+      }
+      if (result.idcontents) {
+        postData["idcontents"] = result.idcontents;
+      }
+      for (const i in postData) {
+        if (result[i]) {
+          if (i === "date_depart_proposer") {
+            postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
+          } else if (i === "date_fin_proposer") {
+            postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
+          } else postData[i] = result[i];
+        }
+      }
+      resolv(postData);
+    });
+  },
+  // format data for deleted action
   formatDeleteData: function(datas) {
     return new Promise(resolv => {
       var result = [];

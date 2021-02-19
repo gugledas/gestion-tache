@@ -36,7 +36,7 @@ export default {
       query += " limit 0,50 ";
       console.log("query :: ", query);
       config.post("/gestion-project/select", query).then(reponse => {
-        console.log("selectDatas : ", reponse);
+        // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
         } else {
@@ -53,7 +53,26 @@ export default {
       query += this.formatStringTable("gestion_project_type");
       query += " limit 0,50 ";
       config.post("/gestion-project/select", query).then(reponse => {
-        console.log("selectDatas : ", reponse);
+        // console.log("selectDatas : ", reponse);
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      });
+    });
+  },
+
+  //selectionne et affiche les derniers données modifié
+  selectAll: function() {
+    return new Promise(resolv => {
+      var query = "";
+      query += " select * ";
+      query += " from ";
+      query += this.formatStringTable("gestion_project_contents");
+      query += " limit 0,50 ";
+      config.post("/gestion-project/select", query).then(reponse => {
+        // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
         } else {

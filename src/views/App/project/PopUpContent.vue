@@ -2,10 +2,11 @@
   <div :check-valid-form="checkForSave">
     <div>
       <CRow :gutters="false" class="form-group">
+        <!-- <pre>{{ this.options }}</pre> -->
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
         <CCol sm="7"
           ><CInputRadioGroup
-            :options="optTest"
+            :options="options"
             :checked.sync="postData.type"
             custom
             inline
@@ -51,14 +52,14 @@
           <CInput
             label="Debut:"
             type="date"
-            v-model="postData.startTime"
+            v-model="postData.date_depart_proposer"
             horizontal
           />
         </CCol>
         <CCol sm="6" md="5">
           <CInput
             label="Fin:"
-            v-model="postData.endTime"
+            v-model="postData.date_fin_proposer"
             type="date"
             horizontal
           />
@@ -143,8 +144,8 @@ export default {
         typeIsOk: false,
         type: "project",
         status: "0",
-        startTime: "",
-        endTime: "",
+        date_depart_proposer: "",
+        date_fin_proposer: "",
         clientName: "",
         titre: "",
         price: "",
@@ -249,26 +250,15 @@ export default {
     formValues: {
       deep: true,
       handler: function(val) {
-        console.log("formValues : ", val);
-        if (val.idcontents) {
-          this.postData["idcontents"] = val.idcontents;
-        }
-        for (const i in this.postData) {
-          if (val[i]) {
-            this.postData[i] = val[i];
-          }
-        }
+        Utilities.fomatVal(val, this.postData).then(() => {
+          //this.postData = reponse;
+        });
+        console.log("result :", this.postData);
+        // console.log("formValues : ", val);
       }
     }
   },
   computed: {
-    optTest() {
-      if (ProjectOptionsType.opts.length) {
-        return ProjectOptionsType.opts;
-      } else {
-        return this.options;
-      }
-    },
     checkForSave() {
       if (this.wasValidated == true && this.postData.type.length > 2) {
         this.setBtnState(true);
@@ -301,6 +291,18 @@ export default {
           ...this.preEditorConfig
         };
       }
+    },
+    optionsTache() {
+      var rs = [];
+      for (let i of this.options) {
+        if (i.value == "project") {
+          console.log("iii :");
+        } else {
+          rs.push(i);
+        }
+      }
+      console.log("rs", rs);
+      return rs;
     }
   },
   methods: {
@@ -340,10 +342,8 @@ export default {
       console.log("object");
     },
     changeType() {
-      this.options = [
-        { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" }
-      ];
+      this.options = this.optionsTache;
+      console.log("files : ", this.options);
       this.postData.type = "tache";
     },
     EditProject() {
@@ -365,8 +365,8 @@ export default {
     },
     FormatTime(id) {
       var data = this.postData;
-      var ddp = moment(data.startTime, "YYYY-MM-DD  HH:mm").unix();
-      var dfp = moment(data.endTime, "YYYY-MM-DD  HH:mm").unix();
+      var ddp = moment(data.date_depart_proposer, "YYYY-MM-DD  HH:mm").unix();
+      var dfp = moment(data.date_fin_proposer, "YYYY-MM-DD  HH:mm").unix();
       //var status = data.status;
 
       var rest = [];
@@ -382,8 +382,8 @@ export default {
     },
     FormatData(idc) {
       var data = this.postData;
-      var ddp = moment(data.startTime, "YYYY-MM-DD  HH:mm").unix();
-      var dfp = moment(data.endTime, "YYYY-MM-DD  HH:mm").unix();
+      var ddp = moment(data.date_depart_proposer, "YYYY-MM-DD  HH:mm").unix();
+      var dfp = moment(data.date_fin_proposer, "YYYY-MM-DD  HH:mm").unix();
       var state = parseInt(this.postData.status, 10);
       var result = [];
       result.push({

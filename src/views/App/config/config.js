@@ -10,7 +10,7 @@ export default {
       axios
         .post(this.baseUrl + request, datas, configs)
         .then(reponse => {
-          console.log("Post success : ", reponse);
+          console.log("Config success : ", reponse);
           resolv({ status: true, data: reponse.data, reponse: reponse });
         })
         .catch(error => {
@@ -27,7 +27,7 @@ export default {
       axios
         .get(this.baseUrl + request, datas, configs)
         .then(reponse => {
-          console.log("Post success : ", reponse);
+          console.log("Config get success : ", reponse);
           resolv({ status: true, data: reponse.data, reponse: reponse });
         })
         .catch(error => {
