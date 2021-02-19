@@ -1,11 +1,12 @@
 <template lang="html">
   <div :check-valid-form="checkForSave">
     <div>
+      <span @click="hello"> Ckeck </span><br />
       <CRow :gutters="false" class="form-group">
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
         <CCol sm="7"
           ><CInputRadioGroup
-            :options="optTest"
+            :options="options"
             :checked.sync="postData.type"
             custom
             inline
@@ -162,7 +163,14 @@ export default {
             // Output paragraphs as <p>Text</p>.
             this.dataProcessor.writer.setRules("p", {
               indent: true,
-              breakBeforeOpen: false,
+              breakBeforeOpen: true,
+              breakAfterOpen: false,
+              breakBeforeClose: true,
+              breakAfterClose: true
+            });
+            this.dataProcessor.writer.setRules("img", {
+              indent: true,
+              breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false
@@ -235,7 +243,7 @@ export default {
   },
   mounted() {
     ProjectOptionsType.loadType().then(reponse => {
-      console.log("select : ", reponse);
+      this.options = reponse;
     });
   },
   watch: {
@@ -255,8 +263,10 @@ export default {
     }
   },
   computed: {
+    /**
+     * L'ecoute du changement sur un elment externe ne fonctionne pas.
+     */
     optTest() {
-      console.log("encore");
       return ProjectOptionsType.opts;
     },
     checkForSave() {
@@ -312,6 +322,9 @@ export default {
       CKEDITOR.dtd.$removeEmpty.span = 0;
       CKEDITOR.dtd.$removeEmpty.i = 0;
       CKEDITOR.dtd.$removeEmpty.label = 0;
+    },
+    hello() {
+      console.log("HELLO ProjectOptionsType.opts : ", ProjectOptionsType.opts);
     },
     setBtnState(val) {
       this.btnState.state = val;

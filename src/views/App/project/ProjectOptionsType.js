@@ -4,16 +4,17 @@ const OptionsType = {
    *
    */
   opts: [],
-  execute: false,
+  instance: false,
   loadType: function() {
     return new Promise(resolv => {
-      if (this.execute) {
-        resolv(this.opts);
+      if (this.instance) {
+        this.instance.then(() => {
+          resolv(this.opts);
+        });
       } else {
-        this.execute = true;
         if (!this.opts.length) {
-          console.log("Db.js");
-          SelectDb.selectTypes().then(reponse => {
+          this.instance = SelectDb.selectTypes();
+          this.instance.then(reponse => {
             var fm = [];
             for (let i in reponse) {
               fm.push({
@@ -23,7 +24,7 @@ const OptionsType = {
               });
             }
             this.opts = fm;
-            console.log("selectTypes : ", this.opts);
+            //console.log("selectTypes : ", this.opts);
             resolv(this.opts);
           });
         }
