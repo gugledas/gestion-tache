@@ -115,7 +115,7 @@
       <div>
         <CModal
           size="lg"
-          title="Edition de : "
+          :title="'Edition de :' + ' ' + dataOfForm.titre"
           color="success"
           :show.sync="modalEdit"
           :closeOnBackdrop="false"
@@ -126,7 +126,6 @@
             @edition-ok="LoadProjectData"
             :btn-state="btnStateEdit"
             :level="level"
-            form-type="Edition de"
           ></PopUpContent>
           <template slot="footer">
             <div class="d-flex justify-content-end mr-3">
@@ -277,7 +276,7 @@ export default {
         .then(reponse => {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
-            console.log("dL : ", this.dataLoad);
+            console.log("donnée chargées : ", this.dataLoad);
           }
           this.isLoading = false;
           this.spinner = false;

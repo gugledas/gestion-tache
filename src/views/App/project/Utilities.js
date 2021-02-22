@@ -15,30 +15,46 @@ const Utilities = {
           "YYYY-MM-DD  HH:mm"
         ).unix();
         var dfp = moment(datas.date_fin_proposer, "YYYY-MM-DD  HH:mm").unix();
-        var ligne = {
+        //edition de la table contents
+        var table1 = {
           table: "gestion_project_contents",
           fields: {
             text: datas.text,
             titre: datas.titre,
-            type: datas.type,
-            status: "0",
-            date_depart_proposer: ddp,
-            date_fin_proposer: dfp,
-            price: ""
-          }
+            type: datas.type
+          },
+          action: "update"
         };
-        ligne.action = "update";
+
         if (datas.idcontents) {
-          ligne.where = [
+          table1.where = [
             {
               column: "idcontents",
               value: datas.idcontents
             }
           ];
         }
+        //Edition de la table times
+        var table2 = {
+          table: "gestion_project_times",
+          fields: {
+            status: datas.status,
+            date_depart_proposer: ddp,
+            date_fin_proposer: dfp
+          },
+          action: "update",
+          where: [
+            {
+              column: "idcontents",
+              value: datas.idcontents
+            }
+          ]
+        };
+
         //mise à jour de la table gestion times
 
-        result.push(ligne);
+        result.push(table1);
+        result.push(table2);
         console.log("ligne", result);
       }
       resolv(result);
@@ -117,6 +133,7 @@ const Utilities = {
       resolv(result);
     });
   },
+  // transform date for input editing
   fomatVal: function(result, postData) {
     return new Promise(resolv => {
       if (result.date_depart_proposer || result.date_fin_proposer) {
