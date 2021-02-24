@@ -93,14 +93,3 @@ export default {
   padding: 0px 10px;
 }
 </style>
-// formValues: { // deep: true, // handler: function(val) { //
-console.log("formValues : ", val); // if (val.idcontents) { //
-this.postData["idcontents"] = val.idcontents; // } // for (const i in
-this.postData) { // if ( // val[i] != "date_depart_proposer" && // val[i] !=
-"date_fin_proposer" // ) { // this.postData[i] = val[i]; // } // } // if
-(val.date_depart_proposer) { // var ddpe = moment //
-.unix(val.date_depart_proposer) // .format("DD/MM/YYYY HH:mm"); //
-this.postData["date_depart_proposer"] = ddpe; // } // if (val.date_fin_reel) {
-// var dfpe = moment // .unix(val.date_fin_proposer) // .format("DD/MM/YYYY
-HH:mm"); // this.postData["date_depart_proposer"] = dfpe; // } //
-console.log("tdp : ", this.postData); // } // }

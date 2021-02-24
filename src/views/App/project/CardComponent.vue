@@ -1,12 +1,14 @@
 <template>
   <div>
     <CCard>
-      <CCardHeader class="card-color">
+      <CCardHeader
+        :class="'card-color card-border card-border--' + dataLoad.type"
+      >
         <CLink
           :to="'/projet/' + dataLoad.idcontents"
           class="text-dark text-decoration-none"
-          >{{ dataLoad.titre }}</CLink
-        >
+          >{{ dataLoad.titre }}
+        </CLink>
         <div class="card-header-actions">
           <CLink
             href="#"
@@ -19,6 +21,9 @@
           </CLink>
           <CLink href="#" class=" btn-close m-2" @click="modalEditOn">
             <CIcon name="cil-pencil" />
+          </CLink>
+          <CLink href="#" class=" btn-close m-2" @click="changeParent">
+            <CIcon name="cil-cursor-move" />
           </CLink>
           <CLink href="#" class=" btn-close m-1" @click="HideTypeProject">
             <CIcon name="cil-plus" />
@@ -115,6 +120,7 @@ export default {
     };
   },
   computed: {
+    // affichage du texte formatter
     textDisplay() {
       var newDiv = document.createElement("div");
       newDiv.innerHTML = this.dataLoad.text ? this.dataLoad.text : "";
@@ -126,9 +132,14 @@ export default {
     }
   },
   methods: {
+    changeParent(item) {
+      console.log("changeparent", item);
+      this.$emit("change-parent");
+    },
     DeleteModalOn() {
       this.deleteModal = true;
     },
+    //Supression d’un contenu
     DeleteContent() {
       Utilities.formatDeleteData(this.dataLoad, "delete").then(reponse => {
         console.log(" deleteProject : ", reponse);
@@ -146,6 +157,7 @@ export default {
           });
       });
     },
+    //Gestion de l’acordéon
     Collapsed() {
       if (this.dataLoad.open) {
         this.dataLoad.open = false;
@@ -153,6 +165,7 @@ export default {
         this.dataLoad.open = true;
       }
     },
+    //
     HideTypeProject() {
       this.$emit("Hide-type-project", this.dataLoad);
     },
@@ -171,4 +184,29 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.card-border {
+  border-left: 4px solid;
+  &--project {
+    border-left-color: rgb(21, 65, 238);
+  }
+  &--memos {
+    border-left-color: rgb(21, 223, 238);
+  }
+  &--tache {
+    border-left-color: rgb(238, 214, 34);
+  }
+  &--bug {
+    border-left-color: rgb(245, 71, 40);
+  }
+  &--a-faire {
+    border-left-color: rgb(225, 193, 91);
+  }
+  &--test {
+    border-left-color: rgb(186, 75, 145);
+  }
+  &--corriger {
+    border-left-color: rgb(40, 245, 98);
+  }
+}
+</style>

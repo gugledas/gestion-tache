@@ -10,32 +10,60 @@ const Utilities = {
       if (datas && datas.titre) {
         // var ddpe = moment.unix(datas.date_depart_proposer).format("DD/MM/YYYY HH:mm");
         // var dfpe = moment.unix(datas.date_fin_proposer).format("DD/MM/YYYY HH:mm");
-        // var ddp = moment(datas.date_depart_proposer,"YYYY-MM-DD  HH:mm").unix();
-        // var dfp = moment(datas.date_fin_proposer, "YYYY-MM-DD  HH:mm").unix();
-        var ligne = {
+        var ddp = moment(
+          datas.date_depart_proposer + " " + datas.heure_debut,
+          "YYYY-MM-DD  HH:mm"
+        ).unix();
+        var dfp = moment(
+          datas.date_fin_proposer + " " + datas.heure_fin,
+          "YYYY-MM-DD  HH:mm"
+        ).unix();
+        //edition de la table contents
+        var table1 = {
           table: "gestion_project_contents",
           fields: {
             text: datas.text,
             titre: datas.titre,
             type: datas.type
-            // status: "0",
-            // date_depart_proposer: ddp,
-            // date_fin_proposer: dfp,
-            // price: ""
-          }
+          },
+          action: "update"
         };
-        ligne.action = "update";
+
         if (datas.idcontents) {
-          ligne.where = [
+          table1.where = [
             {
               column: "idcontents",
               value: datas.idcontents
             }
           ];
         }
+        //Edition de la table times
+        if (
+          datas.date_depart_proposer.length &&
+          datas.date_fin_proposer.length
+        ) {
+          var table2 = {
+            table: "gestion_project_times",
+            fields: {
+              status: datas.status,
+              date_depart_proposer: ddp,
+              date_fin_proposer: dfp
+            },
+            action: "update",
+            where: [
+              {
+                column: "idcontents",
+                value: datas.idcontents
+              }
+            ]
+          };
+          result.push(table2);
+        }
+
         //mise à jour de la table gestion times
 
-        result.push(ligne);
+        result.push(table1);
+
         console.log("ligne", result);
       }
       resolv(result);
@@ -114,16 +142,11 @@ const Utilities = {
       resolv(result);
     });
   },
+  // Remplissage des champs pour l’édition d’un contenu
   fomatVal: function(result, postData) {
     return new Promise(resolv => {
       if (result.date_depart_proposer || result.date_fin_proposer) {
-        console.log("val.date_depart_proposer ", result.date_depart_proposer);
-        // result.date_depart_proposer = moment
-        //   .unix(result.date_depart_proposer)
-        //   .format("YYYY-MM-DD");
-        // result.date_fin_proposer = moment
-        //   .unix(result.date_fin_proposer)
-        //   .format("YYYY-MM-DD");
+        console.log("val.date_depart_proposer ", result);
       }
       if (result.idcontents) {
         postData["idcontents"] = result.idcontents;
@@ -132,12 +155,15 @@ const Utilities = {
         if (result[i]) {
           if (i === "date_depart_proposer") {
             postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
+            postData["heure_debut"] = moment.unix(result[i]).format("HH:mm");
           } else if (i === "date_fin_proposer") {
             postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
+            postData["heure_fin"] = moment.unix(result[i]).format("HH:mm");
           } else postData[i] = result[i];
         }
       }
-      resolv(postData);
+
+      resolv();
     });
   },
   // format data for deleted action

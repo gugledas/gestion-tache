@@ -1,7 +1,7 @@
 <template>
   <div>
     <CRow class="ml-2 mt-n2 d-flex " alignVertical="center">
-      <CButton @click="modalAdd = true" size="sm" color="warning" shape="pill">
+      <CButton @click="modalAddOn" size="sm" color="warning" shape="pill">
         <CIcon class="text-white" name="cilPlus" :height="35" size="xl" />
       </CButton>
       <h6 class="ml-1 mt-1" v-if="showSideText">Nouveau projet</h6>
@@ -84,6 +84,10 @@ export default {
     }
   },
   methods: {
+    modalAddOn() {
+      this.modalAdd = true;
+      this.$refs.child.TimeNow();
+    },
     PostNewProject() {
       if (this.btnStateAdd.state) {
         this.modalAdd = false;

@@ -58,6 +58,9 @@ export default {
                 },
                 "suppression-ok": () => {
                   this.$emit("suppression-ok");
+                },
+                "change-parent": () => {
+                  this.$emit("change-parent");
                 }
               }
             },
