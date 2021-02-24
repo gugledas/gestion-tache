@@ -9,7 +9,7 @@
       />
     </CRow>
     <CRow v-if="!spinner">
-      <CCol md="8">
+      <CCol md="12">
         <card-jsx
           :dataLoad="dataLoad"
           @modal-edit-on="modalEditOn"
@@ -38,7 +38,6 @@
           @addnew-ok="LoadProjectData"
           :level="level"
           :btn-state="btnStateAdd"
-          form-type="Nouveau projet"
         ></PopUpContent>
 
         <template slot="footer">
@@ -146,7 +145,7 @@
 
       <!-- end Modal for edditing project -->
 
-      <CCol md="4"
+      <CCol md="6"
         ><CCard>
           <CCardHeader>
             stats
@@ -253,6 +252,7 @@ export default {
       this.level = parseInt(data.level) + 1;
       this.addingModal = true;
       this.$refs.child.changeType();
+      this.$refs.child.TimeNow();
     },
     // save content edieted
     EditModalPost() {

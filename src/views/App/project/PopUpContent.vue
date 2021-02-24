@@ -3,8 +3,10 @@
     <div>
       <CRow :gutters="false" class="form-group">
         <!-- <pre>{{ this.options }}</pre> -->
+
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
-        <CCol sm="7"
+
+        <CCol sm="9"
           ><CInputRadioGroup
             :options="options"
             :checked.sync="postData.type"
@@ -48,21 +50,38 @@
         </CCol>
       </CRow>
       <CRow v-if="postData.type !== 'memos'">
-        <CCol sm="6" md="5">
-          <CInput
-            label="Debut:"
-            type="date"
-            v-model="postData.date_depart_proposer"
-            horizontal
-          />
+        <CCol col="12" lg="6">
+          <CRow class=" ">
+            <CInput
+              label="Debut:"
+              type="date"
+              v-model="postData.date_depart_proposer"
+              horizontal
+              class="col-10 col-sm-7"
+            />
+            <CInput
+              v-model="postData.heure_debut"
+              type="time"
+              class="col-8 ml-sm-0 pl-sm-0 col-sm-5 "
+              horizontal
+            />
+          </CRow>
         </CCol>
-        <CCol sm="6" md="5">
-          <CInput
-            label="Fin:"
-            v-model="postData.date_fin_proposer"
-            type="date"
-            horizontal
-          />
+        <CCol col="10" lg="6">
+          <CRow class="">
+            <CInput
+              label="Fin:"
+              v-model="postData.date_fin_proposer"
+              type="date"
+              horizontal
+              class="col-10 col-sm-7"
+            /><CInput
+              v-model="postData.heure_fin"
+              type="time"
+              class="col-8 ml-sm-0 pl-sm-0 col-sm-5 "
+              horizontal
+            />
+          </CRow>
         </CCol>
       </CRow>
       <CRow>
@@ -146,11 +165,15 @@ export default {
         status: "0",
         date_depart_proposer: "",
         date_fin_proposer: "",
+        heure_debut: "",
+        heure_fin: "",
         clientName: "",
         titre: "",
         price: "",
         text: ""
       },
+      fHeure: "",
+      dHeure: "",
       wasValidated: null,
       showInputRaison: false,
       editorData: "",
@@ -158,6 +181,9 @@ export default {
       extraPlugins: "",
       preEditorConfig: {
         codeSnippet_theme: "monokai_sublime",
+        stylesSet: [],
+        contentsCss:
+          " @import 'http://gestion-tache-vuejs.kksa/ckeditors/styles/style.css'; body{margin:1em !important; background: #FFF;}",
         on: {
           instanceReady: function() {
             // Output paragraphs as <p>Text</p>.
@@ -250,15 +276,22 @@ export default {
     formValues: {
       deep: true,
       handler: function(val) {
-        Utilities.fomatVal(val, this.postData).then(() => {
-          //this.postData = reponse;
-        });
-        console.log("result :", this.postData);
-        // console.log("formValues : ", val);
+        Utilities.fomatVal(val, this.postData).then(() => {});
+        console.log("result :", this.postData, this.fHeure);
+        console.log("debut heure : ", this.dHeure);
       }
     }
   },
   computed: {
+    tarara() {
+      var date = this.postData.date_depart_proposer + " " + this.dHeure;
+      var val = moment(date, "YYYY-MM-DD HH:mm").unix();
+      var lello = moment.unix(val).format("HH:mm");
+      var tal = [];
+      tal.push(val);
+      tal.push(lello);
+      return tal;
+    },
     checkForSave() {
       if (this.wasValidated == true && this.postData.type.length > 2) {
         this.setBtnState(true);
@@ -278,16 +311,16 @@ export default {
       return newDiv.outerHTML;
     },
     editorConfig() {
+      var extraPlugins =
+        "codesnippet,print,format,font,colorbutton,justify,image,filebrowser,stylesheetparser";
       if (!window.location.host.includes("localhost")) {
         return {
-          extraPlugins:
-            "codesnippet,print,format,font,colorbutton,justify,image,filebrowser,quickuploader",
+          extraPlugins: extraPlugins + ",quickuploader",
           ...this.preEditorConfig
         };
       } else {
         return {
-          extraPlugins:
-            "codesnippet,print,format,font,colorbutton,justify,image,filebrowser",
+          extraPlugins: extraPlugins,
           ...this.preEditorConfig
         };
       }
@@ -341,27 +374,39 @@ export default {
     EventShowInput() {
       console.log("object");
     },
+
+    TimeNow() {
+      let today = moment().format("YYYY-MM-DD");
+      let hours = moment().format("HH:mm");
+      this.postData.date_depart_proposer = today;
+      this.postData.heure_debut = hours;
+      this.postData.date_fin_proposer = today;
+      this.postData.heure_fin = hours;
+      console.log(today, hours);
+    },
     changeType() {
       this.options = this.optionsTache;
       console.log("files : ", this.options);
       this.postData.type = "tache";
     },
     EditProject() {
-      Utilities.formatData(this.postData).then(reponse => {
-        console.log(" EditProject : ", reponse);
-        config
-          .post("/gestion-project/save-update", reponse)
-          .then(reponse => {
-            if (reponse.status) {
-              console.log("data after edit :", reponse);
-              this.$emit("edition-ok", reponse);
-            }
-            this.isLoading = false;
-          })
-          .catch(function(error) {
-            console.log("error", error);
-          });
-      });
+      Utilities.formatData(this.postData, this.dHeure, this.fHeure).then(
+        reponse => {
+          console.log(" EditProject : ", reponse);
+          config
+            .post("/gestion-project/save-update", reponse)
+            .then(reponse => {
+              if (reponse.status) {
+                console.log("data after edit :", reponse);
+                this.$emit("edition-ok", reponse);
+              }
+              this.isLoading = false;
+            })
+            .catch(function(error) {
+              console.log("error", error);
+            });
+        }
+      );
     },
     FormatTime(id) {
       var data = this.postData;
