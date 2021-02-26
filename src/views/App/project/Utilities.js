@@ -69,6 +69,42 @@ const Utilities = {
       resolv(result);
     });
   },
+
+  formatHierarchie: function(datas, nid) {
+    return new Promise(resolv => {
+      console.log("fdate : ", nid);
+      var result = [];
+      if (datas && datas.titre) {
+        // var ddpe = moment.unix(datas.date_depart_proposer).format("DD/MM/YYYY HH:mm");
+        // var dfpe = moment.unix(datas.date_fin_proposer).format("DD/MM/YYYY HH:mm");
+
+        //edition de la table contents
+
+        //Edition de la table times
+
+        var table3 = {
+          table: "gestion_project_hierachie",
+          fields: {
+            idcontentsparent: nid.id,
+            idcontents: datas.idcontents,
+            ordre: nid.ordre
+          },
+          action: "update",
+          where: [
+            {
+              column: "idcontents",
+              value: datas.idcontents
+            }
+          ]
+        };
+        //mise à jour de la table gestion times
+        result.push(table3);
+
+        console.log("ligne", result);
+      }
+      resolv(result);
+    });
+  },
   /**
    * un tableau
    * @param [] cards
@@ -100,10 +136,13 @@ const Utilities = {
       level = parseInt(level, 10);
       if (datas.date_depart_proposer.length && datas.date_fin_proposer) {
         var ddp = moment(
-          datas.date_depart_proposer,
+          datas.date_depart_proposer + " " + datas.heure_debut,
           "YYYY-MM-DD  HH:mm"
         ).unix();
-        var dfp = moment(datas.date_fin_proposer, "YYYY-MM-DD  HH:mm").unix();
+        var dfp = moment(
+          datas.date_fin_proposer + " " + datas.heure_fin,
+          "YYYY-MM-DD  HH:mm"
+        ).unix();
         childstable.push({
           table: "gestion_project_times",
           fields: {

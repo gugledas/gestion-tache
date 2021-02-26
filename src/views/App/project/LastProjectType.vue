@@ -32,7 +32,7 @@
             <div>
               <CLink
                 :to="{
-                  path: 'projet/' + item.idcontents
+                  path: 'projets/' + item.idcontents
                 }"
                 class="text-decoration-none"
               >

@@ -53,7 +53,7 @@
       />-->
       <BreadCrumb></BreadCrumb>
       <div class="ml-auto d-flex flex-wrap aling-items-end">
-        <SSearch></SSearch>
+        <SSearch :styled="true"></SSearch>
         <CDropdown color="dark" toggler-text="Options" class="ml-sm-n5 mt-2">
           <CDropdownItem>name</CDropdownItem>
           <CDropdownItem>statut</CDropdownItem>

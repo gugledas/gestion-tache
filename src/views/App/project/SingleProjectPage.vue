@@ -15,6 +15,8 @@
           @modal-edit-on="modalEditOn"
           @Hide-type-project="HideTypeProject"
           @suppression-ok="LoadProjectData"
+          @change-parent="changeParent"
+          @edition-ok="LoadProjectData"
         ></card-jsx>
         <!-- <CardComponent
           :dataLoad="dataLoad"
@@ -237,6 +239,9 @@ export default {
     }
   },
   methods: {
+    changeParent(data) {
+      console.log("change-ppparent : ", data);
+    },
     modalEditOn(data) {
       console.log("modalEditOn data", data);
       this.dataOfForm = data;

@@ -276,6 +276,7 @@ export default {
     formValues: {
       deep: true,
       handler: function(val) {
+        console.log("val : ", val);
         Utilities.fomatVal(val, this.postData).then(() => {});
         console.log("result :", this.postData, this.fHeure);
         console.log("debut heure : ", this.dHeure);

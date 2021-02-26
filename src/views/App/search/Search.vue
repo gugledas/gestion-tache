@@ -1,6 +1,6 @@
 <!-- Vue component -->
 <template>
-  <div class="searchForm">
+  <div :class="styled ? 'searchForm' : ''">
     <multiselect
       v-model="searchValue"
       :options="project"
@@ -18,12 +18,15 @@
       @search-change="TypingSearch"
     >
       <template slot="singleLabel" slot-scope="props"
-        ><span class="option__desc d-inline-flex flex-column"
-          ><span class="option__title">{{ props.option.titre }}</span>
-        </span></template
-      >
+        ><span class="option__desc d-inline-flex flex-column">
+          <span class="option__title">{{ props.option.titre }}</span>
+        </span>
+      </template>
       <template slot="option" slot-scope="props">
-        <div class="option__desc d-inline-flex flex-column align-items-start">
+        <div
+          v-if="styled"
+          class="option__desc d-inline-flex flex-column align-items-start"
+        >
           <span class="option__title mb-2">
             <CIcon name="cilFolder" class="mr-1 text-info "></CIcon>
             {{ props.option.titre }}
@@ -32,12 +35,26 @@
             <span class="text-info bg-light p-1 mt-2 h6">{{
               props.option.type
             }}</span>
-            <router-link :to="'/projet/' + props.option.idcontents">
+            <router-link :to="'/projets/' + props.option.idcontents">
               <CButton class="ml-4" variant="ghost" color="warning" size="sm">
                 <CIcon name="cilPencil"></CIcon>
               </CButton>
             </router-link>
           </div>
+        </div>
+
+        <div
+          v-if="!styled"
+          @click="ParentSelected(props)"
+          class="option__desc d-inline-flex flex-column align-items-start"
+        >
+          <span class="option__title mb-2">
+            <CIcon name="cilFolder" class="mr-1 text-dark "></CIcon>
+            {{ props.option.titre }}
+            <small class="text-dark  p-1 mt-2 ml-2 text-type">{{
+              props.option.type
+            }}</small>
+          </span>
         </div>
       </template>
     </multiselect>
@@ -54,6 +71,12 @@ Vue.component("multiselect", Multiselect);
 
 export default {
   // OR register locally
+  props: {
+    styled: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: { Multiselect },
   data() {
     return {
@@ -81,6 +104,10 @@ export default {
     }
   },
   methods: {
+    ParentSelected(data) {
+      console.log("dataSelected :", data.option);
+      this.$emit("parent-selected", data.option);
+    },
     // Recherche des informations 1.5s après la saisie
     TypingSearch(value) {
       if (value.length >= 2) {
@@ -102,7 +129,7 @@ export default {
           if (reponse.status) {
             if (reponse) {
               this.project = reponse.data;
-              console.log("Project", reponse);
+              console.log("Project search load", reponse);
             }
           }
           this.isLoading = false;
@@ -127,5 +154,8 @@ export default {
     margin-top: 7px;
     min-height: 20px;
   }
+}
+.text-type {
+  font-size: 11px;
 }
 </style>

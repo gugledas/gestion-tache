@@ -5,7 +5,7 @@
         :class="'card-color card-border card-border--' + dataLoad.type"
       >
         <CLink
-          :to="'/projet/' + dataLoad.idcontents"
+          :to="'/projets/' + dataLoad.idcontents"
           class="text-dark text-decoration-none"
           >{{ dataLoad.titre }}
         </CLink>
@@ -70,10 +70,53 @@
         </div>
       </template>
     </CModal>
+
+    <!-- Modal for change hierarchie -->
+    <CModal
+      title="Modification de la hiérarchie"
+      color="dark"
+      :show.sync="hierarchiModal"
+    >
+      <CRow>
+        <CCol col="8" sm="5" class="mr-0 pr-0">
+          <CInput
+            label="Ordre:"
+            type="number"
+            v-model="newIdParrent.ordre"
+            horizontal
+          ></CInput
+        ></CCol>
+        <CCol md="10">
+          <SSearch @parent-selected="parentSelected"></SSearch>
+          <small>Choisir le nouveau parent</small> <br />
+          <small
+            >Parent Actuel: <strong>{{ dataLoad.idcontentsparent }}</strong>
+          </small>
+        </CCol>
+      </CRow>
+      <template slot="footer">
+        <div class="d-flex justify-content-end mr-3">
+          <CButton @click="hierarchiModal = false" class="mx-1" color="light"
+            >Cancel</CButton
+          >
+          <CButton @click="ChangeHierarchie" class="mx-1" color="dark" desabled
+            >Enregistrer
+            <CSpinner
+              v-if="spinner"
+              size="sm"
+              class=""
+              tag="small"
+              color="primary"
+              style="width:1rem;height:1rem;"
+          /></CButton>
+        </div>
+      </template>
+    </CModal>
   </div>
 </template>
 
 <script>
+import SSearch from "../search/Search";
 import Utilities from "./Utilities.js";
 import config from "../config/config";
 import hljs from "highlight.js";
@@ -94,18 +137,27 @@ export default {
       }
     }
   },
+  components: {
+    SSearch
+  },
   data() {
     return {
       btnStateEdit: { state: false },
       modalEdit: false,
       deleteModal: false,
+      hierarchiModal: false,
       ressourceToAdd: "",
       chooseType: "text",
       descToggle: true,
       show: true,
+      spinner: false,
       selected: "projet",
       addingModal: false,
       modalRessource: false,
+      newIdParrent: {
+        id: "",
+        ordre: ""
+      },
       //isCollapsed: true,
       editorData: "<p>me al rasp sale</p>",
       editorConfig: {
@@ -119,6 +171,7 @@ export default {
       ]
     };
   },
+
   computed: {
     // affichage du texte formatter
     textDisplay() {
@@ -132,13 +185,44 @@ export default {
     }
   },
   methods: {
-    changeParent(item) {
-      console.log("changeparent", item);
-      this.$emit("change-parent");
+    parentSelected(data) {
+      console.log("cccc :", data.idcontents);
+      this.newIdParrent.id = data.idcontents;
+    },
+    ChangeHierarchie() {
+      this.spinner = true;
+      console.log("object", this.dataLoad.idcontents);
+
+      Utilities.formatHierarchie(this.dataLoad, this.newIdParrent).then(
+        reponse => {
+          console.log(" change Hierarchie : ", reponse);
+          config
+            .post("/gestion-project/save-update", reponse)
+            .then(reponse => {
+              if (reponse.status) {
+                console.log("data after edit :", reponse);
+                this.$emit("edition-ok", reponse);
+              }
+              this.spinner = false;
+              this.hierarchiModal = false;
+            })
+            .catch(function(error) {
+              console.log("error", error);
+            });
+        }
+      );
+    },
+    changeParent() {
+      console.log("changeparent", this.dataLoad);
+      this.$emit("change-parent", this.dataLoad);
+      this.newIdParrent.ordre = this.dataLoad.ordre;
+
+      this.hierarchiModal = true;
     },
     DeleteModalOn() {
       this.deleteModal = true;
     },
+
     //Supression d’un contenu
     DeleteContent() {
       Utilities.formatDeleteData(this.dataLoad, "delete").then(reponse => {
@@ -200,7 +284,7 @@ export default {
     border-left-color: rgb(245, 71, 40);
   }
   &--a-faire {
-    border-left-color: rgb(225, 193, 91);
+    border-left-color: rgb(180, 91, 225);
   }
   &--test {
     border-left-color: rgb(186, 75, 145);

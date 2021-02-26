@@ -23,7 +23,7 @@ const Utilities = {
   },
   formatTocrumb(project) {
     return {
-      to: "/projet/" + project.idcontents,
+      to: "/projets/" + project.idcontents,
       text: project.titre
     };
   }

@@ -51,8 +51,8 @@ function configRoutes() {
           children: []
         },
         {
-          path: "/projet/:idcontents",
-          name: "Projet",
+          path: "/projets/:idcontents",
+          name: "Projets",
           component: SingleProjectPage,
           props: true
         },
