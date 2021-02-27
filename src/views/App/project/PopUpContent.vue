@@ -1,9 +1,11 @@
 <template lang="html">
   <div :check-valid-form="checkForSave">
     <div>
+      hd: {{ postData.heure_debut }} // hf: {{ postData.heure_fin }}
       <CRow :gutters="false" class="form-group">
         <!-- <pre>{{ this.options }}</pre> -->
-
+        <pre>duree: {{ dureeProjet }}</pre>
+        <br />
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
 
         <CCol sm="9"
@@ -284,6 +286,22 @@ export default {
     }
   },
   computed: {
+    dureeProjet() {
+      var el;
+      if (
+        this.formValues.date_depart_proposer &&
+        this.formValues.date_fin_proposer
+      ) {
+        el =
+          this.formValues.date_fin_proposer -
+          this.formValues.date_depart_proposer;
+        var ss = moment.unix(this.formValues.date_fin_proposer);
+        var tt = moment.unix(this.formValues.date_depart_proposer);
+        var re = ss.diff(tt, "minutes", true);
+        console.log("re", re, ss, tt);
+      }
+      return el;
+    },
     tarara() {
       var date = this.postData.date_depart_proposer + " " + this.dHeure;
       var val = moment(date, "YYYY-MM-DD HH:mm").unix();

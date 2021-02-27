@@ -1,5 +1,58 @@
 <template>
   <div>
+    <CRow alignHorizontal="center">
+      <CCol col="10">
+        <CCard class="facture">
+          <div class="facture__header">
+            <CRow
+              class="first-header text-center p-5 m-0"
+              alignVertical="center"
+            >
+              <CCol>
+                <img
+                  class="pr-2 mt-2"
+                  src="../../assets/universe png.png"
+                  height="40"
+                  width="150"
+              /></CCol>
+              <CCol class="display-4">INVOICE</CCol>
+            </CRow>
+            <CRow class="second-header m-0 text-center" alignVertical="center">
+              <CCol class="bg-primary pt-2">
+                <p>Invoice # <strong>52141</strong></p>
+              </CCol>
+              <CCol class="pt-2"
+                ><p><Strong class="px-2">Date:</Strong> 01/02/2020</p></CCol
+              >
+            </CRow>
+          </div>
+          <div class="facture__id p-3 d-flex ml-5">
+            <h5>Invoice to :</h5>
+            <div class="ml-2">
+              <h5>Dwayne Clark</h5>
+              <h6>24 Dummy, street Area.</h6>
+              <h6>Location, Lorem Ipsum,</h6>
+              <h6>507xx745</h6>
+            </div>
+          </div>
+          <CRow alignHorizontal="center" class="mb-5">
+            <CCol md="11">
+              <CDataTable
+                striped
+                outlined
+                hover
+                :responsive="false"
+                :items="factTable"
+                :fields="facFields"
+                head-color="light"
+                no-sorting
+              >
+              </CDataTable>
+            </CCol>
+          </CRow>
+        </CCard>
+      </CCol>
+    </CRow>
     <CRow>
       <AddNewProject :showSideText="true"></AddNewProject>
     </CRow>
@@ -131,6 +184,36 @@ export default {
   data() {
     return {
       selected: "Month",
+      factTable: [
+        {
+          sl: 10,
+          item: "Agapetus Tadeáš",
+          prix: "10$",
+          total: "105",
+          quantite: "05"
+        },
+        {
+          sl: 10,
+          item: "Agapetus Tadeáš",
+          prix: "10$",
+          total: "105",
+          quantite: "05"
+        },
+        {
+          sl: 10,
+          item: "Agapetus Tadeáš",
+          prix: "10$",
+          total: "105",
+          quantite: "05"
+        },
+        {
+          sl: 10,
+          item: "Agapetus Tadeáš",
+          prix: "10$",
+          total: "105",
+          quantite: "05"
+        }
+      ],
       tableItems: [
         {
           avatar: { url: "img/avatars/5.jpg", status: "success" },
@@ -173,7 +256,14 @@ export default {
           activity: "Last week"
         }
       ],
-      tableFields: [{ key: "user" }, { key: "usage" }, { key: "activity" }]
+      tableFields: [{ key: "user" }, { key: "usage" }, { key: "activity" }],
+      facFields: [
+        { key: "sl" },
+        { label: "Tasks description", key: "item" },
+        { key: "prix" },
+        { label: "Qté", key: "quantite" },
+        { key: "total", label: "Total" }
+      ]
     };
   },
   methods: {
@@ -182,11 +272,11 @@ export default {
       if (value <= 25) {
         $color = "info";
       } else if (value > 25 && value <= 50) {
-        $color = "success";
+        $color = "danger";
       } else if (value > 50 && value <= 75) {
         $color = "warning";
       } else if (value > 75 && value <= 100) {
-        $color = "danger";
+        $color = "success";
       }
       return $color;
     },

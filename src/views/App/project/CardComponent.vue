@@ -2,13 +2,27 @@
   <div>
     <CCard>
       <CCardHeader
-        :class="'card-color card-border card-border--' + dataLoad.type"
+        :class="
+          'card-progress card-color card-border card-border--' + dataLoad.type
+        "
       >
         <CLink
           :to="'/projets/' + dataLoad.idcontents"
           class="text-dark text-decoration-none"
           >{{ dataLoad.titre }}
         </CLink>
+
+        <CProgress
+          class="progress-xs  card-prog"
+          animated
+          showPercentage
+          striped
+          style="height:10px;"
+          :max="progress.max"
+          :value="progress.val"
+          :color="color(progress.val)"
+        />
+
         <div class="card-header-actions">
           <CLink
             href="#"
@@ -120,6 +134,8 @@ import SSearch from "../search/Search";
 import Utilities from "./Utilities.js";
 import config from "../config/config";
 import hljs from "highlight.js";
+import moment from "moment";
+
 export default {
   name: "CardComponent",
   props: {
@@ -149,7 +165,9 @@ export default {
       ressourceToAdd: "",
       chooseType: "text",
       descToggle: true,
+      currentTime: "",
       show: true,
+      max: "",
       spinner: false,
       selected: "projet",
       addingModal: false,
@@ -171,8 +189,23 @@ export default {
       ]
     };
   },
-
+  mounted() {
+    this.timing();
+  },
   computed: {
+    progress() {
+      var el = {};
+      var ss = moment.unix(this.dataLoad.date_fin_proposer);
+      var tt = moment.unix(this.dataLoad.date_depart_proposer);
+      var exact = moment.unix(this.currentTime);
+      var val = exact.diff(tt, "minutes");
+      var max = ss.diff(tt, "minutes");
+
+      el.max = max;
+      el.val = val;
+      console.log("re", max, val);
+      return el;
+    },
     // affichage du texte formatter
     textDisplay() {
       var newDiv = document.createElement("div");
@@ -185,6 +218,29 @@ export default {
     }
   },
   methods: {
+    timing() {
+      if (this.dataLoad.status == 2) {
+        this.currentTime = moment().unix();
+        setInterval(() => {
+          this.currentTime = moment().unix();
+        }, 5000);
+      } else {
+        this.currentTime = moment().unix();
+      }
+    },
+    color(value) {
+      let $color;
+      if (value <= 25) {
+        $color = "info";
+      } else if (value > 25 && value <= 50) {
+        $color = "danger";
+      } else if (value > 50 && value <= 75) {
+        $color = "warning";
+      } else if (value > 75 && value <= 100) {
+        $color = "success";
+      }
+      return $color;
+    },
     parentSelected(data) {
       console.log("cccc :", data.idcontents);
       this.newIdParrent.id = data.idcontents;
@@ -292,5 +348,16 @@ export default {
   &--corriger {
     border-left-color: rgb(40, 245, 98);
   }
+}
+.card-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-prog {
+  margin-right: 5px;
+  margin-left: auto;
+  width: 15%;
 }
 </style>
