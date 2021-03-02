@@ -32,6 +32,10 @@ export default {
   },
   computed: {
     items() {
+      var trueRoute = "";
+      if (this.$route.params.idcontents) {
+        trueRoute = "/projets";
+      }
       const routes = this.$route.matched.filter(route => {
         return route.name || (route.meta && route.meta.label);
       });
@@ -39,7 +43,7 @@ export default {
       return routes.map(route => {
         const meta = route.meta || {};
         return {
-          to: route,
+          to: trueRoute,
           text: meta.label || route.name
         };
       });

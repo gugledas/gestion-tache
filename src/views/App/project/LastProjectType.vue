@@ -18,7 +18,7 @@
         <CDataTable
           class="m-0  table-borderless "
           hover
-          responsive
+          :responsive="false"
           :items="items"
           :fields="tableFields"
           :header="false"
@@ -32,7 +32,7 @@
             <div>
               <CLink
                 :to="{
-                  path: 'projet/' + item.idcontents
+                  path: 'projets/' + item.idcontents
                 }"
                 class="text-decoration-none"
               >

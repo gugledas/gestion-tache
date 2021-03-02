@@ -75,7 +75,9 @@ import {
   cilChevronCircleDownAlt,
   cilChevronCircleUpAlt,
   cilEyedropper,
-  cilCursorMove
+  cilCursorMove,
+  cilGroup,
+  cilInbox
 } from "@coreui/icons";
 import { logo } from "./logo";
 
@@ -133,7 +135,9 @@ export const iconsSet = Object.assign(
     cilChevronCircleDownAlt,
     cilChevronCircleUpAlt,
     cilEyedropper,
-    cilCursorMove
+    cilCursorMove,
+    cilGroup,
+    cilInbox
   },
   {
     cifUs,

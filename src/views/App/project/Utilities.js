@@ -5,11 +5,9 @@ const Utilities = {
    */
   formatData: function(datas) {
     return new Promise(resolv => {
-      console.log("fdate : ", datas);
+      //console.log("fdate : ", datas);
       var result = [];
       if (datas && datas.titre) {
-        // var ddpe = moment.unix(datas.date_depart_proposer).format("DD/MM/YYYY HH:mm");
-        // var dfpe = moment.unix(datas.date_fin_proposer).format("DD/MM/YYYY HH:mm");
         var ddp = moment(
           datas.date_depart_proposer + " " + datas.heure_debut,
           "YYYY-MM-DD  HH:mm"
@@ -57,12 +55,52 @@ const Utilities = {
               }
             ]
           };
+          if (
+            parseInt(datas.status) === 1 &&
+            (!datas.date_fin_reel || datas.date_fin_reel === "")
+          ) {
+            table2.fields.date_fin_reel = moment().unix();
+          }
           result.push(table2);
         }
 
         //mise à jour de la table gestion times
 
         result.push(table1);
+
+        console.log("ligne", result);
+      }
+      resolv(result);
+    });
+  },
+
+  /**
+   * preparation des données pour la mise à jour de la hiérachie
+   */
+  formatHierarchie: function(datas, nid) {
+    return new Promise(resolv => {
+      console.log("fdate : ", nid);
+      var result = [];
+      if (datas && datas.titre) {
+        //Edition de la table times
+
+        var table3 = {
+          table: "gestion_project_hierachie",
+          fields: {
+            idcontentsparent: nid.id,
+            idcontents: datas.idcontents,
+            ordre: nid.ordre
+          },
+          action: "update",
+          where: [
+            {
+              column: "idcontents",
+              value: datas.idcontents
+            }
+          ]
+        };
+        //mise à jour de la table gestion times
+        result.push(table3);
 
         console.log("ligne", result);
       }
@@ -93,17 +131,20 @@ const Utilities = {
    * @param idc Number, id du contenu encours.
    */
   formatAddData: function(datas, idc = 0, level = 0) {
-    console.log("formatAddData datas :", datas, "\n idc", idc);
+    //console.log("formatAddData datas :", datas, "\n idc", idc);
     return new Promise(resolv => {
       var childstable = [];
       var state = parseInt(datas.status, 10);
       level = parseInt(level, 10);
       if (datas.date_depart_proposer.length && datas.date_fin_proposer) {
         var ddp = moment(
-          datas.date_depart_proposer,
+          datas.date_depart_proposer + " " + datas.heure_debut,
           "YYYY-MM-DD  HH:mm"
         ).unix();
-        var dfp = moment(datas.date_fin_proposer, "YYYY-MM-DD  HH:mm").unix();
+        var dfp = moment(
+          datas.date_fin_proposer + " " + datas.heure_fin,
+          "YYYY-MM-DD  HH:mm"
+        ).unix();
         childstable.push({
           table: "gestion_project_times",
           fields: {
@@ -145,21 +186,25 @@ const Utilities = {
   // Remplissage des champs pour l’édition d’un contenu
   fomatVal: function(result, postData) {
     return new Promise(resolv => {
+      /*
       if (result.date_depart_proposer || result.date_fin_proposer) {
         console.log("val.date_depart_proposer ", result);
       }
+      /**/
       if (result.idcontents) {
-        postData["idcontents"] = result.idcontents;
+        postData.idcontents = result.idcontents;
       }
       for (const i in postData) {
         if (result[i]) {
           if (i === "date_depart_proposer") {
             postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
-            postData["heure_debut"] = moment.unix(result[i]).format("HH:mm");
+            postData.heure_debut = moment.unix(result[i]).format("HH:mm");
           } else if (i === "date_fin_proposer") {
             postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
-            postData["heure_fin"] = moment.unix(result[i]).format("HH:mm");
-          } else postData[i] = result[i];
+            postData.heure_fin = moment.unix(result[i]).format("HH:mm");
+          } else {
+            postData[i] = result[i];
+          }
         }
       }
 
@@ -212,6 +257,122 @@ const Utilities = {
         };
         result.push(ligne);
         console.log("ligne", result);
+      }
+      resolv(result);
+    });
+  },
+
+  //client and societé format
+
+  /**
+   * preparation des données pour l'ajout d'un nouveau client
+   */
+  formatDataClient: function(datas) {
+    return new Promise(resolv => {
+      var result = [];
+      if (datas && datas.nom) {
+        //edition de la table contents
+        var table1 = {
+          table: "gestion_project_client",
+          fields: {
+            nom: datas.nom,
+            uid: datas.uid,
+            prenom: datas.prenom,
+            phone: datas.phone,
+            adresse: datas.adresse,
+            fonction: datas.fonction
+          },
+          action: "update"
+        };
+
+        if (datas.idclient) {
+          table1.where = [
+            {
+              column: "idclient",
+              value: datas.idclient
+            }
+          ];
+        }
+
+        //mise à jour de la table gestion times
+
+        result.push(table1);
+      }
+      resolv(result);
+    });
+  },
+
+  /**
+   * preparation des données pour l'ajout d'une nouvelle société
+   */
+  formatDataSte: function(datas) {
+    return new Promise(resolv => {
+      var result = [];
+      if (datas && datas.nom) {
+        //edition de la table contents
+        var table1 = {
+          table: "gestion_project_societe",
+          fields: {
+            nom: datas.nom,
+            email: datas.email,
+            phone: datas.phone,
+            adresse: datas.adresse,
+            siteweb: datas.siteweb
+          },
+          action: "update"
+        };
+
+        if (datas.idsociete) {
+          table1.where = [
+            {
+              column: "idsociete",
+              value: datas.idsociete
+            }
+          ];
+        }
+
+        //mise à jour de la table societe
+
+        result.push(table1);
+      }
+      resolv(result);
+    });
+  },
+
+  // format data for deleted action of entitie client or societe
+  formatDeleteClient: function(datas) {
+    return new Promise(resolv => {
+      var result = [];
+      if (datas.idclient) {
+        var ligne = {
+          table: "gestion_project_client",
+          fields: {},
+          action: "delete",
+          where: [
+            {
+              column: "idclient",
+              value: datas.idclient
+            }
+          ]
+        };
+
+        result.push(ligne);
+        console.log("ligne 1", result);
+      } else if (datas.idsociete) {
+        ligne = {
+          table: "gestion_project_societe",
+          fields: {},
+          action: "delete",
+          where: [
+            {
+              column: "idsociete",
+              value: datas.idsociete
+            }
+          ]
+        };
+
+        result.push(ligne);
+        console.log("ligne2", result);
       }
       resolv(result);
     });

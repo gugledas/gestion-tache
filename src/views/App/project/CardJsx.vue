@@ -51,6 +51,7 @@ export default {
               },
               on: {
                 "modal-edit-on": item => {
+                  //console.log("edit-on", item);
                   this.$emit("modal-edit-on", item);
                 },
                 "Hide-type-project": item => {
@@ -59,8 +60,12 @@ export default {
                 "suppression-ok": () => {
                   this.$emit("suppression-ok");
                 },
-                "change-parent": () => {
-                  this.$emit("change-parent");
+                "change-parent": item => {
+                  //console.log("changeparent", item);
+                  this.$emit("change-parent", item);
+                },
+                "edition-ok": () => {
+                  this.$emit("edition-ok");
                 }
               }
             },

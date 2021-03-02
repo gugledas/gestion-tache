@@ -15,7 +15,7 @@ const OptionsType = {
         if (!this.opts.length) {
           this.instance = SelectDb.selectTypes();
           this.instance.then(reponse => {
-            console.log("type : ,", reponse);
+            // console.log("type : ,", reponse);
             var fm = [];
             for (let i in reponse) {
               fm.push({

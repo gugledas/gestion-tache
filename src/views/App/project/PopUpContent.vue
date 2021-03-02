@@ -3,7 +3,8 @@
     <div>
       <CRow :gutters="false" class="form-group">
         <!-- <pre>{{ this.options }}</pre> -->
-
+        <pre>duree: {{ dureeProjet }}</pre>
+        <br />
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
 
         <CCol sm="9"
@@ -21,16 +22,15 @@
     </div>
     <hr />
 
-    <div v-html="ser"></div>
     <div class="pl-sm-2 ">
       <CRow
         :gutters="false"
         class="form-group"
-        v-if="postData.type !== 'memos'"
+        v-if="postData.type !== 'memos' && postData.date_fin_reel === ''"
       >
         <CCol sm="2"> <p>Statut:</p> </CCol>
-        <CCol sm="10"
-          ><CInputRadioGroup
+        <CCol sm="10">
+          <CInputRadioGroup
             :options="statusOpt"
             :checked.sync="postData.status"
             custom
@@ -56,11 +56,13 @@
               label="Debut:"
               type="date"
               v-model="postData.date_depart_proposer"
+              :readonly="postData.date_fin_reel > 0 ? true : false"
               horizontal
               class="col-10 col-sm-7"
             />
             <CInput
               v-model="postData.heure_debut"
+              :readonly="postData.date_fin_reel > 0 ? true : false"
               type="time"
               class="col-8 ml-sm-0 pl-sm-0 col-sm-5 "
               horizontal
@@ -72,11 +74,13 @@
             <CInput
               label="Fin:"
               v-model="postData.date_fin_proposer"
+              :readonly="postData.date_fin_reel > 0 ? true : false"
               type="date"
               horizontal
               class="col-10 col-sm-7"
             /><CInput
               v-model="postData.heure_fin"
+              :readonly="postData.date_fin_reel > 0 ? true : false"
               type="time"
               class="col-8 ml-sm-0 pl-sm-0 col-sm-5 "
               horizontal
@@ -165,6 +169,9 @@ export default {
         status: "0",
         date_depart_proposer: "",
         date_fin_proposer: "",
+        date_fin_reel: "",
+        temps_pause: "",
+        raison: "",
         heure_debut: "",
         heure_fin: "",
         clientName: "",
@@ -276,6 +283,7 @@ export default {
     formValues: {
       deep: true,
       handler: function(val) {
+        //console.log("val : ", val);
         Utilities.fomatVal(val, this.postData).then(() => {});
         console.log("result :", this.postData, this.fHeure);
         console.log("debut heure : ", this.dHeure);
@@ -283,6 +291,22 @@ export default {
     }
   },
   computed: {
+    dureeProjet() {
+      var el;
+      if (
+        this.formValues.date_depart_proposer &&
+        this.formValues.date_fin_proposer
+      ) {
+        el =
+          this.formValues.date_fin_proposer -
+          this.formValues.date_depart_proposer;
+        // var ss = moment.unix(this.formValues.date_fin_proposer);
+        // var tt = moment.unix(this.formValues.date_depart_proposer);
+        // var re = ss.diff(tt, "minutes", true);
+        // console.log("re", re, ss, tt);
+      }
+      return el;
+    },
     tarara() {
       var date = this.postData.date_depart_proposer + " " + this.dHeure;
       var val = moment(date, "YYYY-MM-DD HH:mm").unix();
@@ -329,12 +353,12 @@ export default {
       var rs = [];
       for (let i of this.options) {
         if (i.value == "project") {
-          console.log("iii :");
+          //console.log("iii :");
         } else {
           rs.push(i);
         }
       }
-      console.log("rs", rs);
+      //console.log("rs", rs);
       return rs;
     }
   },
@@ -372,7 +396,7 @@ export default {
       }
     },
     EventShowInput() {
-      console.log("object");
+      //console.log("object");
     },
 
     TimeNow() {
@@ -382,22 +406,22 @@ export default {
       this.postData.heure_debut = hours;
       this.postData.date_fin_proposer = today;
       this.postData.heure_fin = hours;
-      console.log(today, hours);
+      //console.log(today, hours);
     },
     changeType() {
       this.options = this.optionsTache;
-      console.log("files : ", this.options);
+      //console.log("files : ", this.options);
       this.postData.type = "tache";
     },
     EditProject() {
       Utilities.formatData(this.postData, this.dHeure, this.fHeure).then(
         reponse => {
-          console.log(" EditProject : ", reponse);
+          //console.log(" EditProject : ", reponse);
           config
             .post("/gestion-project/save-update", reponse)
             .then(reponse => {
               if (reponse.status) {
-                console.log("data after edit :", reponse);
+                //console.log("data after edit :", reponse);
                 this.$emit("edition-ok", reponse);
               }
               this.isLoading = false;

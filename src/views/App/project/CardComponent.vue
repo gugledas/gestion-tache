@@ -2,13 +2,27 @@
   <div>
     <CCard>
       <CCardHeader
-        :class="'card-color card-border card-border--' + dataLoad.type"
+        :class="
+          'card-progress card-color card-border card-border--' + dataLoad.type
+        "
       >
         <CLink
-          :to="'/projet/' + dataLoad.idcontents"
+          :to="'/projets/' + dataLoad.idcontents"
           class="text-dark text-decoration-none"
           >{{ dataLoad.titre }}
         </CLink>
+
+        <CProgress
+          class="progress-xs  card-prog"
+          :animated="dataLoad.status === '1' ? false : true"
+          showPercentage
+          :striped="dataLoad.status === '1' ? false : true"
+          style="height:10px;"
+          :max="progress.max"
+          :value="progress.val"
+          :color="color(progress.val, progress.max)"
+        />
+
         <div class="card-header-actions">
           <CLink
             href="#"
@@ -52,6 +66,8 @@
         </CCardBody>
       </CCollapse>
     </CCard>
+
+    <!-- modal for confirmation of delete -->
     <CModal
       title="Confirmer la suppression"
       color="danger"
@@ -70,13 +86,58 @@
         </div>
       </template>
     </CModal>
+
+    <!-- Modal for change hierarchie -->
+    <CModal
+      title="Modification de la hiérarchie"
+      color="dark"
+      :show.sync="hierarchiModal"
+    >
+      <CRow>
+        <CCol col="8" sm="5" class="mr-0 pr-0">
+          <CInput
+            label="Ordre:"
+            type="number"
+            v-model="newIdParrent.ordre"
+            horizontal
+          ></CInput
+        ></CCol>
+        <CCol md="10">
+          <SSearch @parent-selected="parentSelected"></SSearch>
+          <small>Choisir le nouveau parent</small> <br />
+          <small
+            >Parent Actuel: <strong>{{ dataLoad.idcontentsparent }}</strong>
+          </small>
+        </CCol>
+      </CRow>
+      <template slot="footer">
+        <div class="d-flex justify-content-end mr-3">
+          <CButton @click="hierarchiModal = false" class="mx-1" color="light"
+            >Cancel</CButton
+          >
+          <CButton @click="ChangeHierarchie" class="mx-1" color="dark" desabled
+            >Enregistrer
+            <CSpinner
+              v-if="spinner"
+              size="sm"
+              class=""
+              tag="small"
+              color="primary"
+              style="width:1rem;height:1rem;"
+          /></CButton>
+        </div>
+      </template>
+    </CModal>
   </div>
 </template>
 
 <script>
+import SSearch from "../search/Search";
 import Utilities from "./Utilities.js";
 import config from "../config/config";
 import hljs from "highlight.js";
+import moment from "moment";
+
 export default {
   name: "CardComponent",
   props: {
@@ -94,18 +155,29 @@ export default {
       }
     }
   },
+  components: {
+    SSearch
+  },
   data() {
     return {
       btnStateEdit: { state: false },
       modalEdit: false,
       deleteModal: false,
+      hierarchiModal: false,
       ressourceToAdd: "",
       chooseType: "text",
       descToggle: true,
+      currentTime: "",
       show: true,
+      max: "",
+      spinner: false,
       selected: "projet",
       addingModal: false,
       modalRessource: false,
+      newIdParrent: {
+        id: "",
+        ordre: ""
+      },
       //isCollapsed: true,
       editorData: "<p>me al rasp sale</p>",
       editorConfig: {
@@ -119,7 +191,27 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.timing();
+  },
   computed: {
+    progress() {
+      var el = {};
+      var date_fin_proposer = moment.unix(this.dataLoad.date_fin_proposer);
+      var date_depart_proposer = moment.unix(
+        this.dataLoad.date_depart_proposer
+      );
+      var exact = moment.unix(this.currentTime);
+      if (this.dataLoad.date_fin_reel > 0) {
+        exact = moment.unix(this.dataLoad.date_fin_reel);
+      }
+      var val = exact.diff(date_depart_proposer, "minutes");
+      var max = date_fin_proposer.diff(date_depart_proposer, "minutes");
+
+      el.max = max;
+      el.val = val;
+      return el;
+    },
     // affichage du texte formatter
     textDisplay() {
       var newDiv = document.createElement("div");
@@ -132,13 +224,73 @@ export default {
     }
   },
   methods: {
-    changeParent(item) {
-      console.log("changeparent", item);
-      this.$emit("change-parent");
+    timing() {
+      if (this.dataLoad.status == 2) {
+        this.currentTime = moment().unix();
+        setInterval(() => {
+          this.currentTime = moment().unix();
+        }, 5000);
+      } else {
+        this.currentTime = moment().unix();
+      }
+    },
+    color(valueCurent, maxValue) {
+      let value = 0;
+      let $color;
+      if (maxValue > 0 && valueCurent > 0) {
+        value = (valueCurent * 100) / maxValue;
+      }
+      if (value <= 25) {
+        $color = "success";
+      } else if (value > 25 && value <= 50) {
+        $color = "info";
+      } else if (value > 50 && value <= 85) {
+        $color = "secondary";
+      } else if (value > 85 && value <= 100) {
+        $color = "warning";
+      } else {
+        $color = "danger";
+      }
+      return $color;
+    },
+    parentSelected(data) {
+      //console.log("cccc :", data.idcontents);
+      this.newIdParrent.id = data.idcontents;
+    },
+    ChangeHierarchie() {
+      this.spinner = true;
+      //console.log("object", this.dataLoad.idcontents);
+
+      Utilities.formatHierarchie(this.dataLoad, this.newIdParrent).then(
+        reponse => {
+          //console.log(" change Hierarchie : ", reponse);
+          config
+            .post("/gestion-project/save-update", reponse)
+            .then(reponse => {
+              if (reponse.status) {
+                console.log("data after edit :", reponse);
+                this.$emit("edition-ok", reponse);
+              }
+              this.spinner = false;
+              this.hierarchiModal = false;
+            })
+            .catch(function(error) {
+              console.log("error", error);
+            });
+        }
+      );
+    },
+    changeParent() {
+      console.log("changeparent", this.dataLoad);
+      this.$emit("change-parent", this.dataLoad);
+      this.newIdParrent.ordre = this.dataLoad.ordre;
+
+      this.hierarchiModal = true;
     },
     DeleteModalOn() {
       this.deleteModal = true;
     },
+
     //Supression d’un contenu
     DeleteContent() {
       Utilities.formatDeleteData(this.dataLoad, "delete").then(reponse => {
@@ -200,7 +352,7 @@ export default {
     border-left-color: rgb(245, 71, 40);
   }
   &--a-faire {
-    border-left-color: rgb(225, 193, 91);
+    border-left-color: rgb(180, 91, 225);
   }
   &--test {
     border-left-color: rgb(186, 75, 145);
@@ -208,5 +360,16 @@ export default {
   &--corriger {
     border-left-color: rgb(40, 245, 98);
   }
+}
+.card-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-prog {
+  margin-right: 5px;
+  margin-left: auto;
+  width: 15%;
 }
 </style>

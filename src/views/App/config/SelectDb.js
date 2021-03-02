@@ -62,6 +62,23 @@ export default {
       });
     });
   },
+  selectClient: function(type) {
+    return new Promise(resolv => {
+      var query = "";
+      query += " select * ";
+      query += " from ";
+      query += this.formatStringTable(type);
+      query += " limit 0,50 ";
+      config.post("/gestion-project/select", query).then(reponse => {
+        // console.log("selectDatas : ", reponse);
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      });
+    });
+  },
 
   //selectionne et affiche les derniers données modifié
   selectAll: function() {
