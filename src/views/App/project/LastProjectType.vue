@@ -18,7 +18,7 @@
         <CDataTable
           class="m-0  table-borderless "
           hover
-          responsive
+          :responsive="false"
           :items="items"
           :fields="tableFields"
           :header="false"

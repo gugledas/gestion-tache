@@ -70,6 +70,9 @@ const Utilities = {
     });
   },
 
+  /**
+   * preparation des données pour la mise à jour de la hiérachie
+   */
   formatHierarchie: function(datas, nid) {
     return new Promise(resolv => {
       console.log("fdate : ", nid);
@@ -251,6 +254,122 @@ const Utilities = {
         };
         result.push(ligne);
         console.log("ligne", result);
+      }
+      resolv(result);
+    });
+  },
+
+  //client and societé format
+
+  /**
+   * preparation des données pour l'ajout d'un nouveau client
+   */
+  formatDataClient: function(datas) {
+    return new Promise(resolv => {
+      var result = [];
+      if (datas && datas.nom) {
+        //edition de la table contents
+        var table1 = {
+          table: "gestion_project_client",
+          fields: {
+            nom: datas.nom,
+            uid: datas.uid,
+            prenom: datas.prenom,
+            phone: datas.phone,
+            adresse: datas.adresse,
+            fonction: datas.fonction
+          },
+          action: "update"
+        };
+
+        if (datas.idclient) {
+          table1.where = [
+            {
+              column: "idclient",
+              value: datas.idclient
+            }
+          ];
+        }
+
+        //mise à jour de la table gestion times
+
+        result.push(table1);
+      }
+      resolv(result);
+    });
+  },
+
+  /**
+   * preparation des données pour l'ajout d'une nouvelle société
+   */
+  formatDataSte: function(datas) {
+    return new Promise(resolv => {
+      var result = [];
+      if (datas && datas.nom) {
+        //edition de la table contents
+        var table1 = {
+          table: "gestion_project_societe",
+          fields: {
+            nom: datas.nom,
+            email: datas.email,
+            phone: datas.phone,
+            adresse: datas.adresse,
+            siteweb: datas.siteweb
+          },
+          action: "update"
+        };
+
+        if (datas.idsociete) {
+          table1.where = [
+            {
+              column: "idsociete",
+              value: datas.idsociete
+            }
+          ];
+        }
+
+        //mise à jour de la table societe
+
+        result.push(table1);
+      }
+      resolv(result);
+    });
+  },
+
+  // format data for deleted action of entitie client or societe
+  formatDeleteClient: function(datas) {
+    return new Promise(resolv => {
+      var result = [];
+      if (datas.idclient) {
+        var ligne = {
+          table: "gestion_project_client",
+          fields: {},
+          action: "delete",
+          where: [
+            {
+              column: "idclient",
+              value: datas.idclient
+            }
+          ]
+        };
+
+        result.push(ligne);
+        console.log("ligne 1", result);
+      } else if (datas.idsociete) {
+        ligne = {
+          table: "gestion_project_societe",
+          fields: {},
+          action: "delete",
+          where: [
+            {
+              column: "idsociete",
+              value: datas.idsociete
+            }
+          ]
+        };
+
+        result.push(ligne);
+        console.log("ligne2", result);
       }
       resolv(result);
     });

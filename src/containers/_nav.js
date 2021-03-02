@@ -15,6 +15,18 @@ export default [
         icon: "cil-folder"
       },
       {
+        _name: "CSidebarNavItem",
+        name: "Clients",
+        to: "/clients",
+        icon: "cil-group"
+      },
+      {
+        _name: "CSidebarNavItem",
+        name: "Factures",
+        to: "/factures",
+        icon: "cil-inbox"
+      },
+      {
         _name: "CSidebarNavDropdown",
         name: "Theme Documentation",
         route: "/docs",

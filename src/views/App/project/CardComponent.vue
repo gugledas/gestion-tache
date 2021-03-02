@@ -66,6 +66,8 @@
         </CCardBody>
       </CCollapse>
     </CCard>
+
+    <!-- modal for confirmation of delete -->
     <CModal
       title="Confirmer la suppression"
       color="danger"
