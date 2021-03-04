@@ -2,11 +2,7 @@
   <div :check-valid-form="checkForSave">
     <div>
       <CRow :gutters="false" class="form-group">
-        <!-- <pre>{{ this.options }}</pre> -->
-        <pre>duree: {{ dureeProjet }}</pre>
-        <br />
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
-
         <CCol sm="9"
           ><CInputRadioGroup
             :options="options"
@@ -26,7 +22,11 @@
       <CRow
         :gutters="false"
         class="form-group"
-        v-if="postData.type !== 'memos' && postData.date_fin_reel === ''"
+        v-if="
+          postData.type !== 'memos' &&
+            postData.date_fin_reel === '' &&
+            postData.status !== '1'
+        "
       >
         <CCol sm="2"> <p>Statut:</p> </CCol>
         <CCol sm="10">

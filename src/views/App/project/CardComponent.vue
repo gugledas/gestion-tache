@@ -13,7 +13,7 @@
         </CLink>
 
         <CProgress
-          class="progress-xs  card-prog"
+          class="progress-xs card-prog"
           :animated="dataLoad.status === '1' ? false : true"
           showPercentage
           :striped="dataLoad.status === '1' ? false : true"
@@ -21,6 +21,7 @@
           :max="progress.max"
           :value="progress.val"
           :color="color(progress.val, progress.max)"
+          v-if="dataLoad.type.length > 1 && dataLoad.type !== 'memos'"
         />
 
         <div class="card-header-actions">
@@ -104,9 +105,9 @@
         ></CCol>
         <CCol md="10">
           <SSearch @parent-selected="parentSelected"></SSearch>
-          <small>Choisir le nouveau parent</small> <br />
-          <small
-            >Parent Actuel: <strong>{{ dataLoad.idcontentsparent }}</strong>
+          <small> Choisir le nouveau parent </small> <br />
+          <small>
+            Parent Actuel: <strong> {{ dataLoad.idcontentsparent }} </strong>
           </small>
         </CCol>
       </CRow>
