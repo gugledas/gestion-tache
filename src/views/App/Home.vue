@@ -1,124 +1,5 @@
 <template>
   <div>
-    <CRow alignHorizontal="center">
-      <CCol col="10">
-        <CCard class="facture shadow">
-          <div class="facture__header">
-            <CRow
-              class="first-header text-center p-5 m-0"
-              alignVertical="center"
-            >
-              <CCol>
-                <img
-                  class="pr-2 mt-2"
-                  src="../../assets/universe png.png"
-                  height="40"
-                  width="150"
-              /></CCol>
-              <CCol class="display-4">INVOICE</CCol>
-            </CRow>
-            <CRow class="second-header m-0 text-center" alignVertical="center">
-              <CCol class="bg-info pt-2">
-                <p>Invoice # <strong>52141</strong></p>
-              </CCol>
-              <CCol class="pt-2"
-                ><p><Strong class="px-2">Date:</Strong> 01/02/2020</p></CCol
-              >
-            </CRow>
-          </div>
-          <div class="facture__id p-3 d-flex ml-5">
-            <h5>Invoice to :</h5>
-            <div class="ml-2">
-              <h5>Dwayne Clark</h5>
-              <h6>24 Dummy, street Area.</h6>
-              <h6>Location, Lorem Ipsum,</h6>
-              <h6>507xx745</h6>
-            </div>
-          </div>
-          <CRow alignHorizontal="center" class="mb-4">
-            <CCol md="11">
-              <CDataTable
-                striped
-                outlined
-                hover
-                :responsive="false"
-                :items="factTable"
-                :fields="facFields"
-                head-color="light"
-                no-sorting
-              >
-                <td slot="sl" slot-scope="{ item }">
-                  <Strong>{{ item.sl }}</Strong>
-                </td>
-              </CDataTable>
-            </CCol>
-          </CRow>
-          <CRow class="mt-2" alignHorizontal="center">
-            <CCol col="11" class="d-flex">
-              <CCol col="6" class="">
-                <div>
-                  <h5>Payment Info:</h5>
-                  <p class="m-0">
-                    Account #: <strong class="ml-2"> 551 254 251 015</strong>
-                  </p>
-                  <p class="m-0">
-                    ACT Name: <strong class="ml-2"> Lorem Ipsum</strong>
-                  </p>
-                  <p class="m-0">
-                    Bank details:<strong class="ml-2">
-                      Add Your bank Details
-                    </strong>
-                  </p>
-                </div>
-              </CCol>
-              <CCol col="6" class="ml-5">
-                <div class="d-flex justify-content-around">
-                  <h5>Sub Total:</h5>
-                  <span class="ml-5 h5">$5240.00</span>
-                </div>
-                <div class="d-flex justify-content-around">
-                  <h5>Tax:</h5>
-                  <span class="ml-5 h5">19.25%</span>
-                </div>
-                <div
-                  class="d-flex justify-content-around bg-info mt-2 text-white p-2 mr-4"
-                >
-                  <h5>Total:</h5>
-                  <span class="ml-5 h5">10 142.00 $</span>
-                </div>
-              </CCol>
-            </CCol>
-          </CRow>
-          <CRow alignHorizontal="center" class="mt-5 mb-4">
-            <CCol col="11" class="d-flex mb-3">
-              <CCol col="6" class="">
-                <h5>Terms & conditions</h5>
-
-                <h6 class=" p-0 m-0">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Cupiditate architecto cum aliquam aut ut?
-                </h6>
-              </CCol>
-              <CCol col="6" class="pt-4 mt-5 text-center">
-                <p class="m-0 p-0">______________________________</p>
-                <h6 class="mt-1">Authorised sign</h6>
-              </CCol>
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol col="12">
-              <CCol class="bg-light p-0">
-                <div
-                  class="d-flex justify-content-around bg-info mt-2 text-white p-2 col-6"
-                >
-                  <h5>Thanks for your Business</h5>
-                </div>
-              </CCol>
-            </CCol>
-          </CRow>
-        </CCard>
-      </CCol>
-    </CRow>
     <CRow>
       <AddNewProject :showSideText="true"></AddNewProject>
     </CRow>
@@ -250,36 +131,7 @@ export default {
   data() {
     return {
       selected: "Month",
-      factTable: [
-        {
-          sl: 1,
-          item: "Agapetus Tadeáš",
-          prix: "10$",
-          total: "105",
-          quantite: "05"
-        },
-        {
-          sl: 2,
-          item: "Agapetus Tadeáš",
-          prix: "10$",
-          total: "105",
-          quantite: "05"
-        },
-        {
-          sl: 3,
-          item: "Agapetus Tadeáš",
-          prix: "10$",
-          total: "105",
-          quantite: "05"
-        },
-        {
-          sl: 4,
-          item: "Agapetus Tadeáš",
-          prix: "10$",
-          total: "105",
-          quantite: "05"
-        }
-      ],
+
       tableItems: [
         {
           avatar: { url: "img/avatars/5.jpg", status: "success" },
@@ -322,14 +174,7 @@ export default {
           activity: "Last week"
         }
       ],
-      tableFields: [{ key: "user" }, { key: "usage" }, { key: "activity" }],
-      facFields: [
-        { key: "sl" },
-        { label: "Tasks description", key: "item" },
-        { key: "prix" },
-        { label: "Qté", key: "quantite" },
-        { key: "total", label: "Total" }
-      ]
+      tableFields: [{ key: "user" }, { key: "usage" }, { key: "activity" }]
     };
   },
   methods: {

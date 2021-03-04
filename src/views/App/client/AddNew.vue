@@ -37,37 +37,6 @@
         </div>
       </template>
     </CModal>
-    <!-- modal for editting Entities -->
-    <!-- <CModal
-      size="lg"
-      :title="modalTitle"
-      :color="plusColor"
-      :show.sync="modalEditing"
-      :footer="false"
-    >
-      <PopUpClient
-        ref="pop"
-        :modalType="modalType"
-        :btnState="btnStateAdd"
-        @load-list-client="loadListClient"
-        @load-list-ste="loadListSte"
-        :formValues="dataToEdit"
-      ></PopUpClient>
-      <template slot="footer">
-        <div class="d-flex justify-content-end mr-3 ">
-          <CButton @click="modalEditing = false" class="mx-1" color="light">
-            Cancel
-          </CButton>
-          <CButton
-            class="mx-1"
-            @click="EditeEntities"
-            :color="btnStateAdd.state ? plusColor : 'light'"
-          >
-            Add
-          </CButton>
-        </div>
-      </template>
-    </CModal> -->
   </div>
 </template>
 

@@ -13,14 +13,15 @@
         </CLink>
 
         <CProgress
-          class="progress-xs  card-prog"
-          animated
+          class="progress-xs card-prog"
+          :animated="dataLoad.status === '1' ? false : true"
           showPercentage
-          striped
+          :striped="dataLoad.status === '1' ? false : true"
           style="height:10px;"
           :max="progress.max"
           :value="progress.val"
-          :color="color(progress.val)"
+          :color="color(progress.val, progress.max)"
+          v-if="dataLoad.type.length > 1 && dataLoad.type !== 'memos'"
         />
 
         <div class="card-header-actions">
@@ -28,29 +29,50 @@
             href="#"
             class=" btn-close m-2"
             @click="descToggle = !descToggle"
+            v-c-tooltip="'Afficher/Cacher la description'"
           >
             <CIcon
               :name="`cil-chevron-circle-${descToggle ? 'down' : 'up'}-alt`"
             />
           </CLink>
-          <CLink href="#" class=" btn-close m-2" @click="modalEditOn">
+          <CLink
+            href="#"
+            class=" btn-close m-2"
+            v-c-tooltip="'Edité le contenu'"
+            @click="modalEditOn"
+          >
             <CIcon name="cil-pencil" />
           </CLink>
-          <CLink href="#" class=" btn-close m-2" @click="changeParent">
+          <CLink
+            href="#"
+            class=" btn-close m-2"
+            v-c-tooltip="'Modifier le parent'"
+            @click="changeParent"
+          >
             <CIcon name="cil-cursor-move" />
           </CLink>
-          <CLink href="#" class=" btn-close m-1" @click="HideTypeProject">
+          <CLink
+            href="#"
+            class=" btn-close m-1"
+            v-c-tooltip="'Créer un sous contenu'"
+            @click="HideTypeProject"
+          >
             <CIcon name="cil-plus" />
           </CLink>
           <CLink href="#" class="m-2 btn-setting" @click="modalRessourceOn">
             <CIcon name="cil-settings" />
           </CLink>
-          <CLink class="m-1 btn-minimize" @click="Collapsed">
+          <CLink
+            class="m-1 btn-minimize"
+            @click="Collapsed"
+            v-c-tooltip="'Afficher/Cacher les sous projects'"
+          >
             <CIcon :name="`cil-chevron-${dataLoad.open ? 'bottom' : 'top'}`" />
           </CLink>
           <CLink
             href="#"
             class="m-2 btn-close text-danger"
+            v-c-tooltip="'Supprimer ce contenu'"
             @click="DeleteModalOn"
           >
             <CIcon color="danger" name="cil-x-circle" />
@@ -197,15 +219,19 @@ export default {
   computed: {
     progress() {
       var el = {};
-      var ss = moment.unix(this.dataLoad.date_fin_proposer);
-      var tt = moment.unix(this.dataLoad.date_depart_proposer);
+      var date_fin_proposer = moment.unix(this.dataLoad.date_fin_proposer);
+      var date_depart_proposer = moment.unix(
+        this.dataLoad.date_depart_proposer
+      );
       var exact = moment.unix(this.currentTime);
-      var val = exact.diff(tt, "minutes");
-      var max = ss.diff(tt, "minutes");
+      if (this.dataLoad.date_fin_reel > 0) {
+        exact = moment.unix(this.dataLoad.date_fin_reel);
+      }
+      var val = exact.diff(date_depart_proposer, "minutes");
+      var max = date_fin_proposer.diff(date_depart_proposer, "minutes");
 
       el.max = max;
       el.val = val;
-      console.log("re", max, val);
       return el;
     },
     // affichage du texte formatter
@@ -230,30 +256,36 @@ export default {
         this.currentTime = moment().unix();
       }
     },
-    color(value) {
+    color(valueCurent, maxValue) {
+      let value = 0;
       let $color;
+      if (maxValue > 0 && valueCurent > 0) {
+        value = (valueCurent * 100) / maxValue;
+      }
       if (value <= 25) {
-        $color = "info";
-      } else if (value > 25 && value <= 50) {
-        $color = "danger";
-      } else if (value > 50 && value <= 75) {
-        $color = "warning";
-      } else if (value > 75 && value <= 100) {
         $color = "success";
+      } else if (value > 25 && value <= 50) {
+        $color = "info";
+      } else if (value > 50 && value <= 85) {
+        $color = "secondary";
+      } else if (value > 85 && value <= 100) {
+        $color = "warning";
+      } else {
+        $color = "danger";
       }
       return $color;
     },
     parentSelected(data) {
-      console.log("cccc :", data.idcontents);
+      //console.log("cccc :", data.idcontents);
       this.newIdParrent.id = data.idcontents;
     },
     ChangeHierarchie() {
       this.spinner = true;
-      console.log("object", this.dataLoad.idcontents);
+      //console.log("object", this.dataLoad.idcontents);
 
       Utilities.formatHierarchie(this.dataLoad, this.newIdParrent).then(
         reponse => {
-          console.log(" change Hierarchie : ", reponse);
+          //console.log(" change Hierarchie : ", reponse);
           config
             .post("/gestion-project/save-update", reponse)
             .then(reponse => {

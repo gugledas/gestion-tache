@@ -77,7 +77,8 @@ import {
   cilEyedropper,
   cilCursorMove,
   cilGroup,
-  cilInbox
+  cilInbox,
+  cilLowVision
 } from "@coreui/icons";
 import { logo } from "./logo";
 
@@ -137,7 +138,8 @@ export const iconsSet = Object.assign(
     cilEyedropper,
     cilCursorMove,
     cilGroup,
-    cilInbox
+    cilInbox,
+    cilLowVision
   },
   {
     cifUs,

@@ -5,11 +5,9 @@ const Utilities = {
    */
   formatData: function(datas) {
     return new Promise(resolv => {
-      console.log("fdate : ", datas);
+      //console.log("fdate : ", datas);
       var result = [];
       if (datas && datas.titre) {
-        // var ddpe = moment.unix(datas.date_depart_proposer).format("DD/MM/YYYY HH:mm");
-        // var dfpe = moment.unix(datas.date_fin_proposer).format("DD/MM/YYYY HH:mm");
         var ddp = moment(
           datas.date_depart_proposer + " " + datas.heure_debut,
           "YYYY-MM-DD  HH:mm"
@@ -57,6 +55,12 @@ const Utilities = {
               }
             ]
           };
+          if (
+            parseInt(datas.status) === 1 &&
+            (!datas.date_fin_reel || datas.date_fin_reel === "")
+          ) {
+            table2.fields.date_fin_reel = moment().unix();
+          }
           result.push(table2);
         }
 
@@ -78,11 +82,6 @@ const Utilities = {
       console.log("fdate : ", nid);
       var result = [];
       if (datas && datas.titre) {
-        // var ddpe = moment.unix(datas.date_depart_proposer).format("DD/MM/YYYY HH:mm");
-        // var dfpe = moment.unix(datas.date_fin_proposer).format("DD/MM/YYYY HH:mm");
-
-        //edition de la table contents
-
         //Edition de la table times
 
         var table3 = {
@@ -132,7 +131,7 @@ const Utilities = {
    * @param idc Number, id du contenu encours.
    */
   formatAddData: function(datas, idc = 0, level = 0) {
-    console.log("formatAddData datas :", datas, "\n idc", idc);
+    //console.log("formatAddData datas :", datas, "\n idc", idc);
     return new Promise(resolv => {
       var childstable = [];
       var state = parseInt(datas.status, 10);
@@ -184,24 +183,28 @@ const Utilities = {
       resolv(result);
     });
   },
-  // Remplissage des champs pour l’édition d’un contenu
+  // Remplissage des champs pour l’édition d’un contenu du pop-up avec les contenus à éditer
   fomatVal: function(result, postData) {
     return new Promise(resolv => {
+      /*
       if (result.date_depart_proposer || result.date_fin_proposer) {
         console.log("val.date_depart_proposer ", result);
       }
+      /**/
       if (result.idcontents) {
-        postData["idcontents"] = result.idcontents;
+        postData.idcontents = result.idcontents;
       }
       for (const i in postData) {
         if (result[i]) {
           if (i === "date_depart_proposer") {
             postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
-            postData["heure_debut"] = moment.unix(result[i]).format("HH:mm");
+            postData.heure_debut = moment.unix(result[i]).format("HH:mm");
           } else if (i === "date_fin_proposer") {
             postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
-            postData["heure_fin"] = moment.unix(result[i]).format("HH:mm");
-          } else postData[i] = result[i];
+            postData.heure_fin = moment.unix(result[i]).format("HH:mm");
+          } else {
+            postData[i] = result[i];
+          }
         }
       }
 
@@ -277,7 +280,8 @@ const Utilities = {
             prenom: datas.prenom,
             phone: datas.phone,
             adresse: datas.adresse,
-            fonction: datas.fonction
+            fonction: datas.fonction,
+            idsociete: datas.idsociete
           },
           action: "update"
         };

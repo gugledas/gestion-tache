@@ -20,6 +20,7 @@ const ProjectList = () => import("@/views/App/ProjectList");
 const SingleProjectPage = () => import("@/views/App/project/SingleProjectPage");
 const Clients = () => import("@/views/App/Clients");
 const Factures = () => import("@/views/App/Factures");
+const NewFacture = () => import("@/views/App/facture/NewFacture");
 
 // const SimpleProjectPagetest = () =>
 //   import("../views/App/project/SimpleProjectPagetest.vue");
@@ -68,6 +69,11 @@ function configRoutes() {
           path: "/factures",
           name: "Factures",
           component: Factures
+        },
+        {
+          path: "/factures/new",
+          name: "New facture",
+          component: NewFacture
         },
         {
           path: "/docs",

@@ -69,7 +69,7 @@ export default {
         { key: "activity", _style: "width:600px;" }
       ],
       fieldsSte: [
-        { key: "name", _style: "min-width:200px;", filter: false },
+        { key: "nom", _style: "min-width:200px;", filter: false },
         { key: "siteweb", _style: "min-width:200px;" },
         { key: "email", _style: "width:600px;" },
         { key: "activity", _style: "width:600px;" }

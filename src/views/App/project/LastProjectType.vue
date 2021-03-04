@@ -19,6 +19,7 @@
           class="m-0  table-borderless "
           hover
           :responsive="false"
+          :loading="isLoading"
           :items="items"
           :fields="tableFields"
           :header="false"
@@ -107,6 +108,10 @@ export default {
       default: function() {
         return [];
       }
+    },
+    isLoading: {
+      type: Boolean,
+      default: true
     },
     title: {
       type: String,
