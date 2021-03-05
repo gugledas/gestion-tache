@@ -377,6 +377,37 @@ const Utilities = {
       }
       resolv(result);
     });
+  },
+
+  // format data for create new invoice
+
+  formatAddInvoice: function(datas) {
+    return new Promise(resolv => {
+      var result = [];
+      var cat = moment().unix();
+      var uat = moment().unix();
+      console.log("fadin :", datas);
+      if (datas && datas.numero) {
+        //edition de la table contents
+        var table1 = {
+          table: "gestion_project_invoice",
+          fields: {
+            numero: datas.numero,
+            idcontents: datas.idcontents,
+            idclients: datas.idclients,
+            objet: datas.objet,
+            creaated: cat,
+            proprietaire: datas.proprietaire,
+            updated: uat
+          }
+        };
+
+        //mise à jour de la table societe
+
+        result.push(table1);
+      }
+      resolv(result);
+    });
   }
 };
 export default Utilities;

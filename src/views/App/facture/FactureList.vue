@@ -29,7 +29,7 @@
           :items-per-page="5"
           pagination
         >
-          <td slot="titre" slot-scope="{ item }">
+          <td slot="objet" slot-scope="{ item }">
             <div>
               <CLink
                 :to="{
@@ -37,7 +37,7 @@
                 }"
                 class="text-decoration-none titre-fact"
               >
-                {{ item.titre }}
+                {{ item.objet }}
               </CLink>
             </div>
             <div class="small text-muted mt-1"></div>
@@ -46,7 +46,7 @@
             <CIcon :name="item.country.flag" height="25" />
           </td> -->
           <td slot="numero" slot-scope="{ item }">
-            <div class="numero-fact">{{ item.numero }}</div>
+            <div class="numero-fact">N°: {{ item.numero }}</div>
           </td>
           <td slot="cout" slot-scope="{ item }">
             <div class="text-info">{{ item.cout }} $</div>
@@ -63,16 +63,9 @@
             <CProgress class="progress-xs" :value="20" color="primary" /> -->
           </td>
 
-          <td slot="activity" slot-scope="">
+          <td slot="activity" slot-scope="{ item }">
             <CRow class="ml-4 d-flex justify-content-arround flex-nowrap">
-              <CButton
-                color="primary"
-                variant="ghost"
-                shape="pill"
-                size="sm"
-                class="mx-1"
-                ><CIcon name="cilPencil" class="mr-1 text-info "></CIcon
-              ></CButton>
+              <PopUpFacture :add="false" :initData="item"></PopUpFacture>
               <CButton
                 color="info"
                 variant="ghost"
@@ -102,9 +95,11 @@
 </template>
 
 <script>
+import SelectDb from "../config/SelectDb";
+import PopUpFacture from "./PopUpFacture";
 export default {
   name: "SHome",
-  components: {},
+  components: { PopUpFacture },
   data() {
     return {
       items: [
@@ -128,26 +123,28 @@ export default {
         }
       ],
       factureFields: [
-        { key: "numero", label: "N°", _style: "min-width:200px;" },
+        { key: "numero", label: "N°", _style: "max-width:50px;" },
         {
-          key: "titre",
+          key: "objet",
           _style: "min-width:200px; ",
           filter: false
         },
-        { key: "description", _style: "min-width:200px;" },
-        { key: "cout", _style: "min-width:200px;" },
+
         { key: "activity" }
       ],
       isLoading: false
     };
   },
+  mounted() {
+    this.LoadFacture();
+  },
   methods: {
     LoadFacture() {
       this.sisloading = true;
-      SelectDb.selectClient(this.ste).then(response => {
+      SelectDb.selectClient("gestion_project_invoice").then(response => {
         console.log("steList :", response);
 
-        this.itemsSte = response;
+        this.items = response;
         this.sisloading = false;
       });
     }

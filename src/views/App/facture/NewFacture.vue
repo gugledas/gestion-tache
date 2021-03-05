@@ -205,8 +205,15 @@
 </template>
 
 <script>
+import SelectDb from "../config/SelectDb";
 export default {
   name: "SHome",
+  props: {
+    id: {
+      type: String,
+      default: "2"
+    }
+  },
   components: {},
   data() {
     return {
@@ -254,10 +261,33 @@ export default {
         idcontents: "",
         idinvoice: "12012"
       },
+      invoiceData: {
+        numero: "",
+        idcontents: "",
+        idclients: "",
+        propriétaire: "",
+        created_at: "",
+        update_at: ""
+      },
+      clientInfo: {},
+      proprioInfo: {},
       hideFact: true
     };
   },
-  methods: { SaveFacture() {} }
+  methods: {
+    SaveFacture() {},
+    LoadClientData() {
+      this.LoadData();
+      this.LoadData();
+    },
+    LoadData(val) {
+      this.cisloading = true;
+      SelectDb.selectClient(val).then(response => {
+        this.itemsClient = response;
+        this.cisloading = false;
+      });
+    }
+  }
 };
 </script>
 

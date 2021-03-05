@@ -71,9 +71,10 @@ function configRoutes() {
           component: Factures
         },
         {
-          path: "/factures/new",
+          path: "/factures/:id",
           name: "New facture",
-          component: NewFacture
+          component: NewFacture,
+          props: true
         },
         {
           path: "/docs",

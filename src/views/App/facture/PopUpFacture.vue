@@ -1,27 +1,155 @@
 <template>
   <div>
-    <CRow class="mr-5 mt-n2 d-flex  mb-2" alignHorizontal="end">
-      <PopUpFacture></PopUpFacture>
-    </CRow>
+    <CLink to="#">
+      <CButton
+        size="sm"
+        v-c-tooltip="'Nouvelle Facture'"
+        color="info"
+        shape="pill"
+        @click="initNewFacture"
+        v-if="add"
+      >
+        <CIcon class="text-white" name="cilPlus" :height="35" size="xl" />
+      </CButton>
+      <CButton
+        v-if="!add"
+        color="primary"
+        variant="ghost"
+        shape="pill"
+        size="sm"
+        @click="initNewFacture"
+        class="mx-1"
+        ><CIcon name="cilPencil" class="mr-1 text-info "></CIcon
+      ></CButton>
+    </CLink>
+    <CModal
+      size="lg"
+      title="Initialisation de la facture"
+      color="info"
+      :show.sync="modalAdd.state"
+      :footer="false"
+    >
+      <!-- affichage de l’alert -->
+      <CRow alignHorizontal="center" v-if="alertOk">
+        <CCol sm="7">
+          <CAlert :color="AlertColor" :closeButton="true">
+            {{ alertText }}
+          </CAlert>
+        </CCol>
+      </CRow>
+      <div v-if="showInput">
+        <CRow tag="div">
+          <CCol sm="4">
+            <CInput
+              label="Numéro Facture:"
+              v-model="initData.numero"
+              placeholder="420012"
+            />
+          </CCol>
+        </CRow>
+        <CRow tag="div">
+          <CCol sm="6">
+            <CInput
+              label="Objet:"
+              placeholder="Renseigner l'objet de la facture"
+              v-model="initData.objet"
+            />
+          </CCol>
+        </CRow>
+        <CRow tag="div">
+          <CCol sm="5">
+            <CSelect
+              label="Nom du projet:"
+              placeholder="Choisir le projet lié"
+              v-model="initData.idcontents"
+              :value.sync="initData.idcontents"
+              :options="selectProjectFormat"
+            />
+          </CCol>
+        </CRow>
+        <CRow tag="div">
+          <CCol sm="5">
+            <CSelect
+              label="Nom Entreprise:"
+              placeholder="Choisir l'entreprise"
+              v-model="initData.proprietaire"
+              :value.sync="initData.proprietaire"
+              :options="selectOptionFormat"
+            />
+          </CCol>
+          <CCol sm="5">
+            <CSelect
+              label="Nom client"
+              v-model="initData.idclients"
+              :value.sync="initData.idclients"
+              placeholder="Choose Client"
+              :options="selectOptionFormat"
+            />
+          </CCol>
+        </CRow>
+      </div>
+      <CRow alignHorizontal="center" v-if="isLoading">
+        <CCol sm="3" class="p-3">
+          <CSpinner style="width:4rem;height:4rem;" color="info" grow
+        /></CCol>
+      </CRow>
 
-    <CRow>
-      <CCol><FactureList></FactureList></CCol>
-    </CRow>
+      <template slot="footer">
+        <div class="d-flex justify-content-end mr-3 ">
+          <CButton @click="modalAdd.state = false" class="mx-1" color="light">
+            Cancel
+          </CButton>
+          <CButton
+            @click="PostNewInitFacture"
+            class="mx-1"
+            color="info"
+            v-if="!buttonService"
+          >
+            Créer
+          </CButton>
+          <CLink :to="'/factures/' + initData.numero" v-if="buttonService">
+            <CButton class="mx-1" color="warning">
+              Ajouter services
+            </CButton>
+          </CLink>
+        </div>
+      </template>
+    </CModal>
   </div>
 </template>
 
 <script>
-import SelectDb from "./config/SelectDb";
-import Utilities from "./project/Utilities.js";
-import FactureList from "./facture/FactureList";
-import config from "./config/config";
-import PopUpFacture from "./facture/PopUpFacture";
+import SelectDb from "../config/SelectDb";
+import Utilities from "../project/Utilities.js";
+import config from "../config/config";
 export default {
   name: "SHome",
-  components: { FactureList, PopUpFacture },
+  props: {
+    initData: {
+      type: Object,
+      default: function() {
+        return {
+          numero: "",
+          objet: "",
+          idcontents: "",
+          idclients: "",
+          proprietaire: "",
+          creaated: "",
+          update_at: ""
+        };
+      }
+    },
+    add: { type: Boolean, default: true },
+    modalAdd: {
+      type: Object,
+      default: function() {
+        return { state: false };
+      }
+    }
+  },
+  components: {},
   data() {
     return {
-      modalAdd: false,
       active: false,
       isLoading: false,
       showInput: true,
@@ -32,15 +160,6 @@ export default {
       itemClient: [],
       itemProject: [],
       nbFacture: "",
-      initData: {
-        numero: "",
-        objet: "",
-        idcontents: "",
-        idclients: "",
-        proprietaire: "",
-        creaated: "",
-        update_at: ""
-      },
       timer: null
     };
   },
@@ -146,7 +265,7 @@ export default {
       });
     },
     initNewFacture() {
-      this.modalAdd = true;
+      this.modalAdd.state = true;
     },
     PostNewInitFacture() {
       this.isLoading = true;
@@ -195,4 +314,17 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.titre-fact {
+  font-size: 1rem;
+  font-weight: bold;
+  color: lightslategray;
+  &:hover {
+    color: #39f;
+  }
+}
+.numero-fact {
+  font-size: 0.9rem;
+  color: cadetblue;
+}
+</style>
