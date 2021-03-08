@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import SelectDb from "./config/SelectDb";
-import Utilities from "./project/Utilities.js";
+//import SelectDb from "./config/SelectDb";
+//import Utilities from "./project/Utilities.js";
 import FactureList from "./facture/FactureList";
-import config from "./config/config";
+//import config from "./config/config";
 import PopUpFacture from "./facture/PopUpFacture";
 export default {
   name: "SHome",
@@ -44,154 +44,10 @@ export default {
       timer: null
     };
   },
-  mounted() {
-    this.LoadClient();
-    this.LoadProject();
-    this.loadNbFacture();
-  },
-  watch: {
-    initData: {
-      deep: true,
-      handler() {
-        this.setNombre();
-      }
-    }
-  },
-  computed: {
-    selectProjectFormat() {
-      var result = [];
-      if (this.itemProject.length) {
-        for (const i in this.itemProject) {
-          result.push({
-            label: this.itemProject[i].titre,
-            value: this.itemProject[i].idcontents
-          });
-        }
-      }
-      console.log("sssss : ", result);
-      return result;
-    },
-    numeroFacture() {
-      //this.loadNbFacture();
-      var result = "";
-      var pro = "";
-      var cli = "";
-
-      if (this.initData.proprietaire.length) {
-        pro = this.initData.proprietaire;
-      }
-      if (this.initData.idclients.length) {
-        cli = this.initData.idclients;
-      }
-      result = this.nbFacture + "-" + pro + "-" + cli;
-      console.log("foramat", result);
-      this.setNombre(result);
-      return result;
-    },
-    selectOptionFormat() {
-      var result = [];
-      if (this.itemClient.length) {
-        for (const i in this.itemClient) {
-          result.push({
-            label: this.itemClient[i].nom,
-            value: this.itemClient[i].idclient
-          });
-        }
-      }
-      console.log("sssss : ", result);
-      return result;
-    }
-  },
-  methods: {
-    setNombre() {
-      var self = this;
-      clearTimeout(self.timer);
-      self.timer = setTimeout(function() {
-        self.loadNbFacture();
-      }, 2000);
-      var result = "";
-      var pro = "";
-      var cli = "";
-
-      if (this.initData.proprietaire.length) {
-        pro = this.initData.proprietaire;
-      }
-      if (this.initData.idclients.length) {
-        cli = this.initData.idclients;
-      }
-      result = this.nbFacture + "-" + pro + "-" + cli;
-      console.log("foramat", result);
-      // this.setNombre(result);
-      this.initData.numero = result;
-    },
-    loadNbFacture() {
-      SelectDb.selectClient("gestion_project_invoice").then(response => {
-        console.log("nb factures :", response);
-        if (response.length) {
-          this.nbFacture = response.length;
-        } else {
-          this.nbFacture = "0";
-        }
-      });
-    },
-    LoadClient() {
-      SelectDb.selectClient("gestion_project_client").then(response => {
-        console.log("steList :", response);
-        this.itemClient = response;
-      });
-    },
-    LoadProject() {
-      SelectDb.selectDatas().then(response => {
-        this.itemProject = response;
-      });
-    },
-    initNewFacture() {
-      this.modalAdd = true;
-    },
-    PostNewInitFacture() {
-      this.isLoading = true;
-      this.showInput = false;
-      Utilities.formatAddInvoice(this.initData).then(reponse => {
-        console.log("created", reponse);
-
-        config
-          .post("/gestion-project/save-update", reponse)
-          .then(reponse => {
-            console.log("reponse", reponse);
-            if (reponse.status) {
-              this.request = reponse.data[0];
-              this.$emit("addnew-ok");
-              this.alertOk = true;
-              this.isLoading = false;
-              this.alertText =
-                "sauvegarde de la facture" +
-                " " +
-                " n°:" +
-                this.initData.numero +
-                " " +
-                "réussi";
-              this.AlertColor = "success";
-              this.buttonService = true;
-            } else {
-              console.log("erroree", reponse.status);
-              this.isLoading = false;
-              this.alertOk = true;
-              this.alertText = "Erreur de sauvegarde";
-              this.AlertColor = "danger";
-              this.showInput = true;
-            }
-          })
-          .catch(function(error) {
-            console.log("error", error);
-            this.isLoading = false;
-            this.alertOk = true;
-            this.alertText = "Erreur de sauvegarde";
-            this.AlertColor = "danger";
-            this.showInput = true;
-          });
-      });
-    }
-  }
+  mounted() {},
+  watch: {},
+  computed: {},
+  methods: {}
 };
 </script>
 

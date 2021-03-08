@@ -21,6 +21,7 @@
         @load-list-client="loadListClient"
         @load-list-ste="loadListSte"
         :formValues="dataToEdit"
+        :selectOption="selectOption"
       ></PopUpClient>
       <template slot="footer">
         <div class="d-flex justify-content-end mr-3 ">
@@ -56,19 +57,23 @@ export default {
     modalType: {
       type: Boolean,
       default: true
+    },
+    selectOption: {
+      type: Array,
+      default: function() {
+        return {};
+      }
     }
-    // dataToEdit: {
-    //   type: Object,
-    //   default: function() {
-    //     return {};
-    //   }
-    // }
   },
   components: { PopUpClient },
   data() {
     return { modalAdd: false, btnStateAdd: { state: false }, dataToEdit: {} };
   },
   methods: {
+    loadStes() {
+      this.$refs.pop.LoadSte();
+      console.log("log");
+    },
     modalAddOn(datas) {
       this.modalAdd = true;
       this.dataToEdit = datas;

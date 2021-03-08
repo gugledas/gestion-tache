@@ -84,7 +84,7 @@
 
 <script>
 import Utilities from "../project/Utilities.js";
-import SelectDb from "../config/SelectDb";
+//import SelectDb from "../config/SelectDb";
 import config from "../config/config";
 //import moment from "moment";
 export default {
@@ -102,6 +102,12 @@ export default {
     modalType: {
       type: Boolean,
       default: true
+    },
+    selectOption: {
+      type: Array,
+      default: function() {
+        return [];
+      }
     }
   },
   components: {},
@@ -119,20 +125,19 @@ export default {
         uid: "0",
         idsociete: ""
       },
-      selectOption: [],
+
       wasValidated: null,
       showInputRaison: false,
       eValidated: null
     };
   },
   mounted() {
-    this.LoadSte();
+    //this.LoadSte();
   },
   watch: {
     formValues: {
       deep: true,
       handler: function(val) {
-        console.log("val : ", val);
         if (val.phone || val.nom || val.name) {
           this.postData = val;
         }
@@ -198,16 +203,7 @@ export default {
         return false;
       }
     },
-    // Request for Loading sociéte  data on DB
-    LoadSte() {
-      this.sisloading = true;
-      SelectDb.selectClient("gestion_project_societe").then(response => {
-        console.log("selectoption :", response);
 
-        this.selectOption = response;
-        this.sisloading = false;
-      });
-    },
     EditProject() {
       Utilities.formatClient(this.postData).then(reponse => {
         config
@@ -248,7 +244,7 @@ export default {
               };
             })
             .catch(function(error) {
-              console.log("error", error);
+              console.log("PostNewClient error", error);
             });
         });
       } else {
@@ -274,7 +270,7 @@ export default {
               };
             })
             .catch(function(error) {
-              console.log("error", error);
+              console.log("PostNew sté error", error);
             });
         });
       }

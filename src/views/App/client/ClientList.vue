@@ -104,6 +104,7 @@
       title="Confirmer la suppression"
       color="danger"
       :show.sync="deleteModal"
+      :closeOnBackdrop="false"
     >
       êtes vous sûre de vouloir supprimer ce contenu? <br />
       <small class="mt-2 text-center">Cette action est irréversible.</small>
@@ -164,7 +165,7 @@ export default {
         { key: "activity", _style: "width:600px;" }
       ],
       deleteModal: false,
-      loading: true,
+      loading: false,
       id: ""
     };
   },

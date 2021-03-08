@@ -28,6 +28,7 @@
       color="info"
       :show.sync="modalAdd.state"
       :footer="false"
+      :closeOnBackdrop="false"
     >
       <!-- affichage de l’alert -->
       <CRow alignHorizontal="center" v-if="alertOk">
@@ -145,6 +146,14 @@ export default {
       default: function() {
         return { state: false };
       }
+    },
+    edition: {
+      type: Boolean,
+      default: false
+    },
+    update: {
+      type: Boolean,
+      default: false
     }
   },
   components: {},
@@ -172,11 +181,14 @@ export default {
     initData: {
       deep: true,
       handler() {
-        this.setNombre();
+        if (!this.edition) {
+          this.setNombre();
+        }
       }
     }
   },
   computed: {
+    //formattage du champ select pour la sélection du projet liée à la facture
     selectProjectFormat() {
       var result = [];
       if (this.itemProject.length) {
@@ -187,26 +199,10 @@ export default {
           });
         }
       }
-      console.log("sssss : ", result);
       return result;
     },
-    numeroFacture() {
-      //this.loadNbFacture();
-      var result = "";
-      var pro = "";
-      var cli = "";
 
-      if (this.initData.proprietaire.length) {
-        pro = this.initData.proprietaire;
-      }
-      if (this.initData.idclients.length) {
-        cli = this.initData.idclients;
-      }
-      result = this.nbFacture + "-" + pro + "-" + cli;
-      console.log("foramat", result);
-      this.setNombre(result);
-      return result;
-    },
+    // formattage des données pour le champ select du client et de la société
     selectOptionFormat() {
       var result = [];
       if (this.itemClient.length) {
@@ -217,11 +213,11 @@ export default {
           });
         }
       }
-      console.log("sssss : ", result);
       return result;
     }
   },
   methods: {
+    // renvoi le numéro formatté de la facture
     setNombre() {
       var self = this;
       clearTimeout(self.timer);
@@ -244,8 +240,7 @@ export default {
       this.initData.numero = result;
     },
     loadNbFacture() {
-      SelectDb.selectClient("gestion_project_invoice").then(response => {
-        console.log("nb factures :", response);
+      SelectDb.selectInvoice([]).then(response => {
         if (response.length) {
           this.nbFacture = response.length;
         } else {
@@ -254,8 +249,7 @@ export default {
       });
     },
     LoadClient() {
-      SelectDb.selectClient("gestion_project_client").then(response => {
-        console.log("steList :", response);
+      SelectDb.selectClients([]).then(response => {
         this.itemClient = response;
       });
     },
@@ -267,10 +261,11 @@ export default {
     initNewFacture() {
       this.modalAdd.state = true;
     },
+
     PostNewInitFacture() {
       this.isLoading = true;
       this.showInput = false;
-      Utilities.formatAddInvoice(this.initData).then(reponse => {
+      Utilities.formatAddInvoice(this.initData, this.update).then(reponse => {
         console.log("created", reponse);
 
         config
@@ -282,13 +277,23 @@ export default {
               this.$emit("addnew-ok");
               this.alertOk = true;
               this.isLoading = false;
-              this.alertText =
-                "sauvegarde de la facture" +
-                " " +
-                " n°:" +
-                this.initData.numero +
-                " " +
-                "réussi";
+              if (this.edition) {
+                this.alertText =
+                  "Mise à jour  de la facture" +
+                  " " +
+                  " n°:" +
+                  this.initData.numero +
+                  " " +
+                  "réussi";
+              } else {
+                this.alertText =
+                  "sauvegarde de la facture" +
+                  " " +
+                  " n°:" +
+                  this.initData.numero +
+                  " " +
+                  "réussi";
+              }
               this.AlertColor = "success";
               this.buttonService = true;
             } else {

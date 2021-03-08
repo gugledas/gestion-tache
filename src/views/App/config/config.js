@@ -10,7 +10,7 @@ export default {
       axios
         .post(this.baseUrl + request, datas, configs)
         .then(reponse => {
-          console.log("Config success : ", reponse);
+          //console.log("Config success : ", reponse);
           resolv({ status: true, data: reponse.data, reponse: reponse });
         })
         .catch(error => {
@@ -19,7 +19,7 @@ export default {
     });
   },
   get: function(request, datas = {}) {
-    console.log("ssss");
+    // console.log("ssss");
     return new Promise(resolv => {
       var configs = {
         headers: {}

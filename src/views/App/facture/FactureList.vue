@@ -32,9 +32,7 @@
           <td slot="objet" slot-scope="{ item }">
             <div>
               <CLink
-                :to="{
-                  path: '#'
-                }"
+                :to="'/factures/' + item.numero"
                 class="text-decoration-none titre-fact"
               >
                 {{ item.objet }}
@@ -65,7 +63,13 @@
 
           <td slot="activity" slot-scope="{ item }">
             <CRow class="ml-4 d-flex justify-content-arround flex-nowrap">
-              <PopUpFacture :add="false" :initData="item"></PopUpFacture>
+              <PopUpFacture
+                :add="false"
+                :initData="item"
+                :edition="edition"
+                :update="true"
+                @addnew-ok="LoadFacture"
+              ></PopUpFacture>
               <CButton
                 color="info"
                 variant="ghost"
@@ -84,6 +88,7 @@
                 shape="pill"
                 size="sm"
                 class="mx-1 text-danger"
+                @click="DeleteModalOn(item)"
                 ><CIcon name="cil-x-circle" class="mr-1 text-danger "></CIcon
               ></CButton>
             </CRow>
@@ -91,37 +96,48 @@
         </CDataTable>
       </CCardBody>
     </CCard>
+
+    <!-- modal for confirmation of delete -->
+    <CModal
+      :title="'Confirmer la suppression de la facture N°: ' + dataDelete.numero"
+      color="danger"
+      :show.sync="deleteModal"
+    >
+      êtes vous sûre de vouloir supprimer ce contenu? <br />
+      <small class="mt-2 text-center">Cette action est irréversible.</small>
+
+      <template slot="footer">
+        <div class="d-flex justify-content-end mr-3">
+          <CButton @click="deleteModal = false" class="mx-1" color="light"
+            >Cancel</CButton
+          >
+          <CButton @click="DeleteFacture" class="mx-1" color="danger" desabled
+            >Supprimer
+            <CSpinner
+              v-if="spinner"
+              size="sm"
+              class=""
+              tag="small"
+              color="primary"
+              style="width:1rem;height:1rem;"
+          /></CButton>
+        </div>
+      </template>
+    </CModal>
   </div>
 </template>
 
 <script>
 import SelectDb from "../config/SelectDb";
+import Utilities from "../project/Utilities.js";
+import config from "../config/config";
 import PopUpFacture from "./PopUpFacture";
 export default {
   name: "SHome",
   components: { PopUpFacture },
   data() {
     return {
-      items: [
-        {
-          numero: "244450",
-          titre: "Factuer pour la tâche ceruz",
-          description: "Lorem ipsum set dolor arim the bostimum",
-          cout: "35000.00"
-        },
-        {
-          numero: "244450",
-          titre: "Factuer pour la tâche ceruz",
-          description: "Lorem ipsum set dolor arim the bostimum",
-          cout: "35000.00"
-        },
-        {
-          numero: "244450",
-          titre: "Factuer pour la tâche ceruz",
-          description: "Lorem ipsum set dolor arim the bostimum",
-          cout: "35000.00"
-        }
-      ],
+      items: [],
       factureFields: [
         { key: "numero", label: "N°", _style: "max-width:50px;" },
         {
@@ -132,20 +148,53 @@ export default {
 
         { key: "activity" }
       ],
-      isLoading: false
+      isLoading: true,
+      deleteModal: false,
+      edition: true,
+      dataDelete: {},
+      spinner: false
     };
   },
+
   mounted() {
     this.LoadFacture();
   },
   methods: {
-    LoadFacture() {
-      this.sisloading = true;
-      SelectDb.selectClient("gestion_project_invoice").then(response => {
-        console.log("steList :", response);
+    DeleteModalOn(val) {
+      this.dataDelete = val;
+      this.deleteModal = true;
+    },
+    DeleteFacture() {
+      this.spinner = true;
+      this.isloading = true;
+      Utilities.formatDeleteInvoice(this.dataDelete).then(reponse => {
+        console.log("delete facture", reponse);
 
+        config
+          .post("/gestion-project/save-update", reponse)
+          .then(reponse => {
+            console.log("reponse delete", reponse);
+            if (reponse.status) {
+              this.request = reponse.data[0];
+              this.$emit("addnew-ok");
+              this.LoadFacture();
+            } else {
+              console.log("erroree", reponse.status);
+            }
+            this.isloading = true;
+            this.deleteModal = false;
+            this.spinner = false;
+          })
+          .catch(function(error) {
+            console.log("error", error);
+          });
+      });
+    },
+    LoadFacture() {
+      this.isLoading = true;
+      SelectDb.selectInvoice([]).then(response => {
         this.items = response;
-        this.sisloading = false;
+        this.isLoading = false;
       });
     }
   }
