@@ -3,7 +3,8 @@
     <AddNew
       plusColor="info"
       ref="addClient"
-      @load-list-client="loadListClient"
+      :selectOption="selectOption"
+      @load-list-client="LoadClient"
     ></AddNew>
     <CRow>
       <CCol class="mt-3 mb-2">
@@ -23,7 +24,8 @@
       ref="addSte"
       :modalType="false"
       modalTitle="Nouvelle Société"
-      @load-list-ste="loadListSte"
+      @load-list-ste="LoadSte"
+      :selectOption="selectOption"
     ></AddNew>
 
     <CRow>
@@ -57,6 +59,7 @@ export default {
       cisloading: false,
       sisloading: false,
       dataToEdit: {},
+      selectOption: [],
       fieldsClient: [
         {
           key: "nom",
@@ -69,7 +72,7 @@ export default {
         { key: "activity", _style: "width:600px;" }
       ],
       fieldsSte: [
-        { key: "name", _style: "min-width:200px;", filter: false },
+        { key: "nom", _style: "min-width:200px;", filter: false },
         { key: "siteweb", _style: "min-width:200px;" },
         { key: "email", _style: "width:600px;" },
         { key: "activity", _style: "width:600px;" }
@@ -79,18 +82,25 @@ export default {
   mounted() {
     this.LoadClient();
     this.LoadSte();
+    this.LoadStePopUp();
   },
   methods: {
+    // Request for Loading sociéte  data on DB
+    LoadStePopUp() {
+      this.sisloading = true;
+      SelectDb.selectClient("gestion_project_societe").then(response => {
+        this.selectOption = response;
+        this.sisloading = false;
+      });
+    },
     //données pour l'édition d'une société
     DataToEditSte(datas) {
-      console.log("object Sté :", datas);
       this.dataToEdit = datas;
       this.$refs.addSte.modalAddOn(datas);
     },
 
     //données pour l'édition d'une société
     DataToEdit(datas) {
-      console.log("object :", datas);
       this.dataToEdit = datas;
       this.$refs.addClient.modalAddOn(datas);
     },
@@ -98,7 +108,7 @@ export default {
     //chargement des clients en BD
     LoadClient() {
       this.cisloading = true;
-      SelectDb.selectClient(this.client).then(response => {
+      SelectDb.selectClients([]).then(response => {
         this.itemsClient = response;
         this.cisloading = false;
       });
@@ -106,18 +116,12 @@ export default {
     // Request for Loading sociéte  data on DB
     LoadSte() {
       this.sisloading = true;
-      SelectDb.selectClient(this.ste).then(response => {
-        console.log("steList :", response);
-
+      SelectDb.selectSte([]).then(response => {
         this.itemsSte = response;
         this.sisloading = false;
+        this.LoadStePopUp();
+        this.LoadClient();
       });
-    },
-    loadListClient() {
-      this.LoadClient();
-    },
-    loadListSte() {
-      this.LoadSte();
     }
   }
 };

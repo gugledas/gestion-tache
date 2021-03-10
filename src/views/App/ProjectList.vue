@@ -1,19 +1,25 @@
 <template>
   <div>
     <!-- Tableau de projet -->
-    <LastProjectType :title="'Project'" :items="itemsProject"></LastProjectType>
+    <LastProjectType
+      :title="'Project'"
+      :isLoading="isLoading"
+      :items="itemsProject"
+    ></LastProjectType>
 
     <CRow>
       <CCol md="7">
         <LastProjectType
           :title="'Dernières Tâches'"
           :items="itemsTache"
+          :isLoading="isLoading1"
         ></LastProjectType>
       </CCol>
       <CCol>
         <LastProjectType
           :title="'Last Memos'"
           :items="itemsMemos"
+          :isLoading="isLoading2"
         ></LastProjectType>
       </CCol>
     </CRow>
@@ -34,6 +40,9 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
+      isLoading1: false,
+      isLoading2: false,
       selected: "Month",
       tableItems: [],
       itemsProject: [],
@@ -52,18 +61,18 @@ export default {
     },
     LoadMemosData() {
       var opt = [{ column: "c.type", operator: "=", value: "memos" }];
-      this.isLoading = true;
+      this.isLoading2 = true;
       SelectDb.selectDatas(opt).then(response => {
         this.itemsMemos = response;
-        this.isLoading = false;
+        this.isLoading2 = false;
       });
     },
     LoadTacheData() {
       var opt = [{ column: "c.type", operator: "=", value: "tache" }];
-      this.isLoading = true;
+      this.isLoading1 = true;
       SelectDb.selectDatas(opt).then(response => {
         this.itemsTache = response;
-        this.isLoading = false;
+        this.isLoading1 = false;
       });
     },
     // Request for Loading project data on DB

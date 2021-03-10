@@ -183,7 +183,7 @@ const Utilities = {
       resolv(result);
     });
   },
-  // Remplissage des champs pour l’édition d’un contenu
+  // Remplissage des champs pour l’édition d’un contenu du pop-up avec les contenus à éditer
   fomatVal: function(result, postData) {
     return new Promise(resolv => {
       /*
@@ -280,7 +280,8 @@ const Utilities = {
             prenom: datas.prenom,
             phone: datas.phone,
             adresse: datas.adresse,
-            fonction: datas.fonction
+            fonction: datas.fonction,
+            idsociete: datas.idsociete
           },
           action: "update"
         };
@@ -360,6 +361,17 @@ const Utilities = {
         console.log("ligne 1", result);
       } else if (datas.idsociete) {
         ligne = {
+          table: "gestion_project_client",
+          fields: {},
+          action: "delete",
+          where: [
+            {
+              column: "idsociete",
+              value: datas.idsociete
+            }
+          ]
+        };
+        var ligne1 = {
           table: "gestion_project_societe",
           fields: {},
           action: "delete",
@@ -370,9 +382,145 @@ const Utilities = {
             }
           ]
         };
-
         result.push(ligne);
+        result.push(ligne1);
         console.log("ligne2", result);
+      }
+      resolv(result);
+    });
+  },
+
+  // format data for create new invoice
+
+  formatAddInvoice: function(datas, update) {
+    return new Promise(resolv => {
+      var result = [];
+      var cat = moment().unix();
+      var uat = moment().unix();
+      console.log("fadin :", datas);
+      if (datas && datas.numero) {
+        //edition de la table contents
+        var table1 = {
+          table: "gestion_project_invoice",
+          fields: {
+            numero: datas.numero,
+            idcontents: datas.idcontents,
+            idclients: datas.idclients,
+            objet: datas.objet,
+            creaated: cat,
+            proprietaire: datas.proprietaire,
+            updated: uat
+          }
+        };
+        if (update == true) {
+          table1.where = [
+            {
+              column: "numero",
+              value: datas.numero
+            }
+          ];
+          table1.action = "update";
+        }
+
+        //mise à jour de la table societe
+
+        result.push(table1);
+      }
+      resolv(result);
+    });
+  },
+
+  // suppression d’une facture
+
+  formatDeleteInvoice(datas) {
+    return new Promise(resolv => {
+      var result = [];
+      if (datas && datas.numero) {
+        //edition de la table contents
+        var table1 = {
+          table: "gestion_project_invoice",
+          fields: {},
+          action: "delete",
+          where: [
+            {
+              column: "numero",
+              value: datas.numero
+            }
+          ]
+        };
+        var table2 = {
+          table: "gestion_project_invoice_list",
+          fields: {},
+          action: "delete",
+          where: [
+            {
+              column: "idinvoice",
+              value: datas.numero
+            }
+          ]
+        };
+        //mise à jour de la table societe
+        result.push(table2);
+        result.push(table1);
+      }
+      resolv(result);
+    });
+  },
+
+  formatAddInvoiceList: function(datas, update) {
+    return new Promise(resolv => {
+      var result = [];
+      console.log("restore", update);
+      if (datas && datas.idinvoicelist) {
+        //edition de la table contents
+        var table1 = {
+          table: "gestion_project_invoice_list",
+          fields: {
+            titre: datas.titre,
+            idcontents: datas.idcontents,
+            description: datas.description,
+            cout: datas.cout,
+            idinvoice: datas.idinvoice,
+            idinvoicelist: datas.idinvoicelist
+          }
+        };
+        if (update == true) {
+          table1.where = [
+            {
+              column: "idinvoicelist",
+              value: datas.idinvoicelist
+            }
+          ];
+          table1.action = "update";
+        }
+        //mise à jour de la table societe
+
+        result.push(table1);
+      }
+      resolv(result);
+    });
+  },
+  formatDeleteInvoiceList(datas) {
+    return new Promise(resolv => {
+      var result = [];
+      console.log("fadin :", datas);
+      if (datas && datas.idinvoicelist) {
+        //edition de la table contents
+        var table1 = {
+          table: "gestion_project_invoice_list",
+          fields: {},
+          action: "delete",
+          where: [
+            {
+              column: "idinvoicelist",
+              value: datas.idinvoicelist
+            }
+          ]
+        };
+
+        //mise à jour de la table societe
+
+        result.push(table1);
       }
       resolv(result);
     });

@@ -34,7 +34,7 @@ export default {
       }
       query += " ORDER BY  c.`idcontents` DESC";
       query += " limit 0,50 ";
-      console.log("query :: ", query);
+      //console.log("query :: ", query);
       config.post("/gestion-project/select", query).then(reponse => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
@@ -62,12 +62,120 @@ export default {
       });
     });
   },
-  selectClient: function(type) {
+
+  selectProject: function(where) {
     return new Promise(resolv => {
       var query = "";
       query += " select * ";
       query += " from ";
-      query += this.formatStringTable(type);
+      query += this.formatStringTable("gestion_project_contents");
+      if (where.length) {
+        query += " WHERE ";
+        for (const i in where) {
+          query +=
+            where[i].column +
+            " " +
+            where[i].operator +
+            " " +
+            "'" +
+            where[i].value +
+            "'" +
+            " ";
+        }
+      }
+      config.post("/gestion-project/select", query).then(reponse => {
+        // console.log("selectDatas : ", reponse);
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      });
+    });
+  },
+
+  selectFatureList: function(where) {
+    return new Promise(resolv => {
+      var query = "";
+      query += " select * ";
+      query += " from ";
+      query += this.formatStringTable("gestion_project_invoice_list");
+      if (where.length) {
+        query += " WHERE ";
+        for (const i in where) {
+          query +=
+            where[i].column +
+            " " +
+            where[i].operator +
+            " " +
+            "'" +
+            where[i].value +
+            "'" +
+            " ";
+        }
+      }
+      config.post("/gestion-project/select", query).then(reponse => {
+        // console.log("selectDatas : ", reponse);
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      });
+    });
+  },
+
+  selectInvoice: function(where) {
+    return new Promise(resolv => {
+      var query = "";
+      query += " select * ";
+      query += " from ";
+      query += this.formatStringTable("gestion_project_invoice");
+      if (where.length) {
+        query += " WHERE ";
+        for (const i in where) {
+          query +=
+            where[i].column +
+            " " +
+            where[i].operator +
+            " " +
+            "'" +
+            where[i].value +
+            "'" +
+            " ";
+        }
+      }
+      config.post("/gestion-project/select", query).then(reponse => {
+        // console.log("selectDatas : ", reponse);
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      });
+    });
+  },
+
+  selectClients: function(where) {
+    return new Promise(resolv => {
+      var query = "";
+      query += " select * ";
+      query += " from ";
+      query += this.formatStringTable("gestion_project_client");
+      if (where.length) {
+        query += " WHERE ";
+        for (const i in where) {
+          query +=
+            where[i].column +
+            " " +
+            where[i].operator +
+            " " +
+            "'" +
+            where[i].value +
+            "'" +
+            " ";
+        }
+      }
       query += " limit 0,50 ";
       config.post("/gestion-project/select", query).then(reponse => {
         // console.log("selectDatas : ", reponse);
@@ -80,6 +188,55 @@ export default {
     });
   },
 
+  selectSte: function(where) {
+    return new Promise(resolv => {
+      var query = "";
+      query += " select * ";
+      query += " from ";
+      query += this.formatStringTable("gestion_project_societe");
+      if (where.length) {
+        query += " WHERE ";
+        for (const i in where) {
+          query +=
+            where[i].column +
+            " " +
+            where[i].operator +
+            " " +
+            "'" +
+            where[i].value +
+            "'" +
+            " ";
+        }
+      }
+      query += " limit 0,50 ";
+      config.post("/gestion-project/select", query).then(reponse => {
+        // console.log("selectDatas : ", reponse);
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      });
+    });
+  },
+
+  selectClient: function(table) {
+    return new Promise(resolv => {
+      var query = "";
+      query += " select * ";
+      query += " from ";
+      query += this.formatStringTable(table);
+      query += " limit 0,50 ";
+      config.post("/gestion-project/select", query).then(reponse => {
+        // console.log("selectDatas : ", reponse);
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      });
+    });
+  },
   //selectionne et affiche les derniers données modifié
   selectAll: function() {
     return new Promise(resolv => {

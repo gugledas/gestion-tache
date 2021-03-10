@@ -11,6 +11,7 @@
             validFeedback="ok"
             invalidFeedback="requis"
             :isValid="inputValidation"
+            autocomplete="name"
           />
         </CCol>
         <CCol sm="5" v-if="modalType">
@@ -59,11 +60,21 @@
             v-model="postData.siteweb"
           />
         </CCol>
+
         <CCol sm="7" v-if="modalType">
           <CInput
             label="Fonction:"
             placeholder="fonction"
             v-model="postData.fonction"
+          />
+        </CCol>
+        <CCol sm="6" v-if="modalType">
+          <CSelect
+            label="Société:"
+            :options="selectOptionFormat"
+            placeholder="Sélectionner la société du client"
+            :value.sync="postData.idsociete"
+            v-model="postData.idsociete"
           />
         </CCol>
       </CRow>
@@ -73,7 +84,7 @@
 
 <script>
 import Utilities from "../project/Utilities.js";
-
+//import SelectDb from "../config/SelectDb";
 import config from "../config/config";
 //import moment from "moment";
 export default {
@@ -91,6 +102,12 @@ export default {
     modalType: {
       type: Boolean,
       default: true
+    },
+    selectOption: {
+      type: Array,
+      default: function() {
+        return [];
+      }
     }
   },
   components: {},
@@ -105,19 +122,22 @@ export default {
         email: "",
         adresse: "",
         phone: "",
-        uid: "0"
+        uid: "0",
+        idsociete: ""
       },
+
       wasValidated: null,
       showInputRaison: false,
       eValidated: null
     };
   },
-  mounted() {},
+  mounted() {
+    //this.LoadSte();
+  },
   watch: {
     formValues: {
       deep: true,
       handler: function(val) {
-        console.log("val : ", val);
         if (val.phone || val.nom || val.name) {
           this.postData = val;
         }
@@ -125,6 +145,18 @@ export default {
     }
   },
   computed: {
+    selectOptionFormat() {
+      var result = [];
+      if (this.selectOption.length) {
+        for (const i in this.selectOption) {
+          result.push({
+            label: this.selectOption[i].nom,
+            value: this.selectOption[i].idsociete
+          });
+        }
+      }
+      return result;
+    },
     checkForSave() {
       if (this.modalType) {
         if (this.wasValidated == true) {
@@ -171,6 +203,7 @@ export default {
         return false;
       }
     },
+
     EditProject() {
       Utilities.formatClient(this.postData).then(reponse => {
         config
@@ -211,7 +244,7 @@ export default {
               };
             })
             .catch(function(error) {
-              console.log("error", error);
+              console.log("PostNewClient error", error);
             });
         });
       } else {
@@ -237,7 +270,7 @@ export default {
               };
             })
             .catch(function(error) {
-              console.log("error", error);
+              console.log("PostNew sté error", error);
             });
         });
       }

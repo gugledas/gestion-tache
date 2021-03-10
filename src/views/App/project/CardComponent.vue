@@ -29,29 +29,50 @@
             href="#"
             class=" btn-close m-2"
             @click="descToggle = !descToggle"
+            v-c-tooltip="'Afficher/Cacher la description'"
           >
             <CIcon
               :name="`cil-chevron-circle-${descToggle ? 'down' : 'up'}-alt`"
             />
           </CLink>
-          <CLink href="#" class=" btn-close m-2" @click="modalEditOn">
+          <CLink
+            href="#"
+            class=" btn-close m-2"
+            v-c-tooltip="'Edité le contenu'"
+            @click="modalEditOn"
+          >
             <CIcon name="cil-pencil" />
           </CLink>
-          <CLink href="#" class=" btn-close m-2" @click="changeParent">
+          <CLink
+            href="#"
+            class=" btn-close m-2"
+            v-c-tooltip="'Modifier le parent'"
+            @click="changeParent"
+          >
             <CIcon name="cil-cursor-move" />
           </CLink>
-          <CLink href="#" class=" btn-close m-1" @click="HideTypeProject">
+          <CLink
+            href="#"
+            class=" btn-close m-1"
+            v-c-tooltip="'Créer un sous contenu'"
+            @click="HideTypeProject"
+          >
             <CIcon name="cil-plus" />
           </CLink>
           <CLink href="#" class="m-2 btn-setting" @click="modalRessourceOn">
             <CIcon name="cil-settings" />
           </CLink>
-          <CLink class="m-1 btn-minimize" @click="Collapsed">
+          <CLink
+            class="m-1 btn-minimize"
+            @click="Collapsed"
+            v-c-tooltip="'Afficher/Cacher les sous projects'"
+          >
             <CIcon :name="`cil-chevron-${dataLoad.open ? 'bottom' : 'top'}`" />
           </CLink>
           <CLink
             href="#"
             class="m-2 btn-close text-danger"
+            v-c-tooltip="'Supprimer ce contenu'"
             @click="DeleteModalOn"
           >
             <CIcon color="danger" name="cil-x-circle" />
@@ -105,9 +126,9 @@
         ></CCol>
         <CCol md="10">
           <SSearch @parent-selected="parentSelected"></SSearch>
-          <small> Choisir le nouveau parent </small> <br />
-          <small>
-            Parent Actuel: <strong> {{ dataLoad.idcontentsparent }} </strong>
+          <small>Choisir le nouveau parent</small> <br />
+          <small
+            >Parent Actuel: <strong>{{ dataLoad.idcontentsparent }}</strong>
           </small>
         </CCol>
       </CRow>

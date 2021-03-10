@@ -2,7 +2,7 @@
   <div>
     <CCard>
       <CCardHeader>
-        {{ title }}
+        List des factures
         <div class="card-header-actions">
           <a
             href="#"
@@ -21,7 +21,7 @@
           :responsive="false"
           :loading="isLoading"
           :items="items"
-          :fields="tableFields"
+          :fields="factureFields"
           :header="false"
           cleaner
           table-filter
@@ -29,32 +29,28 @@
           :items-per-page="5"
           pagination
         >
-          <td slot="user" slot-scope="{ item }">
+          <td slot="objet" slot-scope="{ item }">
             <div>
               <CLink
-                :to="{
-                  path: '#'
-                }"
-                class="text-decoration-none"
+                :to="'/factures/' + item.numero"
+                class="text-decoration-none titre-fact"
               >
-                {{ item.titre }}
+                {{ item.objet }}
               </CLink>
             </div>
-            <div class="small text-muted mt-1">
-              <span>
-                <template>New</template>
-                <template v-if="false">Recurring</template>
-              </span>
-              | Crée le: {{ item.created_at }}
-            </div>
+            <div class="small text-muted mt-1"></div>
           </td>
           <!-- <td slot="country" slot-scope="{ item }" class="text-center">
             <CIcon :name="item.country.flag" height="25" />
           </td> -->
-          <td slot="usage" slot-scope="{ item }">
-            <div class="clearfix">
+          <td slot="numero" slot-scope="{ item }">
+            <div class="numero-fact">N°: {{ item.numero }}</div>
+          </td>
+          <td slot="cout" slot-scope="{ item }">
+            <div class="text-info">{{ item.cout }} $</div>
+            <!-- <div class="clearfix">
               <div class="float-left">
-                <!-- <strong>{{ 20 }}%</strong> -->
+                <strong>{{ 20 }}%</strong>
               </div>
               <div class="float-right">
                 <small class="text-bold"
@@ -62,35 +58,37 @@
                 >
               </div>
             </div>
-            <!-- <CProgress class="progress-xs" :value="20" color="primary" /> -->
+            <CProgress class="progress-xs" :value="20" color="primary" /> -->
           </td>
 
           <td slot="activity" slot-scope="{ item }">
             <CRow class="ml-4 d-flex justify-content-arround flex-nowrap">
+              <PopUpFacture
+                :add="false"
+                :initData="item"
+                :edition="edition"
+                :update="true"
+                @addnew-ok="LoadFacture"
+              ></PopUpFacture>
               <CButton
-                color="primary"
+                color="info"
                 variant="ghost"
                 shape="pill"
                 size="sm"
-                @click="EditEntity(item)"
                 class="mx-1"
-                ><CIcon name="cilPencil" class="mr-1 text-info "></CIcon
+                v-c-tooltip="'Export to PDF'"
+                ><CIcon
+                  name="cilCloudDownload"
+                  class="mr-1 text-primary "
+                ></CIcon
               ></CButton>
-              <!-- <CButton
-                color="primary"
-                variant="ghost"
-                shape="pill"
-                size="sm"
-                class="mx-1"
-                ><CIcon name="cilFolder" class="mr-1 text-info "></CIcon
-              ></CButton> -->
               <CButton
                 color="dark"
                 variant="ghost"
                 shape="pill"
                 size="sm"
-                @click="DeleteModalOn(item)"
                 class="mx-1 text-danger"
+                @click="DeleteModalOn(item)"
                 ><CIcon name="cil-x-circle" class="mr-1 text-danger "></CIcon
               ></CButton>
             </CRow>
@@ -101,23 +99,24 @@
 
     <!-- modal for confirmation of delete -->
     <CModal
-      title="Confirmer la suppression"
+      :title="'Confirmer la suppression de la facture N°: ' + dataDelete.numero"
       color="danger"
       :show.sync="deleteModal"
-      :closeOnBackdrop="false"
     >
       êtes vous sûre de vouloir supprimer ce contenu? <br />
       <small class="mt-2 text-center">Cette action est irréversible.</small>
+
       <template slot="footer">
         <div class="d-flex justify-content-end mr-3">
           <CButton @click="deleteModal = false" class="mx-1" color="light"
             >Cancel</CButton
           >
-          <CButton @click="deleteEntity" class="mx-1" color="danger" desabled
-            >Supprimer<CSpinner
-              v-if="loading"
+          <CButton @click="DeleteFacture" class="mx-1" color="danger" desabled
+            >Supprimer
+            <CSpinner
+              v-if="spinner"
               size="sm"
-              class=" ml-1"
+              class=""
               tag="small"
               color="primary"
               style="width:1rem;height:1rem;"
@@ -129,81 +128,90 @@
 </template>
 
 <script>
-import Utilities from "../project/Utilities";
+import SelectDb from "../config/SelectDb";
+import Utilities from "../project/Utilities.js";
 import config from "../config/config";
+import PopUpFacture from "./PopUpFacture";
 export default {
-  props: {
-    items: {
-      type: Array,
-      required: true,
-      default: function() {
-        return [];
-      }
-    },
-    title: {
-      type: String,
-      required: true,
-      default: "title"
-    },
-    isLoading: {
-      type: Boolean,
-      default: true
-    },
-    tableFields: {
-      type: Array,
-      required: true,
-      default: function() {
-        return [];
-      }
-    }
-  },
+  name: "SHome",
+  components: { PopUpFacture },
   data() {
     return {
-      tableFieldse: [
-        { key: "nom", _style: "min-width:550px;", filter: false },
-        { key: "siteweb", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" }
+      items: [],
+      factureFields: [
+        { key: "numero", label: "N°", _style: "max-width:50px;" },
+        {
+          key: "objet",
+          _style: "min-width:200px; ",
+          filter: false
+        },
+
+        { key: "activity" }
       ],
+      isLoading: true,
       deleteModal: false,
-      loading: false,
-      id: ""
+      edition: true,
+      dataDelete: {},
+      spinner: false
     };
   },
+
+  mounted() {
+    this.LoadFacture();
+  },
   methods: {
-    //passage des données à la variables id pour le formatage avant suppresion
-    DeleteModalOn(datas) {
+    DeleteModalOn(val) {
+      this.dataDelete = val;
       this.deleteModal = true;
-      if (datas.idclient) {
-        this.id = datas;
-      } else {
-        this.id = datas;
-      }
     },
-    //Supression d’un contenu
-    deleteEntity() {
-      this.loading = true;
-      Utilities.formatDeleteClient(this.id).then(reponse => {
-        console.log(" deleteProject : ", reponse);
+    DeleteFacture() {
+      this.spinner = true;
+      this.isloading = true;
+      Utilities.formatDeleteInvoice(this.dataDelete).then(reponse => {
+        console.log("delete facture", reponse);
+
         config
           .post("/gestion-project/save-update", reponse)
           .then(reponse => {
+            console.log("reponse delete", reponse);
             if (reponse.status) {
-              this.$emit("suppression-ok");
+              this.request = reponse.data[0];
+              this.$emit("addnew-ok");
+              this.LoadFacture();
+            } else {
+              console.log("erroree", reponse.status);
             }
-            this.loading = false;
-            if (this.loading == false) this.deleteModal = false;
+            this.isloading = true;
+            this.deleteModal = false;
+            this.spinner = false;
           })
           .catch(function(error) {
             console.log("error", error);
           });
       });
     },
-    //Envoie des données au parent clients.vue pour l'édition
-    EditEntity(datas) {
-      this.$emit("data-to-edite", datas);
+    LoadFacture() {
+      this.isLoading = true;
+      SelectDb.selectInvoice([]).then(response => {
+        this.items = response;
+        this.isLoading = false;
+      });
     }
   }
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.titre-fact {
+  font-size: 1rem;
+  font-weight: bold;
+  color: lightslategray;
+  &:hover {
+    color: #39f;
+  }
+}
+.numero-fact {
+  font-size: 0.9rem;
+  color: cadetblue;
+}
+</style>
