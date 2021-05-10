@@ -56,7 +56,7 @@ function configRoutes() {
         },
         {
           path: "/projets/:idcontents",
-          name: "Projets",
+          name: "Projet",
           component: SingleProjectPage,
           props: true
         },

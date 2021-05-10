@@ -89,21 +89,18 @@ export default {
     LoadStePopUp() {
       this.sisloading = true;
       SelectDb.selectClient("gestion_project_societe").then(response => {
-        console.log("selectoption :", response);
         this.selectOption = response;
         this.sisloading = false;
       });
     },
     //données pour l'édition d'une société
     DataToEditSte(datas) {
-      console.log("object Sté :", datas);
       this.dataToEdit = datas;
       this.$refs.addSte.modalAddOn(datas);
     },
 
     //données pour l'édition d'une société
     DataToEdit(datas) {
-      console.log("object :", datas);
       this.dataToEdit = datas;
       this.$refs.addClient.modalAddOn(datas);
     },
@@ -120,7 +117,6 @@ export default {
     LoadSte() {
       this.sisloading = true;
       SelectDb.selectSte([]).then(response => {
-        console.log("steList :", response);
         this.itemsSte = response;
         this.sisloading = false;
         this.LoadStePopUp();
