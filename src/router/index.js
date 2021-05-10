@@ -18,6 +18,10 @@ const Document = () => import("@/Steph/Docs/Document.vue");
 const Home = () => import("@/views/App/Home");
 const ProjectList = () => import("@/views/App/ProjectList");
 const SingleProjectPage = () => import("@/views/App/project/SingleProjectPage");
+const Clients = () => import("@/views/App/Clients");
+const Factures = () => import("@/views/App/Factures");
+const NewFacture = () => import("@/views/App/facture/NewFacture");
+
 // const SimpleProjectPagetest = () =>
 //   import("../views/App/project/SimpleProjectPagetest.vue");
 
@@ -51,9 +55,25 @@ function configRoutes() {
           children: []
         },
         {
-          path: "/projet/:idcontents",
+          path: "/projets/:idcontents",
           name: "Projet",
           component: SingleProjectPage,
+          props: true
+        },
+        {
+          path: "/clients",
+          name: "Clients",
+          component: Clients
+        },
+        {
+          path: "/factures",
+          name: "Factures",
+          component: Factures
+        },
+        {
+          path: "/factures/:id",
+          name: "New facture",
+          component: NewFacture,
           props: true
         },
         {

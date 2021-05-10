@@ -32,6 +32,10 @@ export default {
   },
   computed: {
     items() {
+      var trueRoute = "";
+      if (this.$route.params.idcontents) {
+        trueRoute = "/projets";
+      }
       const routes = this.$route.matched.filter(route => {
         return route.name || (route.meta && route.meta.label);
       });
@@ -39,7 +43,7 @@ export default {
       return routes.map(route => {
         const meta = route.meta || {};
         return {
-          to: route,
+          to: trueRoute,
           text: meta.label || route.name
         };
       });
@@ -77,7 +81,7 @@ export default {
   },
   methods: {
     GetCustomRoute(to) {
-      console.log("to : ", to.params.idcontents);
+      //console.log("to : ", to.params.idcontents);
       this.customRoute = [];
       if (to.params.idcontents) {
         Utilities.GetCrumbs(to.params.idcontents).then(rep => {

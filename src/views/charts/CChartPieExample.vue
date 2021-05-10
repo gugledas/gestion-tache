@@ -1,7 +1,15 @@
 <template>
   <CChartPie
     :datasets="defaultDatasets"
-    :labels="['Project', 'Tâches', 'Memos', 'Users']"
+    :labels="[
+      'Project',
+      'Tâches',
+      'Memos',
+      'Bugs',
+      'Corrigés',
+      'test',
+      'À-faire'
+    ]"
   />
 </template>
 
@@ -15,8 +23,16 @@ export default {
     defaultDatasets() {
       return [
         {
-          backgroundColor: ["#00D8FF", "#41B883", "#E46651", "#DD1B16"],
-          data: [40, 80, 20, 2]
+          backgroundColor: [
+            "rgb(21, 65, 238)",
+            "rgb(238, 214, 34)",
+            "rgb(21, 223, 238)",
+            "rgb(245, 71, 40)",
+            "rgb(40, 245, 98)",
+            "rgb(186, 75, 145)",
+            "rgb(180, 91, 225)"
+          ],
+          data: [20, 30, 20, 12, 15, 25, 10]
         }
       ];
     }

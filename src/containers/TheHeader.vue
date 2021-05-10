@@ -10,15 +10,37 @@
       class="ml-3 d-md-down-none"
       @click="$store.commit('toggleSidebarDesktop')"
     />
-    <CHeaderNav
-      ><CButton
+
+    <CHeaderNav>
+      <CButton
         @click="modalLast = !modalLast"
         size="sm"
         variant="ghost"
         class=""
         color="warning"
-        ><CIcon name="cilEyedropper"></CIcon></CButton
-    ></CHeaderNav>
+        v-c-tooltip="{
+          content: 'Afficher les dernieres taches visités.',
+          html: true,
+          placement: 'bottom-start'
+        }"
+      >
+        <CIcon name="cilEyedropper"> </CIcon>
+      </CButton>
+      <CButton
+        @click="tacheEncoursModal = !tacheEncoursModal"
+        size="sm"
+        variant="ghost"
+        class=""
+        color="warning"
+        v-c-tooltip="{
+          content: 'Afficher les taches encours.',
+          html: true,
+          placement: 'bottom-start'
+        }"
+      >
+        <CIcon name="cil-settings"> </CIcon>
+      </CButton>
+    </CHeaderNav>
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
       <CIcon name="logo" height="48" alt="Logo" />
     </CHeaderBrand>
@@ -53,7 +75,7 @@
       />-->
       <BreadCrumb></BreadCrumb>
       <div class="ml-auto d-flex flex-wrap aling-items-end">
-        <SSearch></SSearch>
+        <SSearch :styled="true"></SSearch>
         <CDropdown color="dark" toggler-text="Options" class="ml-sm-n5 mt-2">
           <CDropdownItem>name</CDropdownItem>
           <CDropdownItem>statut</CDropdownItem>
@@ -76,13 +98,13 @@
         cleaner
         table-filter
         items-per-page-select
-        :items-per-page="5"
+        :items-per-page="10"
         pagination
       >
         <td slot="user" slot-scope="{ item }">
           <CLink
             :to="{
-              path: item.idcontents
+              path: 'projets/' + item.idcontents
             }"
             class="text-decoration-none"
             ><div @click="modalLast = !modalLast">
@@ -149,6 +171,10 @@
         <div class="d-flex justify-content-end mr-3"></div>
       </template>
     </CModal>
+    <TacheEncours
+      :modalLast="tacheEncoursModal"
+      @update-modal="UpdateModal"
+    ></TacheEncours>
   </CHeader>
 </template>
 
@@ -158,12 +184,14 @@ import SSearch from "../views/App/search/Search";
 import AddNewProject from "../views/App/project/AddNewProject";
 import BreadCrumb from "../Steph/Crumb/BreadCrumb";
 import SelectDb from "../views/App/config/SelectDb";
+import TacheEncours from "../Steph/Header/TacheEncours.vue";
 export default {
   name: "TheHeader",
   components: {
     SSearch,
     AddNewProject,
-    BreadCrumb
+    BreadCrumb,
+    TacheEncours
     //TheHeaderDropdownAccnt
   },
   data() {
@@ -174,7 +202,8 @@ export default {
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
         { key: "activity", _style: "width:600px;" }
-      ]
+      ],
+      tacheEncoursModal: false
     };
   },
   mounted() {
@@ -187,6 +216,9 @@ export default {
         this.itemsTache = response;
         this.isLoading = false;
       });
+    },
+    UpdateModal(val) {
+      this.tacheEncoursModal = val;
     }
   }
 };
