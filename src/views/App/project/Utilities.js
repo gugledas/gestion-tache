@@ -390,8 +390,7 @@ const Utilities = {
     });
   },
 
-  // format data for create new invoice
-
+  // Format data for create new invoice
   formatAddInvoice: function(datas, update) {
     return new Promise(resolv => {
       var result = [];
@@ -399,12 +398,12 @@ const Utilities = {
       var uat = moment().unix();
       console.log("fadin :", datas);
       if (datas && datas.numero) {
-        //edition de la table contents
+        // Edition de la table contents.
         var table1 = {
           table: "gestion_project_invoice",
           fields: {
             numero: datas.numero,
-            idcontents: datas.idcontents,
+            idcontents: datas.idcontents !== "" ? datas.idcontents : null,
             idclients: datas.idclients,
             objet: datas.objet,
             creaated: cat,
@@ -470,18 +469,16 @@ const Utilities = {
   formatAddInvoiceList: function(datas, update) {
     return new Promise(resolv => {
       var result = [];
-      console.log("restore", update);
-      if (datas && datas.idinvoicelist) {
+      if (datas && datas.titre) {
         //edition de la table contents
         var table1 = {
           table: "gestion_project_invoice_list",
           fields: {
             titre: datas.titre,
-            idcontents: datas.idcontents,
+            idcontents: datas.idcontents !== "" ? datas.idcontents : null,
             description: datas.description,
             cout: datas.cout,
-            idinvoice: datas.idinvoice,
-            idinvoicelist: datas.idinvoicelist
+            idinvoice: datas.idinvoice
           }
         };
         if (update == true) {

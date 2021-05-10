@@ -29,6 +29,7 @@
                     :isValid="inputValidation"
                     label=" titre:"
                 /></CCol>
+                <!--
                 <CCol sm="4" md="3"
                   ><CInput
                     v-model="invoiceData.idinvoicelist"
@@ -39,6 +40,7 @@
                     invalidFeedback="requis"
                     :isValid="idValidation"
                 /></CCol>
+              -->
                 <CCol sm="4" md="3"
                   ><CInput
                     v-model="invoiceData.cout"
@@ -97,254 +99,293 @@
     </CRow>
 
     <!-- facture final -->
-    <CRow alignHorizontal="center" v-if="hideFact">
-      <CCol col="10">
-        <CCard class="facture shadow">
-          <div class="facture__header">
-            <CRow
-              class="first-header text-center p-5 m-0"
-              alignVertical="center"
-            >
-              <CCol>
-                <img
-                  class="pr-2 mt-2"
-                  src="../../../assets/universe png.png"
-                  height="40"
-                  width="150"
-              /></CCol>
-              <CCol class="display-inv"
-                >FACTURE N°: <strong>{{ factureData.numero }}</strong></CCol
-              >
-            </CRow>
-            <CRow class="second-header m-0 text-center" alignVertical="center">
-              <CCol class="bg-info pt-2">
-                <p>
-                  Invoice # <strong>{{ factureData.numero }}</strong>
-                </p>
-              </CCol>
-              <CCol class="pt-2"
-                ><p><Strong class="px-2">Date:</Strong> 01/02/2020</p></CCol
-              >
-            </CRow>
-          </div>
-          <CRow tag="div" class="my-3">
-            <CCol class="facture__id p-3 d-flex ml-4 justify-content-start">
-              <h5>Invoice of :</h5>
-              <div class="ml-2">
-                <h5 class="text-uppercase">
-                  {{ societeInfoste.nom }}
-                </h5>
-                <h6>{{ societeInfoste.adresse }}</h6>
-                <h6>Tel: {{ societeInfoste.phone }}</h6>
-                <h6>siteweb: {{ societeInfoste.siteweb }}</h6>
-
-                <h6>Email: {{ societeInfoste.email }}</h6>
-                <h6>Émit par: {{ infoSte.nom }} {{ infoSte.prenom }}</h6>
-                <!-- <h6>Email: <strong>wbuniverse@gmail.com</strong></h6> -->
+    <vue-html2pdf
+      :show-layout="false"
+      :float-layout="true"
+      :enable-download="true"
+      :preview-modal="true"
+      :paginate-elements-by-height="1400"
+      filename="hee hee"
+      :pdf-quality="2"
+      :manual-pagination="false"
+      pdf-format="a4"
+      pdf-orientation="landscape"
+      pdf-content-width="800px"
+      @progress="onProgress($event)"
+      @hasStartedGeneration="hasStartedGeneration()"
+      @hasGenerated="hasGenerated($event)"
+      ref="html2Pdf"
+    >
+      <section slot="pdf-content">
+        hello
+        <CRow alignHorizontal="center" v-if="hideFact">
+          <CCol col="10">
+            <CCard class="facture shadow">
+              <div class="facture__header">
+                <CRow
+                  class="first-header text-center p-5 m-0"
+                  alignVertical="center"
+                >
+                  <CCol>
+                    <img
+                      class="pr-2 mt-2"
+                      src="../../../assets/universe png.png"
+                      height="40"
+                      width="150"
+                  /></CCol>
+                  <CCol class="display-inv">
+                    FACTURE N°: <strong>{{ factureData.numero }}</strong></CCol
+                  >
+                </CRow>
+                <CRow
+                  class="second-header m-0 text-center"
+                  alignVertical="center"
+                >
+                  <CCol class="bg-info pt-2">
+                    <p>
+                      Invoice # <strong>{{ factureData.numero }}</strong>
+                    </p>
+                  </CCol>
+                  <CCol class="pt-2"
+                    ><p><Strong class="px-2">Date:</Strong> 01/02/2020</p></CCol
+                  >
+                </CRow>
               </div>
-            </CCol>
+              <CRow tag="div" class="my-3">
+                <CCol class="facture__id p-3 d-flex ml-4 justify-content-start">
+                  <h5>Invoice of :</h5>
+                  <div class="ml-2">
+                    <h5 class="text-uppercase">
+                      {{ societeInfoste.nom }}
+                    </h5>
+                    <h6>{{ societeInfoste.adresse }}</h6>
+                    <h6>Tel: {{ societeInfoste.phone }}</h6>
+                    <h6>site web: {{ societeInfoste.siteweb }}</h6>
 
-            <CCol
-              class="facture__id p-3 d-flex mr-5 pr-3 justify-content-center"
-            >
-              <h5>Invoice to :</h5>
-              <div class="ml-2">
-                <h5 class="text-uppercase">
-                  {{ societeInfoClient.nom }}
-                </h5>
-                <h6>{{ clientInfo.nom }} {{ clientInfo.prenom }}</h6>
-                <h6>{{ societeInfoClient.adresse }}</h6>
-                <h6>siteweb: {{ societeInfoClient.siteweb }}</h6>
-                <h6>Tel: {{ societeInfoClient.phone }}</h6>
-                <h6>Email: {{ societeInfoClient.email }}</h6>
-              </div>
-            </CCol>
-          </CRow>
-          <CRow alignHorizontal="center" class="mb-2 " alignVertical="center">
-            <CCol md="11" class="d-flex aligns-item-center ml-4">
-              OBJECT:
-              <strong class="ml-3 m-0"
-                >{{ factureData.objet }}. Associé au projet
-                <span>{{ infoProjet.titre }}</span></strong
-              >
-            </CCol>
-          </CRow>
-          <CModal
-            :closeOnBackdrop="false"
-            color="dark"
-            :show.sync="editRow"
-            :footer="false"
-            size="lg"
-          >
-            <CRow>
-              <CCol sm="7" lg="5"
-                ><CInput
-                  placeholder="libellé du service"
-                  v-model="invoiceData.titre"
-                  :wasValidated="wasValidated"
-                  validFeedback="ok"
-                  invalidFeedback="requis"
-                  :isValid="inputValidation"
-                  label=" titre:"
-              /></CCol>
-              <CCol sm="4" lg="3"
-                ><CInput
-                  v-model="invoiceData.idinvoicelist"
-                  placeholder="01"
-                  label=" numéro service"
-                  :wasValidated="idvalidated"
-                  validFeedback="ok"
-                  readonly
-                  invalidFeedback="requis"
-                  :isValid="idValidation"
-              /></CCol>
-              <CCol sm="6" lg="3"
-                ><CInput
-                  v-model="invoiceData.cout"
-                  placeholder="100.00"
-                  append="$"
-                  label=" Coût"
-                  :wasValidated="priceValidated"
-                  :isValid="priceValidation"
-              /></CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="8" lg="6"
-                ><CTextarea
-                  v-model="invoiceData.description"
-                  label=" description:"
-                  placeholder="ajouter une description"/></CCol
-            ></CRow>
-            <template slot="footer">
-              <div class="d-flex justify-content-end mr-3 ">
-                <CButton @click="editRow = false" class="mx-1" color="light">
-                  Cancel
-                </CButton>
-                <CButton
-                  class="mx-1"
-                  :color="checkForSave ? 'info' : 'light'"
-                  @click="EditeFactureList"
-                >
-                  Save
-                  <CSpinner
-                    v-if="spinnerSave"
-                    size="sm"
-                    class=""
-                    tag="small"
-                    color="warning"
-                    style="width:1rem;height:1rem;"
-                  />
-                </CButton>
-                <CButton
-                  class="mx-1"
-                  color="danger"
-                  size="sm"
-                  variant="ghost"
-                  @click="deleteFacturelist"
-                >
-                  Supprimer
-                  <CSpinner
-                    v-if="spinner"
-                    size="sm"
-                    class=""
-                    tag="small"
-                    color="primary"
-                    style="width:1rem;height:1rem;"
-                  />
-                </CButton>
-              </div>
-            </template>
-          </CModal>
-          <CRow alignHorizontal="center" class="mb-2">
-            <CCol md="11">
-              <CDataTable
-                striped
-                outlined
-                hover
-                :loading="isLoading"
-                :responsive="false"
-                :items="factTable"
-                :fields="facFields"
-                head-color="light"
-                :clickableRows="true"
-                no-sorting
-                @row-clicked="ligneClique"
-              >
-                <td slot="Qte" slot-scope="">
-                  <Strong>{{ 1 }}</Strong>
-                </td>
-                <td slot="total" slot-scope="{ item }">
-                  <Strong>{{ item.cout }}</Strong>
-                </td>
-              </CDataTable>
-            </CCol>
-          </CRow>
-          <CRow class="mt-2" alignHorizontal="center">
-            <CCol col="11" class="d-flex">
-              <CCol col="6" class="">
-                <div>
-                  <h5>Payment Info:</h5>
-                  <p class="m-0">
-                    Account #: <strong class="ml-2"> 551 254 251 015</strong>
-                  </p>
-                  <p class="m-0">
-                    ACT Name: <strong class="ml-2"> Lorem Ipsum</strong>
-                  </p>
-                  <p class="m-0">
-                    Bank details:<strong class="ml-2">
-                      Add Your bank Details
-                    </strong>
-                  </p>
-                </div>
-              </CCol>
-              <CCol col="6" class="ml-5">
-                <!-- <div class="d-flex justify-content-around">
-                  <h5>Sub Total:</h5>
-                  <span class="ml-5 h5">5240.00 $</span>
-                </div>
-                <div class="d-flex justify-content-around">
-                  <h5>Tax:</h5>
-                  <span class="ml-5 h5">19.25%</span>
-                </div> -->
-                <div
-                  class="d-flex justify-content-around bg-info mt-2 text-white p-2 mr-4"
-                >
-                  <h5>Total:</h5>
-                  <span class="ml-5 h5">{{ TotalFacture }} $</span>
-                </div>
-              </CCol>
-            </CCol>
-          </CRow>
-          <CRow alignHorizontal="center" class="mt-5 mb-4">
-            <CCol col="11" class="d-flex mb-3">
-              <CCol col="6" class="">
-                <h5>Terms & conditions</h5>
+                    <h6>Email: {{ societeInfoste.email }}</h6>
+                    <h6>Émit par: {{ infoSte.nom }} {{ infoSte.prenom }}</h6>
+                    <!-- <h6>Email: <strong>wbuniverse@gmail.com</strong></h6> -->
+                  </div>
+                </CCol>
 
-                <h6 class=" p-0 m-0">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Cupiditate architecto cum aliquam aut ut?
-                </h6>
-              </CCol>
-              <CCol col="6" class="pt-4 mt-5 text-center">
-                <p class="m-0 p-0">______________________________</p>
-                <h6 class="mt-1">Authorised sign</h6>
-              </CCol>
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol col="12">
-              <CCol class="bg-light p-0">
-                <div
-                  class="d-flex justify-content-around bg-info mt-2 text-white p-2 col-6"
+                <CCol
+                  class="facture__id p-3 d-flex mr-5 pr-3 justify-content-center"
                 >
-                  <h5>Thanks for your Business</h5>
-                </div>
-              </CCol>
-            </CCol>
-          </CRow>
-        </CCard>
-      </CCol>
-    </CRow>
+                  <h5>Invoice to :</h5>
+                  <div class="ml-2">
+                    <h5 class="text-uppercase">
+                      {{ societeInfoClient.nom }}
+                    </h5>
+                    <h6>{{ clientInfo.nom }} {{ clientInfo.prenom }}</h6>
+                    <h6>{{ societeInfoClient.adresse }}</h6>
+                    <h6>site web: {{ societeInfoClient.siteweb }}</h6>
+                    <h6>Tel: {{ societeInfoClient.phone }}</h6>
+                    <h6>Email: {{ societeInfoClient.email }}</h6>
+                  </div>
+                </CCol>
+              </CRow>
+              <CRow
+                alignHorizontal="center"
+                class="mb-2 "
+                alignVertical="center"
+              >
+                <CCol md="11" class="d-flex aligns-item-center ml-4">
+                  OBJECT:
+                  <strong class="ml-3 m-0">
+                    {{ factureData.objet }}
+                  </strong>
+                </CCol>
+              </CRow>
+              <CModal
+                :closeOnBackdrop="false"
+                color="dark"
+                :show.sync="editRow"
+                :footer="false"
+                size="lg"
+              >
+                <CRow>
+                  <CCol sm="7" lg="5"
+                    ><CInput
+                      placeholder="libellé du service"
+                      v-model="invoiceData.titre"
+                      :wasValidated="wasValidated"
+                      validFeedback="ok"
+                      invalidFeedback="requis"
+                      :isValid="inputValidation"
+                      label=" titre:"
+                  /></CCol>
+                  <!--
+                  <CCol sm="4" lg="3"
+                    ><CInput
+                      v-model="invoiceData.idinvoicelist"
+                      placeholder="01"
+                      label=" numéro service"
+                      :wasValidated="idvalidated"
+                      validFeedback="ok"
+                      readonly
+                      invalidFeedback="requis"
+                      :isValid="idValidation"
+                  /></CCol>
+                -->
+                  <CCol sm="6" lg="3"
+                    ><CInput
+                      v-model="invoiceData.cout"
+                      placeholder="100.00"
+                      append="$"
+                      label=" Coût"
+                      :wasValidated="priceValidated"
+                      :isValid="priceValidation"
+                  /></CCol>
+                </CRow>
+                <CRow>
+                  <CCol sm="8" lg="6"
+                    ><CTextarea
+                      v-model="invoiceData.description"
+                      label=" description:"
+                      placeholder="ajouter une description"/></CCol
+                ></CRow>
+                <template slot="footer">
+                  <div class="d-flex justify-content-end mr-3 ">
+                    <CButton
+                      @click="editRow = false"
+                      class="mx-1"
+                      color="light"
+                    >
+                      Cancel
+                    </CButton>
+                    <CButton
+                      class="mx-1"
+                      :color="checkForSave ? 'info' : 'light'"
+                      @click="EditeFactureList"
+                    >
+                      Save
+                      <CSpinner
+                        v-if="spinnerSave"
+                        size="sm"
+                        class=""
+                        tag="small"
+                        color="warning"
+                        style="width:1rem;height:1rem;"
+                      />
+                    </CButton>
+                    <CButton
+                      class="mx-1"
+                      color="danger"
+                      size="sm"
+                      variant="ghost"
+                      @click="deleteFacturelist"
+                    >
+                      Supprimer
+                      <CSpinner
+                        v-if="spinner"
+                        size="sm"
+                        class=""
+                        tag="small"
+                        color="primary"
+                        style="width:1rem;height:1rem;"
+                      />
+                    </CButton>
+                  </div>
+                </template>
+              </CModal>
+              <CRow alignHorizontal="center" class="mb-2">
+                <CCol md="11">
+                  <CDataTable
+                    striped
+                    outlined
+                    hover
+                    :loading="isLoading"
+                    :responsive="false"
+                    :items="factTable"
+                    :fields="facFields"
+                    head-color="light"
+                    :clickableRows="true"
+                    no-sorting
+                    @row-clicked="ligneClique"
+                  >
+                    <td slot="Qte" slot-scope="">
+                      <Strong>{{ 1 }}</Strong>
+                    </td>
+                    <td slot="total" slot-scope="{ item }">
+                      <Strong>{{ item.cout }}</Strong>
+                    </td>
+                  </CDataTable>
+                </CCol>
+              </CRow>
+              <CRow class="mt-2" alignHorizontal="center">
+                <CCol col="11" class="d-flex">
+                  <CCol col="6" class="">
+                    <div>
+                      <h5>Payment Info:</h5>
+                      <p class="m-0">
+                        Account #:
+                        <strong class="ml-2"> 551 254 251 015</strong>
+                      </p>
+                      <p class="m-0">
+                        ACT Name: <strong class="ml-2"> Lorem Ipsum</strong>
+                      </p>
+                      <p class="m-0">
+                        Bank details:<strong class="ml-2">
+                          Add Your bank Details
+                        </strong>
+                      </p>
+                    </div>
+                  </CCol>
+                  <CCol col="6" class="ml-5">
+                    <!-- <div class="d-flex justify-content-around">
+                      <h5>Sub Total:</h5>
+                      <span class="ml-5 h5">5240.00 $</span>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                      <h5>Tax:</h5>
+                      <span class="ml-5 h5">19.25%</span>
+                    </div> -->
+                    <div
+                      class="d-flex justify-content-around bg-info mt-2 text-white p-2 mr-4"
+                    >
+                      <h5>Total:</h5>
+                      <span class="ml-5 h5">{{ TotalFacture }} $</span>
+                    </div>
+                  </CCol>
+                </CCol>
+              </CRow>
+              <CRow alignHorizontal="center" class="mt-5 mb-4">
+                <CCol col="11" class="d-flex mb-3">
+                  <CCol col="6" class="">
+                    <h5>Terms & conditions</h5>
+
+                    <h6 class=" p-0 m-0">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Cupiditate architecto cum aliquam aut ut?
+                    </h6>
+                  </CCol>
+                  <CCol col="6" class="pt-4 mt-5 text-center">
+                    <p class="m-0 p-0">______________________________</p>
+                    <h6 class="mt-1">Authorised sign</h6>
+                  </CCol>
+                </CCol>
+              </CRow>
+              <CRow>
+                <CCol col="12">
+                  <CCol class="bg-light p-0">
+                    <div
+                      class="d-flex justify-content-around bg-info mt-2 text-white p-2 col-6"
+                    >
+                      <h5>Thanks for your Business</h5>
+                    </div>
+                  </CCol>
+                </CCol>
+              </CRow>
+            </CCard>
+          </CCol>
+        </CRow>
+      </section>
+    </vue-html2pdf>
+    <div>
+      <CButton class="mx-3" size="sm" @click="generateReport" color="dark">
+        <CIcon name="cil-low-vision" /> Export to PDF
+      </CButton>
+    </div>
   </div>
 </template>
 
@@ -352,6 +393,7 @@
 import SelectDb from "../config/SelectDb";
 import Utilities from "../project/Utilities.js";
 import config from "../config/config";
+import VueHtml2pdf from "vue-html2pdf";
 export default {
   name: "SHome",
   props: {
@@ -360,7 +402,9 @@ export default {
       default: "2"
     }
   },
-  components: {},
+  components: {
+    VueHtml2pdf
+  },
   data() {
     return {
       editRow: false,
@@ -445,7 +489,7 @@ export default {
       spinner: false,
       spinnerSave: false,
       wasValidated: false,
-      idvalidated: false,
+      //idvalidated: false,
       btnState: false,
       colapse: false,
       priceValidated: false
@@ -460,13 +504,15 @@ export default {
       deep: true,
       handler() {
         this.invoiceData.idinvoice = this.id;
-        this.invoiceData.idcontents = this.infoProjet.idcontents;
+        if (this.infoProjet.idcontents) {
+          this.invoiceData.idcontents = this.infoProjet.idcontents;
+        }
       }
     }
   },
   computed: {
     checkForSave() {
-      if (this.wasValidated && this.idvalidated && this.priceValidated) {
+      if (this.wasValidated && this.priceValidated) {
         this.setBtnState(true);
         return true;
       } else {
@@ -488,6 +534,9 @@ export default {
     }
   },
   methods: {
+    generateReport() {
+      this.$refs.html2Pdf.generatePdf();
+    },
     priceValidation(val) {
       if (val != undefined)
         if (val.length < 1) {
@@ -501,6 +550,7 @@ export default {
     setBtnState(val) {
       this.btnState = val;
     },
+    /*
     idValidation(val) {
       if (val != undefined)
         if (val.length < 1) {
@@ -511,6 +561,7 @@ export default {
           return true;
         }
     },
+    /**/
     inputValidation(val) {
       if (val == undefined) {
         return false;
@@ -574,15 +625,18 @@ export default {
       });
     },
     LoadProjet(val) {
-      var oap = [{ column: "idcontents", operator: "=", value: val }];
-      SelectDb.selectProject(oap).then(response => {
-        this.infoProjet = response[0];
-      });
+      if (val) {
+        var oap = [{ column: "idcontents", operator: "=", value: val }];
+        SelectDb.selectProject(oap).then(response => {
+          this.infoProjet = response[0];
+        });
+      }
     },
     PostFactureList(val) {
       if (this.btnState) {
         this.isloading = true;
         Utilities.formatAddInvoiceList(this.invoiceData, val).then(reponse => {
+          console.log("gestion_project_invoice_list : ", reponse);
           config
             .post("/gestion-project/save-update", reponse)
             .then(reponse => {

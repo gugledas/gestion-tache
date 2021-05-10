@@ -11,7 +11,9 @@
           class="text-dark text-decoration-none"
           >{{ dataLoad.titre }}
         </CLink>
-
+        <div class="px-2 date-created">
+          <small>{{ createdAt }}</small>
+        </div>
         <CProgress
           class="progress-xs card-prog"
           :animated="dataLoad.status === '1' ? false : true"
@@ -234,15 +236,19 @@ export default {
       el.val = val;
       return el;
     },
-    // affichage du texte formatter
+    // Affichage du texte formatter
     textDisplay() {
       var newDiv = document.createElement("div");
       newDiv.innerHTML = this.dataLoad.text ? this.dataLoad.text : "";
       newDiv.querySelectorAll("pre code").forEach(block => {
         hljs.highlightBlock(block);
       });
-
       return newDiv.outerHTML;
+    },
+    createdAt() {
+      return moment(this.dataLoad.created_at, "YYYY-MM-DD HH:mm").format(
+        "DD/MM/YYYY HH:mm"
+      );
     }
   },
   methods: {
@@ -359,6 +365,10 @@ export default {
 </script>
 
 <style lang="scss">
+.date-created {
+  color: #9a9a9a;
+  font-style: oblique;
+}
 .card-border {
   border-left: 4px solid;
   &--project {

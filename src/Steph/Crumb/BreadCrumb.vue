@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     GetCustomRoute(to) {
-      console.log("to : ", to.params.idcontents);
+      //console.log("to : ", to.params.idcontents);
       this.customRoute = [];
       if (to.params.idcontents) {
         Utilities.GetCrumbs(to.params.idcontents).then(rep => {

@@ -3,16 +3,7 @@
     <CCard>
       <CCardHeader>
         {{ title }}
-        <div class="card-header-actions">
-          <a
-            href="#"
-            class="card-header-action"
-            rel="noreferrer noopener"
-            target="_blank"
-          >
-            <small class="text-muted"></small>
-          </a>
-        </div>
+        <div class="card-header-actions"></div>
       </CCardHeader>
       <CCardBody class="">
         <CDataTable
@@ -100,19 +91,17 @@
 </template>
 
 <script>
+import SelectDb from "../config/SelectDb";
 export default {
   props: {
-    items: {
-      type: Array,
-      required: true,
-      default: function() {
-        return [];
-      }
+    name: {
+      type: String,
+      required: true
     },
-    isLoading: {
-      type: Boolean,
-      default: true
-    },
+    // isLoading: {
+    //   type: Boolean,
+    //   default: true
+    // },
     title: {
       type: String,
       required: true,
@@ -125,8 +114,26 @@ export default {
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
         { key: "activity", _style: "width:600px;" }
-      ]
+      ],
+      isLoading: true,
+      items: []
     };
+  },
+  mounted() {
+    this.LoadDatasType();
+  },
+  methods: {
+    LoadDatasType() {
+      if (this.name.length) {
+        var opt = [{ column: "c.type", operator: "=", value: this.name }];
+        this.isLoading2 = true;
+        SelectDb.selectDatas(opt).then(response => {
+          console.log("name", this.name);
+          this.items = response;
+          this.isLoading = false;
+        });
+      }
+    }
   }
 };
 </script>

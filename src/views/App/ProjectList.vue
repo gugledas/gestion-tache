@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Tableau de projet -->
-    <LastProjectType
+    <!-- <LastProjectType
       :title="'Project'"
       :isLoading="isLoading"
       :items="itemsProject"
@@ -22,6 +22,15 @@
           :isLoading="isLoading2"
         ></LastProjectType>
       </CCol>
+    </CRow> -->
+    <CRow>
+      <CCol v-for="(item, i) in projectType" :key="i" md="6">
+        <LastProjectType
+          :title="item.label"
+          :name="item.name"
+          :isLoading="isLoading2"
+        ></LastProjectType
+      ></CCol>
     </CRow>
   </div>
 </template>
@@ -47,15 +56,38 @@ export default {
       tableItems: [],
       itemsProject: [],
       itemsTache: [],
-      itemsMemos: []
+      itemsMemos: [],
+      projectType: []
     };
   },
   mounted() {
-    this.LoadProjectData();
-    this.LoadTacheData();
-    this.LoadMemosData();
+    // this.LoadProjectData();
+    // this.LoadTacheData();
+    // this.LoadMemosData();
+    this.LoadProjectType();
+  },
+  computed: {
+    type() {
+      var result = [];
+      for (const i in this.projectType) {
+        if (this.projectType[i].name == "project") {
+          result.push(this.projectType[i]);
+        } else if (this.projectType[i].name == "tache") {
+          result.push(this.projectType[i]);
+        } else {
+          result.push(this.projectType[i]);
+        }
+      }
+      return result;
+    }
   },
   methods: {
+    LoadProjectType() {
+      SelectDb.selectTypes().then(response => {
+        console.log("type : ", response);
+        this.projectType = response;
+      });
+    },
     hello(value) {
       console.log("v", value);
     },

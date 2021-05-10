@@ -239,6 +239,10 @@ export default {
       // this.setNombre(result);
       this.initData.numero = result;
     },
+    /**
+     * Selectionne un client.
+     * on ajoute un filtre.
+     */
     loadNbFacture() {
       SelectDb.selectInvoice([]).then(response => {
         if (response.length) {
@@ -248,15 +252,26 @@ export default {
         }
       });
     },
+    /**
+     * Selectionne un client.
+     * on ajoute un filtre.
+     */
     LoadClient() {
       SelectDb.selectClients([]).then(response => {
         this.itemClient = response;
       });
     },
+    /**
+     * Selectionne un seul project.
+     * on ajoute les informations pour le filtre.
+     */
     LoadProject() {
-      SelectDb.selectDatas().then(response => {
-        this.itemProject = response;
-      });
+      console.log("this.initData.idcontents : ", this.initData.idcontents);
+      if (this.initData.idcontents) {
+        SelectDb.selectDatas().then(response => {
+          this.itemProject = response;
+        });
+      }
     },
     initNewFacture() {
       this.modalAdd.state = true;
@@ -266,12 +281,12 @@ export default {
       this.isLoading = true;
       this.showInput = false;
       Utilities.formatAddInvoice(this.initData, this.update).then(reponse => {
-        console.log("created", reponse);
+        //console.log("created", reponse);
 
         config
           .post("/gestion-project/save-update", reponse)
           .then(reponse => {
-            console.log("reponse", reponse);
+            //console.log("reponse", reponse);
             if (reponse.status) {
               this.request = reponse.data[0];
               this.$emit("addnew-ok");
@@ -297,7 +312,7 @@ export default {
               this.AlertColor = "success";
               this.buttonService = true;
             } else {
-              console.log("erroree", reponse.status);
+              //console.log("erroree", reponse.status);
               this.isLoading = false;
               this.alertOk = true;
               this.alertText = "Erreur de sauvegarde";
@@ -305,8 +320,7 @@ export default {
               this.showInput = true;
             }
           })
-          .catch(function(error) {
-            console.log("error", error);
+          .catch(function() {
             this.isLoading = false;
             this.alertOk = true;
             this.alertText = "Erreur de sauvegarde";

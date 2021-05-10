@@ -4,7 +4,7 @@ var formatBasicAuth = function(userName, password) {
   var bace64 = btoa(basicAuthCredential);
   return "Basic " + bace64;
 };
-/*
+/**
 var basic = formatBasicAuth("admin", "LEFzLxqQHw");
 /**/
 export default {

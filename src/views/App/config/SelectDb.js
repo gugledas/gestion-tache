@@ -244,7 +244,54 @@ export default {
       query += " select * ";
       query += " from ";
       query += this.formatStringTable("gestion_project_contents");
+      query += " order by update_at DESC ";
       query += " limit 0,50 ";
+      config.post("/gestion-project/select", query).then(reponse => {
+        // console.log("selectDatas : ", reponse);
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      });
+    });
+  },
+  SelectTacheEnours: function(
+    where = [{ column: "t.status", operator: "=", value: 2 }]
+  ) {
+    return new Promise(resolv => {
+      var query = "";
+      query += " select ";
+      query += " c.idcontents, c.text, c.titre, c.created_at, ";
+      query += " c.update_at, c.type, h.idhierachie, h.idcontentsparent, ";
+      query += " h.ordre, h.level, ";
+      query += " t.status";
+      query += " from ";
+      query += this.formatStringTable("gestion_project_hierachie") + " as h ";
+      query += " INNER JOIN ";
+      query += this.formatStringTable("gestion_project_contents") + " as c ";
+      query += " ON h.idcontents = c.idcontents ";
+      query += " INNER JOIN ";
+      query += this.formatStringTable("gestion_project_times") + " as t ";
+      query += " ON t.idcontents = c.idcontents ";
+      //query += "WHERE ( h.idcontentsparent = $idcontents OR c.idcontents = $idcontents ) ";
+      if (where.length) {
+        query += " WHERE ";
+        for (const i in where) {
+          query +=
+            where[i].column +
+            " " +
+            where[i].operator +
+            " " +
+            "'" +
+            where[i].value +
+            "'" +
+            " ";
+        }
+      }
+      query += " ORDER BY  c.`idcontents` DESC";
+      query += " limit 0,50 ";
+      //console.log("query :: ", query);
       config.post("/gestion-project/select", query).then(reponse => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {

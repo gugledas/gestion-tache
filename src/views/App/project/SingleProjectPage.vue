@@ -1,7 +1,11 @@
 <template lang="html">
   <div>
-    <CRow v-if="spinner"
-      ><CSpinner
+    <CRow>
+      <!-- filtre -->
+      <filtre-project @ev-filter="EvFilter"></filtre-project>
+    </CRow>
+    <CRow v-if="spinner">
+      <CSpinner
         class="mx-auto mt-5"
         tag="div"
         color="primary"
@@ -185,7 +189,8 @@ export default {
     ...Charts,
     PopUpContent: () => import("./PopUpContent.vue"),
     //CardComponent: () => import("./CardComponent"),
-    "card-jsx": () => import("./CardJsx.vue")
+    "card-jsx": () => import("./CardJsx.vue"),
+    "filtre-project": () => import("../../../Steph/project/FilterProject.vue")
   },
   data() {
     return {
@@ -278,6 +283,23 @@ export default {
       this.isLoading = true;
       config
         .get("/gestion-project/project-with-childs/" + this.idcontents)
+        .then(reponse => {
+          if (reponse.status) {
+            this.dataLoad = Utilities.formCard(reponse.data);
+            console.log("donnée chargées : ", this.dataLoad);
+          }
+          this.isLoading = false;
+          this.spinner = false;
+        })
+        .catch(function(error) {
+          console.log("error", error);
+        });
+    },
+    EvFilter(filter) {
+      this.spinner = true;
+      this.isLoading = true;
+      config
+        .post("/gestion-project/project-with-childs/" + this.idcontents, filter)
         .then(reponse => {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
