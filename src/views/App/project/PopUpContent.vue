@@ -190,7 +190,9 @@ export default {
         codeSnippet_theme: "monokai_sublime",
         stylesSet: [],
         contentsCss:
-          " @import 'http://gestion-tache-vuejs.kksa/ckeditors/styles/style.css'; body{margin:1em !important; background: #FFF;}",
+          " @import '" +
+          config.baseUrl +
+          "/modules/custom/gestion_tache/files/gestionTache.css'; body{margin:1em !important; background: #FFF;}",
         on: {
           instanceReady: function() {
             // Output paragraphs as <p>Text</p>.
@@ -337,7 +339,7 @@ export default {
     editorConfig() {
       var extraPlugins =
         "codesnippet,print,format,font,colorbutton,justify,image,filebrowser,stylesheetparser";
-      if (!window.location.host.includes("localhost")) {
+      if (!window.location.host.includes("localhost--")) {
         return {
           extraPlugins: extraPlugins + ",quickuploader",
           ...this.preEditorConfig
@@ -366,16 +368,15 @@ export default {
     onNamespaceLoaded(CKEDITOR) {
       // Add external `placeholder` plugin which will be available for each
       // editor instance on the page.
-      if (!window.location.host.includes("localhost")) {
-        CKEDITOR.plugins.addExternal(
-          "quickuploader",
-          "/ckeditors/ckeditor_4.16.0_basic/ckeditor/plugins/quickuploader/plugin.js"
-        );
-      }
+      CKEDITOR.plugins.addExternal(
+        "quickuploader",
+        config.baseUrl + "/libraries/quickuploader/plugin.js?v="
+      );
       /**/
       CKEDITOR.config.allowedContent = true;
       CKEDITOR.config.htmlEncodeOutput = false;
       CKEDITOR.config.entities = false;
+      CKEDITOR.config.quickuploaderUploadUrl = config.baseUrl;
       // CKEDITOR.config.entities_processNumerical = 'force';
 
       CKEDITOR.dtd.$removeEmpty.span = 0;

@@ -1,6 +1,10 @@
 import axios from "axios";
+console.log("windon : ");
 export default {
-  baseUrl: "http://gestion-tache-new.kksa",
+  baseUrl:
+    window.location.hostname === "localhost"
+      ? "http://gestion-taches.kksa"
+      : "",
   ModeDebug: true,
   post: function(request, datas = {}) {
     return new Promise(resolv => {
