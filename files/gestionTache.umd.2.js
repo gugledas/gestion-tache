@@ -7,12 +7,12 @@
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"748dd0ae-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=template&id=71e265f6&scoped=true&lang=html&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"748dd0ae-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=template&id=6c887bd0&scoped=true&lang=html&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"check-valid-form":_vm.checkForSave}},[_c('div',[_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('pre',[_vm._v("duree: "+_vm._s(_vm.dureeProjet))]),_c('br'),_c('CCol',{attrs:{"sm":"3"}},[_c('p',[_vm._v("Choisir un type:")])]),_c('CCol',{attrs:{"sm":"9"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.options,"checked":_vm.postData.type,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "type", $event)}}}),(_vm.postData.type.length < 2)?_c('small',{staticClass:"text-danger"},[_vm._v(" ce champ est requis ")]):_vm._e()],1)],1)],1),_c('hr'),_c('div',{staticClass:"pl-sm-2 "},[(_vm.postData.type !== 'memos' && _vm.postData.date_fin_reel === '')?_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('CCol',{attrs:{"sm":"2"}},[_c('p',[_vm._v("Statut:")])]),_c('CCol',{attrs:{"sm":"10"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.statusOpt,"checked":_vm.postData.status,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "status", $event)}}})],1),(_vm.showInputRaison)?_c('CCol',{attrs:{"sm":"8","md":"7"}},[_c('CTextarea',{attrs:{"label":"Raison:","type":"textarea","horizontal":"","placeholder":"writes something...","rows":"2","description":"Une description de la raison du changement de status"},model:{value:(_vm.postData.raison),callback:function ($$v) {_vm.$set(_vm.postData, "raison", $$v)},expression:"postData.raison"}})],1):_vm._e()],1):_vm._e(),(_vm.postData.type !== 'memos')?_c('CRow',[_c('CCol',{attrs:{"col":"12","lg":"6"}},[_c('CRow',{staticClass:" "},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Debut:","type":"date","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"horizontal":""},model:{value:(_vm.postData.date_depart_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_depart_proposer", $$v)},expression:"postData.date_depart_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5 ",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_debut),callback:function ($$v) {_vm.$set(_vm.postData, "heure_debut", $$v)},expression:"postData.heure_debut"}})],1)],1),_c('CCol',{attrs:{"col":"10","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Fin:","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"date","horizontal":""},model:{value:(_vm.postData.date_fin_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_fin_proposer", $$v)},expression:"postData.date_fin_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5 ",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_fin),callback:function ($$v) {_vm.$set(_vm.postData, "heure_fin", $$v)},expression:"postData.heure_fin"}})],1)],1)],1):_vm._e(),_c('CRow',[_c('CCol',{attrs:{"sm":"7"}},[_c('CInput',{attrs:{"label":"Title:","placeholder":"Entrez un titre","wasValidated":_vm.wasValidated,"validFeedback":"ok","invalidFeedback":"requis","isValid":_vm.inputValidation},model:{value:(_vm.postData.titre),callback:function ($$v) {_vm.$set(_vm.postData, "titre", $$v)},expression:"postData.titre"}})],1),(_vm.postData.type == 'project')?_c('CCol',{attrs:{"sm":"5"}},[_c('CInput',{attrs:{"label":"Nom du Client:","placeholder":"Select or add new Client"},model:{value:(_vm.postData.clientName),callback:function ($$v) {_vm.$set(_vm.postData, "clientName", $$v)},expression:"postData.clientName"}})],1):_vm._e()],1),_c('CRow',[_c('CCol',{attrs:{"sm":"12"}},[_c('label',[_vm._v("Description:")]),_c('ckeditor',{attrs:{"config":_vm.editorConfig},on:{"namespaceloaded":_vm.onNamespaceLoaded},model:{value:(_vm.postData.text),callback:function ($$v) {_vm.$set(_vm.postData, "text", $$v)},expression:"postData.text"}})],1)],1),(_vm.postData.type == 'project')?_c('CRow',[_c('CCol',{attrs:{"col":"8","lg":"4"}},[_c('CInput',{attrs:{"label":"Estimation du coût:","append":".00","description":"montant","prepend":"$"},model:{value:(_vm.postData.price),callback:function ($$v) {_vm.$set(_vm.postData, "price", $$v)},expression:"postData.price"}})],1)],1):_vm._e()],1)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=template&id=71e265f6&scoped=true&lang=html&
+// CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=template&id=6c887bd0&scoped=true&lang=html&
 
 // EXTERNAL MODULE: ./src/views/App/project/Utilities.js
 var Utilities = __webpack_require__("d111");
@@ -470,7 +470,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     onNamespaceLoaded: function onNamespaceLoaded(CKEDITOR) {
       // Add external `placeholder` plugin which will be available for each
       // editor instance on the page.
-      CKEDITOR.plugins.addExternal("quickuploader", config["a" /* default */].baseUrl + "/libraries/quickuploader/plugin.js?v=");
+      moment_default.a;
+      CKEDITOR.plugins.addExternal("quickuploader", config["a" /* default */].baseUrl + "/libraries/quickuploader/plugin.js?v=" + moment_default()().unix());
       /**/
 
       CKEDITOR.config.allowedContent = true;
@@ -614,7 +615,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   null,
-  "71e265f6",
+  "6c887bd0",
   null
   
 )

@@ -368,9 +368,12 @@ export default {
     onNamespaceLoaded(CKEDITOR) {
       // Add external `placeholder` plugin which will be available for each
       // editor instance on the page.
+      moment;
       CKEDITOR.plugins.addExternal(
         "quickuploader",
-        config.baseUrl + "/libraries/quickuploader/plugin.js?v="
+        config.baseUrl +
+          "/libraries/quickuploader/plugin.js?v=" +
+          moment().unix()
       );
       /**/
       CKEDITOR.config.allowedContent = true;
