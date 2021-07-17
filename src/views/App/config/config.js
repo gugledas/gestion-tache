@@ -40,7 +40,7 @@ export default {
 =======
 import axios from "axios";
 export default {
-  baseUrl: "http://gestion-tache-new.kksa",
+  baseUrl: "http://gestion-taches-vps.habeuk.online",
   ModeDebug: true,
   post: function(request, datas = {}) {
     return new Promise(resolv => {

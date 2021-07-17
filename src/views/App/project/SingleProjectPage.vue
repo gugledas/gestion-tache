@@ -652,6 +652,7 @@ export default {
   position: fixed;
   right: 20px;
   bottom: 52px;
+  z-index: 2;
 }
 </style>
 
