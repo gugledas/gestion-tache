@@ -1,42 +1,39 @@
 import axios from "axios";
 console.log("windon : ");
 export default {
-  baseUrl:
-    window.location.hostname === "localhost"
-      ? "http://gestion-taches.kksa"
-      : "",
+  baseUrl: "http://gestion-taches-vps.habeuk.online",
   ModeDebug: true,
   post: function(request, datas = {}) {
-    return new Promise(resolv => {
+    return new Promise((resolv) => {
       var configs = {
-        headers: {}
+        headers: {},
       };
       axios
         .post(this.baseUrl + request, datas, configs)
-        .then(reponse => {
+        .then((reponse) => {
           //console.log("Config success : ", reponse);
           resolv({ status: true, data: reponse.data, reponse: reponse });
         })
-        .catch(error => {
+        .catch((error) => {
           resolv({ status: false, error: error.response });
         });
     });
   },
   get: function(request, datas = {}) {
     // console.log("ssss");
-    return new Promise(resolv => {
+    return new Promise((resolv) => {
       var configs = {
-        headers: {}
+        headers: {},
       };
       axios
         .get(this.baseUrl + request, datas, configs)
-        .then(reponse => {
+        .then((reponse) => {
           console.log("Config get success : ", reponse);
           resolv({ status: true, data: reponse.data, reponse: reponse });
         })
-        .catch(error => {
+        .catch((error) => {
           resolv({ status: false, error: error.response });
         });
     });
-  }
+  },
 };
