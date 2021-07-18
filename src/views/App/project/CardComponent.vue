@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class="card-block">
     <CCard>
       <CCardHeader
-        :class="
-          'card-progress card-color card-border card-border--' + dataLoad.type
-        "
+        class="shadow-sm "
+        :class="[
+          'card-progress  card-color card-border card-border--' + dataLoad.type,
+          background
+        ]"
       >
         <CLink
           :to="'/projets/' + dataLoad.idcontents"
@@ -219,6 +221,12 @@ export default {
     this.timing();
   },
   computed: {
+    background() {
+      var back = "card-back";
+      var sts = this.dataLoad.status;
+
+      return back + "--" + sts;
+    },
     progress() {
       var el = {};
       var date_fin_proposer = moment.unix(this.dataLoad.date_fin_proposer);
@@ -377,13 +385,16 @@ export default {
   &--memos {
     border-left-color: rgb(21, 223, 238);
   }
+  &--ressource {
+    border-left-color: rgb(25, 41, 92);
+  }
   &--tache {
     border-left-color: rgb(238, 214, 34);
   }
   &--bug {
     border-left-color: rgb(245, 71, 40);
   }
-  &--a-faire {
+  &--a_faire {
     border-left-color: rgb(180, 91, 225);
   }
   &--test {
@@ -398,7 +409,47 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-
+.card-block {
+  border-right: 0;
+  .card-header {
+    z-index: 1;
+    border-top: 0;
+    border-bottom: 0;
+  }
+  .card-body {
+    padding-bottom: 0;
+  }
+  .card {
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 1px solid #b5b5b5;
+    border-top-color: rgba(245, 245, 245, 1);
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: -21px;
+      height: 2px;
+      width: 19%;
+      background: #b5b5b5;
+    }
+  }
+}
+.card-back {
+  &--0 {
+    background: white;
+  }
+  &--1 {
+    background: #d0d0d0f7;
+  }
+  &--2 {
+    background: #f5f0d6;
+  }
+  &--3 {
+    background: #f9eae4;
+  }
+}
 .card-prog {
   margin-right: 5px;
   margin-left: auto;
