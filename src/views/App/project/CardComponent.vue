@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <CCard>
@@ -858,5 +857,4 @@ export default {
   width: 15%;
 }
 </style>
->>>>>>> 50c1963d302486def39dede06c098263984f8081
->>>>>>> steph
+>>>>>>> 50c1963d302486def39dede06c098263984f8081 >>>>>>> steph
