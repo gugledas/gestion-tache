@@ -5,7 +5,7 @@
       <slot></slot>
     </CBreadcrumb>
     -->
-    <CBreadcrumb :items="links" class="border-0 mb-0 ">
+    <CBreadcrumb :items="links" class="border-0 mb-0">
       <slot></slot>
     </CBreadcrumb>
   </div>
@@ -18,16 +18,16 @@ import Utilities from "./Utilities";
 export default {
   name: "Breadcrumb",
   components: {
-    CBreadcrumb
+    CBreadcrumb,
   },
   props: {
     addClasses: [String, Array, Object],
     addLinkClasses: [String, Array, Object],
-    addLastItemClasses: [String, Array, Object]
+    addLastItemClasses: [String, Array, Object],
   },
   data() {
     return {
-      customRoute: []
+      customRoute: [],
     };
   },
   computed: {
@@ -36,15 +36,15 @@ export default {
       if (this.$route.params.idcontents) {
         trueRoute = "/projets";
       }
-      const routes = this.$route.matched.filter(route => {
+      const routes = this.$route.matched.filter((route) => {
         return route.name || (route.meta && route.meta.label);
       });
       // Ajout des routes par defaut.
-      return routes.map(route => {
+      return routes.map((route) => {
         const meta = route.meta || {};
         return {
           to: trueRoute,
-          text: meta.label || route.name
+          text: meta.label || route.name,
         };
       });
     },
@@ -53,23 +53,23 @@ export default {
         items: this.links,
         addClasses: this.addClasses,
         addLinkClasses: this.addLinkClasses,
-        addLastItemClasses: this.addLastItemClasses
+        addLastItemClasses: this.addLastItemClasses,
       };
     },
     links() {
       var elts = [];
       if (this.items.length) {
-        this.items.forEach(item => {
+        this.items.forEach((item) => {
           elts.push(item);
         });
       }
       if (this.customRoute.length) {
-        this.customRoute.forEach(item => {
+        this.customRoute.forEach((item) => {
           elts.push(item);
         });
       }
       return elts;
-    }
+    },
   },
   mounted() {
     this.GetCustomRoute(this.$route);
@@ -77,18 +77,18 @@ export default {
   watch: {
     $route(to) {
       this.GetCustomRoute(to);
-    }
+    },
   },
   methods: {
     GetCustomRoute(to) {
       //console.log("to : ", to.params.idcontents);
       this.customRoute = [];
       if (to.params.idcontents) {
-        Utilities.GetCrumbs(to.params.idcontents).then(rep => {
+        Utilities.GetCrumbs(to.params.idcontents).then((rep) => {
           this.customRoute = rep;
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>

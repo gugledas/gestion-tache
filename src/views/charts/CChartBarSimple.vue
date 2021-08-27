@@ -17,18 +17,18 @@ export default {
     ...CChartBar.props,
     backgroundColor: {
       type: String,
-      default: "rgba(0,0,0,.2)"
+      default: "rgba(0,0,0,.2)",
     },
     pointHoverBackgroundColor: String,
     dataPoints: {
       type: Array,
-      default: () => [10, 22, 34, 46, 58, 70, 46, 23, 45, 78, 34, 12]
+      default: () => [10, 22, 34, 46, 58, 70, 46, 23, 45, 78, 34, 12],
     },
     label: {
       type: String,
-      default: "Sales"
+      default: "Sales",
     },
-    pointed: Boolean
+    pointed: Boolean,
   },
   computed: {
     defaultDatasets() {
@@ -39,28 +39,28 @@ export default {
           pointHoverBackgroundColor: getColor(this.pointHoverBackgroundColor),
           label: this.label,
           barPercentage: 0.5,
-          categoryPercentage: 1
-        }
+          categoryPercentage: 1,
+        },
       ];
     },
     defaultOptions() {
       return {
         maintainAspectRatio: false,
         legend: {
-          display: false
+          display: false,
         },
         scales: {
           xAxes: [
             {
-              display: false
-            }
+              display: false,
+            },
           ],
           yAxes: [
             {
-              display: false
-            }
-          ]
-        }
+              display: false,
+            },
+          ],
+        },
       };
     },
     computedDatasets() {
@@ -68,7 +68,7 @@ export default {
     },
     computedOptions() {
       return deepObjectsMerge(this.defaultOptions, this.options || {});
-    }
-  }
+    },
+  },
 };
 </script>

@@ -30,7 +30,7 @@
       'Th',
       'Fr',
       'Sa',
-      'Su'
+      'Su',
     ]"
   />
 </template>
@@ -46,7 +46,7 @@ function random(min, max) {
 export default {
   name: "MainChartExample",
   components: {
-    CChartLine
+    CChartLine,
   },
   computed: {
     defaultDatasets() {
@@ -71,7 +71,7 @@ export default {
           borderColor: brandInfo,
           pointHoverBackgroundColor: brandInfo,
           borderWidth: 2,
-          data: data1
+          data: data1,
         },
         {
           label: "My Second dataset",
@@ -79,7 +79,7 @@ export default {
           borderColor: brandSuccess,
           pointHoverBackgroundColor: brandSuccess,
           borderWidth: 2,
-          data: data2
+          data: data2,
         },
         {
           label: "My Third dataset",
@@ -88,23 +88,23 @@ export default {
           pointHoverBackgroundColor: brandDanger,
           borderWidth: 1,
           borderDash: [8, 5],
-          data: data3
-        }
+          data: data3,
+        },
       ];
     },
     defaultOptions() {
       return {
         maintainAspectRatio: false,
         legend: {
-          display: false
+          display: false,
         },
         scales: {
           xAxes: [
             {
               gridLines: {
-                drawOnChartArea: false
-              }
-            }
+                drawOnChartArea: false,
+              },
+            },
           ],
           yAxes: [
             {
@@ -112,24 +112,24 @@ export default {
                 beginAtZero: true,
                 maxTicksLimit: 5,
                 stepSize: Math.ceil(250 / 5),
-                max: 250
+                max: 250,
               },
               gridLines: {
-                display: true
-              }
-            }
-          ]
+                display: true,
+              },
+            },
+          ],
         },
         elements: {
           point: {
             radius: 0,
             hitRadius: 10,
             hoverRadius: 4,
-            hoverBorderWidth: 3
-          }
-        }
+            hoverBorderWidth: 3,
+          },
+        },
       };
-    }
-  }
+    },
+  },
 };
 </script>

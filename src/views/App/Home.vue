@@ -9,9 +9,7 @@
       </CCol>
       <CCol md="5">
         <CCard>
-          <CCardHeader>
-            General
-          </CCardHeader>
+          <CCardHeader> General </CCardHeader>
           <CCardBody><CChartPieExample /></CCardBody>
         </CCard>
       </CCol>
@@ -34,7 +32,7 @@
           </CCardHeader>
           <CCardBody class="table-responsive">
             <CDataTable
-              class="m-0  table-borderless "
+              class="m-0 table-borderless"
               hover
               :responsive="false"
               :items="tableItems"
@@ -46,7 +44,7 @@
               <td slot="user" slot-scope="{ item }">
                 <CLink
                   :to="{
-                    path: 'projets/' + item.user.name
+                    path: 'projets/' + item.user.name,
                   }"
                   class="text-decoration-none"
                 >
@@ -88,7 +86,7 @@
                     shape="pill"
                     size="sm"
                     class="mx-2"
-                    ><CIcon name="cilList" class="mr-1 text-info "></CIcon
+                    ><CIcon name="cilList" class="mr-1 text-info"></CIcon
                   ></CButton>
                   <CButton
                     color="primary"
@@ -96,7 +94,7 @@
                     shape="pill"
                     size="sm"
                     class="mx-2"
-                    ><CIcon name="cilFolder" class="mr-1 text-info "></CIcon
+                    ><CIcon name="cilFolder" class="mr-1 text-info"></CIcon
                   ></CButton>
                   <CButton
                     color="primary"
@@ -104,7 +102,7 @@
                     shape="pill"
                     size="sm"
                     class="mx-2"
-                    ><CIcon name="cilPlus" class="mr-1 text-info "></CIcon
+                    ><CIcon name="cilPlus" class="mr-1 text-info"></CIcon
                   ></CButton>
                 </CRow>
               </td>
@@ -126,7 +124,7 @@ export default {
   components: {
     ...Charts,
     CTableWrapper,
-    AddNewProject
+    AddNewProject,
   },
   data() {
     return {
@@ -138,43 +136,43 @@ export default {
           user: {
             name: "Agapetus Tadeáš",
             new: true,
-            registered: "Jan 1, 2015"
+            registered: "Jan 1, 2015",
           },
           usage: { value: 22, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
+          activity: "Last week",
         },
         {
           avatar: { url: "img/avatars/6.jpg", status: "danger" },
           user: {
             name: "Friderik Dávid",
             new: true,
-            registered: "Jan 1, 2015"
+            registered: "Jan 1, 2015",
           },
           usage: { value: 43, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
+          activity: "Last week",
         },
         {
           avatar: { url: "img/avatars/6.jpg", status: "danger" },
           user: {
             name: "Dávid Raplang",
             new: true,
-            registered: "Jan 1, 2015"
+            registered: "Jan 1, 2015",
           },
           usage: { value: 73, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
+          activity: "Last week",
         },
         {
           avatar: { url: "img/avatars/6.jpg", status: "danger" },
           user: {
             name: "Rsichard Dávid",
             new: true,
-            registered: "Jan 1, 2015"
+            registered: "Jan 1, 2015",
           },
           usage: { value: 13, period: "Jun 11, 2015 - Jul 10, 2015" },
-          activity: "Last week"
-        }
+          activity: "Last week",
+        },
       ],
-      tableFields: [{ key: "user" }, { key: "usage" }, { key: "activity" }]
+      tableFields: [{ key: "user" }, { key: "usage" }, { key: "activity" }],
     };
   },
   methods: {
@@ -203,8 +201,8 @@ export default {
 
     getShuffledUsersData() {
       return this.shuffleArray(usersData.slice(0));
-    }
-  }
+    },
+  },
 };
 </script>
 

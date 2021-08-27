@@ -28,7 +28,7 @@
           class="option__desc d-inline-flex flex-column align-items-start"
         >
           <span class="option__title mb-2">
-            <CIcon name="cilFolder" class="mr-1 text-info "></CIcon>
+            <CIcon name="cilFolder" class="mr-1 text-info"></CIcon>
             {{ props.option.titre }}
           </span>
           <div class="d-flex aling-items-center">
@@ -49,9 +49,9 @@
           class="option__desc d-inline-flex flex-column align-items-start"
         >
           <span class="option__title mb-2">
-            <CIcon name="cilFolder" class="mr-1 text-dark "></CIcon>
+            <CIcon name="cilFolder" class="mr-1 text-dark"></CIcon>
             {{ props.option.titre }}
-            <small class="text-dark  p-1 mt-2 ml-2 text-type">{{
+            <small class="text-dark p-1 mt-2 ml-2 text-type">{{
               props.option.type
             }}</small>
           </span>
@@ -74,8 +74,8 @@ export default {
   props: {
     styled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   components: { Multiselect },
   data() {
@@ -85,7 +85,7 @@ export default {
       options: ["list", "of", "options"],
       project: [],
       isLoading: false,
-      timer: null
+      timer: null,
     };
   },
   mounted() {
@@ -101,7 +101,7 @@ export default {
         }
       }
       return tab;
-    }
+    },
   },
   methods: {
     ParentSelected(data) {
@@ -115,7 +115,7 @@ export default {
         this.value = value;
         var self = this;
         clearTimeout(self.timer);
-        self.timer = setTimeout(function() {
+        self.timer = setTimeout(function () {
           self.LoadProjectData();
         }, 1500);
       }
@@ -125,7 +125,7 @@ export default {
       this.isLoading = true;
       config
         .post("/gestion-project/search?key=" + this.value, { level: 0 })
-        .then(reponse => {
+        .then((reponse) => {
           if (reponse.status) {
             if (reponse) {
               this.project = reponse.data;
@@ -134,11 +134,11 @@ export default {
           }
           this.isLoading = false;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log("error", error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

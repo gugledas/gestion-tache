@@ -22,7 +22,7 @@
     </div>
     <hr />
 
-    <div class="pl-sm-2 ">
+    <div class="pl-sm-2">
       <CRow
         :gutters="false"
         class="form-group"
@@ -51,7 +51,7 @@
       </CRow>
       <CRow v-if="postData.type !== 'memos'">
         <CCol col="12" lg="6">
-          <CRow class=" ">
+          <CRow class="">
             <CInput
               label="Debut:"
               type="date"
@@ -64,7 +64,7 @@
               v-model="postData.heure_debut"
               :readonly="postData.date_fin_reel > 0 ? true : false"
               type="time"
-              class="col-8 ml-sm-0 pl-sm-0 col-sm-5 "
+              class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
               horizontal
             />
           </CRow>
@@ -82,7 +82,7 @@
               v-model="postData.heure_fin"
               :readonly="postData.date_fin_reel > 0 ? true : false"
               type="time"
-              class="col-8 ml-sm-0 pl-sm-0 col-sm-5 "
+              class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
               horizontal
             />
           </CRow>
@@ -145,21 +145,21 @@ export default {
   props: {
     formValues: {
       type: [Object],
-      required: true
+      required: true,
     },
     btnState: {
       type: Object,
-      default: function() {
+      default: function () {
         return { state: false };
-      }
+      },
     },
     level: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   components: {
-    ckeditor: CKEditor.component
+    ckeditor: CKEditor.component,
   },
   data() {
     return {
@@ -177,7 +177,7 @@ export default {
         clientName: "",
         titre: "",
         price: "",
-        text: ""
+        text: "",
       },
       fHeure: "",
       dHeure: "",
@@ -194,28 +194,28 @@ export default {
           config.baseUrl +
           "/modules/custom/gestion_tache/files/gestionTache.css'; body{margin:1em !important; background: #FFF;}",
         on: {
-          instanceReady: function() {
+          instanceReady: function () {
             // Output paragraphs as <p>Text</p>.
             this.dataProcessor.writer.setRules("p", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: true,
-              breakAfterClose: true
+              breakAfterClose: true,
             });
             this.dataProcessor.writer.setRules("img", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             this.dataProcessor.writer.setRules("h1", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
 
             this.dataProcessor.writer.setRules("h2", {
@@ -223,45 +223,45 @@ export default {
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             this.dataProcessor.writer.setRules("h3", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             this.dataProcessor.writer.setRules("h4", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             this.dataProcessor.writer.setRules("h5", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             this.dataProcessor.writer.setRules("h6", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             this.dataProcessor.writer.setRules("div", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: true,
               breakBeforeClose: true,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
-          }
-        }
+          },
+        },
       },
       options: [
         // { value: "project", label: "Projet" },
@@ -272,25 +272,25 @@ export default {
         { value: "0", label: "New" },
         { value: "2", label: "Encours" },
         { value: "1", label: "Terminé" },
-        { value: "3", label: "Annulé" }
-      ]
+        { value: "3", label: "Annulé" },
+      ],
     };
   },
   mounted() {
-    ProjectOptionsType.loadType().then(reponse => {
+    ProjectOptionsType.loadType().then((reponse) => {
       this.options = reponse;
     });
   },
   watch: {
     formValues: {
       deep: true,
-      handler: function(val) {
+      handler: function (val) {
         //console.log("val : ", val);
         Utilities.fomatVal(val, this.postData).then(() => {});
         console.log("result :", this.postData, this.fHeure);
         console.log("debut heure : ", this.dHeure);
-      }
-    }
+      },
+    },
   },
   computed: {
     dureeProjet() {
@@ -330,7 +330,7 @@ export default {
     ser() {
       var newDiv = document.createElement("div");
       newDiv.innerHTML = this.editorData;
-      newDiv.querySelectorAll("pre code").forEach(block => {
+      newDiv.querySelectorAll("pre code").forEach((block) => {
         hljs.highlightBlock(block);
       });
 
@@ -342,12 +342,12 @@ export default {
       if (!window.location.host.includes("localhost--")) {
         return {
           extraPlugins: extraPlugins + ",quickuploader",
-          ...this.preEditorConfig
+          ...this.preEditorConfig,
         };
       } else {
         return {
           extraPlugins: extraPlugins,
-          ...this.preEditorConfig
+          ...this.preEditorConfig,
         };
       }
     },
@@ -362,7 +362,7 @@ export default {
       }
       //console.log("rs", rs);
       return rs;
-    }
+    },
   },
   methods: {
     onNamespaceLoaded(CKEDITOR) {
@@ -419,18 +419,18 @@ export default {
     },
     EditProject() {
       Utilities.formatData(this.postData, this.dHeure, this.fHeure).then(
-        reponse => {
+        (reponse) => {
           //console.log(" EditProject : ", reponse);
           config
             .post("/gestion-project/save-update", reponse)
-            .then(reponse => {
+            .then((reponse) => {
               if (reponse.status) {
                 //console.log("data after edit :", reponse);
                 this.$emit("edition-ok", reponse);
               }
               this.isLoading = false;
             })
-            .catch(function(error) {
+            .catch(function (error) {
               console.log("error", error);
             });
         }
@@ -446,7 +446,7 @@ export default {
       rest.push({
         idcontents: id,
         date_depart_proposer: ddp,
-        date_fin_proposer: dfp
+        date_fin_proposer: dfp,
         // date_fin_reel: "reelD",
         // status: status,
         // temps_pause: "temps_pause",
@@ -464,7 +464,7 @@ export default {
         fields: {
           text: data.text,
           titre: data.titre,
-          type: data.type
+          type: data.type,
         },
         childstable: {
           colum_id_name: "idcontents",
@@ -474,40 +474,42 @@ export default {
               fields: {
                 date_depart_proposer: ddp,
                 date_fin_proposer: dfp,
-                status: state
-              }
+                status: state,
+              },
             },
             {
               table: "gestion_project_hierachie",
               fields: {
                 idcontentsparent: idc,
-                ordre: 0
-              }
-            }
-          ]
-        }
+                ordre: 0,
+              },
+            },
+          ],
+        },
       });
       return result;
     },
     PostNewProject(idc) {
-      Utilities.formatAddData(this.postData, idc, this.level).then(reponse => {
-        console.log("created", reponse);
+      Utilities.formatAddData(this.postData, idc, this.level).then(
+        (reponse) => {
+          console.log("created", reponse);
 
-        config
-          .post("/gestion-project/save-update", reponse)
-          .then(reponse => {
-            if (reponse.status) {
-              this.request = reponse.data[0];
-              this.$emit("addnew-ok");
-            }
-            this.isLoading = false;
-          })
-          .catch(function(error) {
-            console.log("error", error);
-          });
-      });
-    }
-  }
+          config
+            .post("/gestion-project/save-update", reponse)
+            .then((reponse) => {
+              if (reponse.status) {
+                this.request = reponse.data[0];
+                this.$emit("addnew-ok");
+              }
+              this.isLoading = false;
+            })
+            .catch(function (error) {
+              console.log("error", error);
+            });
+        }
+      );
+    },
+  },
 };
 </script>
 

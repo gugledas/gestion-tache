@@ -26,7 +26,7 @@
             </CButtonGroup>
           </CCol>
         </CRow>
-        <MainChartExample style="height:300px;margin-top:40px;" />
+        <MainChartExample style="height: 300px; margin-top: 40px" />
       </CCardBody>
       <CCardFooter>
         <CRow class="text-center">
@@ -82,9 +82,7 @@
     <CRow>
       <CCol md="12">
         <CCard>
-          <CCardHeader>
-            Traffic &amp; Sales
-          </CCardHeader>
+          <CCardHeader> Traffic &amp; Sales </CCardHeader>
           <CCardBody>
             <CRow>
               <CCol sm="12" lg="6">
@@ -105,9 +103,7 @@
                 <hr class="mt-0" />
                 <div class="progress-group mb-4">
                   <div class="progress-group-prepend">
-                    <span class="progress-group-text">
-                      Monday
-                    </span>
+                    <span class="progress-group-text"> Monday </span>
                   </div>
                   <div class="progress-group-bars">
                     <CProgress class="progress-xs" color="info" :value="34" />
@@ -116,9 +112,7 @@
                 </div>
                 <div class="progress-group mb-4">
                   <div class="progress-group-prepend">
-                    <span class="progress-group-text">
-                      Tuesday
-                    </span>
+                    <span class="progress-group-text"> Tuesday </span>
                   </div>
                   <div class="progress-group-bars">
                     <CProgress class="progress-xs" :value="56" color="info" />
@@ -127,9 +121,7 @@
                 </div>
                 <div class="progress-group mb-4">
                   <div class="progress-group-prepend">
-                    <span class="progress-group-text">
-                      Wednesday
-                    </span>
+                    <span class="progress-group-text"> Wednesday </span>
                   </div>
                   <div class="progress-group-bars">
                     <CProgress class="progress-xs" :value="12" color="info" />
@@ -138,9 +130,7 @@
                 </div>
                 <div class="progress-group mb-4">
                   <div class="progress-group-prepend">
-                    <span class="progress-group-text">
-                      Thursday
-                    </span>
+                    <span class="progress-group-text"> Thursday </span>
                   </div>
                   <div class="progress-group-bars">
                     <CProgress class="progress-xs" :value="43" color="info" />
@@ -149,9 +139,7 @@
                 </div>
                 <div class="progress-group mb-4">
                   <div class="progress-group-prepend">
-                    <span class="progress-group-text">
-                      Friday
-                    </span>
+                    <span class="progress-group-text"> Friday </span>
                   </div>
                   <div class="progress-group-bars">
                     <CProgress class="progress-xs" :value="22" color="info" />
@@ -160,9 +148,7 @@
                 </div>
                 <div class="progress-group mb-4">
                   <div class="progress-group-prepend">
-                    <span class="progress-group-text">
-                      Saturday
-                    </span>
+                    <span class="progress-group-text"> Saturday </span>
                   </div>
                   <div class="progress-group-bars">
                     <CProgress class="progress-xs" :value="53" color="info" />
@@ -171,9 +157,7 @@
                 </div>
                 <div class="progress-group mb-4">
                   <div class="progress-group-prepend">
-                    <span class="progress-group-text">
-                      Sunday
-                    </span>
+                    <span class="progress-group-text"> Sunday </span>
                   </div>
                   <div class="progress-group-bars">
                     <CProgress class="progress-xs" :value="9" color="info" />
@@ -394,7 +378,7 @@ export default {
   components: {
     MainChartExample,
     WidgetsDropdown,
-    WidgetsBrand
+    WidgetsBrand,
   },
   data() {
     return {
@@ -405,24 +389,24 @@ export default {
           user: {
             name: "Yiorgos Avraamu",
             new: true,
-            registered: "Jan 1, 2015"
+            registered: "Jan 1, 2015",
           },
           country: { name: "USA", flag: "cif-us" },
           usage: { value: 50, period: "Jun 11, 2015 - Jul 10, 2015" },
           payment: { name: "Mastercard", icon: "cib-cc-mastercard" },
-          activity: "10 sec ago"
+          activity: "10 sec ago",
         },
         {
           avatar: { url: "img/avatars/2.jpg", status: "danger" },
           user: {
             name: "Avram Tarasios",
             new: false,
-            registered: "Jan 1, 2015"
+            registered: "Jan 1, 2015",
           },
           country: { name: "Brazil", flag: "cif-br" },
           usage: { value: 22, period: "Jun 11, 2015 - Jul 10, 2015" },
           payment: { name: "Visa", icon: "cib-cc-visa" },
-          activity: "5 minutes ago"
+          activity: "5 minutes ago",
         },
         {
           avatar: { url: "img/avatars/3.jpg", status: "warning" },
@@ -430,7 +414,7 @@ export default {
           country: { name: "India", flag: "cif-in" },
           usage: { value: 74, period: "Jun 11, 2015 - Jul 10, 2015" },
           payment: { name: "Stripe", icon: "cib-stripe" },
-          activity: "1 hour ago"
+          activity: "1 hour ago",
         },
         {
           avatar: { url: "img/avatars/4.jpg", status: "" },
@@ -438,32 +422,32 @@ export default {
           country: { name: "France", flag: "cif-fr" },
           usage: { value: 98, period: "Jun 11, 2015 - Jul 10, 2015" },
           payment: { name: "PayPal", icon: "cib-paypal" },
-          activity: "Last month"
+          activity: "Last month",
         },
         {
           avatar: { url: "img/avatars/5.jpg", status: "success" },
           user: {
             name: "Agapetus Tadeáš",
             new: true,
-            registered: "Jan 1, 2015"
+            registered: "Jan 1, 2015",
           },
           country: { name: "Spain", flag: "cif-es" },
           usage: { value: 22, period: "Jun 11, 2015 - Jul 10, 2015" },
           payment: { name: "Google Wallet", icon: "cib-google-pay" },
-          activity: "Last week"
+          activity: "Last week",
         },
         {
           avatar: { url: "img/avatars/6.jpg", status: "danger" },
           user: {
             name: "Friderik Dávid",
             new: true,
-            registered: "Jan 1, 2015"
+            registered: "Jan 1, 2015",
           },
           country: { name: "Poland", flag: "cif-pl" },
           usage: { value: 43, period: "Jun 11, 2015 - Jul 10, 2015" },
           payment: { name: "Amex", icon: "cib-cc-amex" },
-          activity: "Last week"
-        }
+          activity: "Last week",
+        },
       ],
       tableFields: [
         { key: "avatar", label: "", _classes: "text-center" },
@@ -471,8 +455,8 @@ export default {
         { key: "country", _classes: "text-center" },
         { key: "usage" },
         { key: "payment", label: "Payment method", _classes: "text-center" },
-        { key: "activity" }
-      ]
+        { key: "activity" },
+      ],
     };
   },
   methods: {
@@ -488,7 +472,7 @@ export default {
         $color = "danger";
       }
       return $color;
-    }
-  }
+    },
+  },
 };
 </script>

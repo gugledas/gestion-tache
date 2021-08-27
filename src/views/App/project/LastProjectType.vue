@@ -7,7 +7,7 @@
       </CCardHeader>
       <CCardBody class="">
         <CDataTable
-          class="m-0  table-borderless "
+          class="m-0 table-borderless"
           hover
           :responsive="false"
           :loading="isLoading"
@@ -24,7 +24,7 @@
             <div>
               <CLink
                 :to="{
-                  path: 'projets/' + item.idcontents
+                  path: 'projets/' + item.idcontents,
                 }"
                 class="text-decoration-none"
               >
@@ -64,7 +64,7 @@
                 shape="pill"
                 size="sm"
                 class="mx-3"
-                ><CIcon name="cilList" class="mr-1 text-info "></CIcon
+                ><CIcon name="cilList" class="mr-1 text-info"></CIcon
               ></CLink>
               <!-- <CButton
                 color="primary"
@@ -96,7 +96,7 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     // isLoading: {
     //   type: Boolean,
@@ -105,18 +105,18 @@ export default {
     title: {
       type: String,
       required: true,
-      default: "title"
-    }
+      default: "title",
+    },
   },
   data() {
     return {
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" }
+        { key: "activity", _style: "width:600px;" },
       ],
       isLoading: true,
-      items: []
+      items: [],
     };
   },
   mounted() {
@@ -127,14 +127,14 @@ export default {
       if (this.name.length) {
         var opt = [{ column: "c.type", operator: "=", value: this.name }];
         this.isLoading2 = true;
-        SelectDb.selectDatas(opt).then(response => {
+        SelectDb.selectDatas(opt).then((response) => {
           console.log("name", this.name);
           this.items = response;
           this.isLoading = false;
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

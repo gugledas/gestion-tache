@@ -45,7 +45,7 @@ export default {
   props: {},
   components: {
     ...Charts,
-    LastProjectType
+    LastProjectType,
   },
   data() {
     return {
@@ -57,7 +57,7 @@ export default {
       itemsProject: [],
       itemsTache: [],
       itemsMemos: [],
-      projectType: []
+      projectType: [],
     };
   },
   mounted() {
@@ -79,11 +79,11 @@ export default {
         }
       }
       return result;
-    }
+    },
   },
   methods: {
     LoadProjectType() {
-      SelectDb.selectTypes().then(response => {
+      SelectDb.selectTypes().then((response) => {
         console.log("type : ", response);
         this.projectType = response;
       });
@@ -94,7 +94,7 @@ export default {
     LoadMemosData() {
       var opt = [{ column: "c.type", operator: "=", value: "memos" }];
       this.isLoading2 = true;
-      SelectDb.selectDatas(opt).then(response => {
+      SelectDb.selectDatas(opt).then((response) => {
         this.itemsMemos = response;
         this.isLoading2 = false;
       });
@@ -102,7 +102,7 @@ export default {
     LoadTacheData() {
       var opt = [{ column: "c.type", operator: "=", value: "tache" }];
       this.isLoading1 = true;
-      SelectDb.selectDatas(opt).then(response => {
+      SelectDb.selectDatas(opt).then((response) => {
         this.itemsTache = response;
         this.isLoading1 = false;
       });
@@ -110,7 +110,7 @@ export default {
     // Request for Loading project data on DB
     LoadProjectData() {
       this.isLoading = true;
-      SelectDb.selectDatas().then(response => {
+      SelectDb.selectDatas().then((response) => {
         this.tableItems = response;
         this.itemsProject = response;
         this.isLoading = false;
@@ -141,8 +141,8 @@ export default {
 
     getShuffledUsersData() {
       return this.shuffleArray(usersData.slice(0));
-    }
-  }
+    },
+  },
 };
 </script>
 

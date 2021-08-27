@@ -36,17 +36,17 @@ import CLink from "@coreui/vue/src/components/link/CLink";
 export default {
   name: "CBreadcrumb",
   components: {
-    CLink
+    CLink,
   },
   props: {
     items: Array,
     addClasses: [String, Array, Object],
     addLinkClasses: [String, Array, Object],
-    addLastItemClasses: [String, Array, Object]
+    addLastItemClasses: [String, Array, Object],
   },
   data() {
     return {
-      siteName: "Gestion des projets"
+      siteName: "Gestion des projets",
     };
   },
   computed: {
@@ -64,7 +64,7 @@ export default {
         "active",
         this.lastItem.addClasses,
         this.sharedClasses,
-        this.addLastItemClasses
+        this.addLastItemClasses,
       ];
     },
     docTitle() {
@@ -74,7 +74,7 @@ export default {
       } else {
         return this.siteName;
       }
-    }
-  }
+    },
+  },
 };
 </script>

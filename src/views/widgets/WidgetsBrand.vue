@@ -129,11 +129,11 @@ import { CChartLineSimple } from "../charts/index.js";
 export default {
   name: "WidgetsBrand",
   components: {
-    CChartLineSimple
+    CChartLineSimple,
   },
   props: {
-    noCharts: Boolean
-  }
+    noCharts: Boolean,
+  },
 };
 </script>
 

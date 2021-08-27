@@ -3,14 +3,14 @@ const Utilities = {
   /**
    * Recupere les projets parents pour le project en cours.
    */
-  GetCrumbs: function(project, result = []) {
-    return new Promise(resolv => {
+  GetCrumbs: function (project, result = []) {
+    return new Promise((resolv) => {
       config
         .post("/gestion-project/select/get-crumb", project)
-        .then(response => {
+        .then((response) => {
           if (response.status) {
             response.data.reverse();
-            response.data.forEach(item => {
+            response.data.forEach((item) => {
               result.push(this.formatTocrumb(item));
             });
             console.log(" customRoute :: ", result);
@@ -24,8 +24,8 @@ const Utilities = {
   formatTocrumb(project) {
     return {
       to: "/projets/" + project.idcontents,
-      text: project.titre
+      text: project.titre,
     };
-  }
+  },
 };
 export default Utilities;

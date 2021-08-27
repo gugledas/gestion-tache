@@ -6,7 +6,7 @@
     :show.sync="modalLastStatus"
   >
     <CDataTable
-      class="m-0  table-borderless "
+      class="m-0 table-borderless"
       hover
       responsive
       :items="itemsTache"
@@ -21,7 +21,7 @@
       <td slot="user" slot-scope="{ item }">
         <CLink
           :to="{
-            path: 'projets/' + item.idcontents
+            path: 'projets/' + item.idcontents,
           }"
           class="text-decoration-none"
         >
@@ -80,8 +80,8 @@ export default {
     modalLast: {
       type: Boolean,
       required: true,
-      default: false
-    }
+      default: false,
+    },
   },
   components: {
     //
@@ -92,8 +92,8 @@ export default {
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" }
-      ]
+        { key: "activity", _style: "width:600px;" },
+      ],
     };
   },
   mounted() {
@@ -109,18 +109,18 @@ export default {
       },
       set(val) {
         this.$emit("update-modal", val);
-      }
-    }
+      },
+    },
   },
   methods: {
     LoadTacheData() {
       this.isLoading = true;
-      SelectDb.SelectTacheEnours().then(response => {
+      SelectDb.SelectTacheEnours().then((response) => {
         this.itemsTache = response;
         this.isLoading = false;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

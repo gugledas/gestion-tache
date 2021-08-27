@@ -3,10 +3,10 @@ export default {
   /**
    * selectionne un enssemble de données à partir d'une requette personnalisé
    */
-  selectDatas: function(
+  selectDatas: function (
     where = [{ column: "c.type", operator: "=", value: "project" }]
   ) {
-    return new Promise(resolv => {
+    return new Promise((resolv) => {
       var query = "";
       query += " select ";
       query += " c.idcontents, c.text, c.titre, c.created_at, ";
@@ -35,7 +35,7 @@ export default {
       query += " ORDER BY  c.`idcontents` DESC";
       query += " limit 0,50 ";
       //console.log("query :: ", query);
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -45,14 +45,14 @@ export default {
       });
     });
   },
-  selectTypes: function() {
-    return new Promise(resolv => {
+  selectTypes: function () {
+    return new Promise((resolv) => {
       var query = "";
       query += " select * ";
       query += " from ";
       query += this.formatStringTable("gestion_project_type");
       query += " limit 0,50 ";
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -63,8 +63,8 @@ export default {
     });
   },
 
-  selectProject: function(where) {
-    return new Promise(resolv => {
+  selectProject: function (where) {
+    return new Promise((resolv) => {
       var query = "";
       query += " select * ";
       query += " from ";
@@ -83,7 +83,7 @@ export default {
             " ";
         }
       }
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -94,8 +94,8 @@ export default {
     });
   },
 
-  selectFatureList: function(where) {
-    return new Promise(resolv => {
+  selectFatureList: function (where) {
+    return new Promise((resolv) => {
       var query = "";
       query += " select * ";
       query += " from ";
@@ -114,7 +114,7 @@ export default {
             " ";
         }
       }
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -125,8 +125,8 @@ export default {
     });
   },
 
-  selectInvoice: function(where) {
-    return new Promise(resolv => {
+  selectInvoice: function (where) {
+    return new Promise((resolv) => {
       var query = "";
       query += " select * ";
       query += " from ";
@@ -145,7 +145,7 @@ export default {
             " ";
         }
       }
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -156,8 +156,8 @@ export default {
     });
   },
 
-  selectClients: function(where) {
-    return new Promise(resolv => {
+  selectClients: function (where) {
+    return new Promise((resolv) => {
       var query = "";
       query += " select * ";
       query += " from ";
@@ -177,7 +177,7 @@ export default {
         }
       }
       query += " limit 0,50 ";
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -188,8 +188,8 @@ export default {
     });
   },
 
-  selectSte: function(where) {
-    return new Promise(resolv => {
+  selectSte: function (where) {
+    return new Promise((resolv) => {
       var query = "";
       query += " select * ";
       query += " from ";
@@ -209,7 +209,7 @@ export default {
         }
       }
       query += " limit 0,50 ";
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -220,14 +220,14 @@ export default {
     });
   },
 
-  selectClient: function(table) {
-    return new Promise(resolv => {
+  selectClient: function (table) {
+    return new Promise((resolv) => {
       var query = "";
       query += " select * ";
       query += " from ";
       query += this.formatStringTable(table);
       query += " limit 0,50 ";
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -238,15 +238,15 @@ export default {
     });
   },
   //selectionne et affiche les derniers données modifié
-  selectAll: function() {
-    return new Promise(resolv => {
+  selectAll: function () {
+    return new Promise((resolv) => {
       var query = "";
       query += " select * ";
       query += " from ";
       query += this.formatStringTable("gestion_project_contents");
       query += " order by update_at DESC ";
       query += " limit 0,50 ";
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -256,10 +256,10 @@ export default {
       });
     });
   },
-  SelectTacheEnours: function(
+  SelectTacheEnours: function (
     where = [{ column: "t.status", operator: "=", value: 2 }]
   ) {
-    return new Promise(resolv => {
+    return new Promise((resolv) => {
       var query = "";
       query += " select ";
       query += " c.idcontents, c.text, c.titre, c.created_at, ";
@@ -292,7 +292,7 @@ export default {
       query += " ORDER BY  c.`idcontents` DESC";
       query += " limit 0,50 ";
       //console.log("query :: ", query);
-      config.post("/gestion-project/select", query).then(reponse => {
+      config.post("/gestion-project/select", query).then((reponse) => {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -307,5 +307,5 @@ export default {
    */
   formatStringTable(table) {
     return "{" + table + "}";
-  }
+  },
 };

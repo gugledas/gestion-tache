@@ -1,6 +1,6 @@
 <template lang="html">
   <div :check-valid-form="checkForSave">
-    <div class="pl-sm-2 ">
+    <div class="pl-sm-2">
       <CRow>
         <CCol sm="6">
           <CInput
@@ -95,20 +95,20 @@ export default {
     },
     btnState: {
       type: Object,
-      default: function() {
+      default: function () {
         return { state: false };
-      }
+      },
     },
     modalType: {
       type: Boolean,
-      default: true
+      default: true,
     },
     selectOption: {
       type: Array,
-      default: function() {
+      default: function () {
         return [];
-      }
-    }
+      },
+    },
   },
   components: {},
   data() {
@@ -123,12 +123,12 @@ export default {
         adresse: "",
         phone: "",
         uid: "0",
-        idsociete: ""
+        idsociete: "",
       },
 
       wasValidated: null,
       showInputRaison: false,
-      eValidated: null
+      eValidated: null,
     };
   },
   mounted() {
@@ -137,12 +137,12 @@ export default {
   watch: {
     formValues: {
       deep: true,
-      handler: function(val) {
+      handler: function (val) {
         if (val.phone || val.nom || val.name) {
           this.postData = val;
         }
-      }
-    }
+      },
+    },
   },
   computed: {
     selectOptionFormat() {
@@ -151,7 +151,7 @@ export default {
         for (const i in this.selectOption) {
           result.push({
             label: this.selectOption[i].nom,
-            value: this.selectOption[i].idsociete
+            value: this.selectOption[i].idsociete,
           });
         }
       }
@@ -175,7 +175,7 @@ export default {
           return false;
         }
       }
-    }
+    },
   },
   methods: {
     setBtnState(val) {
@@ -191,8 +191,9 @@ export default {
       }
     },
     emailValidation(val) {
-      var veri = function(val) {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var veri = function (val) {
+        const re =
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(val).toLowerCase());
       };
       if (veri(val)) {
@@ -205,16 +206,16 @@ export default {
     },
 
     EditProject() {
-      Utilities.formatClient(this.postData).then(reponse => {
+      Utilities.formatClient(this.postData).then((reponse) => {
         config
           .post("/gestion-project/save-update", reponse)
-          .then(reponse => {
+          .then((reponse) => {
             if (reponse.status) {
               this.$emit("edition-ok", reponse);
             }
             this.isLoading = false;
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log("error", error);
           });
       });
@@ -222,10 +223,10 @@ export default {
 
     PostNewClient() {
       if (this.modalType) {
-        Utilities.formatDataClient(this.postData).then(reponse => {
+        Utilities.formatDataClient(this.postData).then((reponse) => {
           config
             .post("/gestion-project/save-update", reponse)
-            .then(reponse => {
+            .then((reponse) => {
               if (reponse.status) {
                 this.request = reponse.data[0];
                 this.$emit("load-list-client");
@@ -240,18 +241,18 @@ export default {
                 email: "",
                 adresse: "",
                 phone: "",
-                uid: "0"
+                uid: "0",
               };
             })
-            .catch(function(error) {
+            .catch(function (error) {
               console.log("PostNewClient error", error);
             });
         });
       } else {
-        Utilities.formatDataSte(this.postData).then(reponse => {
+        Utilities.formatDataSte(this.postData).then((reponse) => {
           config
             .post("/gestion-project/save-update", reponse)
-            .then(reponse => {
+            .then((reponse) => {
               if (reponse.status) {
                 this.request = reponse.data[0];
                 this.$emit("load-list-ste");
@@ -266,16 +267,16 @@ export default {
                 email: "",
                 adresse: "",
                 phone: "",
-                uid: "0"
+                uid: "0",
               };
             })
-            .catch(function(error) {
+            .catch(function (error) {
               console.log("PostNew sté error", error);
             });
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

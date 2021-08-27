@@ -23,6 +23,6 @@ new Vue({
   hljs,
   template: "<App/>",
   components: {
-    App
-  }
+    App,
+  },
 });

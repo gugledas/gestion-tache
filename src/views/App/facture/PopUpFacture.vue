@@ -19,7 +19,7 @@
         size="sm"
         @click="initNewFacture"
         class="mx-1"
-        ><CIcon name="cilPencil" class="mr-1 text-info "></CIcon
+        ><CIcon name="cilPencil" class="mr-1 text-info"></CIcon
       ></CButton>
     </CLink>
     <CModal
@@ -91,12 +91,12 @@
       </div>
       <CRow alignHorizontal="center" v-if="isLoading">
         <CCol sm="3" class="p-3">
-          <CSpinner style="width:4rem;height:4rem;" color="info" grow
+          <CSpinner style="width: 4rem; height: 4rem" color="info" grow
         /></CCol>
       </CRow>
 
       <template slot="footer">
-        <div class="d-flex justify-content-end mr-3 ">
+        <div class="d-flex justify-content-end mr-3">
           <CButton @click="modalAdd.state = false" class="mx-1" color="light">
             Cancel
           </CButton>
@@ -109,9 +109,7 @@
             Créer
           </CButton>
           <CLink :to="'/factures/' + initData.numero" v-if="buttonService">
-            <CButton class="mx-1" color="warning">
-              Ajouter services
-            </CButton>
+            <CButton class="mx-1" color="warning"> Ajouter services </CButton>
           </CLink>
         </div>
       </template>
@@ -128,7 +126,7 @@ export default {
   props: {
     initData: {
       type: Object,
-      default: function() {
+      default: function () {
         return {
           numero: "",
           objet: "",
@@ -136,25 +134,25 @@ export default {
           idclients: "",
           proprietaire: "",
           creaated: "",
-          update_at: ""
+          update_at: "",
         };
-      }
+      },
     },
     add: { type: Boolean, default: true },
     modalAdd: {
       type: Object,
-      default: function() {
+      default: function () {
         return { state: false };
-      }
+      },
     },
     edition: {
       type: Boolean,
-      default: false
+      default: false,
     },
     update: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   components: {},
   data() {
@@ -169,7 +167,7 @@ export default {
       itemClient: [],
       itemProject: [],
       nbFacture: "",
-      timer: null
+      timer: null,
     };
   },
   mounted() {
@@ -184,8 +182,8 @@ export default {
         if (!this.edition) {
           this.setNombre();
         }
-      }
-    }
+      },
+    },
   },
   computed: {
     //formattage du champ select pour la sélection du projet liée à la facture
@@ -195,7 +193,7 @@ export default {
         for (const i in this.itemProject) {
           result.push({
             label: this.itemProject[i].titre,
-            value: this.itemProject[i].idcontents
+            value: this.itemProject[i].idcontents,
           });
         }
       }
@@ -209,19 +207,19 @@ export default {
         for (const i in this.itemClient) {
           result.push({
             label: this.itemClient[i].nom,
-            value: this.itemClient[i].idclient
+            value: this.itemClient[i].idclient,
           });
         }
       }
       return result;
-    }
+    },
   },
   methods: {
     // renvoi le numéro formatté de la facture
     setNombre() {
       var self = this;
       clearTimeout(self.timer);
-      self.timer = setTimeout(function() {
+      self.timer = setTimeout(function () {
         self.loadNbFacture();
       }, 2000);
       var result = "";
@@ -244,7 +242,7 @@ export default {
      * on ajoute un filtre.
      */
     loadNbFacture() {
-      SelectDb.selectInvoice([]).then(response => {
+      SelectDb.selectInvoice([]).then((response) => {
         if (response.length) {
           this.nbFacture = response.length;
         } else {
@@ -257,7 +255,7 @@ export default {
      * on ajoute un filtre.
      */
     LoadClient() {
-      SelectDb.selectClients([]).then(response => {
+      SelectDb.selectClients([]).then((response) => {
         this.itemClient = response;
       });
     },
@@ -268,7 +266,7 @@ export default {
     LoadProject() {
       console.log("this.initData.idcontents : ", this.initData.idcontents);
       if (this.initData.idcontents) {
-        SelectDb.selectDatas().then(response => {
+        SelectDb.selectDatas().then((response) => {
           this.itemProject = response;
         });
       }
@@ -280,12 +278,12 @@ export default {
     PostNewInitFacture() {
       this.isLoading = true;
       this.showInput = false;
-      Utilities.formatAddInvoice(this.initData, this.update).then(reponse => {
+      Utilities.formatAddInvoice(this.initData, this.update).then((reponse) => {
         //console.log("created", reponse);
 
         config
           .post("/gestion-project/save-update", reponse)
-          .then(reponse => {
+          .then((reponse) => {
             //console.log("reponse", reponse);
             if (reponse.status) {
               this.request = reponse.data[0];
@@ -320,7 +318,7 @@ export default {
               this.showInput = true;
             }
           })
-          .catch(function() {
+          .catch(function () {
             this.isLoading = false;
             this.alertOk = true;
             this.alertText = "Erreur de sauvegarde";
@@ -328,8 +326,8 @@ export default {
             this.showInput = true;
           });
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

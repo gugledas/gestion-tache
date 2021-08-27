@@ -7,8 +7,8 @@ export default {
   props: {
     dataLoad: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -24,38 +24,35 @@ export default {
       editorData: "<p>me al rasp sale</p>",
       editorConfig: {
         extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
+        codeSnippet_theme: "monokai_sublime",
       },
       options: [
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" }
-      ]
+        { value: "memos", label: "Mémos" },
+      ],
     };
   },
-  render: function(createElement) {
+  render: function (createElement) {
     const elt = createElement;
 
     var loopDatas = (projects, open = false) => {
       var result = [];
       // var premierTours = 0;
-      projects.forEach(project => {
+      projects.forEach((project) => {
         var cards = [];
 
         project.open = open;
         if (Array.isArray(project.cards)) {
           for (const item of this.options) {
             var test = project.cards.filter(
-              projet => projet.type == item.value
+              (projet) => projet.type == item.value
             );
-            var newT = test.filter(project => project.status == "0");
-            var term = test.filter(project => project.status == "1");
-            var encour = test.filter(project => project.status == "2");
-            var annule = test.filter(project => project.status == "3");
-            var newtest = newT
-              .concat(encour)
-              .concat(term)
-              .concat(annule);
+            var newT = test.filter((project) => project.status == "0");
+            var term = test.filter((project) => project.status == "1");
+            var encour = test.filter((project) => project.status == "2");
+            var annule = test.filter((project) => project.status == "3");
+            var newtest = newT.concat(encour).concat(term).concat(annule);
             var bottomBadge = loopDatas(newtest, false);
 
             var badge = [
@@ -68,12 +65,12 @@ export default {
                     margin: "0 0 7px 5px",
 
                     display: test.length ? "" : "none",
-                    "max-width": "100px"
+                    "max-width": "100px",
                   },
                   attrs: {
                     color: "dark",
-                    tag: "div"
-                  }
+                    tag: "div",
+                  },
                 },
                 [
                   elt(
@@ -83,14 +80,14 @@ export default {
                         "font-weigth": "bold",
                         color: "#fff67a ",
                         "margin-right": "2px",
-                        "font-size": "1.2em"
-                      }
+                        "font-size": "1.2em",
+                      },
                     },
                     test.length
                   ),
-                  "  " + " " + item.label
+                  "  " + " " + item.label,
                 ]
-              )
+              ),
             ];
             cards.push(badge.concat(bottomBadge));
             //console.log("options", newT);
@@ -102,27 +99,27 @@ export default {
             CardComponent,
             {
               props: {
-                dataLoad: project
+                dataLoad: project,
               },
               on: {
-                "modal-edit-on": item => {
+                "modal-edit-on": (item) => {
                   //console.log("edit-on", item);
                   this.$emit("modal-edit-on", item);
                 },
-                "Hide-type-project": item => {
+                "Hide-type-project": (item) => {
                   this.$emit("Hide-type-project", item);
                 },
                 "suppression-ok": () => {
                   this.$emit("suppression-ok");
                 },
-                "change-parent": item => {
+                "change-parent": (item) => {
                   //console.log("changeparent", item);
                   this.$emit("change-parent", item);
                 },
                 "edition-ok": () => {
                   this.$emit("edition-ok");
-                }
-              }
+                },
+              },
             },
 
             cards
@@ -139,10 +136,10 @@ export default {
   },
   methods: {
     loadOptions() {
-      ProjectOptionsType.loadType().then(reponse => {
+      ProjectOptionsType.loadType().then((reponse) => {
         this.options = reponse;
       });
-    }
-  }
+    },
+  },
 };
 </script>

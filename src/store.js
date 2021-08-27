@@ -6,7 +6,7 @@ Vue.use(Vuex);
 const state = {
   sidebarShow: "responsive",
   sidebarMinimize: false,
-  user: null
+  user: null,
 };
 
 const mutations = {
@@ -23,13 +23,13 @@ const mutations = {
   },
   SET_USER(state, user) {
     state.user -= user;
-  }
+  },
 };
 const actions = {
   getUser({ commit }) {
     var user = [];
     //console.log("user : ", users);
-    const def = async function() {
+    const def = async function () {
       console.log("asyn");
       var d = await new Date();
       return d;
@@ -37,11 +37,11 @@ const actions = {
     def();
     /**/
     commit("SET_USER", user);
-  }
+  },
 };
 
 export default new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
 });

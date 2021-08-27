@@ -6,25 +6,25 @@ export default [
         _name: "CSidebarNavItem",
         name: "Dashboard",
         to: "/dashbord",
-        icon: "cil-speedometer"
+        icon: "cil-speedometer",
       },
       {
         _name: "CSidebarNavItem",
         name: "Projets",
         to: "/projets",
-        icon: "cil-folder"
+        icon: "cil-folder",
       },
       {
         _name: "CSidebarNavItem",
         name: "Clients",
         to: "/clients",
-        icon: "cil-group"
+        icon: "cil-group",
       },
       {
         _name: "CSidebarNavItem",
         name: "Factures",
         to: "/factures",
-        icon: "cil-inbox"
+        icon: "cil-inbox",
       },
       {
         _name: "CSidebarNavDropdown",
@@ -36,9 +36,9 @@ export default [
             _name: "CSidebarNavItem",
             name: "Documentation",
             to: "/docs",
-            icon: "cil-folder"
-          }
-        ]
+            icon: "cil-folder",
+          },
+        ],
       },
       // {
       //   _name: "CSidebarNavItem",
@@ -219,11 +219,11 @@ export default [
 
       {
         _name: "CSidebarNavDivider",
-        _class: "m-2"
+        _class: "m-2",
       },
       {
         _name: "CSidebarNavTitle",
-        _children: ["Extras"]
+        _children: ["Extras"],
       },
       {
         _name: "CSidebarNavDropdown",
@@ -233,22 +233,22 @@ export default [
         items: [
           {
             name: "Login",
-            to: "/pages/login"
+            to: "/pages/login",
           },
           {
             name: "Register",
-            to: "/pages/register"
+            to: "/pages/register",
           },
           {
             name: "Error 404",
-            to: "/pages/404"
+            to: "/pages/404",
           },
           {
             name: "Error 500",
-            to: "/pages/500"
-          }
-        ]
-      }
+            to: "/pages/500",
+          },
+        ],
+      },
       // {
       //   _name: "CSidebarNavItem",
       //   name: "Download CoreUI",
@@ -265,6 +265,6 @@ export default [
       //   _class: "bg-danger text-white",
       //   target: "_blank"
       // }
-    ]
-  }
+    ],
+  },
 ];

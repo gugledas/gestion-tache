@@ -5,8 +5,8 @@ const OptionsType = {
    */
   opts: [],
   instance: false,
-  loadType: function() {
-    return new Promise(resolv => {
+  loadType: function () {
+    return new Promise((resolv) => {
       if (this.instance) {
         this.instance.then(() => {
           resolv(this.opts);
@@ -14,14 +14,14 @@ const OptionsType = {
       } else {
         if (!this.opts.length) {
           this.instance = SelectDb.selectTypes();
-          this.instance.then(reponse => {
+          this.instance.then((reponse) => {
             // console.log("type : ,", reponse);
             var fm = [];
             for (let i in reponse) {
               fm.push({
                 value: reponse[i].name,
                 label: reponse[i].label,
-                description: reponse[i].description
+                description: reponse[i].description,
               });
             }
             this.opts = fm;
@@ -31,6 +31,6 @@ const OptionsType = {
         }
       }
     });
-  }
+  },
 };
 export default OptionsType;

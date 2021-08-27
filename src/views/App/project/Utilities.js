@@ -3,8 +3,8 @@ const Utilities = {
   /**
    * Prepare les données pour la sauvagarde.
    */
-  formatData: function(datas) {
-    return new Promise(resolv => {
+  formatData: function (datas) {
+    return new Promise((resolv) => {
       //console.log("fdate : ", datas);
       var result = [];
       if (datas && datas.titre) {
@@ -22,17 +22,17 @@ const Utilities = {
           fields: {
             text: datas.text,
             titre: datas.titre,
-            type: datas.type
+            type: datas.type,
           },
-          action: "update"
+          action: "update",
         };
 
         if (datas.idcontents) {
           table1.where = [
             {
               column: "idcontents",
-              value: datas.idcontents
-            }
+              value: datas.idcontents,
+            },
           ];
         }
         //Edition de la table times
@@ -45,15 +45,15 @@ const Utilities = {
             fields: {
               status: datas.status,
               date_depart_proposer: ddp,
-              date_fin_proposer: dfp
+              date_fin_proposer: dfp,
             },
             action: "update",
             where: [
               {
                 column: "idcontents",
-                value: datas.idcontents
-              }
-            ]
+                value: datas.idcontents,
+              },
+            ],
           };
           if (
             parseInt(datas.status) === 1 &&
@@ -77,8 +77,8 @@ const Utilities = {
   /**
    * preparation des données pour la mise à jour de la hiérachie
    */
-  formatHierarchie: function(datas, nid) {
-    return new Promise(resolv => {
+  formatHierarchie: function (datas, nid) {
+    return new Promise((resolv) => {
       console.log("fdate : ", nid);
       var result = [];
       if (datas && datas.titre) {
@@ -89,15 +89,15 @@ const Utilities = {
           fields: {
             idcontentsparent: nid.id,
             idcontents: datas.idcontents,
-            ordre: nid.ordre
+            ordre: nid.ordre,
           },
           action: "update",
           where: [
             {
               column: "idcontents",
-              value: datas.idcontents
-            }
-          ]
+              value: datas.idcontents,
+            },
+          ],
         };
         //mise à jour de la table gestion times
         result.push(table3);
@@ -111,7 +111,7 @@ const Utilities = {
    * un tableau
    * @param [] cards
    */
-  formCard: function(cards) {
+  formCard: function (cards) {
     var results = [];
     for (const i in cards) {
       var card = cards[i];
@@ -120,7 +120,7 @@ const Utilities = {
       }
       results.push({
         ...card,
-        open: false
+        open: false,
       });
     }
     return results;
@@ -130,9 +130,9 @@ const Utilities = {
    * @param datas Array
    * @param idc Number, id du contenu encours.
    */
-  formatAddData: function(datas, idc = 0, level = 0) {
+  formatAddData: function (datas, idc = 0, level = 0) {
     //console.log("formatAddData datas :", datas, "\n idc", idc);
-    return new Promise(resolv => {
+    return new Promise((resolv) => {
       var childstable = [];
       var state = parseInt(datas.status, 10);
       level = parseInt(level, 10);
@@ -150,8 +150,8 @@ const Utilities = {
           fields: {
             date_depart_proposer: ddp,
             date_fin_proposer: dfp,
-            status: state
-          }
+            status: state,
+          },
         });
       }
       childstable.push({
@@ -159,8 +159,8 @@ const Utilities = {
         fields: {
           idcontentsparent: idc,
           ordre: 0,
-          level: level
-        }
+          level: level,
+        },
       });
 
       var result = [];
@@ -170,13 +170,13 @@ const Utilities = {
           fields: {
             text: datas.text,
             titre: datas.titre,
-            type: datas.type
-          }
+            type: datas.type,
+          },
         };
 
         ligne.childstable = {
           colum_id_name: "idcontents",
-          tables: childstable
+          tables: childstable,
         };
         result.push(ligne);
       }
@@ -184,8 +184,8 @@ const Utilities = {
     });
   },
   // Remplissage des champs pour l’édition d’un contenu du pop-up avec les contenus à éditer
-  fomatVal: function(result, postData) {
-    return new Promise(resolv => {
+  fomatVal: function (result, postData) {
+    return new Promise((resolv) => {
       /*
       if (result.date_depart_proposer || result.date_fin_proposer) {
         console.log("val.date_depart_proposer ", result);
@@ -212,21 +212,21 @@ const Utilities = {
     });
   },
   // format data for deleted action
-  formatDeleteData: function(datas) {
-    return new Promise(resolv => {
+  formatDeleteData: function (datas) {
+    return new Promise((resolv) => {
       var result = [];
       if (datas && datas.titre) {
         var ligne = {
           table: "gestion_project_contents",
-          fields: {}
+          fields: {},
         };
         ligne.action = "delete";
         if (datas.idcontents) {
           ligne.where = [
             {
               column: "idcontents",
-              value: datas.idcontents
-            }
+              value: datas.idcontents,
+            },
           ];
         }
         ligne.childstable = {
@@ -238,9 +238,9 @@ const Utilities = {
               where: [
                 {
                   column: "idcontents",
-                  value: datas.idcontents
-                }
-              ]
+                  value: datas.idcontents,
+                },
+              ],
             },
             {
               table: "gestion_project_hierachie",
@@ -249,11 +249,11 @@ const Utilities = {
               where: [
                 {
                   column: "idcontents",
-                  value: datas.idcontents
-                }
-              ]
-            }
-          ]
+                  value: datas.idcontents,
+                },
+              ],
+            },
+          ],
         };
         result.push(ligne);
         console.log("ligne", result);
@@ -267,8 +267,8 @@ const Utilities = {
   /**
    * preparation des données pour l'ajout d'un nouveau client
    */
-  formatDataClient: function(datas) {
-    return new Promise(resolv => {
+  formatDataClient: function (datas) {
+    return new Promise((resolv) => {
       var result = [];
       if (datas && datas.nom) {
         //edition de la table contents
@@ -281,17 +281,17 @@ const Utilities = {
             phone: datas.phone,
             adresse: datas.adresse,
             fonction: datas.fonction,
-            idsociete: datas.idsociete
+            idsociete: datas.idsociete,
           },
-          action: "update"
+          action: "update",
         };
 
         if (datas.idclient) {
           table1.where = [
             {
               column: "idclient",
-              value: datas.idclient
-            }
+              value: datas.idclient,
+            },
           ];
         }
 
@@ -306,8 +306,8 @@ const Utilities = {
   /**
    * preparation des données pour l'ajout d'une nouvelle société
    */
-  formatDataSte: function(datas) {
-    return new Promise(resolv => {
+  formatDataSte: function (datas) {
+    return new Promise((resolv) => {
       var result = [];
       if (datas && datas.nom) {
         //edition de la table contents
@@ -318,17 +318,17 @@ const Utilities = {
             email: datas.email,
             phone: datas.phone,
             adresse: datas.adresse,
-            siteweb: datas.siteweb
+            siteweb: datas.siteweb,
           },
-          action: "update"
+          action: "update",
         };
 
         if (datas.idsociete) {
           table1.where = [
             {
               column: "idsociete",
-              value: datas.idsociete
-            }
+              value: datas.idsociete,
+            },
           ];
         }
 
@@ -341,8 +341,8 @@ const Utilities = {
   },
 
   // format data for deleted action of entitie client or societe
-  formatDeleteClient: function(datas) {
-    return new Promise(resolv => {
+  formatDeleteClient: function (datas) {
+    return new Promise((resolv) => {
       var result = [];
       if (datas.idclient) {
         var ligne = {
@@ -352,9 +352,9 @@ const Utilities = {
           where: [
             {
               column: "idclient",
-              value: datas.idclient
-            }
-          ]
+              value: datas.idclient,
+            },
+          ],
         };
 
         result.push(ligne);
@@ -367,9 +367,9 @@ const Utilities = {
           where: [
             {
               column: "idsociete",
-              value: datas.idsociete
-            }
-          ]
+              value: datas.idsociete,
+            },
+          ],
         };
         var ligne1 = {
           table: "gestion_project_societe",
@@ -378,9 +378,9 @@ const Utilities = {
           where: [
             {
               column: "idsociete",
-              value: datas.idsociete
-            }
-          ]
+              value: datas.idsociete,
+            },
+          ],
         };
         result.push(ligne);
         result.push(ligne1);
@@ -391,8 +391,8 @@ const Utilities = {
   },
 
   // Format data for create new invoice
-  formatAddInvoice: function(datas, update) {
-    return new Promise(resolv => {
+  formatAddInvoice: function (datas, update) {
+    return new Promise((resolv) => {
       var result = [];
       var cat = moment().unix();
       var uat = moment().unix();
@@ -408,15 +408,15 @@ const Utilities = {
             objet: datas.objet,
             creaated: cat,
             proprietaire: datas.proprietaire,
-            updated: uat
-          }
+            updated: uat,
+          },
         };
         if (update == true) {
           table1.where = [
             {
               column: "numero",
-              value: datas.numero
-            }
+              value: datas.numero,
+            },
           ];
           table1.action = "update";
         }
@@ -432,7 +432,7 @@ const Utilities = {
   // suppression d’une facture
 
   formatDeleteInvoice(datas) {
-    return new Promise(resolv => {
+    return new Promise((resolv) => {
       var result = [];
       if (datas && datas.numero) {
         //edition de la table contents
@@ -443,9 +443,9 @@ const Utilities = {
           where: [
             {
               column: "numero",
-              value: datas.numero
-            }
-          ]
+              value: datas.numero,
+            },
+          ],
         };
         var table2 = {
           table: "gestion_project_invoice_list",
@@ -454,9 +454,9 @@ const Utilities = {
           where: [
             {
               column: "idinvoice",
-              value: datas.numero
-            }
-          ]
+              value: datas.numero,
+            },
+          ],
         };
         //mise à jour de la table societe
         result.push(table2);
@@ -466,8 +466,8 @@ const Utilities = {
     });
   },
 
-  formatAddInvoiceList: function(datas, update) {
-    return new Promise(resolv => {
+  formatAddInvoiceList: function (datas, update) {
+    return new Promise((resolv) => {
       var result = [];
       if (datas && datas.titre) {
         //edition de la table contents
@@ -478,15 +478,15 @@ const Utilities = {
             idcontents: datas.idcontents !== "" ? datas.idcontents : null,
             description: datas.description,
             cout: datas.cout,
-            idinvoice: datas.idinvoice
-          }
+            idinvoice: datas.idinvoice,
+          },
         };
         if (update == true) {
           table1.where = [
             {
               column: "idinvoicelist",
-              value: datas.idinvoicelist
-            }
+              value: datas.idinvoicelist,
+            },
           ];
           table1.action = "update";
         }
@@ -498,7 +498,7 @@ const Utilities = {
     });
   },
   formatDeleteInvoiceList(datas) {
-    return new Promise(resolv => {
+    return new Promise((resolv) => {
       var result = [];
       console.log("fadin :", datas);
       if (datas && datas.idinvoicelist) {
@@ -510,9 +510,9 @@ const Utilities = {
           where: [
             {
               column: "idinvoicelist",
-              value: datas.idinvoicelist
-            }
-          ]
+              value: datas.idinvoicelist,
+            },
+          ],
         };
 
         //mise à jour de la table societe
@@ -521,6 +521,6 @@ const Utilities = {
       }
       resolv(result);
     });
-  }
+  },
 };
 export default Utilities;

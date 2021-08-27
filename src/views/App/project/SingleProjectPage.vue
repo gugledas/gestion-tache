@@ -9,7 +9,7 @@
         class="mx-auto mt-5"
         tag="div"
         color="primary"
-        style="width:4rem;height:4rem;"
+        style="width: 4rem; height: 4rem"
       />
     </CRow>
     <CRow v-if="!spinner">
@@ -71,7 +71,7 @@
         :show.sync="modalRessource"
         :closeOnBackdrop="false"
       >
-        <div class="pl-sm-2 " v-if="selected == 'projet'">
+        <div class="pl-sm-2" v-if="selected == 'projet'">
           <CRow class="d-flex flex-nowrap">
             <CCol md="7" class="">
               <CInput
@@ -153,9 +153,7 @@
 
       <CCol md="6"
         ><CCard>
-          <CCardHeader>
-            stats
-          </CCardHeader>
+          <CCardHeader> stats </CCardHeader>
           <CCardBody><CChartPieExample /> </CCardBody> </CCard
       ></CCol>
     </CRow>
@@ -182,15 +180,15 @@ export default {
   props: {
     idcontents: {
       type: String,
-      default: "52"
-    }
+      default: "52",
+    },
   },
   components: {
     ...Charts,
     PopUpContent: () => import("./PopUpContent.vue"),
     //CardComponent: () => import("./CardComponent"),
     "card-jsx": () => import("./CardJsx.vue"),
-    "filtre-project": () => import("../../../Steph/project/FilterProject.vue")
+    "filtre-project": () => import("../../../Steph/project/FilterProject.vue"),
   },
   data() {
     return {
@@ -211,14 +209,14 @@ export default {
       isCollapsed: true,
       editorConfig: {
         extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
+        codeSnippet_theme: "monokai_sublime",
       },
       options: [
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" }
+        { value: "memos", label: "Mémos" },
       ],
-      level: 0
+      level: 0,
     };
   },
   mounted() {
@@ -236,12 +234,12 @@ export default {
     textDisplay() {
       var newDiv = document.createElement("div");
       newDiv.innerHTML = this.dataLoad.text ? this.dataLoad.text : "";
-      newDiv.querySelectorAll("pre code").forEach(block => {
+      newDiv.querySelectorAll("pre code").forEach((block) => {
         hljs.highlightBlock(block);
       });
 
       return newDiv.outerHTML;
-    }
+    },
   },
   methods: {
     changeParent(data) {
@@ -283,7 +281,7 @@ export default {
       this.isLoading = true;
       config
         .get("/gestion-project/project-with-childs/" + this.idcontents)
-        .then(reponse => {
+        .then((reponse) => {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
             console.log("donnée chargées : ", this.dataLoad);
@@ -291,7 +289,7 @@ export default {
           this.isLoading = false;
           this.spinner = false;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log("error", error);
         });
     },
@@ -300,7 +298,7 @@ export default {
       this.isLoading = true;
       config
         .post("/gestion-project/project-with-childs/" + this.idcontents, filter)
-        .then(reponse => {
+        .then((reponse) => {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
             console.log("donnée chargées : ", this.dataLoad);
@@ -308,7 +306,7 @@ export default {
           this.isLoading = false;
           this.spinner = false;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log("error", error);
         });
     },
@@ -316,10 +314,10 @@ export default {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: "smooth"
+        behavior: "smooth",
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

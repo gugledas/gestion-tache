@@ -27,8 +27,8 @@ export default {
   components: {
     TheSidebar,
     TheHeader,
-    TheFooter
-  }
+    TheFooter,
+  },
 };
 </script>
 

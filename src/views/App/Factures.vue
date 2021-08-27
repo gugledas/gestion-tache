@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CRow class="mr-5 mt-n2 d-flex  mb-2" alignHorizontal="end">
+    <CRow class="mr-5 mt-n2 d-flex mb-2" alignHorizontal="end">
       <PopUpFacture></PopUpFacture>
     </CRow>
 
@@ -39,15 +39,15 @@ export default {
         idclients: "",
         proprietaire: "",
         creaated: "",
-        update_at: ""
+        update_at: "",
       },
-      timer: null
+      timer: null,
     };
   },
   mounted() {},
   watch: {},
   computed: {},
-  methods: {}
+  methods: {},
 };
 </script>
 

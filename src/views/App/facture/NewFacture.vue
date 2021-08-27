@@ -7,7 +7,7 @@
             <strong>Édition facture N°: {{ this.id }}</strong>
             <div class="card-header-actions">
               <CButton
-                class="   p-0 pl-1 pr-1 mr-3"
+                class="p-0 pl-1 pr-1 mr-3"
                 v-c-tooltip="'Nouveau service'"
                 @click="colapse = !colapse"
                 color="info"
@@ -18,7 +18,7 @@
           </CCardHeader>
           <div v-if="colapse">
             <CCardBody>
-              <div class=" d-flex flex-wrap" v-if="!isLoading">
+              <div class="d-flex flex-wrap" v-if="!isLoading">
                 <CCol sm="6" md="5"
                   ><CInput
                     placeholder="libellé du service"
@@ -62,7 +62,7 @@
 
               <CRow alignHorizontal="center" v-if="isLoading">
                 <CCol sm="3" class="p-3">
-                  <CSpinner style="width:4rem;height:4rem;" color="info" grow
+                  <CSpinner style="width: 4rem; height: 4rem" color="info" grow
                 /></CCol>
               </CRow>
             </CCardBody>
@@ -76,14 +76,14 @@
                 type="reset"
                 size="sm"
                 :color="checkForSave ? 'success' : 'light'"
-                ><CIcon name="cil-check-circle"/> Ajouter
+                ><CIcon name="cil-check-circle" /> Ajouter
                 <CSpinner
                   v-if="spinnerSave"
                   size="sm"
                   class=""
                   tag="small"
                   color="danger"
-                  style="width:1rem;height:1rem;"
+                  style="width: 1rem; height: 1rem"
               /></CButton>
               <CButton
                 class="mx-3"
@@ -169,7 +169,14 @@
                 </CCol>
 
                 <CCol
-                  class="facture__id p-3 d-flex mr-5 pr-3 justify-content-center"
+                  class="
+                    facture__id
+                    p-3
+                    d-flex
+                    mr-5
+                    pr-3
+                    justify-content-center
+                  "
                 >
                   <h5>Invoice to :</h5>
                   <div class="ml-2">
@@ -186,7 +193,7 @@
               </CRow>
               <CRow
                 alignHorizontal="center"
-                class="mb-2 "
+                class="mb-2"
                 alignVertical="center"
               >
                 <CCol md="11" class="d-flex aligns-item-center ml-4">
@@ -242,10 +249,10 @@
                     ><CTextarea
                       v-model="invoiceData.description"
                       label=" description:"
-                      placeholder="ajouter une description"/></CCol
+                      placeholder="ajouter une description" /></CCol
                 ></CRow>
                 <template slot="footer">
-                  <div class="d-flex justify-content-end mr-3 ">
+                  <div class="d-flex justify-content-end mr-3">
                     <CButton
                       @click="editRow = false"
                       class="mx-1"
@@ -265,7 +272,7 @@
                         class=""
                         tag="small"
                         color="warning"
-                        style="width:1rem;height:1rem;"
+                        style="width: 1rem; height: 1rem"
                       />
                     </CButton>
                     <CButton
@@ -282,7 +289,7 @@
                         class=""
                         tag="small"
                         color="primary"
-                        style="width:1rem;height:1rem;"
+                        style="width: 1rem; height: 1rem"
                       />
                     </CButton>
                   </div>
@@ -341,7 +348,15 @@
                       <span class="ml-5 h5">19.25%</span>
                     </div> -->
                     <div
-                      class="d-flex justify-content-around bg-info mt-2 text-white p-2 mr-4"
+                      class="
+                        d-flex
+                        justify-content-around
+                        bg-info
+                        mt-2
+                        text-white
+                        p-2
+                        mr-4
+                      "
                     >
                       <h5>Total:</h5>
                       <span class="ml-5 h5">{{ TotalFacture }} $</span>
@@ -354,7 +369,7 @@
                   <CCol col="6" class="">
                     <h5>Terms & conditions</h5>
 
-                    <h6 class=" p-0 m-0">
+                    <h6 class="p-0 m-0">
                       Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                       Cupiditate architecto cum aliquam aut ut?
                     </h6>
@@ -369,7 +384,15 @@
                 <CCol col="12">
                   <CCol class="bg-light p-0">
                     <div
-                      class="d-flex justify-content-around bg-info mt-2 text-white p-2 col-6"
+                      class="
+                        d-flex
+                        justify-content-around
+                        bg-info
+                        mt-2
+                        text-white
+                        p-2
+                        col-6
+                      "
                     >
                       <h5>Thanks for your Business</h5>
                     </div>
@@ -393,17 +416,17 @@
 import SelectDb from "../config/SelectDb";
 import Utilities from "../project/Utilities.js";
 import config from "../config/config";
-import VueHtml2pdf from "vue-html2pdf";
+//import VueHtml2pdf from "vue-html2pdf";
 export default {
   name: "SHome",
   props: {
     id: {
       type: String,
-      default: "2"
-    }
+      default: "2",
+    },
   },
   components: {
-    VueHtml2pdf
+    VueHtml2pdf: () => {}, //on doit trouver un autre module pour gerer les factures.
   },
   data() {
     return {
@@ -415,16 +438,16 @@ export default {
         {
           key: "cout",
           label: "Prix unitaire HT",
-          _style: ""
+          _style: "",
         },
-        { label: "Prix total HT", key: "total" }
+        { label: "Prix total HT", key: "total" },
       ],
       factureData: {
         objet: "",
         description: "",
         cout: "",
         idcontents: "",
-        numero: ""
+        numero: "",
       },
       invoiceData: {
         idinvoicelist: "",
@@ -432,7 +455,7 @@ export default {
         idinvoice: "",
         cout: "",
         description: "",
-        titre: ""
+        titre: "",
       },
       clientInfo: {
         typeIsOk: false,
@@ -444,7 +467,7 @@ export default {
         adresse: "",
         phone: "",
         uid: "0",
-        idsociete: ""
+        idsociete: "",
       },
       infoSte: {
         typeIsOk: false,
@@ -456,7 +479,7 @@ export default {
         adresse: "",
         phone: "",
         uid: "0",
-        idsociete: ""
+        idsociete: "",
       },
       infoProjet: {
         created_at: "",
@@ -464,7 +487,7 @@ export default {
         titre: "",
         type: "",
         uid: "",
-        update_at: ""
+        update_at: "",
       },
       societeInfoste: {
         idsociete: "",
@@ -472,7 +495,7 @@ export default {
         siteweb: "",
         phone: "",
         email: "",
-        adresse: ""
+        adresse: "",
       },
       societeInfoClient: {
         idsociete: "",
@@ -480,7 +503,7 @@ export default {
         siteweb: "",
         phone: "",
         email: "",
-        adresse: ""
+        adresse: "",
       },
       request: {},
       update: true,
@@ -492,7 +515,7 @@ export default {
       //idvalidated: false,
       btnState: false,
       colapse: false,
-      priceValidated: false
+      priceValidated: false,
     };
   },
   mounted() {
@@ -507,8 +530,8 @@ export default {
         if (this.infoProjet.idcontents) {
           this.invoiceData.idcontents = this.infoProjet.idcontents;
         }
-      }
-    }
+      },
+    },
   },
   computed: {
     checkForSave() {
@@ -531,7 +554,7 @@ export default {
         }
       }
       return result;
-    }
+    },
   },
   methods: {
     generateReport() {
@@ -586,7 +609,7 @@ export default {
     },
     LoadData() {
       var oap = [{ column: "numero", operator: "=", value: this.id }];
-      SelectDb.selectInvoice(oap).then(response => {
+      SelectDb.selectInvoice(oap).then((response) => {
         this.factureData = response[0];
         this.LoadClient(response[0].idclients);
         this.LoadSte(response[0].proprietaire);
@@ -595,7 +618,7 @@ export default {
     },
     LoadClient(val) {
       var oap = [{ column: "idclient", operator: "=", value: val }];
-      SelectDb.selectClients(oap).then(response => {
+      SelectDb.selectClients(oap).then((response) => {
         this.clientInfo = response[0];
 
         if (response.length) {
@@ -605,7 +628,7 @@ export default {
     },
     LoadSte(val) {
       var oap = [{ column: "idclient", operator: "=", value: val }];
-      SelectDb.selectClients(oap).then(response => {
+      SelectDb.selectClients(oap).then((response) => {
         this.infoSte = response[0];
         if (response.length) {
           this.LoadSocieteInfo(response[0].idsociete);
@@ -614,20 +637,20 @@ export default {
     },
     LoadSocieteInfo(val) {
       var oap = [{ column: "idsociete", operator: "=", value: val }];
-      SelectDb.selectSte(oap).then(response => {
+      SelectDb.selectSte(oap).then((response) => {
         this.societeInfoste = response[0];
       });
     },
     LoadSocieteClient(val) {
       var oap = [{ column: "idsociete", operator: "=", value: val }];
-      SelectDb.selectSte(oap).then(response => {
+      SelectDb.selectSte(oap).then((response) => {
         this.societeInfoClient = response[0];
       });
     },
     LoadProjet(val) {
       if (val) {
         var oap = [{ column: "idcontents", operator: "=", value: val }];
-        SelectDb.selectProject(oap).then(response => {
+        SelectDb.selectProject(oap).then((response) => {
           this.infoProjet = response[0];
         });
       }
@@ -635,49 +658,51 @@ export default {
     PostFactureList(val) {
       if (this.btnState) {
         this.isloading = true;
-        Utilities.formatAddInvoiceList(this.invoiceData, val).then(reponse => {
-          console.log("gestion_project_invoice_list : ", reponse);
-          config
-            .post("/gestion-project/save-update", reponse)
-            .then(reponse => {
-              if (reponse.status) {
-                this.request = reponse.data[0];
-                this.LoadFactureList();
-                this.invoiceData = {
-                  idinvoicelist: "",
-                  idcontents: "",
-                  idinvoice: "",
-                  cout: "",
-                  titre: "",
-                  description: ""
-                };
-              }
-              this.isloading = false;
-            })
-            .catch(function(error) {
-              console.log("error", error);
-              this.isLoading = false;
-              this.alertOk = true;
-              this.alertText = "Erreur de sauvegarde";
-              this.AlertColor = "danger";
-              this.showInput = true;
-            });
-        });
+        Utilities.formatAddInvoiceList(this.invoiceData, val).then(
+          (reponse) => {
+            console.log("gestion_project_invoice_list : ", reponse);
+            config
+              .post("/gestion-project/save-update", reponse)
+              .then((reponse) => {
+                if (reponse.status) {
+                  this.request = reponse.data[0];
+                  this.LoadFactureList();
+                  this.invoiceData = {
+                    idinvoicelist: "",
+                    idcontents: "",
+                    idinvoice: "",
+                    cout: "",
+                    titre: "",
+                    description: "",
+                  };
+                }
+                this.isloading = false;
+              })
+              .catch(function (error) {
+                console.log("error", error);
+                this.isLoading = false;
+                this.alertOk = true;
+                this.alertText = "Erreur de sauvegarde";
+                this.AlertColor = "danger";
+                this.showInput = true;
+              });
+          }
+        );
       }
     },
     LoadFactureList() {
       var oap = [{ column: "idinvoice", operator: "=", value: this.id }];
-      SelectDb.selectFatureList(oap).then(response => {
+      SelectDb.selectFatureList(oap).then((response) => {
         this.factTable = response;
       });
     },
     deleteFacturelist() {
       this.spinner = true;
       this.isloading = true;
-      Utilities.formatDeleteInvoiceList(this.invoiceData).then(reponse => {
+      Utilities.formatDeleteInvoiceList(this.invoiceData).then((reponse) => {
         config
           .post("/gestion-project/save-update", reponse)
-          .then(reponse => {
+          .then((reponse) => {
             if (reponse.status) {
               this.request = reponse.data[0];
               this.LoadFactureList();
@@ -688,12 +713,12 @@ export default {
             this.spinner = false;
             this.editRow = false;
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log("error", error);
           });
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

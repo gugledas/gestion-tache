@@ -16,7 +16,7 @@
         :dark="dark"
         pagination
       >
-        <template #status="{item}">
+        <template #status="{ item }">
           <td>
             <CBadge :color="getBadge(item.status)">{{ item.status }}</CBadge>
           </td>
@@ -35,18 +35,18 @@ export default {
       type: Array,
       default() {
         return ["username", "registered", "role", "status"];
-      }
+      },
     },
     caption: {
       type: String,
-      default: "Table"
+      default: "Table",
     },
     hover: Boolean,
     striped: Boolean,
     border: Boolean,
     small: Boolean,
     fixed: Boolean,
-    dark: Boolean
+    dark: Boolean,
   },
   methods: {
     getBadge(status) {
@@ -59,7 +59,7 @@ export default {
         : status === "Banned"
         ? "danger"
         : "primary";
-    }
-  }
+    },
+  },
 };
 </script>

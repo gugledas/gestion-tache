@@ -64,19 +64,19 @@ export default {
         {
           key: "nom",
           _style: "min-width:200px; ",
-          filter: false
+          filter: false,
         },
         { key: "adresse", _style: "min-width:200px;" },
         { key: "phone", _style: "min-width:200px;" },
         { key: "fonction", _style: "width:600px;" },
-        { key: "activity", _style: "width:600px;" }
+        { key: "activity", _style: "width:600px;" },
       ],
       fieldsSte: [
         { key: "nom", _style: "min-width:200px;", filter: false },
         { key: "siteweb", _style: "min-width:200px;" },
         { key: "email", _style: "width:600px;" },
-        { key: "activity", _style: "width:600px;" }
-      ]
+        { key: "activity", _style: "width:600px;" },
+      ],
     };
   },
   mounted() {
@@ -88,7 +88,7 @@ export default {
     // Request for Loading sociéte  data on DB
     LoadStePopUp() {
       this.sisloading = true;
-      SelectDb.selectClient("gestion_project_societe").then(response => {
+      SelectDb.selectClient("gestion_project_societe").then((response) => {
         this.selectOption = response;
         this.sisloading = false;
       });
@@ -108,7 +108,7 @@ export default {
     //chargement des clients en BD
     LoadClient() {
       this.cisloading = true;
-      SelectDb.selectClients([]).then(response => {
+      SelectDb.selectClients([]).then((response) => {
         this.itemsClient = response;
         this.cisloading = false;
       });
@@ -116,14 +116,14 @@ export default {
     // Request for Loading sociéte  data on DB
     LoadSte() {
       this.sisloading = true;
-      SelectDb.selectSte([]).then(response => {
+      SelectDb.selectSte([]).then((response) => {
         this.itemsSte = response;
         this.sisloading = false;
         this.LoadStePopUp();
         this.LoadClient();
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

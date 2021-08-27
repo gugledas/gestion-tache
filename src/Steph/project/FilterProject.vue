@@ -46,7 +46,7 @@ export default {
     return {
       FiltreOptions: [
         { label: "egal", value: "=" },
-        { label: "superieur à", value: ">" }
+        { label: "superieur à", value: ">" },
       ],
       FiltresBuilders: [
         {
@@ -54,9 +54,9 @@ export default {
           value: "",
           operator: ">",
           type: "AND",
-          preffix: "c"
-        }
-      ]
+          preffix: "c",
+        },
+      ],
     };
   },
   mounted() {
@@ -69,7 +69,7 @@ export default {
     filter() {
       var columns = {
         AND: [],
-        OR: []
+        OR: [],
       };
       if (this.FiltresBuilders.length) {
         for (const i in this.FiltresBuilders) {
@@ -79,19 +79,19 @@ export default {
               column: filtre.column,
               value: filtre.value,
               operator: filtre.operator,
-              preffix: filtre.preffix
+              preffix: filtre.preffix,
             });
           }
         }
       }
       return columns;
-    }
+    },
   },
   methods: {
     BuildValideFilter() {
       //
-    }
-  }
+    },
+  },
 };
 </script>
 

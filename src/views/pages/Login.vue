@@ -67,6 +67,6 @@
 // import { users } from "drupal-vuejs";
 export default {
   name: "Login",
-  methods: {}
+  methods: {},
 };
 </script>

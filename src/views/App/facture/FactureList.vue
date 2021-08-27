@@ -16,7 +16,7 @@
       </CCardHeader>
       <CCardBody class="">
         <CDataTable
-          class="m-0  table-borderless "
+          class="m-0 table-borderless"
           hover
           :responsive="false"
           :loading="isLoading"
@@ -79,7 +79,7 @@
                 v-c-tooltip="'Export to PDF'"
                 ><CIcon
                   name="cilCloudDownload"
-                  class="mr-1 text-primary "
+                  class="mr-1 text-primary"
                 ></CIcon
               ></CButton>
               <CButton
@@ -89,7 +89,7 @@
                 size="sm"
                 class="mx-1 text-danger"
                 @click="DeleteModalOn(item)"
-                ><CIcon name="cil-x-circle" class="mr-1 text-danger "></CIcon
+                ><CIcon name="cil-x-circle" class="mr-1 text-danger"></CIcon
               ></CButton>
             </CRow>
           </td>
@@ -119,7 +119,7 @@
               class=""
               tag="small"
               color="primary"
-              style="width:1rem;height:1rem;"
+              style="width: 1rem; height: 1rem"
           /></CButton>
         </div>
       </template>
@@ -143,16 +143,16 @@ export default {
         {
           key: "objet",
           _style: "min-width:200px; ",
-          filter: false
+          filter: false,
         },
 
-        { key: "activity" }
+        { key: "activity" },
       ],
       isLoading: true,
       deleteModal: false,
       edition: true,
       dataDelete: {},
-      spinner: false
+      spinner: false,
     };
   },
 
@@ -167,12 +167,12 @@ export default {
     DeleteFacture() {
       this.spinner = true;
       this.isloading = true;
-      Utilities.formatDeleteInvoice(this.dataDelete).then(reponse => {
+      Utilities.formatDeleteInvoice(this.dataDelete).then((reponse) => {
         console.log("delete facture", reponse);
 
         config
           .post("/gestion-project/save-update", reponse)
-          .then(reponse => {
+          .then((reponse) => {
             console.log("reponse delete", reponse);
             if (reponse.status) {
               this.request = reponse.data[0];
@@ -185,19 +185,19 @@ export default {
             this.deleteModal = false;
             this.spinner = false;
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log("error", error);
           });
       });
     },
     LoadFacture() {
       this.isLoading = true;
-      SelectDb.selectInvoice([]).then(response => {
+      SelectDb.selectInvoice([]).then((response) => {
         this.items = response;
         this.isLoading = false;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

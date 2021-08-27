@@ -21,7 +21,7 @@
         v-c-tooltip="{
           content: 'Afficher les dernieres taches visités.',
           html: true,
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         }"
       >
         <CIcon name="cilEyedropper"> </CIcon>
@@ -35,7 +35,7 @@
         v-c-tooltip="{
           content: 'Afficher les taches encours.',
           html: true,
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         }"
       >
         <CIcon name="cil-settings"> </CIcon>
@@ -89,7 +89,7 @@
     <!-- modal -->
     <CModal title="Last Updated" color="light" size="lg" :show.sync="modalLast">
       <CDataTable
-        class="m-0  table-borderless "
+        class="m-0 table-borderless"
         hover
         responsive
         :items="itemsTache"
@@ -104,7 +104,7 @@
         <td slot="user" slot-scope="{ item }">
           <CLink
             :to="{
-              path: 'projets/' + item.idcontents
+              path: 'projets/' + item.idcontents,
             }"
             class="text-decoration-none"
             ><div @click="modalLast = !modalLast">
@@ -191,7 +191,7 @@ export default {
     SSearch,
     AddNewProject,
     BreadCrumb,
-    TacheEncours
+    TacheEncours,
     //TheHeaderDropdownAccnt
   },
   data() {
@@ -201,9 +201,9 @@ export default {
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" }
+        { key: "activity", _style: "width:600px;" },
       ],
-      tacheEncoursModal: false
+      tacheEncoursModal: false,
     };
   },
   mounted() {
@@ -212,14 +212,14 @@ export default {
   methods: {
     LoadTacheData() {
       this.isLoading = true;
-      SelectDb.selectAll().then(response => {
+      SelectDb.selectAll().then((response) => {
         this.itemsTache = response;
         this.isLoading = false;
       });
     },
     UpdateModal(val) {
       this.tacheEncoursModal = val;
-    }
-  }
+    },
+  },
 };
 </script>

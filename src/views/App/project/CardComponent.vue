@@ -2,10 +2,10 @@
   <div class="card-block">
     <CCard>
       <CCardHeader
-        class="shadow-sm "
+        class="shadow-sm"
         :class="[
           'card-progress  card-color card-border card-border--' + dataLoad.type,
-          background
+          background,
         ]"
       >
         <CLink
@@ -21,7 +21,7 @@
           :animated="dataLoad.status === '1' ? false : true"
           showPercentage
           :striped="dataLoad.status === '1' ? false : true"
-          style="height:10px;"
+          style="height: 10px"
           :max="progress.max"
           :value="progress.val"
           :color="color(progress.val, progress.max)"
@@ -31,7 +31,7 @@
         <div class="card-header-actions">
           <CLink
             href="#"
-            class=" btn-close m-2"
+            class="btn-close m-2"
             @click="descToggle = !descToggle"
             v-c-tooltip="'Afficher/Cacher la description'"
           >
@@ -41,7 +41,7 @@
           </CLink>
           <CLink
             href="#"
-            class=" btn-close m-2"
+            class="btn-close m-2"
             v-c-tooltip="'Edité le contenu'"
             @click="modalEditOn"
           >
@@ -49,7 +49,7 @@
           </CLink>
           <CLink
             href="#"
-            class=" btn-close m-2"
+            class="btn-close m-2"
             v-c-tooltip="'Modifier le parent'"
             @click="changeParent"
           >
@@ -57,7 +57,7 @@
           </CLink>
           <CLink
             href="#"
-            class=" btn-close m-1"
+            class="btn-close m-1"
             v-c-tooltip="'Créer un sous contenu'"
             @click="HideTypeProject"
           >
@@ -149,7 +149,7 @@
               class=""
               tag="small"
               color="primary"
-              style="width:1rem;height:1rem;"
+              style="width: 1rem; height: 1rem"
           /></CButton>
         </div>
       </template>
@@ -170,19 +170,19 @@ export default {
     dataLoad: {
       type: Object,
       required: true,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     isCollapsed: {
       type: Object,
-      default: function() {
+      default: function () {
         return { status: false };
-      }
-    }
+      },
+    },
   },
   components: {
-    SSearch
+    SSearch,
   },
   data() {
     return {
@@ -202,19 +202,19 @@ export default {
       modalRessource: false,
       newIdParrent: {
         id: "",
-        ordre: ""
+        ordre: "",
       },
       //isCollapsed: true,
       editorData: "<p>me al rasp sale</p>",
       editorConfig: {
         extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
+        codeSnippet_theme: "monokai_sublime",
       },
       options: [
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" }
-      ]
+        { value: "memos", label: "Mémos" },
+      ],
     };
   },
   mounted() {
@@ -248,7 +248,7 @@ export default {
     textDisplay() {
       var newDiv = document.createElement("div");
       newDiv.innerHTML = this.dataLoad.text ? this.dataLoad.text : "";
-      newDiv.querySelectorAll("pre code").forEach(block => {
+      newDiv.querySelectorAll("pre code").forEach((block) => {
         hljs.highlightBlock(block);
       });
       return newDiv.outerHTML;
@@ -257,7 +257,7 @@ export default {
       return moment(this.dataLoad.created_at, "YYYY-MM-DD HH:mm").format(
         "DD/MM/YYYY HH:mm"
       );
-    }
+    },
   },
   methods: {
     timing() {
@@ -298,11 +298,11 @@ export default {
       //console.log("object", this.dataLoad.idcontents);
 
       Utilities.formatHierarchie(this.dataLoad, this.newIdParrent).then(
-        reponse => {
+        (reponse) => {
           //console.log(" change Hierarchie : ", reponse);
           config
             .post("/gestion-project/save-update", reponse)
-            .then(reponse => {
+            .then((reponse) => {
               if (reponse.status) {
                 console.log("data after edit :", reponse);
                 this.$emit("edition-ok", reponse);
@@ -310,7 +310,7 @@ export default {
               this.spinner = false;
               this.hierarchiModal = false;
             })
-            .catch(function(error) {
+            .catch(function (error) {
               console.log("error", error);
             });
         }
@@ -329,18 +329,18 @@ export default {
 
     //Supression d’un contenu
     DeleteContent() {
-      Utilities.formatDeleteData(this.dataLoad, "delete").then(reponse => {
+      Utilities.formatDeleteData(this.dataLoad, "delete").then((reponse) => {
         console.log(" deleteProject : ", reponse);
         config
           .post("/gestion-project/save-update", reponse)
-          .then(reponse => {
+          .then((reponse) => {
             if (reponse.status) {
               console.log("data after delete :", reponse);
               this.$emit("suppression-ok");
             }
             this.isLoading = false;
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log("error", error);
           });
       });
@@ -367,8 +367,8 @@ export default {
     modalEditOnText(item) {
       console.log("Test edit : ", item.titre);
       this.$emit("ev-modal-edit-on", item);
-    }
-  }
+    },
+  },
 };
 </script>
 

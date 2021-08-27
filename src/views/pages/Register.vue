@@ -9,7 +9,9 @@
                 <h1>Register</h1>
                 <p class="text-muted">Create your account</p>
                 <CInput placeholder="Username" autocomplete="username">
-                  <template #prepend-content><CIcon name="cil-user"/></template>
+                  <template #prepend-content
+                    ><CIcon name="cil-user"
+                  /></template>
                 </CInput>
                 <CInput placeholder="Email" autocomplete="email" prepend="@" />
                 <CInput
@@ -37,14 +39,10 @@
             <CCardFooter class="p-4">
               <CRow>
                 <CCol col="6">
-                  <CButton block color="facebook">
-                    Facebook
-                  </CButton>
+                  <CButton block color="facebook"> Facebook </CButton>
                 </CCol>
                 <CCol col="6">
-                  <CButton block color="twitter">
-                    Twitter
-                  </CButton>
+                  <CButton block color="twitter"> Twitter </CButton>
                 </CCol>
               </CRow>
             </CCardFooter>
@@ -57,6 +55,6 @@
 
 <script>
 export default {
-  name: "Register"
+  name: "Register",
 };
 </script>

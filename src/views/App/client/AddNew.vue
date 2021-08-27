@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CRow class="ml-2 mt-n2 d-flex " alignVertical="center">
+    <CRow class="ml-2 mt-n2 d-flex" alignVertical="center">
       <CButton @click="modalAddOn" size="sm" :color="plusColor" shape="pill">
         <CIcon class="text-white" name="cilPlus" :height="35" size="xl" />
       </CButton>
@@ -24,7 +24,7 @@
         :selectOption="selectOption"
       ></PopUpClient>
       <template slot="footer">
-        <div class="d-flex justify-content-end mr-3 ">
+        <div class="d-flex justify-content-end mr-3">
           <CButton @click="modalAdd = false" class="mx-1" color="light">
             Cancel
           </CButton>
@@ -48,22 +48,22 @@ export default {
   props: {
     plusColor: {
       type: String,
-      default: "info"
+      default: "info",
     },
     modalTitle: {
       type: String,
-      default: "Nouveau client"
+      default: "Nouveau client",
     },
     modalType: {
       type: Boolean,
-      default: true
+      default: true,
     },
     selectOption: {
       type: Array,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   components: { PopUpClient },
   data() {
@@ -95,8 +95,8 @@ export default {
     },
     loadListSte() {
       this.$emit("load-list-ste");
-    }
-  }
+    },
+  },
 };
 </script>
 

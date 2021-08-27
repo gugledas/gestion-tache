@@ -16,7 +16,7 @@
       </CCardHeader>
       <CCardBody class="">
         <CDataTable
-          class="m-0  table-borderless "
+          class="m-0 table-borderless"
           hover
           :responsive="false"
           :loading="isLoading"
@@ -33,7 +33,7 @@
             <div>
               <CLink
                 :to="{
-                  path: '#'
+                  path: '#',
                 }"
                 class="text-decoration-none"
               >
@@ -74,7 +74,7 @@
                 size="sm"
                 @click="EditEntity(item)"
                 class="mx-1"
-                ><CIcon name="cilPencil" class="mr-1 text-info "></CIcon
+                ><CIcon name="cilPencil" class="mr-1 text-info"></CIcon
               ></CButton>
               <!-- <CButton
                 color="primary"
@@ -91,7 +91,7 @@
                 size="sm"
                 @click="DeleteModalOn(item)"
                 class="mx-1 text-danger"
-                ><CIcon name="cil-x-circle" class="mr-1 text-danger "></CIcon
+                ><CIcon name="cil-x-circle" class="mr-1 text-danger"></CIcon
               ></CButton>
             </CRow>
           </td>
@@ -117,10 +117,10 @@
             >Supprimer<CSpinner
               v-if="loading"
               size="sm"
-              class=" ml-1"
+              class="ml-1"
               tag="small"
               color="primary"
-              style="width:1rem;height:1rem;"
+              style="width: 1rem; height: 1rem"
           /></CButton>
         </div>
       </template>
@@ -136,37 +136,37 @@ export default {
     items: {
       type: Array,
       required: true,
-      default: function() {
+      default: function () {
         return [];
-      }
+      },
     },
     title: {
       type: String,
       required: true,
-      default: "title"
+      default: "title",
     },
     isLoading: {
       type: Boolean,
-      default: true
+      default: true,
     },
     tableFields: {
       type: Array,
       required: true,
-      default: function() {
+      default: function () {
         return [];
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       tableFieldse: [
         { key: "nom", _style: "min-width:550px;", filter: false },
         { key: "siteweb", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" }
+        { key: "activity", _style: "width:600px;" },
       ],
       deleteModal: false,
       loading: false,
-      id: ""
+      id: "",
     };
   },
   methods: {
@@ -182,18 +182,18 @@ export default {
     //Supression d’un contenu
     deleteEntity() {
       this.loading = true;
-      Utilities.formatDeleteClient(this.id).then(reponse => {
+      Utilities.formatDeleteClient(this.id).then((reponse) => {
         console.log(" deleteProject : ", reponse);
         config
           .post("/gestion-project/save-update", reponse)
-          .then(reponse => {
+          .then((reponse) => {
             if (reponse.status) {
               this.$emit("suppression-ok");
             }
             this.loading = false;
             if (this.loading == false) this.deleteModal = false;
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log("error", error);
           });
       });
@@ -201,8 +201,8 @@ export default {
     //Envoie des données au parent clients.vue pour l'édition
     EditEntity(datas) {
       this.$emit("data-to-edite", datas);
-    }
-  }
+    },
+  },
 };
 </script>
 

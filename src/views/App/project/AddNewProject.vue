@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CRow class="ml-2 mt-n2 d-flex " alignVertical="center">
+    <CRow class="ml-2 mt-n2 d-flex" alignVertical="center">
       <CButton
         @click="modalAddOn"
         v-c-tooltip="'Nouveau projet'"
@@ -25,7 +25,7 @@
         :btn-state="btnStateAdd"
       ></PopUpContent>
       <template slot="footer">
-        <div class="d-flex justify-content-end mr-3 ">
+        <div class="d-flex justify-content-end mr-3">
           <CButton @click="modalAdd = false" class="mx-1" color="light">
             Cancel
           </CButton>
@@ -50,8 +50,8 @@ export default {
   props: {
     showSideText: {
       type: Boolean,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
@@ -59,7 +59,7 @@ export default {
         starttime: "",
         endtime: "",
         title: "",
-        text: ""
+        text: "",
       },
       btnStateAdd: { state: false },
       editorData: "<p>content...</p>",
@@ -67,14 +67,14 @@ export default {
       modalAdd: false,
       editorConfig: {
         extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
+        codeSnippet_theme: "monokai_sublime",
       },
       options: [
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" }
+        { value: "memos", label: "Mémos" },
       ],
-      formValues: {}
+      formValues: {},
     };
   },
   mounted() {},
@@ -82,12 +82,12 @@ export default {
     ser() {
       var newDiv = document.createElement("div");
       newDiv.innerHTML = this.editorData;
-      newDiv.querySelectorAll("pre code").forEach(block => {
+      newDiv.querySelectorAll("pre code").forEach((block) => {
         hljs.highlightBlock(block);
       });
 
       return newDiv.outerHTML;
-    }
+    },
   },
   methods: {
     modalAddOn() {
@@ -99,7 +99,7 @@ export default {
         this.modalAdd = false;
         this.$refs.child.PostNewProject();
       }
-    }
-  }
+    },
+  },
 };
 </script>
