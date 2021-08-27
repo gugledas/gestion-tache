@@ -31,7 +31,7 @@ export default new Router({
   mode: "hash", // https://router.vuejs.org/api/#mode
   linkActiveClass: "active",
   scrollBehavior: () => ({ y: 0 }),
-  routes: configRoutes()
+  routes: configRoutes(),
 });
 
 function configRoutes() {
@@ -46,48 +46,48 @@ function configRoutes() {
         {
           path: "dashboard",
           name: "Dashboard",
-          component: Dashboard
+          component: Dashboard,
         },
         {
           path: "projets",
           name: "Projets",
           component: ProjectList,
-          children: []
+          children: [],
         },
         {
           path: "/projets/:idcontents",
           name: "Projet",
           component: SingleProjectPage,
-          props: true
+          props: true,
         },
         {
           path: "/clients",
           name: "Clients",
-          component: Clients
+          component: Clients,
         },
         {
           path: "/factures",
           name: "Factures",
-          component: Factures
+          component: Factures,
         },
         {
           path: "/factures/:id",
           name: "New facture",
           component: NewFacture,
-          props: true
+          props: true,
         },
         {
           path: "/docs",
           name: "Docs",
-          component: Document
-        }
+          component: Document,
+        },
         // {
         //   path: "/projet-page/:idcontents",
         //   name: "Page dynamique",
         //   component: SimpleProjectPagetest,
         //   props: true
         // },
-      ]
+      ],
     },
     {
       path: "/*",
@@ -96,31 +96,31 @@ function configRoutes() {
       component: {
         render(c) {
           return c("router-view");
-        }
+        },
       },
       children: [
         {
           path: "404",
           name: "Page404",
-          component: Page404
+          component: Page404,
         },
 
         {
           path: "500",
           name: "Page500",
-          component: Page500
+          component: Page500,
         },
         {
           path: "login",
           name: "Login",
-          component: Login
+          component: Login,
         },
         {
           path: "register",
           name: "Register",
-          component: Register
-        }
-      ]
-    }
+          component: Register,
+        },
+      ],
+    },
   ];
 }

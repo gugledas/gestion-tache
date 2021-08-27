@@ -1,714 +1,97 @@
 ((typeof self !== 'undefined' ? self : this)["webpackJsonpgestionTache"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpgestionTache"] || []).push([[16],{
 
-/***/ "f0ae":
+/***/ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/App/project/SingleProjectPage.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/SingleProjectPage.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b8a6");
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  /**
-   * selectionne un enssemble de données à partir d'une requette personnalisé
-   */
-  selectDatas: function selectDatas() {
-    var _this = this;
-
-    var where = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{
-      column: "c.type",
-      operator: "=",
-      value: "project"
-    }];
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select ";
-      query += " c.idcontents, c.text, c.titre, c.created_at, ";
-      query += " c.update_at, c.type, h.idhierachie, h.idcontentsparent, ";
-      query += " h.ordre, h.level";
-      query += " from ";
-      query += _this.formatStringTable("gestion_project_hierachie") + " as h ";
-      query += " INNER JOIN ";
-      query += _this.formatStringTable("gestion_project_contents") + " as c ";
-      query += " ON h.idcontents = c.idcontents "; //query += "WHERE ( h.idcontentsparent = $idcontents OR c.idcontents = $idcontents ) ";
-
-      if (where.length) {
-        query += " WHERE ";
-
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
-      }
-
-      query += " ORDER BY  c.`idcontents` DESC";
-      query += " limit 0,50 "; //console.log("query :: ", query);
-
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  selectTypes: function selectTypes() {
-    var _this2 = this;
-
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select * ";
-      query += " from ";
-      query += _this2.formatStringTable("gestion_project_type");
-      query += " limit 0,50 ";
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  selectProject: function selectProject(where) {
-    var _this3 = this;
-
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select * ";
-      query += " from ";
-      query += _this3.formatStringTable("gestion_project_contents");
-
-      if (where.length) {
-        query += " WHERE ";
-
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
-      }
-
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  selectFatureList: function selectFatureList(where) {
-    var _this4 = this;
-
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select * ";
-      query += " from ";
-      query += _this4.formatStringTable("gestion_project_invoice_list");
-
-      if (where.length) {
-        query += " WHERE ";
-
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
-      }
-
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  selectInvoice: function selectInvoice(where) {
-    var _this5 = this;
-
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select * ";
-      query += " from ";
-      query += _this5.formatStringTable("gestion_project_invoice");
-
-      if (where.length) {
-        query += " WHERE ";
-
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
-      }
-
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  selectClients: function selectClients(where) {
-    var _this6 = this;
-
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select * ";
-      query += " from ";
-      query += _this6.formatStringTable("gestion_project_client");
-
-      if (where.length) {
-        query += " WHERE ";
-
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
-      }
-
-      query += " limit 0,50 ";
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  selectSte: function selectSte(where) {
-    var _this7 = this;
-
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select * ";
-      query += " from ";
-      query += _this7.formatStringTable("gestion_project_societe");
-
-      if (where.length) {
-        query += " WHERE ";
-
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
-      }
-
-      query += " limit 0,50 ";
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  selectClient: function selectClient(table) {
-    var _this8 = this;
-
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select * ";
-      query += " from ";
-      query += _this8.formatStringTable(table);
-      query += " limit 0,50 ";
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  //selectionne et affiche les derniers données modifié
-  selectAll: function selectAll() {
-    var _this9 = this;
-
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select * ";
-      query += " from ";
-      query += _this9.formatStringTable("gestion_project_contents");
-      query += " order by update_at DESC ";
-      query += " limit 0,50 ";
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  SelectTacheEnours: function SelectTacheEnours() {
-    var _this10 = this;
-
-    var where = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{
-      column: "t.status",
-      operator: "=",
-      value: 2
-    }];
-    return new Promise(function (resolv) {
-      var query = "";
-      query += " select ";
-      query += " c.idcontents, c.text, c.titre, c.created_at, ";
-      query += " c.update_at, c.type, h.idhierachie, h.idcontentsparent, ";
-      query += " h.ordre, h.level, ";
-      query += " t.status";
-      query += " from ";
-      query += _this10.formatStringTable("gestion_project_hierachie") + " as h ";
-      query += " INNER JOIN ";
-      query += _this10.formatStringTable("gestion_project_contents") + " as c ";
-      query += " ON h.idcontents = c.idcontents ";
-      query += " INNER JOIN ";
-      query += _this10.formatStringTable("gestion_project_times") + " as t ";
-      query += " ON t.idcontents = c.idcontents "; //query += "WHERE ( h.idcontentsparent = $idcontents OR c.idcontents = $idcontents ) ";
-
-      if (where.length) {
-        query += " WHERE ";
-
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
-      }
-
-      query += " ORDER BY  c.`idcontents` DESC";
-      query += " limit 0,50 "; //console.log("query :: ", query);
-
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-
-  /**
-   * les tables sous drupal doivent etre encarée avec {}
-   */
-  formatStringTable: function formatStringTable(table) {
-    return "{" + table + "}";
-  }
-});
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _charts_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../charts/index */ \"./src/views/charts/index.js\");\n/* harmony import */ var highlight_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! highlight.js */ \"./node_modules/highlight.js/lib/index.js\");\n/* harmony import */ var highlight_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(highlight_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config/config */ \"./src/views/App/config/config.js\");\n/* harmony import */ var _Utilities__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Utilities */ \"./src/views/App/project/Utilities.js\");\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: \"SingleProjectPagetest\",\n  props: {\n    idcontents: {\n      type: String,\n      default: \"52\"\n    }\n  },\n  components: _objectSpread(_objectSpread({}, _charts_index__WEBPACK_IMPORTED_MODULE_0__), {}, {\n    PopUpContent: function PopUpContent() {\n      return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./PopUpContent.vue */ \"./src/views/App/project/PopUpContent.vue\"));\n    },\n    //CardComponent: () => import(\"./CardComponent\"),\n    \"card-jsx\": function cardJsx() {\n      return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(6), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ./CardJsx.vue */ \"./src/views/App/project/CardJsx.vue\"));\n    },\n    \"filtre-project\": function filtreProject() {\n      return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ../../../Steph/project/FilterProject.vue */ \"./src/Steph/project/FilterProject.vue\"));\n    }\n  }),\n  data: function data() {\n    return {\n      spinner: false,\n      dataOfForm: {},\n      dataOfFormAdd: {},\n      btnStateEdit: {\n        state: false\n      },\n      btnStateAdd: {\n        state: false\n      },\n      dataLoad: [],\n      idc: null,\n      modalEdit: false,\n      ressourceToAdd: \"\",\n      chooseType: \"text\",\n      show: true,\n      selected: \"projet\",\n      addingModal: false,\n      modalRessource: false,\n      isCollapsed: true,\n      editorConfig: {\n        extraPlugins: \"codesnippet\",\n        codeSnippet_theme: \"monokai_sublime\"\n      },\n      options: [{\n        value: \"projet\",\n        label: \"Projet\"\n      }, {\n        value: \"tache\",\n        label: \"Tâche\"\n      }, {\n        value: \"memos\",\n        label: \"Mémos\"\n      }],\n      level: 0\n    };\n  },\n  mounted: function mounted() {\n    this.LoadProjectData();\n  },\n  watch: {//\n  },\n  computed: {\n    modalData: function modalData() {\n      //var room = this.dataLoad;\n      var element = [];\n      return element;\n    },\n    textDisplay: function textDisplay() {\n      var newDiv = document.createElement(\"div\");\n      newDiv.innerHTML = this.dataLoad.text ? this.dataLoad.text : \"\";\n      newDiv.querySelectorAll(\"pre code\").forEach(function (block) {\n        highlight_js__WEBPACK_IMPORTED_MODULE_1___default.a.highlightBlock(block);\n      });\n      return newDiv.outerHTML;\n    }\n  },\n  methods: {\n    changeParent: function changeParent(data) {\n      console.log(\"change-ppparent : \", data);\n    },\n    modalEditOn: function modalEditOn(data) {\n      console.log(\"modalEditOn data\", data);\n      this.dataOfForm = data;\n      this.modalEdit = true;\n    },\n    evModalEditOn: function evModalEditOn(data) {\n      console.log(\"ouverture du poup : \", data);\n    },\n    // Hide type project if we want to create  content inside project\n    HideTypeProject: function HideTypeProject(data) {\n      this.idc = data.idcontents;\n      this.level = parseInt(data.level) + 1;\n      this.addingModal = true;\n      this.$refs.child.changeType();\n      this.$refs.child.TimeNow();\n    },\n    // save content edieted\n    EditModalPost: function EditModalPost() {\n      if (this.btnStateEdit.state) {\n        this.modalEdit = false;\n        this.$refs.edchild.EditProject();\n      }\n    },\n    AddNewTask: function AddNewTask() {\n      if (this.btnStateAdd.state) {\n        this.addingModal = false;\n        this.$refs.child.PostNewProject(this.idc);\n      }\n    },\n    // Request for Loading data on DB\n    LoadProjectData: function LoadProjectData() {\n      var _this = this;\n\n      this.spinner = true;\n      this.isLoading = true;\n      _config_config__WEBPACK_IMPORTED_MODULE_2__[\"default\"].get(\"/gestion-project/project-with-childs/\" + this.idcontents).then(function (reponse) {\n        if (reponse.status) {\n          _this.dataLoad = _Utilities__WEBPACK_IMPORTED_MODULE_3__[\"default\"].formCard(reponse.data);\n          console.log(\"donnée chargées : \", _this.dataLoad);\n        }\n\n        _this.isLoading = false;\n        _this.spinner = false;\n      }).catch(function (error) {\n        console.log(\"error\", error);\n      });\n    },\n    EvFilter: function EvFilter(filter) {\n      var _this2 = this;\n\n      this.spinner = true;\n      this.isLoading = true;\n      _config_config__WEBPACK_IMPORTED_MODULE_2__[\"default\"].post(\"/gestion-project/project-with-childs/\" + this.idcontents, filter).then(function (reponse) {\n        if (reponse.status) {\n          _this2.dataLoad = _Utilities__WEBPACK_IMPORTED_MODULE_3__[\"default\"].formCard(reponse.data);\n          console.log(\"donnée chargées : \", _this2.dataLoad);\n        }\n\n        _this2.isLoading = false;\n        _this2.spinner = false;\n      }).catch(function (error) {\n        console.log(\"error\", error);\n      });\n    },\n    scrollTop: function scrollTop() {\n      window.scrollTo({\n        top: 0,\n        left: 0,\n        behavior: \"smooth\"\n      });\n    }\n  }\n});\n\n//# sourceURL=webpack://gestionTache/./src/views/App/project/SingleProjectPage.vue?./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
-/***/ "fa09":
+/***/ "./node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/App/project/SingleProjectPage.vue?vue&type=template&id=1c815bdc&scoped=true&lang=html&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"16bf414d-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/SingleProjectPage.vue?vue&type=template&id=1c815bdc&scoped=true&lang=html& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\n        \"CRow\",\n        [_c(\"filtre-project\", { on: { \"ev-filter\": _vm.EvFilter } })],\n        1\n      ),\n      _vm.spinner\n        ? _c(\n            \"CRow\",\n            [\n              _c(\"CSpinner\", {\n                staticClass: \"mx-auto mt-5\",\n                staticStyle: { width: \"4rem\", height: \"4rem\" },\n                attrs: { tag: \"div\", color: \"primary\" }\n              })\n            ],\n            1\n          )\n        : _vm._e(),\n      !_vm.spinner\n        ? _c(\n            \"CRow\",\n            [\n              _c(\n                \"CCol\",\n                { attrs: { md: \"12\" } },\n                [\n                  _c(\"card-jsx\", {\n                    attrs: { dataLoad: _vm.dataLoad },\n                    on: {\n                      \"modal-edit-on\": _vm.modalEditOn,\n                      \"Hide-type-project\": _vm.HideTypeProject,\n                      \"suppression-ok\": _vm.LoadProjectData,\n                      \"change-parent\": _vm.changeParent,\n                      \"edition-ok\": _vm.LoadProjectData\n                    }\n                  })\n                ],\n                1\n              ),\n              _c(\n                \"CModal\",\n                {\n                  attrs: {\n                    size: \"lg\",\n                    title: \"Nouveau projet\",\n                    color: \"info\",\n                    show: _vm.addingModal,\n                    closeOnBackdrop: false\n                  },\n                  on: {\n                    \"update:show\": function($event) {\n                      _vm.addingModal = $event\n                    }\n                  }\n                },\n                [\n                  _c(\"PopUpContent\", {\n                    ref: \"child\",\n                    attrs: {\n                      \"form-values\": _vm.dataOfFormAdd,\n                      level: _vm.level,\n                      \"btn-state\": _vm.btnStateAdd\n                    },\n                    on: { \"addnew-ok\": _vm.LoadProjectData }\n                  }),\n                  _c(\"template\", { slot: \"footer\" }, [\n                    _c(\n                      \"div\",\n                      { staticClass: \"d-flex justify-content-end mr-3\" },\n                      [\n                        _c(\n                          \"CButton\",\n                          {\n                            staticClass: \"mx-1\",\n                            attrs: { color: \"light\" },\n                            on: {\n                              click: function($event) {\n                                _vm.addingModal = false\n                              }\n                            }\n                          },\n                          [_vm._v(\" Cancel \")]\n                        ),\n                        _c(\n                          \"CButton\",\n                          {\n                            staticClass: \"mx-1\",\n                            attrs: {\n                              color: _vm.btnStateAdd.state ? \"info\" : \"light\",\n                              desabled: \"\"\n                            },\n                            on: { click: _vm.AddNewTask }\n                          },\n                          [_vm._v(\"Save\")]\n                        )\n                      ],\n                      1\n                    )\n                  ])\n                ],\n                2\n              ),\n              _c(\n                \"CModal\",\n                {\n                  attrs: {\n                    size: \"lg\",\n                    title: \"Ressources\",\n                    color: \"light\",\n                    show: _vm.modalRessource,\n                    closeOnBackdrop: false\n                  },\n                  on: {\n                    \"update:show\": function($event) {\n                      _vm.modalRessource = $event\n                    }\n                  }\n                },\n                [\n                  _vm.selected == \"projet\"\n                    ? _c(\n                        \"div\",\n                        { staticClass: \"pl-sm-2 \" },\n                        [\n                          _c(\n                            \"CRow\",\n                            { staticClass: \"d-flex flex-nowrap\" },\n                            [\n                              _c(\n                                \"CCol\",\n                                { attrs: { md: \"7\" } },\n                                [\n                                  _c(\"CInput\", {\n                                    attrs: {\n                                      label: \"add new ressource\",\n                                      type: _vm.chooseType,\n                                      placeholder: _vm.chooseType\n                                    },\n                                    scopedSlots: _vm._u(\n                                      [\n                                        {\n                                          key: \"append\",\n                                          fn: function() {\n                                            return [\n                                              _c(\n                                                \"div\",\n                                                [\n                                                  _c(\n                                                    \"CDropdown\",\n                                                    {\n                                                      staticClass: \"rounded-0\",\n                                                      attrs: {\n                                                        \"toggler-text\": \"Type\",\n                                                        color: \"dark\"\n                                                      },\n                                                      on: {\n                                                        click: function(\n                                                          $event\n                                                        ) {\n                                                          _vm.ressourceToAdd =\n                                                            \"\"\n                                                        }\n                                                      }\n                                                    },\n                                                    [\n                                                      _c(\n                                                        \"CDropdownItem\",\n                                                        {\n                                                          on: {\n                                                            click: function(\n                                                              $event\n                                                            ) {\n                                                              _vm.chooseType =\n                                                                \"text\"\n                                                            }\n                                                          }\n                                                        },\n                                                        [_vm._v(\"text\")]\n                                                      ),\n                                                      _c(\n                                                        \"CDropdownItem\",\n                                                        {\n                                                          on: {\n                                                            click: function(\n                                                              $event\n                                                            ) {\n                                                              _vm.chooseType =\n                                                                \"file\"\n                                                            }\n                                                          }\n                                                        },\n                                                        [_vm._v(\"file\")]\n                                                      )\n                                                    ],\n                                                    1\n                                                  ),\n                                                  _c(\n                                                    \"CButton\",\n                                                    {\n                                                      attrs: {\n                                                        color: \"primary\"\n                                                      }\n                                                    },\n                                                    [_vm._v(\"Add\")]\n                                                  )\n                                                ],\n                                                1\n                                              )\n                                            ]\n                                          },\n                                          proxy: true\n                                        }\n                                      ],\n                                      null,\n                                      false,\n                                      1325621333\n                                    ),\n                                    model: {\n                                      value: _vm.ressourceToAdd,\n                                      callback: function($$v) {\n                                        _vm.ressourceToAdd = $$v\n                                      },\n                                      expression: \"ressourceToAdd\"\n                                    }\n                                  })\n                                ],\n                                1\n                              )\n                            ],\n                            1\n                          )\n                        ],\n                        1\n                      )\n                    : _vm._e(),\n                  _c(\"template\", { slot: \"footer\" }, [\n                    _c(\n                      \"div\",\n                      { staticClass: \"d-flex justify-content-end mr-3\" },\n                      [\n                        _c(\n                          \"CButton\",\n                          {\n                            staticClass: \"mx-1\",\n                            attrs: { color: \"light\" },\n                            on: {\n                              click: function($event) {\n                                _vm.modalRessource = false\n                              }\n                            }\n                          },\n                          [_vm._v(\"Cancel\")]\n                        ),\n                        _c(\n                          \"CButton\",\n                          {\n                            staticClass: \"mx-1\",\n                            attrs: { color: \"info\" },\n                            on: {\n                              click: function($event) {\n                                _vm.modalRessource = false\n                              }\n                            }\n                          },\n                          [_vm._v(\"ok\")]\n                        )\n                      ],\n                      1\n                    )\n                  ])\n                ],\n                2\n              ),\n              _c(\n                \"div\",\n                [\n                  _c(\n                    \"CModal\",\n                    {\n                      attrs: {\n                        size: \"lg\",\n                        title: \"Edition de :\" + \" \" + _vm.dataOfForm.titre,\n                        color: \"success\",\n                        show: _vm.modalEdit,\n                        closeOnBackdrop: false\n                      },\n                      on: {\n                        \"update:show\": function($event) {\n                          _vm.modalEdit = $event\n                        }\n                      }\n                    },\n                    [\n                      _c(\"PopUpContent\", {\n                        ref: \"edchild\",\n                        attrs: {\n                          \"form-values\": _vm.dataOfForm,\n                          \"btn-state\": _vm.btnStateEdit,\n                          level: _vm.level\n                        },\n                        on: { \"edition-ok\": _vm.LoadProjectData }\n                      }),\n                      _c(\"template\", { slot: \"footer\" }, [\n                        _c(\n                          \"div\",\n                          { staticClass: \"d-flex justify-content-end mr-3\" },\n                          [\n                            _c(\n                              \"CButton\",\n                              {\n                                staticClass: \"mx-1\",\n                                attrs: { color: \"light\" },\n                                on: {\n                                  click: function($event) {\n                                    _vm.modalEdit = false\n                                  }\n                                }\n                              },\n                              [_vm._v(\" Cancel \")]\n                            ),\n                            _c(\n                              \"CButton\",\n                              {\n                                staticClass: \"mx-1\",\n                                attrs: {\n                                  color: _vm.btnStateEdit.state\n                                    ? \"success\"\n                                    : \"light\"\n                                },\n                                on: { click: _vm.EditModalPost }\n                              },\n                              [_vm._v(\" Enregistrer les modifications \")]\n                            )\n                          ],\n                          1\n                        )\n                      ])\n                    ],\n                    2\n                  )\n                ],\n                1\n              ),\n              _c(\n                \"CCol\",\n                { attrs: { md: \"6\" } },\n                [\n                  _c(\n                    \"CCard\",\n                    [\n                      _c(\"CCardHeader\", [_vm._v(\" stats \")]),\n                      _c(\"CCardBody\", [_c(\"CChartPieExample\")], 1)\n                    ],\n                    1\n                  )\n                ],\n                1\n              )\n            ],\n            1\n          )\n        : _vm._e(),\n      _c(\n        \"div\",\n        { staticClass: \"scroll-top\" },\n        [\n          _c(\n            \"CButton\",\n            {\n              staticClass: \"mx-1\",\n              attrs: { color: \"warning\" },\n              on: { click: _vm.scrollTop }\n            },\n            [\n              _c(\"CIcon\", {\n                staticClass: \"text-white\",\n                attrs: { name: \"cil-chevron-top\", height: 35, size: \"xl\" }\n              })\n            ],\n            1\n          )\n        ],\n        1\n      )\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/App/project/SingleProjectPage.vue?./node_modules/cache-loader/dist/cjs.js?%7B%22cacheDirectory%22:%22node_modules/.cache/vue-loader%22,%22cacheIdentifier%22:%2216bf414d-vue-loader-template%22%7D!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"748dd0ae-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/ProjectList.vue?vue&type=template&id=29221341&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('CRow',_vm._l((_vm.projectType),function(item,i){return _c('CCol',{key:i,attrs:{"md":"6"}},[_c('LastProjectType',{attrs:{"title":item.label,"name":item.name,"isLoading":_vm.isLoading2}})],1)}),1)],1)}
-var staticRenderFns = []
+/***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/App/project/SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-// CONCATENATED MODULE: ./src/views/App/ProjectList.vue?vue&type=template&id=29221341&
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \".scroll-top[data-v-1c815bdc] {\\n  position: fixed;\\n  right: 20px;\\n  bottom: 52px;\\n  z-index: 2;\\n}\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack://gestionTache/./src/views/App/project/SingleProjectPage.vue?./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
 
-// EXTERNAL MODULE: ./src/views/charts/index.js + 40 modules
-var charts = __webpack_require__("4c27");
+/***/ }),
 
-// EXTERNAL MODULE: ./src/views/users/UsersData.js
-var UsersData = __webpack_require__("bd76");
+/***/ "./node_modules/vue-style-loader/index.js?!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/App/project/SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-// EXTERNAL MODULE: ./src/views/App/config/SelectDb.js
-var SelectDb = __webpack_require__("f0ae");
+eval("// style-loader: Adds some css to the DOM by adding a <style> tag\n\n// load the styles\nvar content = __webpack_require__(/*! !../../../../node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--8-oneOf-1-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!../../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true& */ \"./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/App/project/SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true&\");\nif(content.__esModule) content = content.default;\nif(typeof content === 'string') content = [[module.i, content, '']];\nif(content.locals) module.exports = content.locals;\n// add the styles to the DOM\nvar add = __webpack_require__(/*! ../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ \"./node_modules/vue-style-loader/lib/addStylesClient.js\").default\nvar update = add(\"31ef01fe\", content, false, {\"sourceMap\":false,\"shadowMode\":false});\n// Hot Module Replacement\nif(false) {}\n\n//# sourceURL=webpack://gestionTache/./src/views/App/project/SingleProjectPage.vue?./node_modules/vue-style-loader??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-2!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"748dd0ae-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/LastProjectType.vue?vue&type=template&id=d27355d6&
-var LastProjectTypevue_type_template_id_d27355d6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('CCard',[_c('CCardHeader',[_vm._v(" "+_vm._s(_vm.title)+" "),_c('div',{staticClass:"card-header-actions"})]),_c('CCardBody',{},[_c('CDataTable',{staticClass:"m-0  table-borderless ",attrs:{"hover":"","responsive":false,"loading":_vm.isLoading,"items":_vm.items,"fields":_vm.tableFields,"header":false,"cleaner":"","table-filter":"","items-per-page-select":"","items-per-page":5,"pagination":""},scopedSlots:_vm._u([{key:"user",fn:function(ref){
-var item = ref.item;
-return _c('td',{},[_c('div',[_c('CLink',{staticClass:"text-decoration-none",attrs:{"to":{
-                path: 'projets/' + item.idcontents
-              }}},[_vm._v(" "+_vm._s(item.titre)+" ")])],1),_c('div',{staticClass:"small text-muted mt-1"},[_c('span',[[_vm._v("New")],(false)?undefined:_vm._e()],2),_vm._v(" | Crée le: "+_vm._s(item.created_at)+" ")])])}},{key:"usage",fn:function(ref){
-              var item = ref.item;
-return _c('td',{},[_c('div',{staticClass:"clearfix"},[_c('div',{staticClass:"float-left"}),_c('div',{staticClass:"float-right"},[_c('small',{staticClass:"text-bold"},[_c('strong',[_vm._v("Updated: ")]),_vm._v(" "+_vm._s(item.update_at))])])])])}}])},[_c('td',{attrs:{"slot":"activity"},slot:"activity"},[_c('CRow',{staticClass:"ml-4 d-flex justify-content-arround flex-nowrap"},[_c('CLink',{staticClass:"mx-3",attrs:{"color":"primary","variant":"ghost","shape":"pill","size":"sm"}},[_c('CIcon',{staticClass:"mr-1 text-info ",attrs:{"name":"cilList"}})],1)],1)],1)])],1)],1)],1)}
-var LastProjectTypevue_type_template_id_d27355d6_staticRenderFns = []
+/***/ }),
 
+/***/ "./src/views/App/project/SingleProjectPage.vue":
+/*!*****************************************************!*\
+  !*** ./src/views/App/project/SingleProjectPage.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// CONCATENATED MODULE: ./src/views/App/project/LastProjectType.vue?vue&type=template&id=d27355d6&
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _SingleProjectPage_vue_vue_type_template_id_1c815bdc_scoped_true_lang_html___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SingleProjectPage.vue?vue&type=template&id=1c815bdc&scoped=true&lang=html& */ \"./src/views/App/project/SingleProjectPage.vue?vue&type=template&id=1c815bdc&scoped=true&lang=html&\");\n/* harmony import */ var _SingleProjectPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SingleProjectPage.vue?vue&type=script&lang=js& */ \"./src/views/App/project/SingleProjectPage.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _SingleProjectPage_vue_vue_type_style_index_0_id_1c815bdc_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true& */ \"./src/views/App/project/SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true&\");\n/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(\n  _SingleProjectPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _SingleProjectPage_vue_vue_type_template_id_1c815bdc_scoped_true_lang_html___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _SingleProjectPage_vue_vue_type_template_id_1c815bdc_scoped_true_lang_html___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  \"1c815bdc\",\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/views/App/project/SingleProjectPage.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://gestionTache/./src/views/App/project/SingleProjectPage.vue?");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/LastProjectType.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/***/ }),
 
-/* harmony default export */ var LastProjectTypevue_type_script_lang_js_ = ({
-  props: {
-    name: {
-      type: String,
-      required: true
-    },
-    // isLoading: {
-    //   type: Boolean,
-    //   default: true
-    // },
-    title: {
-      type: String,
-      required: true,
-      default: "title"
-    }
-  },
-  data: function data() {
-    return {
-      tableFields: [{
-        key: "user",
-        _style: "min-width:550px;",
-        filter: false
-      }, {
-        key: "usage",
-        _style: "min-width:200px;"
-      }, {
-        key: "activity",
-        _style: "width:600px;"
-      }],
-      isLoading: true,
-      items: []
-    };
-  },
-  mounted: function mounted() {
-    this.LoadDatasType();
-  },
-  methods: {
-    LoadDatasType: function LoadDatasType() {
-      var _this = this;
+/***/ "./src/views/App/project/SingleProjectPage.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./src/views/App/project/SingleProjectPage.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-      if (this.name.length) {
-        var opt = [{
-          column: "c.type",
-          operator: "=",
-          value: this.name
-        }];
-        this.isLoading2 = true;
-        SelectDb["a" /* default */].selectDatas(opt).then(function (response) {
-          console.log("name", _this.name);
-          _this.items = response;
-          _this.isLoading = false;
-        });
-      }
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/views/App/project/LastProjectType.vue?vue&type=script&lang=js&
- /* harmony default export */ var project_LastProjectTypevue_type_script_lang_js_ = (LastProjectTypevue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-var componentNormalizer = __webpack_require__("2877");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/cache-loader/dist/cjs.js??ref--12-0!../../../../node_modules/babel-loader/lib!../../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SingleProjectPage.vue?vue&type=script&lang=js& */ \"./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/App/project/SingleProjectPage.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://gestionTache/./src/views/App/project/SingleProjectPage.vue?");
 
-// CONCATENATED MODULE: ./src/views/App/project/LastProjectType.vue
+/***/ }),
 
+/***/ "./src/views/App/project/SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true&":
+/*!***************************************************************************************************************!*\
+  !*** ./src/views/App/project/SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true& ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_style_index_0_id_1c815bdc_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-style-loader??ref--8-oneOf-1-0!../../../../node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--8-oneOf-1-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-3!../../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true& */ \"./node_modules/vue-style-loader/index.js?!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/App/project/SingleProjectPage.vue?vue&type=style&index=0&id=1c815bdc&lang=scss&scoped=true&\");\n/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_style_index_0_id_1c815bdc_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_style_index_0_id_1c815bdc_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);\n/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_style_index_0_id_1c815bdc_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if([\"default\"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_style_index_0_id_1c815bdc_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));\n\n\n//# sourceURL=webpack://gestionTache/./src/views/App/project/SingleProjectPage.vue?");
 
+/***/ }),
 
+/***/ "./src/views/App/project/SingleProjectPage.vue?vue&type=template&id=1c815bdc&scoped=true&lang=html&":
+/*!**********************************************************************************************************!*\
+  !*** ./src/views/App/project/SingleProjectPage.vue?vue&type=template&id=1c815bdc&scoped=true&lang=html& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/* normalize component */
-
-var component = Object(componentNormalizer["a" /* default */])(
-  project_LastProjectTypevue_type_script_lang_js_,
-  LastProjectTypevue_type_template_id_d27355d6_render,
-  LastProjectTypevue_type_template_id_d27355d6_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ var LastProjectType = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/ProjectList.vue?vue&type=script&lang=js&
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ var ProjectListvue_type_script_lang_js_ = ({
-  name: "SHome",
-  props: {},
-  components: _objectSpread(_objectSpread({}, charts), {}, {
-    LastProjectType: LastProjectType
-  }),
-  data: function data() {
-    return {
-      isLoading: false,
-      isLoading1: false,
-      isLoading2: false,
-      selected: "Month",
-      tableItems: [],
-      itemsProject: [],
-      itemsTache: [],
-      itemsMemos: [],
-      projectType: []
-    };
-  },
-  mounted: function mounted() {
-    // this.LoadProjectData();
-    // this.LoadTacheData();
-    // this.LoadMemosData();
-    this.LoadProjectType();
-  },
-  computed: {
-    type: function type() {
-      var result = [];
-
-      for (var i in this.projectType) {
-        if (this.projectType[i].name == "project") {
-          result.push(this.projectType[i]);
-        } else if (this.projectType[i].name == "tache") {
-          result.push(this.projectType[i]);
-        } else {
-          result.push(this.projectType[i]);
-        }
-      }
-
-      return result;
-    }
-  },
-  methods: {
-    LoadProjectType: function LoadProjectType() {
-      var _this = this;
-
-      SelectDb["a" /* default */].selectTypes().then(function (response) {
-        console.log("type : ", response);
-        _this.projectType = response;
-      });
-    },
-    hello: function hello(value) {
-      console.log("v", value);
-    },
-    LoadMemosData: function LoadMemosData() {
-      var _this2 = this;
-
-      var opt = [{
-        column: "c.type",
-        operator: "=",
-        value: "memos"
-      }];
-      this.isLoading2 = true;
-      SelectDb["a" /* default */].selectDatas(opt).then(function (response) {
-        _this2.itemsMemos = response;
-        _this2.isLoading2 = false;
-      });
-    },
-    LoadTacheData: function LoadTacheData() {
-      var _this3 = this;
-
-      var opt = [{
-        column: "c.type",
-        operator: "=",
-        value: "tache"
-      }];
-      this.isLoading1 = true;
-      SelectDb["a" /* default */].selectDatas(opt).then(function (response) {
-        _this3.itemsTache = response;
-        _this3.isLoading1 = false;
-      });
-    },
-    // Request for Loading project data on DB
-    LoadProjectData: function LoadProjectData() {
-      var _this4 = this;
-
-      this.isLoading = true;
-      SelectDb["a" /* default */].selectDatas().then(function (response) {
-        _this4.tableItems = response;
-        _this4.itemsProject = response;
-        _this4.isLoading = false;
-      });
-    },
-    color: function color(value) {
-      var $color;
-
-      if (value <= 25) {
-        $color = "info";
-      } else if (value > 25 && value <= 50) {
-        $color = "success";
-      } else if (value > 50 && value <= 75) {
-        $color = "warning";
-      } else if (value > 75 && value <= 100) {
-        $color = "danger";
-      }
-
-      return $color;
-    },
-    shuffleArray: function shuffleArray(array) {
-      for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-      }
-
-      return array;
-    },
-    getShuffledUsersData: function getShuffledUsersData() {
-      return this.shuffleArray(UsersData["a" /* default */].slice(0));
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/views/App/ProjectList.vue?vue&type=script&lang=js&
- /* harmony default export */ var App_ProjectListvue_type_script_lang_js_ = (ProjectListvue_type_script_lang_js_); 
-// CONCATENATED MODULE: ./src/views/App/ProjectList.vue
-
-
-
-
-
-/* normalize component */
-
-var ProjectList_component = Object(componentNormalizer["a" /* default */])(
-  App_ProjectListvue_type_script_lang_js_,
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ var ProjectList = __webpack_exports__["default"] = (ProjectList_component.exports);
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_template_id_1c815bdc_scoped_true_lang_html___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SingleProjectPage.vue?vue&type=template&id=1c815bdc&scoped=true&lang=html& */ \"./node_modules/cache-loader/dist/cjs.js?{\\\"cacheDirectory\\\":\\\"node_modules/.cache/vue-loader\\\",\\\"cacheIdentifier\\\":\\\"16bf414d-vue-loader-template\\\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/App/project/SingleProjectPage.vue?vue&type=template&id=1c815bdc&scoped=true&lang=html&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_template_id_1c815bdc_scoped_true_lang_html___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProjectPage_vue_vue_type_template_id_1c815bdc_scoped_true_lang_html___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/App/project/SingleProjectPage.vue?");
 
 /***/ })
 
 }]);
-//# sourceMappingURL=gestionTache.common.16.js.map

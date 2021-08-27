@@ -1,787 +1,277 @@
 ((typeof self !== 'undefined' ? self : this)["webpackJsonpgestionTache"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpgestionTache"] || []).push([[9],{
 
-/***/ "1267":
+/***/ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/Dashboard.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/Dashboard.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _charts_MainChartExample__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./charts/MainChartExample */ \"./src/views/charts/MainChartExample.vue\");\n/* harmony import */ var _widgets_WidgetsDropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./widgets/WidgetsDropdown */ \"./src/views/widgets/WidgetsDropdown.vue\");\n/* harmony import */ var _widgets_WidgetsBrand__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./widgets/WidgetsBrand */ \"./src/views/widgets/WidgetsBrand.vue\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: \"Dashboard\",\n  components: {\n    MainChartExample: _charts_MainChartExample__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n    WidgetsDropdown: _widgets_WidgetsDropdown__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n    WidgetsBrand: _widgets_WidgetsBrand__WEBPACK_IMPORTED_MODULE_2__[\"default\"]\n  },\n  data: function data() {\n    return {\n      selected: \"Month\",\n      tableItems: [{\n        avatar: {\n          url: \"img/avatars/1.jpg\",\n          status: \"success\"\n        },\n        user: {\n          name: \"Yiorgos Avraamu\",\n          new: true,\n          registered: \"Jan 1, 2015\"\n        },\n        country: {\n          name: \"USA\",\n          flag: \"cif-us\"\n        },\n        usage: {\n          value: 50,\n          period: \"Jun 11, 2015 - Jul 10, 2015\"\n        },\n        payment: {\n          name: \"Mastercard\",\n          icon: \"cib-cc-mastercard\"\n        },\n        activity: \"10 sec ago\"\n      }, {\n        avatar: {\n          url: \"img/avatars/2.jpg\",\n          status: \"danger\"\n        },\n        user: {\n          name: \"Avram Tarasios\",\n          new: false,\n          registered: \"Jan 1, 2015\"\n        },\n        country: {\n          name: \"Brazil\",\n          flag: \"cif-br\"\n        },\n        usage: {\n          value: 22,\n          period: \"Jun 11, 2015 - Jul 10, 2015\"\n        },\n        payment: {\n          name: \"Visa\",\n          icon: \"cib-cc-visa\"\n        },\n        activity: \"5 minutes ago\"\n      }, {\n        avatar: {\n          url: \"img/avatars/3.jpg\",\n          status: \"warning\"\n        },\n        user: {\n          name: \"Quintin Ed\",\n          new: true,\n          registered: \"Jan 1, 2015\"\n        },\n        country: {\n          name: \"India\",\n          flag: \"cif-in\"\n        },\n        usage: {\n          value: 74,\n          period: \"Jun 11, 2015 - Jul 10, 2015\"\n        },\n        payment: {\n          name: \"Stripe\",\n          icon: \"cib-stripe\"\n        },\n        activity: \"1 hour ago\"\n      }, {\n        avatar: {\n          url: \"img/avatars/4.jpg\",\n          status: \"\"\n        },\n        user: {\n          name: \"Enéas Kwadwo\",\n          new: true,\n          registered: \"Jan 1, 2015\"\n        },\n        country: {\n          name: \"France\",\n          flag: \"cif-fr\"\n        },\n        usage: {\n          value: 98,\n          period: \"Jun 11, 2015 - Jul 10, 2015\"\n        },\n        payment: {\n          name: \"PayPal\",\n          icon: \"cib-paypal\"\n        },\n        activity: \"Last month\"\n      }, {\n        avatar: {\n          url: \"img/avatars/5.jpg\",\n          status: \"success\"\n        },\n        user: {\n          name: \"Agapetus Tadeáš\",\n          new: true,\n          registered: \"Jan 1, 2015\"\n        },\n        country: {\n          name: \"Spain\",\n          flag: \"cif-es\"\n        },\n        usage: {\n          value: 22,\n          period: \"Jun 11, 2015 - Jul 10, 2015\"\n        },\n        payment: {\n          name: \"Google Wallet\",\n          icon: \"cib-google-pay\"\n        },\n        activity: \"Last week\"\n      }, {\n        avatar: {\n          url: \"img/avatars/6.jpg\",\n          status: \"danger\"\n        },\n        user: {\n          name: \"Friderik Dávid\",\n          new: true,\n          registered: \"Jan 1, 2015\"\n        },\n        country: {\n          name: \"Poland\",\n          flag: \"cif-pl\"\n        },\n        usage: {\n          value: 43,\n          period: \"Jun 11, 2015 - Jul 10, 2015\"\n        },\n        payment: {\n          name: \"Amex\",\n          icon: \"cib-cc-amex\"\n        },\n        activity: \"Last week\"\n      }],\n      tableFields: [{\n        key: \"avatar\",\n        label: \"\",\n        _classes: \"text-center\"\n      }, {\n        key: \"user\"\n      }, {\n        key: \"country\",\n        _classes: \"text-center\"\n      }, {\n        key: \"usage\"\n      }, {\n        key: \"payment\",\n        label: \"Payment method\",\n        _classes: \"text-center\"\n      }, {\n        key: \"activity\"\n      }]\n    };\n  },\n  methods: {\n    color: function color(value) {\n      var $color;\n\n      if (value <= 25) {\n        $color = \"info\";\n      } else if (value > 25 && value <= 50) {\n        $color = \"success\";\n      } else if (value > 50 && value <= 75) {\n        $color = \"warning\";\n      } else if (value > 75 && value <= 100) {\n        $color = \"danger\";\n      }\n\n      return $color;\n    }\n  }\n});\n\n//# sourceURL=webpack://gestionTache/./src/views/Dashboard.vue?./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/charts/MainChartExample.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/charts/MainChartExample.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @coreui/vue-chartjs */ \"./node_modules/@coreui/vue-chartjs/dist/coreui-vue-chartjs.common.js\");\n/* harmony import */ var _coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _coreui_utils_src__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @coreui/utils/src */ \"./node_modules/@coreui/utils/src/index.js\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\nfunction random(min, max) {\n  return Math.floor(Math.random() * (max - min + 1) + min);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: \"MainChartExample\",\n  components: {\n    CChartLine: _coreui_vue_chartjs__WEBPACK_IMPORTED_MODULE_0__[\"CChartLine\"]\n  },\n  computed: {\n    defaultDatasets: function defaultDatasets() {\n      var brandSuccess = Object(_coreui_utils_src__WEBPACK_IMPORTED_MODULE_1__[\"getStyle\"])(\"success2\") || \"#4dbd74\";\n      var brandInfo = Object(_coreui_utils_src__WEBPACK_IMPORTED_MODULE_1__[\"getStyle\"])(\"info\") || \"#20a8d8\";\n      var brandDanger = Object(_coreui_utils_src__WEBPACK_IMPORTED_MODULE_1__[\"getStyle\"])(\"danger\") || \"#f86c6b\";\n      var elements = 27;\n      var data1 = [];\n      var data2 = [];\n      var data3 = [];\n\n      for (var i = 0; i <= elements; i++) {\n        data1.push(random(50, 200));\n        data2.push(random(80, 100));\n        data3.push(65);\n      }\n\n      return [{\n        label: \"My First dataset\",\n        backgroundColor: Object(_coreui_utils_src__WEBPACK_IMPORTED_MODULE_1__[\"hexToRgba\"])(brandInfo, 10),\n        borderColor: brandInfo,\n        pointHoverBackgroundColor: brandInfo,\n        borderWidth: 2,\n        data: data1\n      }, {\n        label: \"My Second dataset\",\n        backgroundColor: \"transparent\",\n        borderColor: brandSuccess,\n        pointHoverBackgroundColor: brandSuccess,\n        borderWidth: 2,\n        data: data2\n      }, {\n        label: \"My Third dataset\",\n        backgroundColor: \"transparent\",\n        borderColor: brandDanger,\n        pointHoverBackgroundColor: brandDanger,\n        borderWidth: 1,\n        borderDash: [8, 5],\n        data: data3\n      }];\n    },\n    defaultOptions: function defaultOptions() {\n      return {\n        maintainAspectRatio: false,\n        legend: {\n          display: false\n        },\n        scales: {\n          xAxes: [{\n            gridLines: {\n              drawOnChartArea: false\n            }\n          }],\n          yAxes: [{\n            ticks: {\n              beginAtZero: true,\n              maxTicksLimit: 5,\n              stepSize: Math.ceil(250 / 5),\n              max: 250\n            },\n            gridLines: {\n              display: true\n            }\n          }]\n        },\n        elements: {\n          point: {\n            radius: 0,\n            hitRadius: 10,\n            hoverRadius: 4,\n            hoverBorderWidth: 3\n          }\n        }\n      };\n    }\n  }\n});\n\n//# sourceURL=webpack://gestionTache/./src/views/charts/MainChartExample.vue?./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsBrand.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/widgets/WidgetsBrand.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _charts_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../charts/index.js */ \"./src/views/charts/index.js\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: \"WidgetsBrand\",\n  components: {\n    CChartLineSimple: _charts_index_js__WEBPACK_IMPORTED_MODULE_0__[\"CChartLineSimple\"]\n  },\n  props: {\n    noCharts: Boolean\n  }\n});\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsBrand.vue?./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsDropdown.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/widgets/WidgetsDropdown.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _charts_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../charts/index.js */ \"./src/views/charts/index.js\");\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  name: \"WidgetsDropdown\",\n  components: {\n    CChartLineSimple: _charts_index_js__WEBPACK_IMPORTED_MODULE_0__[\"CChartLineSimple\"],\n    CChartBarSimple: _charts_index_js__WEBPACK_IMPORTED_MODULE_0__[\"CChartBarSimple\"]\n  }\n});\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsDropdown.vue?./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/Dashboard.vue?vue&type=template&id=22ba47ca&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"16bf414d-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/Dashboard.vue?vue&type=template&id=22ba47ca& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\"WidgetsDropdown\"),\n      _c(\n        \"CCard\",\n        [\n          _c(\n            \"CCardBody\",\n            [\n              _c(\n                \"CRow\",\n                [\n                  _c(\"CCol\", { attrs: { sm: \"5\" } }, [\n                    _c(\n                      \"h4\",\n                      {\n                        staticClass: \"card-title mb-0\",\n                        attrs: { id: \"traffic\" }\n                      },\n                      [_vm._v(\"Traffic\")]\n                    ),\n                    _c(\"div\", { staticClass: \"small text-muted\" }, [\n                      _vm._v(\"November 2018\")\n                    ])\n                  ]),\n                  _c(\n                    \"CCol\",\n                    { staticClass: \"d-none d-md-block\", attrs: { sm: \"7\" } },\n                    [\n                      _c(\n                        \"CButton\",\n                        {\n                          staticClass: \"float-right\",\n                          attrs: { color: \"primary\" }\n                        },\n                        [\n                          _c(\"CIcon\", { attrs: { name: \"cil-cloud-download\" } })\n                        ],\n                        1\n                      ),\n                      _c(\n                        \"CButtonGroup\",\n                        { staticClass: \"float-right mr-3\" },\n                        _vm._l([\"Day\", \"Month\", \"Year\"], function(value, key) {\n                          return _c(\n                            \"CButton\",\n                            {\n                              key: key,\n                              staticClass: \"mx-0\",\n                              attrs: {\n                                color: \"outline-secondary\",\n                                pressed: value === _vm.selected ? true : false\n                              },\n                              on: {\n                                click: function($event) {\n                                  _vm.selected = value\n                                }\n                              }\n                            },\n                            [_vm._v(\" \" + _vm._s(value) + \" \")]\n                          )\n                        }),\n                        1\n                      )\n                    ],\n                    1\n                  )\n                ],\n                1\n              ),\n              _c(\"MainChartExample\", {\n                staticStyle: { height: \"300px\", \"margin-top\": \"40px\" }\n              })\n            ],\n            1\n          ),\n          _c(\n            \"CCardFooter\",\n            [\n              _c(\n                \"CRow\",\n                { staticClass: \"text-center\" },\n                [\n                  _c(\n                    \"CCol\",\n                    {\n                      staticClass: \"mb-sm-2 mb-0\",\n                      attrs: { md: \"\", sm: \"12\" }\n                    },\n                    [\n                      _c(\"div\", { staticClass: \"text-muted\" }, [\n                        _vm._v(\"Visits\")\n                      ]),\n                      _c(\"strong\", [_vm._v(\"29.703 Users (40%)\")]),\n                      _c(\"CProgress\", {\n                        staticClass: \"progress-xs mt-2\",\n                        attrs: { precision: 1, color: \"success\", value: 40 }\n                      })\n                    ],\n                    1\n                  ),\n                  _c(\n                    \"CCol\",\n                    {\n                      staticClass: \"mb-sm-2 mb-0 d-md-down-none\",\n                      attrs: { md: \"\", sm: \"12\" }\n                    },\n                    [\n                      _c(\"div\", { staticClass: \"text-muted\" }, [\n                        _vm._v(\"Unique\")\n                      ]),\n                      _c(\"strong\", [_vm._v(\"24.093 Users (20%)\")]),\n                      _c(\"CProgress\", {\n                        staticClass: \"progress-xs mt-2\",\n                        attrs: { precision: 1, color: \"info\", value: 20 }\n                      })\n                    ],\n                    1\n                  ),\n                  _c(\n                    \"CCol\",\n                    {\n                      staticClass: \"mb-sm-2 mb-0\",\n                      attrs: { md: \"\", sm: \"12\" }\n                    },\n                    [\n                      _c(\"div\", { staticClass: \"text-muted\" }, [\n                        _vm._v(\"Pageviews\")\n                      ]),\n                      _c(\"strong\", [_vm._v(\"70.706 Views (60%)\")]),\n                      _c(\"CProgress\", {\n                        staticClass: \"progress-xs mt-2\",\n                        attrs: { precision: 1, color: \"warning\", value: 60 }\n                      })\n                    ],\n                    1\n                  ),\n                  _c(\n                    \"CCol\",\n                    {\n                      staticClass: \"mb-sm-2 mb-0\",\n                      attrs: { md: \"\", sm: \"12\" }\n                    },\n                    [\n                      _c(\"div\", { staticClass: \"text-muted\" }, [\n                        _vm._v(\"New Users\")\n                      ]),\n                      _c(\"strong\", [_vm._v(\"22.123 Users (80%)\")]),\n                      _c(\"CProgress\", {\n                        staticClass: \"progress-xs mt-2\",\n                        attrs: { precision: 1, color: \"danger\", value: 80 }\n                      })\n                    ],\n                    1\n                  ),\n                  _c(\n                    \"CCol\",\n                    {\n                      staticClass: \"mb-sm-2 mb-0 d-md-down-none\",\n                      attrs: { md: \"\", sm: \"12\" }\n                    },\n                    [\n                      _c(\"div\", { staticClass: \"text-muted\" }, [\n                        _vm._v(\"Bounce Rate\")\n                      ]),\n                      _c(\"strong\", [_vm._v(\"Average Rate (40.15%)\")]),\n                      _c(\"CProgress\", {\n                        staticClass: \"progress-xs mt-2\",\n                        attrs: { precision: 1, value: 40 }\n                      })\n                    ],\n                    1\n                  )\n                ],\n                1\n              )\n            ],\n            1\n          )\n        ],\n        1\n      ),\n      _c(\"WidgetsBrand\"),\n      _c(\n        \"CRow\",\n        [\n          _c(\n            \"CCol\",\n            { attrs: { md: \"12\" } },\n            [\n              _c(\n                \"CCard\",\n                [\n                  _c(\"CCardHeader\", [_vm._v(\" Traffic & Sales \")]),\n                  _c(\n                    \"CCardBody\",\n                    [\n                      _c(\n                        \"CRow\",\n                        [\n                          _c(\n                            \"CCol\",\n                            { attrs: { sm: \"12\", lg: \"6\" } },\n                            [\n                              _c(\n                                \"CRow\",\n                                [\n                                  _c(\n                                    \"CCol\",\n                                    { attrs: { sm: \"6\" } },\n                                    [\n                                      _c(\n                                        \"CCallout\",\n                                        { attrs: { color: \"info\" } },\n                                        [\n                                          _c(\n                                            \"small\",\n                                            { staticClass: \"text-muted\" },\n                                            [_vm._v(\"New Clients\")]\n                                          ),\n                                          _c(\"br\"),\n                                          _c(\"strong\", { staticClass: \"h4\" }, [\n                                            _vm._v(\"9,123\")\n                                          ])\n                                        ]\n                                      )\n                                    ],\n                                    1\n                                  ),\n                                  _c(\n                                    \"CCol\",\n                                    { attrs: { sm: \"6\" } },\n                                    [\n                                      _c(\n                                        \"CCallout\",\n                                        { attrs: { color: \"danger\" } },\n                                        [\n                                          _c(\n                                            \"small\",\n                                            { staticClass: \"text-muted\" },\n                                            [_vm._v(\"Recurring Clients\")]\n                                          ),\n                                          _c(\"br\"),\n                                          _c(\"strong\", { staticClass: \"h4\" }, [\n                                            _vm._v(\"22,643\")\n                                          ])\n                                        ]\n                                      )\n                                    ],\n                                    1\n                                  )\n                                ],\n                                1\n                              ),\n                              _c(\"hr\", { staticClass: \"mt-0\" }),\n                              _c(\n                                \"div\",\n                                { staticClass: \"progress-group mb-4\" },\n                                [\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-prepend\" },\n                                    [\n                                      _c(\n                                        \"span\",\n                                        { staticClass: \"progress-group-text\" },\n                                        [_vm._v(\" Monday \")]\n                                      )\n                                    ]\n                                  ),\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-bars\" },\n                                    [\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { color: \"info\", value: 34 }\n                                      }),\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { color: \"danger\", value: 78 }\n                                      })\n                                    ],\n                                    1\n                                  )\n                                ]\n                              ),\n                              _c(\n                                \"div\",\n                                { staticClass: \"progress-group mb-4\" },\n                                [\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-prepend\" },\n                                    [\n                                      _c(\n                                        \"span\",\n                                        { staticClass: \"progress-group-text\" },\n                                        [_vm._v(\" Tuesday \")]\n                                      )\n                                    ]\n                                  ),\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-bars\" },\n                                    [\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 56, color: \"info\" }\n                                      }),\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 94, color: \"danger\" }\n                                      })\n                                    ],\n                                    1\n                                  )\n                                ]\n                              ),\n                              _c(\n                                \"div\",\n                                { staticClass: \"progress-group mb-4\" },\n                                [\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-prepend\" },\n                                    [\n                                      _c(\n                                        \"span\",\n                                        { staticClass: \"progress-group-text\" },\n                                        [_vm._v(\" Wednesday \")]\n                                      )\n                                    ]\n                                  ),\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-bars\" },\n                                    [\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 12, color: \"info\" }\n                                      }),\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 67, color: \"danger\" }\n                                      })\n                                    ],\n                                    1\n                                  )\n                                ]\n                              ),\n                              _c(\n                                \"div\",\n                                { staticClass: \"progress-group mb-4\" },\n                                [\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-prepend\" },\n                                    [\n                                      _c(\n                                        \"span\",\n                                        { staticClass: \"progress-group-text\" },\n                                        [_vm._v(\" Thursday \")]\n                                      )\n                                    ]\n                                  ),\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-bars\" },\n                                    [\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 43, color: \"info\" }\n                                      }),\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 91, color: \"danger\" }\n                                      })\n                                    ],\n                                    1\n                                  )\n                                ]\n                              ),\n                              _c(\n                                \"div\",\n                                { staticClass: \"progress-group mb-4\" },\n                                [\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-prepend\" },\n                                    [\n                                      _c(\n                                        \"span\",\n                                        { staticClass: \"progress-group-text\" },\n                                        [_vm._v(\" Friday \")]\n                                      )\n                                    ]\n                                  ),\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-bars\" },\n                                    [\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 22, color: \"info\" }\n                                      }),\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 73, color: \"danger\" }\n                                      })\n                                    ],\n                                    1\n                                  )\n                                ]\n                              ),\n                              _c(\n                                \"div\",\n                                { staticClass: \"progress-group mb-4\" },\n                                [\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-prepend\" },\n                                    [\n                                      _c(\n                                        \"span\",\n                                        { staticClass: \"progress-group-text\" },\n                                        [_vm._v(\" Saturday \")]\n                                      )\n                                    ]\n                                  ),\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-bars\" },\n                                    [\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 53, color: \"info\" }\n                                      }),\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 82, color: \"danger\" }\n                                      })\n                                    ],\n                                    1\n                                  )\n                                ]\n                              ),\n                              _c(\n                                \"div\",\n                                { staticClass: \"progress-group mb-4\" },\n                                [\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-prepend\" },\n                                    [\n                                      _c(\n                                        \"span\",\n                                        { staticClass: \"progress-group-text\" },\n                                        [_vm._v(\" Sunday \")]\n                                      )\n                                    ]\n                                  ),\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group-bars\" },\n                                    [\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 9, color: \"info\" }\n                                      }),\n                                      _c(\"CProgress\", {\n                                        staticClass: \"progress-xs\",\n                                        attrs: { value: 69, color: \"danger\" }\n                                      })\n                                    ],\n                                    1\n                                  )\n                                ]\n                              ),\n                              _c(\"div\", { staticClass: \"legend text-center\" }, [\n                                _c(\"small\", [\n                                  _c(\n                                    \"sup\",\n                                    [\n                                      _c(\"CBadge\", {\n                                        attrs: { shape: \"pill\", color: \"info\" }\n                                      })\n                                    ],\n                                    1\n                                  ),\n                                  _vm._v(\" New clients \"),\n                                  _c(\n                                    \"sup\",\n                                    [\n                                      _c(\"CBadge\", {\n                                        attrs: {\n                                          shape: \"pill\",\n                                          color: \"danger\"\n                                        }\n                                      })\n                                    ],\n                                    1\n                                  ),\n                                  _vm._v(\" Recurring clients \")\n                                ])\n                              ])\n                            ],\n                            1\n                          ),\n                          _c(\n                            \"CCol\",\n                            { attrs: { sm: \"12\", lg: \"6\" } },\n                            [\n                              _c(\n                                \"CRow\",\n                                [\n                                  _c(\n                                    \"CCol\",\n                                    { attrs: { sm: \"6\" } },\n                                    [\n                                      _c(\n                                        \"CCallout\",\n                                        { attrs: { color: \"warning\" } },\n                                        [\n                                          _c(\n                                            \"small\",\n                                            { staticClass: \"text-muted\" },\n                                            [_vm._v(\"Pageviews\")]\n                                          ),\n                                          _c(\"br\"),\n                                          _c(\"strong\", { staticClass: \"h4\" }, [\n                                            _vm._v(\"79,623\")\n                                          ])\n                                        ]\n                                      )\n                                    ],\n                                    1\n                                  ),\n                                  _c(\n                                    \"CCol\",\n                                    { attrs: { sm: \"6\" } },\n                                    [\n                                      _c(\n                                        \"CCallout\",\n                                        { attrs: { color: \"success\" } },\n                                        [\n                                          _c(\n                                            \"small\",\n                                            { staticClass: \"text-muted\" },\n                                            [_vm._v(\"Organic\")]\n                                          ),\n                                          _c(\"br\"),\n                                          _c(\"strong\", { staticClass: \"h4\" }, [\n                                            _vm._v(\"49,123\")\n                                          ])\n                                        ]\n                                      )\n                                    ],\n                                    1\n                                  )\n                                ],\n                                1\n                              ),\n                              _c(\"hr\", { staticClass: \"mt-0\" }),\n                              _c(\n                                \"ul\",\n                                { staticClass: \"horizontal-bars type-2\" },\n                                [\n                                  _c(\"div\", { staticClass: \"progress-group\" }, [\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-header\" },\n                                      [\n                                        _c(\"CIcon\", {\n                                          staticClass: \"progress-group-icon\",\n                                          attrs: { name: \"cil-user\" }\n                                        }),\n                                        _c(\"span\", { staticClass: \"title\" }, [\n                                          _vm._v(\"Male\")\n                                        ]),\n                                        _c(\n                                          \"span\",\n                                          {\n                                            staticClass:\n                                              \"ml-auto font-weight-bold\"\n                                          },\n                                          [_vm._v(\"43%\")]\n                                        )\n                                      ],\n                                      1\n                                    ),\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-bars\" },\n                                      [\n                                        _c(\"CProgress\", {\n                                          staticClass: \"progress-xs\",\n                                          attrs: { value: 43, color: \"warning\" }\n                                        })\n                                      ],\n                                      1\n                                    )\n                                  ]),\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"progress-group mb-5\" },\n                                    [\n                                      _c(\n                                        \"div\",\n                                        {\n                                          staticClass: \"progress-group-header\"\n                                        },\n                                        [\n                                          _c(\"CIcon\", {\n                                            staticClass: \"progress-group-icon\",\n                                            attrs: { name: \"cil-user-female\" }\n                                          }),\n                                          _c(\"span\", { staticClass: \"title\" }, [\n                                            _vm._v(\"Female\")\n                                          ]),\n                                          _c(\n                                            \"span\",\n                                            {\n                                              staticClass:\n                                                \"ml-auto font-weight-bold\"\n                                            },\n                                            [_vm._v(\"37%\")]\n                                          )\n                                        ],\n                                        1\n                                      ),\n                                      _c(\n                                        \"div\",\n                                        { staticClass: \"progress-group-bars\" },\n                                        [\n                                          _c(\"CProgress\", {\n                                            staticClass: \"progress-xs\",\n                                            attrs: {\n                                              value: 37,\n                                              color: \"warning\"\n                                            }\n                                          })\n                                        ],\n                                        1\n                                      )\n                                    ]\n                                  ),\n                                  _c(\"div\", { staticClass: \"progress-group\" }, [\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-header\" },\n                                      [\n                                        _c(\"CIcon\", {\n                                          staticClass: \"progress-group-icon\",\n                                          attrs: { name: \"cil-globe-alt\" }\n                                        }),\n                                        _c(\"span\", { staticClass: \"title\" }, [\n                                          _vm._v(\"Organic Search\")\n                                        ]),\n                                        _c(\n                                          \"span\",\n                                          {\n                                            staticClass:\n                                              \"ml-auto font-weight-bold\"\n                                          },\n                                          [\n                                            _vm._v(\" 191,235 \"),\n                                            _c(\n                                              \"span\",\n                                              {\n                                                staticClass: \"text-muted small\"\n                                              },\n                                              [_vm._v(\"(56%)\")]\n                                            )\n                                          ]\n                                        )\n                                      ],\n                                      1\n                                    ),\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-bars\" },\n                                      [\n                                        _c(\"CProgress\", {\n                                          staticClass: \"progress-xs\",\n                                          attrs: { value: 56, color: \"success\" }\n                                        })\n                                      ],\n                                      1\n                                    )\n                                  ]),\n                                  _c(\"div\", { staticClass: \"progress-group\" }, [\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-header\" },\n                                      [\n                                        _c(\"CIcon\", {\n                                          staticClass: \"progress-group-icon\",\n                                          attrs: {\n                                            name: \"cib-facebook\",\n                                            height: \"17\"\n                                          }\n                                        }),\n                                        _c(\"span\", { staticClass: \"title\" }, [\n                                          _vm._v(\"Facebook\")\n                                        ]),\n                                        _c(\n                                          \"span\",\n                                          {\n                                            staticClass:\n                                              \"ml-auto font-weight-bold\"\n                                          },\n                                          [\n                                            _vm._v(\" 51,223 \"),\n                                            _c(\n                                              \"span\",\n                                              {\n                                                staticClass: \"text-muted small\"\n                                              },\n                                              [_vm._v(\"(15%)\")]\n                                            )\n                                          ]\n                                        )\n                                      ],\n                                      1\n                                    ),\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-bars\" },\n                                      [\n                                        _c(\"CProgress\", {\n                                          staticClass: \"progress-xs\",\n                                          attrs: { value: 15, color: \"success\" }\n                                        })\n                                      ],\n                                      1\n                                    )\n                                  ]),\n                                  _c(\"div\", { staticClass: \"progress-group\" }, [\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-header\" },\n                                      [\n                                        _c(\"CIcon\", {\n                                          staticClass: \"progress-group-icon\",\n                                          attrs: {\n                                            name: \"cib-twitter\",\n                                            height: \"17\"\n                                          }\n                                        }),\n                                        _c(\"span\", { staticClass: \"title\" }, [\n                                          _vm._v(\"Twitter\")\n                                        ]),\n                                        _c(\n                                          \"span\",\n                                          {\n                                            staticClass:\n                                              \"ml-auto font-weight-bold\"\n                                          },\n                                          [\n                                            _vm._v(\" 37,564 \"),\n                                            _c(\n                                              \"span\",\n                                              {\n                                                staticClass: \"text-muted small\"\n                                              },\n                                              [_vm._v(\"(11%)\")]\n                                            )\n                                          ]\n                                        )\n                                      ],\n                                      1\n                                    ),\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-bars\" },\n                                      [\n                                        _c(\"CProgress\", {\n                                          staticClass: \"progress-xs\",\n                                          attrs: { value: 11, color: \"success\" }\n                                        })\n                                      ],\n                                      1\n                                    )\n                                  ]),\n                                  _c(\"div\", { staticClass: \"progress-group\" }, [\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-header\" },\n                                      [\n                                        _c(\"CIcon\", {\n                                          staticClass: \"progress-group-icon\",\n                                          attrs: {\n                                            name: \"cib-linkedin\",\n                                            height: \"17\"\n                                          }\n                                        }),\n                                        _c(\"span\", { staticClass: \"title\" }, [\n                                          _vm._v(\"LinkedIn\")\n                                        ]),\n                                        _c(\n                                          \"span\",\n                                          {\n                                            staticClass:\n                                              \"ml-auto font-weight-bold\"\n                                          },\n                                          [\n                                            _vm._v(\" 27,319 \"),\n                                            _c(\n                                              \"span\",\n                                              {\n                                                staticClass: \"text-muted small\"\n                                              },\n                                              [_vm._v(\" (8%)\")]\n                                            )\n                                          ]\n                                        )\n                                      ],\n                                      1\n                                    ),\n                                    _c(\n                                      \"div\",\n                                      { staticClass: \"progress-group-bars\" },\n                                      [\n                                        _c(\"CProgress\", {\n                                          staticClass: \"progress-xs\",\n                                          attrs: { value: 8, color: \"success\" }\n                                        })\n                                      ],\n                                      1\n                                    )\n                                  ]),\n                                  _c(\n                                    \"div\",\n                                    { staticClass: \"divider text-center\" },\n                                    [\n                                      _c(\n                                        \"CButton\",\n                                        {\n                                          staticClass: \"text-muted\",\n                                          attrs: { color: \"link\", size: \"sm\" }\n                                        },\n                                        [\n                                          _c(\"CIcon\", {\n                                            attrs: { name: \"cil-options\" }\n                                          })\n                                        ],\n                                        1\n                                      )\n                                    ],\n                                    1\n                                  )\n                                ]\n                              )\n                            ],\n                            1\n                          )\n                        ],\n                        1\n                      ),\n                      _c(\"br\"),\n                      _c(\"CDataTable\", {\n                        staticClass: \"mb-0 table-outline\",\n                        attrs: {\n                          hover: \"\",\n                          items: _vm.tableItems,\n                          fields: _vm.tableFields,\n                          \"head-color\": \"light\",\n                          \"no-sorting\": \"\"\n                        },\n                        scopedSlots: _vm._u([\n                          {\n                            key: \"avatar\",\n                            fn: function(ref) {\n                              var item = ref.item\n                              return _c(\"td\", { staticClass: \"text-center\" }, [\n                                _c(\"div\", { staticClass: \"c-avatar\" }, [\n                                  _c(\"img\", {\n                                    staticClass: \"c-avatar-img\",\n                                    attrs: { src: item.avatar.url, alt: \"\" }\n                                  }),\n                                  _c(\"span\", {\n                                    staticClass: \"c-avatar-status\",\n                                    class:\n                                      \"bg-\" +\n                                      (item.avatar.status || \"secondary\")\n                                  })\n                                ])\n                              ])\n                            }\n                          },\n                          {\n                            key: \"user\",\n                            fn: function(ref) {\n                              var item = ref.item\n                              return _c(\"td\", {}, [\n                                _c(\"div\", [_vm._v(_vm._s(item.user.name))]),\n                                _c(\"div\", { staticClass: \"small text-muted\" }, [\n                                  _c(\n                                    \"span\",\n                                    [\n                                      item.user.new\n                                        ? [_vm._v(\"New\")]\n                                        : [_vm._v(\"Recurring\")]\n                                    ],\n                                    2\n                                  ),\n                                  _vm._v(\n                                    \" | Registered: \" +\n                                      _vm._s(item.user.registered) +\n                                      \" \"\n                                  )\n                                ])\n                              ])\n                            }\n                          },\n                          {\n                            key: \"country\",\n                            fn: function(ref) {\n                              var item = ref.item\n                              return _c(\n                                \"td\",\n                                { staticClass: \"text-center\" },\n                                [\n                                  _c(\"CIcon\", {\n                                    attrs: {\n                                      name: item.country.flag,\n                                      height: \"25\"\n                                    }\n                                  })\n                                ],\n                                1\n                              )\n                            }\n                          },\n                          {\n                            key: \"usage\",\n                            fn: function(ref) {\n                              var item = ref.item\n                              return _c(\n                                \"td\",\n                                {},\n                                [\n                                  _c(\"div\", { staticClass: \"clearfix\" }, [\n                                    _c(\"div\", { staticClass: \"float-left\" }, [\n                                      _c(\"strong\", [\n                                        _vm._v(_vm._s(item.usage.value) + \"%\")\n                                      ])\n                                    ]),\n                                    _c(\"div\", { staticClass: \"float-right\" }, [\n                                      _c(\n                                        \"small\",\n                                        { staticClass: \"text-muted\" },\n                                        [_vm._v(_vm._s(item.usage.period))]\n                                      )\n                                    ])\n                                  ]),\n                                  _c(\"CProgress\", {\n                                    staticClass: \"progress-xs\",\n                                    attrs: {\n                                      color: _vm.color(item.usage.value)\n                                    },\n                                    model: {\n                                      value: item.usage.value,\n                                      callback: function($$v) {\n                                        _vm.$set(item.usage, \"value\", $$v)\n                                      },\n                                      expression: \"item.usage.value\"\n                                    }\n                                  })\n                                ],\n                                1\n                              )\n                            }\n                          },\n                          {\n                            key: \"payment\",\n                            fn: function(ref) {\n                              var item = ref.item\n                              return _c(\n                                \"td\",\n                                { staticClass: \"text-center\" },\n                                [\n                                  _c(\"CIcon\", {\n                                    attrs: {\n                                      name: item.payment.icon,\n                                      height: \"25\"\n                                    }\n                                  })\n                                ],\n                                1\n                              )\n                            }\n                          },\n                          {\n                            key: \"activity\",\n                            fn: function(ref) {\n                              var item = ref.item\n                              return _c(\"td\", {}, [\n                                _c(\"div\", { staticClass: \"small text-muted\" }, [\n                                  _vm._v(\"Last login\")\n                                ]),\n                                _c(\"strong\", [_vm._v(_vm._s(item.activity))])\n                              ])\n                            }\n                          }\n                        ])\n                      })\n                    ],\n                    1\n                  )\n                ],\n                1\n              )\n            ],\n            1\n          )\n        ],\n        1\n      )\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/Dashboard.vue?./node_modules/cache-loader/dist/cjs.js?%7B%22cacheDirectory%22:%22node_modules/.cache/vue-loader%22,%22cacheIdentifier%22:%2216bf414d-vue-loader-template%22%7D!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/charts/MainChartExample.vue?vue&type=template&id=1861e9f5&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"16bf414d-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/charts/MainChartExample.vue?vue&type=template&id=1861e9f5& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"CChartLine\", {\n    attrs: {\n      datasets: _vm.defaultDatasets,\n      options: _vm.defaultOptions,\n      labels: [\n        \"Mo\",\n        \"Tu\",\n        \"We\",\n        \"Th\",\n        \"Fr\",\n        \"Sa\",\n        \"Su\",\n        \"Mo\",\n        \"Tu\",\n        \"We\",\n        \"Th\",\n        \"Fr\",\n        \"Sa\",\n        \"Su\",\n        \"Mo\",\n        \"Tu\",\n        \"We\",\n        \"Th\",\n        \"Fr\",\n        \"Sa\",\n        \"Su\",\n        \"Mo\",\n        \"Tu\",\n        \"We\",\n        \"Th\",\n        \"Fr\",\n        \"Sa\",\n        \"Su\"\n      ]\n    }\n  })\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/charts/MainChartExample.vue?./node_modules/cache-loader/dist/cjs.js?%7B%22cacheDirectory%22:%22node_modules/.cache/vue-loader%22,%22cacheIdentifier%22:%2216bf414d-vue-loader-template%22%7D!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsBrand.vue?vue&type=template&id=1406269c&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"16bf414d-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/widgets/WidgetsBrand.vue?vue&type=template&id=1406269c&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"CRow\",\n    [\n      !_vm.noCharts\n        ? [\n            _c(\n              \"CCol\",\n              { attrs: { md: \"3\", sm: \"6\" } },\n              [\n                _c(\n                  \"CWidgetBrand\",\n                  {\n                    attrs: {\n                      color: \"facebook\",\n                      \"right-header\": \"89k\",\n                      \"right-footer\": \"friends\",\n                      \"left-header\": \"459\",\n                      \"left-footer\": \"feeds\"\n                    }\n                  },\n                  [\n                    _c(\"CIcon\", {\n                      staticClass: \"my-4\",\n                      attrs: { name: \"cib-facebook\", height: \"52\" }\n                    }),\n                    _c(\"CChartLineSimple\", {\n                      staticClass: \"c-chart-brand\",\n                      attrs: {\n                        \"background-color\": \"rgba(255,255,255,.1)\",\n                        \"data-points\": [65, 59, 84, 84, 51, 55, 40],\n                        label: \"Friends\",\n                        labels: \"months\"\n                      }\n                    })\n                  ],\n                  1\n                )\n              ],\n              1\n            ),\n            _c(\n              \"CCol\",\n              { attrs: { md: \"3\", sm: \"6\" } },\n              [\n                _c(\n                  \"CWidgetBrand\",\n                  {\n                    attrs: {\n                      color: \"twitter\",\n                      \"right-header\": \"973k\",\n                      \"right-footer\": \"followers\",\n                      \"left-header\": \"1.792\",\n                      \"left-footer\": \"tweets\"\n                    }\n                  },\n                  [\n                    _c(\"CIcon\", {\n                      staticClass: \"my-4\",\n                      attrs: { name: \"cib-twitter\", height: \"52\" }\n                    }),\n                    _c(\"CChartLineSimple\", {\n                      staticClass: \"c-chart-brand\",\n                      attrs: {\n                        \"background-color\": \"rgba(255,255,255,.1)\",\n                        \"data-points\": [1, 13, 9, 17, 34, 41, 38],\n                        label: \"Followers\",\n                        labels: \"months\"\n                      }\n                    })\n                  ],\n                  1\n                )\n              ],\n              1\n            ),\n            _c(\n              \"CCol\",\n              { attrs: { md: \"3\", sm: \"6\" } },\n              [\n                _c(\n                  \"CWidgetBrand\",\n                  {\n                    attrs: {\n                      color: \"linkedin\",\n                      \"right-header\": \"500+\",\n                      \"right-footer\": \"contracts\",\n                      \"left-header\": \"292\",\n                      \"left-footer\": \"feeds\"\n                    }\n                  },\n                  [\n                    _c(\"CIcon\", {\n                      staticClass: \"my-4\",\n                      attrs: { name: \"cib-linkedin\", height: \"52\" }\n                    }),\n                    _c(\"CChartLineSimple\", {\n                      staticClass: \"c-chart-brand\",\n                      attrs: {\n                        \"background-color\": \"rgba(255,255,255,.1)\",\n                        \"data-points\": [78, 81, 80, 45, 34, 12, 40],\n                        label: \"Contracts\",\n                        labels: \"months\"\n                      }\n                    })\n                  ],\n                  1\n                )\n              ],\n              1\n            ),\n            _c(\n              \"CCol\",\n              { attrs: { md: \"3\", sm: \"6\" } },\n              [\n                _c(\n                  \"CWidgetBrand\",\n                  {\n                    attrs: {\n                      \"right-header\": \"12\",\n                      \"right-footer\": \"events\",\n                      \"left-header\": \"4\",\n                      \"left-footer\": \"meetings\",\n                      color: \"warning\"\n                    }\n                  },\n                  [\n                    _c(\"CIcon\", {\n                      staticClass: \"my-4\",\n                      attrs: { name: \"cil-calendar\", height: \"52\" }\n                    }),\n                    _c(\"CChartLineSimple\", {\n                      staticClass: \"c-chart-brand\",\n                      attrs: {\n                        \"background-color\": \"rgba(255,255,255,.1)\",\n                        \"data-points\": [35, 23, 56, 22, 97, 23, 64],\n                        label: \"Followers\",\n                        labels: \"months\"\n                      }\n                    })\n                  ],\n                  1\n                )\n              ],\n              1\n            )\n          ]\n        : [\n            _c(\n              \"CCol\",\n              { attrs: { md: \"3\", sm: \"6\" } },\n              [\n                _c(\n                  \"CWidgetBrand\",\n                  {\n                    attrs: {\n                      color: \"facebook\",\n                      \"right-header\": \"89k\",\n                      \"right-footer\": \"friends\",\n                      \"left-header\": \"459\",\n                      \"left-footer\": \"feeds\"\n                    }\n                  },\n                  [\n                    _c(\"CIcon\", {\n                      staticClass: \"my-4\",\n                      attrs: { name: \"cib-facebook\", height: \"56\" }\n                    })\n                  ],\n                  1\n                )\n              ],\n              1\n            ),\n            _c(\n              \"CCol\",\n              { attrs: { md: \"3\", sm: \"6\" } },\n              [\n                _c(\n                  \"CWidgetBrand\",\n                  {\n                    attrs: {\n                      color: \"twitter\",\n                      \"right-header\": \"973k\",\n                      \"right-footer\": \"followers\",\n                      \"left-header\": \"1.792\",\n                      \"left-footer\": \"tweets\"\n                    }\n                  },\n                  [\n                    _c(\"CIcon\", {\n                      staticClass: \"my-4\",\n                      attrs: { name: \"cib-twitter\", height: \"56\" }\n                    })\n                  ],\n                  1\n                )\n              ],\n              1\n            ),\n            _c(\n              \"CCol\",\n              { attrs: { md: \"3\", sm: \"6\" } },\n              [\n                _c(\n                  \"CWidgetBrand\",\n                  {\n                    attrs: {\n                      color: \"linkedin\",\n                      \"right-header\": \"500+\",\n                      \"right-footer\": \"contracts\",\n                      \"left-header\": \"292\",\n                      \"left-footer\": \"feeds\"\n                    }\n                  },\n                  [\n                    _c(\"CIcon\", {\n                      staticClass: \"my-4\",\n                      attrs: { name: \"cib-linkedin\", height: \"56\" }\n                    })\n                  ],\n                  1\n                )\n              ],\n              1\n            ),\n            _c(\n              \"CCol\",\n              { attrs: { md: \"3\", sm: \"6\" } },\n              [\n                _c(\n                  \"CWidgetBrand\",\n                  {\n                    attrs: {\n                      \"right-header\": \"12\",\n                      \"right-footer\": \"events\",\n                      \"left-header\": \"4\",\n                      \"left-footer\": \"meetings\",\n                      color: \"warning\"\n                    }\n                  },\n                  [\n                    _c(\"CIcon\", {\n                      staticClass: \"my-4\",\n                      attrs: { name: \"cil-calendar\", height: \"56\" }\n                    })\n                  ],\n                  1\n                )\n              ],\n              1\n            )\n          ]\n    ],\n    2\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsBrand.vue?./node_modules/cache-loader/dist/cjs.js?%7B%22cacheDirectory%22:%22node_modules/.cache/vue-loader%22,%22cacheIdentifier%22:%2216bf414d-vue-loader-template%22%7D!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsDropdown.vue?vue&type=template&id=30864194&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"16bf414d-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/widgets/WidgetsDropdown.vue?vue&type=template&id=30864194& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"CRow\",\n    [\n      _c(\n        \"CCol\",\n        { attrs: { sm: \"6\", lg: \"3\" } },\n        [\n          _c(\"CWidgetDropdown\", {\n            attrs: {\n              color: \"primary\",\n              header: \"9.823\",\n              text: \"Members online\"\n            },\n            scopedSlots: _vm._u([\n              {\n                key: \"default\",\n                fn: function() {\n                  return [\n                    _c(\n                      \"CDropdown\",\n                      {\n                        attrs: {\n                          color: \"transparent p-0\",\n                          placement: \"bottom-end\"\n                        },\n                        scopedSlots: _vm._u([\n                          {\n                            key: \"toggler-content\",\n                            fn: function() {\n                              return [\n                                _c(\"CIcon\", { attrs: { name: \"cil-settings\" } })\n                              ]\n                            },\n                            proxy: true\n                          }\n                        ])\n                      },\n                      [\n                        _c(\"CDropdownItem\", [_vm._v(\"Action\")]),\n                        _c(\"CDropdownItem\", [_vm._v(\"Another action\")]),\n                        _c(\"CDropdownItem\", [_vm._v(\"Something else here...\")]),\n                        _c(\"CDropdownItem\", { attrs: { disabled: \"\" } }, [\n                          _vm._v(\"Disabled action\")\n                        ])\n                      ],\n                      1\n                    )\n                  ]\n                },\n                proxy: true\n              },\n              {\n                key: \"footer\",\n                fn: function() {\n                  return [\n                    _c(\"CChartLineSimple\", {\n                      staticClass: \"mt-3 mx-3\",\n                      staticStyle: { height: \"70px\" },\n                      attrs: {\n                        pointed: \"\",\n                        \"data-points\": [65, 59, 84, 84, 51, 55, 40],\n                        \"point-hover-background-color\": \"primary\",\n                        label: \"Members\",\n                        labels: \"months\"\n                      }\n                    })\n                  ]\n                },\n                proxy: true\n              }\n            ])\n          })\n        ],\n        1\n      ),\n      _c(\n        \"CCol\",\n        { attrs: { sm: \"6\", lg: \"3\" } },\n        [\n          _c(\"CWidgetDropdown\", {\n            attrs: { color: \"info\", header: \"9.823\", text: \"Members online\" },\n            scopedSlots: _vm._u([\n              {\n                key: \"default\",\n                fn: function() {\n                  return [\n                    _c(\n                      \"CDropdown\",\n                      {\n                        attrs: {\n                          color: \"transparent p-0\",\n                          placement: \"bottom-end\",\n                          caret: false\n                        },\n                        scopedSlots: _vm._u([\n                          {\n                            key: \"toggler-content\",\n                            fn: function() {\n                              return [\n                                _c(\"CIcon\", {\n                                  attrs: { name: \"cil-location-pin\" }\n                                })\n                              ]\n                            },\n                            proxy: true\n                          }\n                        ])\n                      },\n                      [\n                        _c(\"CDropdownItem\", [_vm._v(\"Action\")]),\n                        _c(\"CDropdownItem\", [_vm._v(\"Another action\")]),\n                        _c(\"CDropdownItem\", [_vm._v(\"Something else here...\")]),\n                        _c(\"CDropdownItem\", { attrs: { disabled: \"\" } }, [\n                          _vm._v(\"Disabled action\")\n                        ])\n                      ],\n                      1\n                    )\n                  ]\n                },\n                proxy: true\n              },\n              {\n                key: \"footer\",\n                fn: function() {\n                  return [\n                    _c(\"CChartLineSimple\", {\n                      staticClass: \"mt-3 mx-3\",\n                      staticStyle: { height: \"70px\" },\n                      attrs: {\n                        pointed: \"\",\n                        \"data-points\": [1, 18, 9, 17, 34, 22, 11],\n                        \"point-hover-background-color\": \"info\",\n                        options: { elements: { line: { tension: 0.00001 } } },\n                        label: \"Members\",\n                        labels: \"months\"\n                      }\n                    })\n                  ]\n                },\n                proxy: true\n              }\n            ])\n          })\n        ],\n        1\n      ),\n      _c(\n        \"CCol\",\n        { attrs: { sm: \"6\", lg: \"3\" } },\n        [\n          _c(\"CWidgetDropdown\", {\n            attrs: {\n              color: \"warning\",\n              header: \"9.823\",\n              text: \"Members online\"\n            },\n            scopedSlots: _vm._u([\n              {\n                key: \"default\",\n                fn: function() {\n                  return [\n                    _c(\n                      \"CDropdown\",\n                      {\n                        attrs: {\n                          color: \"transparent p-0\",\n                          placement: \"bottom-end\"\n                        },\n                        scopedSlots: _vm._u([\n                          {\n                            key: \"toggler-content\",\n                            fn: function() {\n                              return [\n                                _c(\"CIcon\", { attrs: { name: \"cil-settings\" } })\n                              ]\n                            },\n                            proxy: true\n                          }\n                        ])\n                      },\n                      [\n                        _c(\"CDropdownItem\", [_vm._v(\"Action\")]),\n                        _c(\"CDropdownItem\", [_vm._v(\"Another action\")]),\n                        _c(\"CDropdownItem\", [_vm._v(\"Something else here...\")]),\n                        _c(\"CDropdownItem\", { attrs: { disabled: \"\" } }, [\n                          _vm._v(\"Disabled action\")\n                        ])\n                      ],\n                      1\n                    )\n                  ]\n                },\n                proxy: true\n              },\n              {\n                key: \"footer\",\n                fn: function() {\n                  return [\n                    _c(\"CChartLineSimple\", {\n                      staticClass: \"mt-3\",\n                      staticStyle: { height: \"70px\" },\n                      attrs: {\n                        \"background-color\": \"rgba(255,255,255,.2)\",\n                        \"data-points\": [78, 81, 80, 45, 34, 12, 40],\n                        options: { elements: { line: { borderWidth: 2.5 } } },\n                        \"point-hover-background-color\": \"warning\",\n                        label: \"Members\",\n                        labels: \"months\"\n                      }\n                    })\n                  ]\n                },\n                proxy: true\n              }\n            ])\n          })\n        ],\n        1\n      ),\n      _c(\n        \"CCol\",\n        { attrs: { sm: \"6\", lg: \"3\" } },\n        [\n          _c(\"CWidgetDropdown\", {\n            attrs: { color: \"danger\", header: \"9.823\", text: \"Members online\" },\n            scopedSlots: _vm._u([\n              {\n                key: \"default\",\n                fn: function() {\n                  return [\n                    _c(\n                      \"CDropdown\",\n                      {\n                        attrs: {\n                          color: \"transparent p-0\",\n                          placement: \"bottom-end\"\n                        },\n                        scopedSlots: _vm._u([\n                          {\n                            key: \"toggler-content\",\n                            fn: function() {\n                              return [\n                                _c(\"CIcon\", { attrs: { name: \"cil-settings\" } })\n                              ]\n                            },\n                            proxy: true\n                          }\n                        ])\n                      },\n                      [\n                        _c(\"CDropdownItem\", [_vm._v(\"Action\")]),\n                        _c(\"CDropdownItem\", [_vm._v(\"Another action\")]),\n                        _c(\"CDropdownItem\", [_vm._v(\"Something else here...\")]),\n                        _c(\"CDropdownItem\", { attrs: { disabled: \"\" } }, [\n                          _vm._v(\"Disabled action\")\n                        ])\n                      ],\n                      1\n                    )\n                  ]\n                },\n                proxy: true\n              },\n              {\n                key: \"footer\",\n                fn: function() {\n                  return [\n                    _c(\"CChartBarSimple\", {\n                      staticClass: \"mt-3 mx-3\",\n                      staticStyle: { height: \"70px\" },\n                      attrs: {\n                        \"background-color\": \"rgb(250, 152, 152)\",\n                        label: \"Members\",\n                        labels: \"months\"\n                      }\n                    })\n                  ]\n                },\n                proxy: true\n              }\n            ])\n          })\n        ],\n        1\n      )\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsDropdown.vue?./node_modules/cache-loader/dist/cjs.js?%7B%22cacheDirectory%22:%22node_modules/.cache/vue-loader%22,%22cacheIdentifier%22:%2216bf414d-vue-loader-template%22%7D!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-2!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/widgets/WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+eval("// Imports\nvar ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\nexports = ___CSS_LOADER_API_IMPORT___(false);\n// Module\nexports.push([module.i, \"\\n.c-chart-brand[data-v-1406269c] {\\n  position: absolute;\\n  width: 100%;\\n  height: 100px;\\n}\\n\", \"\"]);\n// Exports\nmodule.exports = exports;\n\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsBrand.vue?./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-2!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
-/***/ "5724":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Search_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("1267");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Search_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Search_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
-
-/***/ }),
-
-/***/ "618c":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"748dd0ae-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/CardComponent.vue?vue&type=template&id=631d37a9&
-var CardComponentvue_type_template_id_631d37a9_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('CCard',[_c('CCardHeader',{class:'card-progress card-color card-border card-border--' + _vm.dataLoad.type},[_c('CLink',{staticClass:"text-dark text-decoration-none",attrs:{"to":'/projets/' + _vm.dataLoad.idcontents}},[_vm._v(_vm._s(_vm.dataLoad.titre)+" ")]),_c('div',{staticClass:"px-2 date-created"},[_c('small',[_vm._v(_vm._s(_vm.createdAt))])]),(_vm.dataLoad.type.length > 1 && _vm.dataLoad.type !== 'memos')?_c('CProgress',{staticClass:"progress-xs card-prog",staticStyle:{"height":"10px"},attrs:{"animated":_vm.dataLoad.status === '1' ? false : true,"showPercentage":"","striped":_vm.dataLoad.status === '1' ? false : true,"max":_vm.progress.max,"value":_vm.progress.val,"color":_vm.color(_vm.progress.val, _vm.progress.max)}}):_vm._e(),_c('div',{staticClass:"card-header-actions"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Afficher/Cacher la description'),expression:"'Afficher/Cacher la description'"}],staticClass:" btn-close m-2",attrs:{"href":"#"},on:{"click":function($event){_vm.descToggle = !_vm.descToggle}}},[_c('CIcon',{attrs:{"name":("cil-chevron-circle-" + (_vm.descToggle ? 'down' : 'up') + "-alt")}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Edité le contenu'),expression:"'Edité le contenu'"}],staticClass:" btn-close m-2",attrs:{"href":"#"},on:{"click":_vm.modalEditOn}},[_c('CIcon',{attrs:{"name":"cil-pencil"}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Modifier le parent'),expression:"'Modifier le parent'"}],staticClass:" btn-close m-2",attrs:{"href":"#"},on:{"click":_vm.changeParent}},[_c('CIcon',{attrs:{"name":"cil-cursor-move"}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Créer un sous contenu'),expression:"'Créer un sous contenu'"}],staticClass:" btn-close m-1",attrs:{"href":"#"},on:{"click":_vm.HideTypeProject}},[_c('CIcon',{attrs:{"name":"cil-plus"}})],1),_c('CLink',{staticClass:"m-2 btn-setting",attrs:{"href":"#"},on:{"click":_vm.modalRessourceOn}},[_c('CIcon',{attrs:{"name":"cil-settings"}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Afficher/Cacher les sous projects'),expression:"'Afficher/Cacher les sous projects'"}],staticClass:"m-1 btn-minimize",on:{"click":_vm.Collapsed}},[_c('CIcon',{attrs:{"name":("cil-chevron-" + (_vm.dataLoad.open ? 'bottom' : 'top'))}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Supprimer ce contenu'),expression:"'Supprimer ce contenu'"}],staticClass:"m-2 btn-close text-danger",attrs:{"href":"#"},on:{"click":_vm.DeleteModalOn}},[_c('CIcon',{attrs:{"color":"danger","name":"cil-x-circle"}})],1)],1)],1),_c('CCollapse',{attrs:{"show":_vm.dataLoad.open,"duration":400}},[_c('CCardBody',[_c('CCollapse',{attrs:{"show":_vm.descToggle,"duration":400}},[_c('div',{domProps:{"innerHTML":_vm._s(_vm.textDisplay)}})]),_vm._t("default")],2)],1)],1),_c('CModal',{attrs:{"title":"Confirmer la suppression","color":"danger","show":_vm.deleteModal},on:{"update:show":function($event){_vm.deleteModal=$event}}},[_vm._v(" êtes vous sûre de vouloir supprimer ce contenu? "),_c('br'),_c('small',{staticClass:"mt-2 text-center"},[_vm._v("Cette action est irréversible.")]),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.deleteModal = false}}},[_vm._v("Cancel")]),_c('CButton',{staticClass:"mx-1",attrs:{"color":"danger","desabled":""},on:{"click":_vm.DeleteContent}},[_vm._v("Supprimer")])],1)])],2),_c('CModal',{attrs:{"title":"Modification de la hiérarchie","color":"dark","show":_vm.hierarchiModal},on:{"update:show":function($event){_vm.hierarchiModal=$event}}},[_c('CRow',[_c('CCol',{staticClass:"mr-0 pr-0",attrs:{"col":"8","sm":"5"}},[_c('CInput',{attrs:{"label":"Ordre:","type":"number","horizontal":""},model:{value:(_vm.newIdParrent.ordre),callback:function ($$v) {_vm.$set(_vm.newIdParrent, "ordre", $$v)},expression:"newIdParrent.ordre"}})],1),_c('CCol',{attrs:{"md":"10"}},[_c('SSearch',{on:{"parent-selected":_vm.parentSelected}}),_c('small',[_vm._v("Choisir le nouveau parent")]),_vm._v(" "),_c('br'),_c('small',[_vm._v("Parent Actuel: "),_c('strong',[_vm._v(_vm._s(_vm.dataLoad.idcontentsparent))])])],1)],1),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.hierarchiModal = false}}},[_vm._v("Cancel")]),_c('CButton',{staticClass:"mx-1",attrs:{"color":"dark","desabled":""},on:{"click":_vm.ChangeHierarchie}},[_vm._v("Enregistrer "),(_vm.spinner)?_c('CSpinner',{staticStyle:{"width":"1rem","height":"1rem"},attrs:{"size":"sm","tag":"small","color":"primary"}}):_vm._e()],1)],1)])],2)],1)}
-var staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/views/App/project/CardComponent.vue?vue&type=template&id=631d37a9&
-
-// EXTERNAL MODULE: ./src/views/App/search/Search.vue + 4 modules
-var Search = __webpack_require__("c71b");
-
-// EXTERNAL MODULE: ./src/views/App/project/Utilities.js
-var Utilities = __webpack_require__("d111");
-
-// EXTERNAL MODULE: ./src/views/App/config/config.js
-var config = __webpack_require__("b8a6");
-
-// EXTERNAL MODULE: ./node_modules/highlight.js/lib/index.js
-var lib = __webpack_require__("1487");
-var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
-
-// EXTERNAL MODULE: ./node_modules/moment/moment.js
-var moment = __webpack_require__("c1df");
-var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/CardComponent.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-/* harmony default export */ var CardComponentvue_type_script_lang_js_ = ({
-  name: "CardComponent",
-  props: {
-    dataLoad: {
-      type: Object,
-      required: true,
-      default: function _default() {
-        return {};
-      }
-    },
-    isCollapsed: {
-      type: Object,
-      default: function _default() {
-        return {
-          status: false
-        };
-      }
-    }
-  },
-  components: {
-    SSearch: Search["a" /* default */]
-  },
-  data: function data() {
-    return {
-      btnStateEdit: {
-        state: false
-      },
-      modalEdit: false,
-      deleteModal: false,
-      hierarchiModal: false,
-      ressourceToAdd: "",
-      chooseType: "text",
-      descToggle: true,
-      currentTime: "",
-      show: true,
-      max: "",
-      spinner: false,
-      selected: "projet",
-      addingModal: false,
-      modalRessource: false,
-      newIdParrent: {
-        id: "",
-        ordre: ""
-      },
-      //isCollapsed: true,
-      editorData: "<p>me al rasp sale</p>",
-      editorConfig: {
-        extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
-      },
-      options: [{
-        value: "projet",
-        label: "Projet"
-      }, {
-        value: "tache",
-        label: "Tâche"
-      }, {
-        value: "memos",
-        label: "Mémos"
-      }]
-    };
-  },
-  mounted: function mounted() {
-    this.timing();
-  },
-  computed: {
-    progress: function progress() {
-      var el = {};
-      var date_fin_proposer = moment_default.a.unix(this.dataLoad.date_fin_proposer);
-      var date_depart_proposer = moment_default.a.unix(this.dataLoad.date_depart_proposer);
-      var exact = moment_default.a.unix(this.currentTime);
-
-      if (this.dataLoad.date_fin_reel > 0) {
-        exact = moment_default.a.unix(this.dataLoad.date_fin_reel);
-      }
-
-      var val = exact.diff(date_depart_proposer, "minutes");
-      var max = date_fin_proposer.diff(date_depart_proposer, "minutes");
-      el.max = max;
-      el.val = val;
-      return el;
-    },
-    // Affichage du texte formatter
-    textDisplay: function textDisplay() {
-      var newDiv = document.createElement("div");
-      newDiv.innerHTML = this.dataLoad.text ? this.dataLoad.text : "";
-      newDiv.querySelectorAll("pre code").forEach(function (block) {
-        lib_default.a.highlightBlock(block);
-      });
-      return newDiv.outerHTML;
-    },
-    createdAt: function createdAt() {
-      return moment_default()(this.dataLoad.created_at, "YYYY-MM-DD HH:mm").format("DD/MM/YYYY HH:mm");
-    }
-  },
-  methods: {
-    timing: function timing() {
-      var _this = this;
-
-      if (this.dataLoad.status == 2) {
-        this.currentTime = moment_default()().unix();
-        setInterval(function () {
-          _this.currentTime = moment_default()().unix();
-        }, 5000);
-      } else {
-        this.currentTime = moment_default()().unix();
-      }
-    },
-    color: function color(valueCurent, maxValue) {
-      var value = 0;
-      var $color;
-
-      if (maxValue > 0 && valueCurent > 0) {
-        value = valueCurent * 100 / maxValue;
-      }
-
-      if (value <= 25) {
-        $color = "success";
-      } else if (value > 25 && value <= 50) {
-        $color = "info";
-      } else if (value > 50 && value <= 85) {
-        $color = "secondary";
-      } else if (value > 85 && value <= 100) {
-        $color = "warning";
-      } else {
-        $color = "danger";
-      }
-
-      return $color;
-    },
-    parentSelected: function parentSelected(data) {
-      //console.log("cccc :", data.idcontents);
-      this.newIdParrent.id = data.idcontents;
-    },
-    ChangeHierarchie: function ChangeHierarchie() {
-      var _this2 = this;
-
-      this.spinner = true; //console.log("object", this.dataLoad.idcontents);
-
-      Utilities["a" /* default */].formatHierarchie(this.dataLoad, this.newIdParrent).then(function (reponse) {
-        //console.log(" change Hierarchie : ", reponse);
-        config["a" /* default */].post("/gestion-project/save-update", reponse).then(function (reponse) {
-          if (reponse.status) {
-            console.log("data after edit :", reponse);
-
-            _this2.$emit("edition-ok", reponse);
-          }
-
-          _this2.spinner = false;
-          _this2.hierarchiModal = false;
-        }).catch(function (error) {
-          console.log("error", error);
-        });
-      });
-    },
-    changeParent: function changeParent() {
-      console.log("changeparent", this.dataLoad);
-      this.$emit("change-parent", this.dataLoad);
-      this.newIdParrent.ordre = this.dataLoad.ordre;
-      this.hierarchiModal = true;
-    },
-    DeleteModalOn: function DeleteModalOn() {
-      this.deleteModal = true;
-    },
-    //Supression d’un contenu
-    DeleteContent: function DeleteContent() {
-      var _this3 = this;
-
-      Utilities["a" /* default */].formatDeleteData(this.dataLoad, "delete").then(function (reponse) {
-        console.log(" deleteProject : ", reponse);
-        config["a" /* default */].post("/gestion-project/save-update", reponse).then(function (reponse) {
-          if (reponse.status) {
-            console.log("data after delete :", reponse);
-
-            _this3.$emit("suppression-ok");
-          }
-
-          _this3.isLoading = false;
-        }).catch(function (error) {
-          console.log("error", error);
-        });
-      });
-    },
-    //Gestion de l’acordéon
-    Collapsed: function Collapsed() {
-      if (this.dataLoad.open) {
-        this.dataLoad.open = false;
-      } else {
-        this.dataLoad.open = true;
-      }
-    },
-    //
-    HideTypeProject: function HideTypeProject() {
-      this.$emit("Hide-type-project", this.dataLoad);
-    },
-    modalEditOn: function modalEditOn() {
-      //console.log("edit : ", this.dataLoad.titre);
-      this.$emit("modal-edit-on", this.dataLoad);
-    },
-    modalRessourceOn: function modalRessourceOn() {
-      this.$emit("modal-ressource-on");
-    },
-    modalEditOnText: function modalEditOnText(item) {
-      console.log("Test edit : ", item.titre);
-      this.$emit("ev-modal-edit-on", item);
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/views/App/project/CardComponent.vue?vue&type=script&lang=js&
- /* harmony default export */ var project_CardComponentvue_type_script_lang_js_ = (CardComponentvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/views/App/project/CardComponent.vue?vue&type=style&index=0&lang=scss&
-var CardComponentvue_type_style_index_0_lang_scss_ = __webpack_require__("6b1d");
-
-// EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-var componentNormalizer = __webpack_require__("2877");
-
-// CONCATENATED MODULE: ./src/views/App/project/CardComponent.vue
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(componentNormalizer["a" /* default */])(
-  project_CardComponentvue_type_script_lang_js_,
-  CardComponentvue_type_template_id_631d37a9_render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ var CardComponent = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/CardJsx.vue?vue&type=script&lang=js&
-
-/* harmony default export */ var CardJsxvue_type_script_lang_js_ = ({
-  name: "CardsJSX",
-  props: {
-    dataLoad: {
-      type: Array,
-      required: true
-    }
-  },
-  data: function data() {
-    return {
-      btnStateEdit: {
-        state: false
-      },
-      modalEdit: false,
-      ressourceToAdd: "",
-      chooseType: "text",
-      descToggle: false,
-      show: true,
-      selected: "projet",
-      addingModal: false,
-      modalRessource: false,
-      editorData: "<p>me al rasp sale</p>",
-      editorConfig: {
-        extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
-      },
-      options: [{
-        value: "projet",
-        label: "Projet"
-      }, {
-        value: "tache",
-        label: "Tâche"
-      }, {
-        value: "memos",
-        label: "Mémos"
-      }]
-    };
-  },
-  render: function render(createElement) {
-    var _this = this;
-
-    var elt = createElement;
-
-    var loopDatas = function loopDatas(projects) {
-      var open = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      var result = [];
-      projects.forEach(function (project) {
-        var cards = [];
-        project.open = open;
-
-        if (Array.isArray(project.cards)) {
-          cards = loopDatas(project.cards, false);
-        }
-
-        result.push(elt(CardComponent, {
-          props: {
-            dataLoad: project
-          },
-          on: {
-            "modal-edit-on": function modalEditOn(item) {
-              //console.log("edit-on", item);
-              _this.$emit("modal-edit-on", item);
-            },
-            "Hide-type-project": function HideTypeProject(item) {
-              _this.$emit("Hide-type-project", item);
-            },
-            "suppression-ok": function suppressionOk() {
-              _this.$emit("suppression-ok");
-            },
-            "change-parent": function changeParent(item) {
-              //console.log("changeparent", item);
-              _this.$emit("change-parent", item);
-            },
-            "edition-ok": function editionOk() {
-              _this.$emit("edition-ok");
-            }
-          }
-        }, cards));
-      });
-      return result;
-    };
-
-    return elt("div", loopDatas(this.dataLoad, true));
-  }
-});
-// CONCATENATED MODULE: ./src/views/App/project/CardJsx.vue?vue&type=script&lang=js&
- /* harmony default export */ var project_CardJsxvue_type_script_lang_js_ = (CardJsxvue_type_script_lang_js_); 
-// CONCATENATED MODULE: ./src/views/App/project/CardJsx.vue
-var CardJsx_render, CardJsx_staticRenderFns
-
-
-
-
-/* normalize component */
-
-var CardJsx_component = Object(componentNormalizer["a" /* default */])(
-  project_CardJsxvue_type_script_lang_js_,
-  CardJsx_render,
-  CardJsx_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ var CardJsx = __webpack_exports__["default"] = (CardJsx_component.exports);
-
-/***/ }),
-
-/***/ "6b1d":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b8d3");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
-
-/***/ }),
-
-/***/ "b8d3":
+/***/ "./node_modules/vue-style-loader/index.js?!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-2!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/widgets/WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+eval("// style-loader: Adds some css to the DOM by adding a <style> tag\n\n// load the styles\nvar content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-oneOf-1-2!../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../node_modules/vue-loader/lib??vue-loader-options!./WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css& */ \"./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css&\");\nif(content.__esModule) content = content.default;\nif(typeof content === 'string') content = [[module.i, content, '']];\nif(content.locals) module.exports = content.locals;\n// add the styles to the DOM\nvar add = __webpack_require__(/*! ../../../node_modules/vue-style-loader/lib/addStylesClient.js */ \"./node_modules/vue-style-loader/lib/addStylesClient.js\").default\nvar update = add(\"17aa654e\", content, false, {\"sourceMap\":false,\"shadowMode\":false});\n// Hot Module Replacement\nif(false) {}\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsBrand.vue?./node_modules/vue-style-loader??ref--6-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-2!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
-/***/ "c71b":
+/***/ "./src/views/Dashboard.vue":
+/*!*********************************!*\
+  !*** ./src/views/Dashboard.vue ***!
+  \*********************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Dashboard_vue_vue_type_template_id_22ba47ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=template&id=22ba47ca& */ \"./src/views/Dashboard.vue?vue&type=template&id=22ba47ca&\");\n/* harmony import */ var _Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=script&lang=js& */ \"./src/views/Dashboard.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _Dashboard_vue_vue_type_template_id_22ba47ca___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _Dashboard_vue_vue_type_template_id_22ba47ca___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/views/Dashboard.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://gestionTache/./src/views/Dashboard.vue?");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"748dd0ae-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/search/Search.vue?vue&type=template&id=208b948c&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.styled ? 'searchForm' : ''},[_c('multiselect',{attrs:{"options":_vm.project,"placeholder":"Tapez une recherche","hide-selected":true,"max-height":600,"option-height":20,"show-labels":false,"searchable":true,"loading":_vm.isLoading,"track-by":"titre","internal-search":true,"showPointer":true,"label":"titre"},on:{"search-change":_vm.TypingSearch},scopedSlots:_vm._u([{key:"singleLabel",fn:function(props){return [_c('span',{staticClass:"option__desc d-inline-flex flex-column"},[_c('span',{staticClass:"option__title"},[_vm._v(_vm._s(props.option.titre))])])]}},{key:"option",fn:function(props){return [(_vm.styled)?_c('div',{staticClass:"option__desc d-inline-flex flex-column align-items-start"},[_c('span',{staticClass:"option__title mb-2"},[_c('CIcon',{staticClass:"mr-1 text-info ",attrs:{"name":"cilFolder"}}),_vm._v(" "+_vm._s(props.option.titre)+" ")],1),_c('div',{staticClass:"d-flex aling-items-center"},[_c('span',{staticClass:"text-info bg-light p-1 mt-2 h6"},[_vm._v(_vm._s(props.option.type))]),_c('router-link',{attrs:{"to":'/projets/' + props.option.idcontents}},[_c('CButton',{staticClass:"ml-4",attrs:{"variant":"ghost","color":"warning","size":"sm"}},[_c('CIcon',{attrs:{"name":"cilPencil"}})],1)],1)],1)]):_vm._e(),(!_vm.styled)?_c('div',{staticClass:"option__desc d-inline-flex flex-column align-items-start",on:{"click":function($event){return _vm.ParentSelected(props)}}},[_c('span',{staticClass:"option__title mb-2"},[_c('CIcon',{staticClass:"mr-1 text-dark ",attrs:{"name":"cilFolder"}}),_vm._v(" "+_vm._s(props.option.titre)+" "),_c('small',{staticClass:"text-dark  p-1 mt-2 ml-2 text-type"},[_vm._v(_vm._s(props.option.type))])],1)]):_vm._e()]}}]),model:{value:(_vm.searchValue),callback:function ($$v) {_vm.searchValue=$$v},expression:"searchValue"}})],1)}
-var staticRenderFns = []
+/***/ }),
 
+/***/ "./src/views/Dashboard.vue?vue&type=script&lang=js&":
+/*!**********************************************************!*\
+  !*** ./src/views/Dashboard.vue?vue&type=script&lang=js& ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// CONCATENATED MODULE: ./src/views/App/search/Search.vue?vue&type=template&id=208b948c&
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/cache-loader/dist/cjs.js??ref--12-0!../../node_modules/babel-loader/lib!../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../node_modules/vue-loader/lib??vue-loader-options!./Dashboard.vue?vue&type=script&lang=js& */ \"./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/Dashboard.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://gestionTache/./src/views/Dashboard.vue?");
 
-// EXTERNAL MODULE: ./node_modules/vue-multiselect/dist/vue-multiselect.min.js
-var vue_multiselect_min = __webpack_require__("8e5f");
-var vue_multiselect_min_default = /*#__PURE__*/__webpack_require__.n(vue_multiselect_min);
+/***/ }),
 
-// EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
-var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
-var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
+/***/ "./src/views/Dashboard.vue?vue&type=template&id=22ba47ca&":
+/*!****************************************************************!*\
+  !*** ./src/views/Dashboard.vue?vue&type=template&id=22ba47ca& ***!
+  \****************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// EXTERNAL MODULE: ./src/views/App/config/config.js
-var config = __webpack_require__("b8a6");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_template_id_22ba47ca___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../node_modules/vue-loader/lib??vue-loader-options!./Dashboard.vue?vue&type=template&id=22ba47ca& */ \"./node_modules/cache-loader/dist/cjs.js?{\\\"cacheDirectory\\\":\\\"node_modules/.cache/vue-loader\\\",\\\"cacheIdentifier\\\":\\\"16bf414d-vue-loader-template\\\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/Dashboard.vue?vue&type=template&id=22ba47ca&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_template_id_22ba47ca___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_template_id_22ba47ca___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/Dashboard.vue?");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/search/Search.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/***/ }),
 
+/***/ "./src/views/charts/MainChartExample.vue":
+/*!***********************************************!*\
+  !*** ./src/views/charts/MainChartExample.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
- // register globally
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _MainChartExample_vue_vue_type_template_id_1861e9f5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MainChartExample.vue?vue&type=template&id=1861e9f5& */ \"./src/views/charts/MainChartExample.vue?vue&type=template&id=1861e9f5&\");\n/* harmony import */ var _MainChartExample_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainChartExample.vue?vue&type=script&lang=js& */ \"./src/views/charts/MainChartExample.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _MainChartExample_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _MainChartExample_vue_vue_type_template_id_1861e9f5___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _MainChartExample_vue_vue_type_template_id_1861e9f5___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/views/charts/MainChartExample.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://gestionTache/./src/views/charts/MainChartExample.vue?");
 
-external_commonjs_vue_commonjs2_vue_root_Vue_default.a.component("multiselect", vue_multiselect_min_default.a);
-/* harmony default export */ var Searchvue_type_script_lang_js_ = ({
-  // OR register locally
-  props: {
-    styled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  components: {
-    Multiselect: vue_multiselect_min_default.a
-  },
-  data: function data() {
-    return {
-      value: "",
-      searchValue: "",
-      options: ["list", "of", "options"],
-      project: [],
-      isLoading: false,
-      timer: null
-    };
-  },
-  mounted: function mounted() {//this.LoadProjectData();
-  },
-  watch: {},
-  computed: {
-    pOptions: function pOptions() {
-      var tab = [];
+/***/ }),
 
-      if (this.project.length) {
-        for (var i in this.project) {
-          tab.push(this.project[i].titre);
-        }
-      }
+/***/ "./src/views/charts/MainChartExample.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./src/views/charts/MainChartExample.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-      return tab;
-    }
-  },
-  methods: {
-    ParentSelected: function ParentSelected(data) {
-      console.log("dataSelected :", data.option);
-      this.$emit("parent-selected", data.option);
-    },
-    // Recherche des informations 1.5s après la saisie
-    TypingSearch: function TypingSearch(value) {
-      if (value.length >= 2) {
-        this.isLoading = true;
-        this.value = value;
-        var self = this;
-        clearTimeout(self.timer);
-        self.timer = setTimeout(function () {
-          self.LoadProjectData();
-        }, 1500);
-      }
-    },
-    // Request for Loading data on DB
-    LoadProjectData: function LoadProjectData() {
-      var _this = this;
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainChartExample_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/cache-loader/dist/cjs.js??ref--12-0!../../../node_modules/babel-loader/lib!../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MainChartExample.vue?vue&type=script&lang=js& */ \"./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/charts/MainChartExample.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainChartExample_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://gestionTache/./src/views/charts/MainChartExample.vue?");
 
-      this.isLoading = true;
-      config["a" /* default */].post("/gestion-project/search?key=" + this.value, {
-        level: 0
-      }).then(function (reponse) {
-        if (reponse.status) {
-          if (reponse) {
-            _this.project = reponse.data;
-            console.log("Project search load", reponse);
-          }
-        }
+/***/ }),
 
-        _this.isLoading = false;
-      }).catch(function (error) {
-        console.log("error", error);
-      });
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/views/App/search/Search.vue?vue&type=script&lang=js&
- /* harmony default export */ var search_Searchvue_type_script_lang_js_ = (Searchvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css&
-var vue_multiselect_minvue_type_style_index_0_lang_css_ = __webpack_require__("60bc");
+/***/ "./src/views/charts/MainChartExample.vue?vue&type=template&id=1861e9f5&":
+/*!******************************************************************************!*\
+  !*** ./src/views/charts/MainChartExample.vue?vue&type=template&id=1861e9f5& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// EXTERNAL MODULE: ./src/views/App/search/Search.vue?vue&type=style&index=1&lang=scss&
-var Searchvue_type_style_index_1_lang_scss_ = __webpack_require__("5724");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainChartExample_vue_vue_type_template_id_1861e9f5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MainChartExample.vue?vue&type=template&id=1861e9f5& */ \"./node_modules/cache-loader/dist/cjs.js?{\\\"cacheDirectory\\\":\\\"node_modules/.cache/vue-loader\\\",\\\"cacheIdentifier\\\":\\\"16bf414d-vue-loader-template\\\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/charts/MainChartExample.vue?vue&type=template&id=1861e9f5&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainChartExample_vue_vue_type_template_id_1861e9f5___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainChartExample_vue_vue_type_template_id_1861e9f5___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/charts/MainChartExample.vue?");
 
-// EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-var componentNormalizer = __webpack_require__("2877");
+/***/ }),
 
-// CONCATENATED MODULE: ./src/views/App/search/Search.vue
+/***/ "./src/views/widgets/WidgetsBrand.vue":
+/*!********************************************!*\
+  !*** ./src/views/widgets/WidgetsBrand.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _WidgetsBrand_vue_vue_type_template_id_1406269c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WidgetsBrand.vue?vue&type=template&id=1406269c&scoped=true& */ \"./src/views/widgets/WidgetsBrand.vue?vue&type=template&id=1406269c&scoped=true&\");\n/* harmony import */ var _WidgetsBrand_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WidgetsBrand.vue?vue&type=script&lang=js& */ \"./src/views/widgets/WidgetsBrand.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _WidgetsBrand_vue_vue_type_style_index_0_id_1406269c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css& */ \"./src/views/widgets/WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css&\");\n/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(\n  _WidgetsBrand_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _WidgetsBrand_vue_vue_type_template_id_1406269c_scoped_true___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _WidgetsBrand_vue_vue_type_template_id_1406269c_scoped_true___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  \"1406269c\",\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/views/widgets/WidgetsBrand.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsBrand.vue?");
 
+/***/ }),
 
+/***/ "./src/views/widgets/WidgetsBrand.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./src/views/widgets/WidgetsBrand.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/cache-loader/dist/cjs.js??ref--12-0!../../../node_modules/babel-loader/lib!../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../node_modules/vue-loader/lib??vue-loader-options!./WidgetsBrand.vue?vue&type=script&lang=js& */ \"./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsBrand.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsBrand.vue?");
 
+/***/ }),
 
+/***/ "./src/views/widgets/WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css&":
+/*!*****************************************************************************************************!*\
+  !*** ./src/views/widgets/WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css& ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/* normalize component */
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_style_index_0_id_1406269c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-style-loader??ref--6-oneOf-1-0!../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-oneOf-1-2!../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../node_modules/vue-loader/lib??vue-loader-options!./WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css& */ \"./node_modules/vue-style-loader/index.js?!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsBrand.vue?vue&type=style&index=0&id=1406269c&scoped=true&lang=css&\");\n/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_style_index_0_id_1406269c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_style_index_0_id_1406269c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);\n/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_style_index_0_id_1406269c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if([\"default\"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_style_index_0_id_1406269c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));\n\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsBrand.vue?");
 
-var component = Object(componentNormalizer["a" /* default */])(
-  search_Searchvue_type_script_lang_js_,
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
+/***/ }),
 
-/* harmony default export */ var Search = __webpack_exports__["a"] = (component.exports);
+/***/ "./src/views/widgets/WidgetsBrand.vue?vue&type=template&id=1406269c&scoped=true&":
+/*!***************************************************************************************!*\
+  !*** ./src/views/widgets/WidgetsBrand.vue?vue&type=template&id=1406269c&scoped=true& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_template_id_1406269c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../node_modules/vue-loader/lib??vue-loader-options!./WidgetsBrand.vue?vue&type=template&id=1406269c&scoped=true& */ \"./node_modules/cache-loader/dist/cjs.js?{\\\"cacheDirectory\\\":\\\"node_modules/.cache/vue-loader\\\",\\\"cacheIdentifier\\\":\\\"16bf414d-vue-loader-template\\\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsBrand.vue?vue&type=template&id=1406269c&scoped=true&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_template_id_1406269c_scoped_true___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsBrand_vue_vue_type_template_id_1406269c_scoped_true___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsBrand.vue?");
+
+/***/ }),
+
+/***/ "./src/views/widgets/WidgetsDropdown.vue":
+/*!***********************************************!*\
+  !*** ./src/views/widgets/WidgetsDropdown.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _WidgetsDropdown_vue_vue_type_template_id_30864194___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WidgetsDropdown.vue?vue&type=template&id=30864194& */ \"./src/views/widgets/WidgetsDropdown.vue?vue&type=template&id=30864194&\");\n/* harmony import */ var _WidgetsDropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WidgetsDropdown.vue?vue&type=script&lang=js& */ \"./src/views/widgets/WidgetsDropdown.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _WidgetsDropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _WidgetsDropdown_vue_vue_type_template_id_30864194___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _WidgetsDropdown_vue_vue_type_template_id_30864194___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/views/widgets/WidgetsDropdown.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsDropdown.vue?");
+
+/***/ }),
+
+/***/ "./src/views/widgets/WidgetsDropdown.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./src/views/widgets/WidgetsDropdown.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsDropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/cache-loader/dist/cjs.js??ref--12-0!../../../node_modules/babel-loader/lib!../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../node_modules/vue-loader/lib??vue-loader-options!./WidgetsDropdown.vue?vue&type=script&lang=js& */ \"./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsDropdown.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsDropdown_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsDropdown.vue?");
+
+/***/ }),
+
+/***/ "./src/views/widgets/WidgetsDropdown.vue?vue&type=template&id=30864194&":
+/*!******************************************************************************!*\
+  !*** ./src/views/widgets/WidgetsDropdown.vue?vue&type=template&id=30864194& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsDropdown_vue_vue_type_template_id_30864194___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/cache-loader/dist/cjs.js?{\"cacheDirectory\":\"node_modules/.cache/vue-loader\",\"cacheIdentifier\":\"16bf414d-vue-loader-template\"}!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/cache-loader/dist/cjs.js??ref--0-0!../../../node_modules/vue-loader/lib??vue-loader-options!./WidgetsDropdown.vue?vue&type=template&id=30864194& */ \"./node_modules/cache-loader/dist/cjs.js?{\\\"cacheDirectory\\\":\\\"node_modules/.cache/vue-loader\\\",\\\"cacheIdentifier\\\":\\\"16bf414d-vue-loader-template\\\"}!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./src/views/widgets/WidgetsDropdown.vue?vue&type=template&id=30864194&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsDropdown_vue_vue_type_template_id_30864194___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_cache_loader_dist_cjs_js_cacheDirectory_node_modules_cache_vue_loader_cacheIdentifier_16bf414d_vue_loader_template_node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WidgetsDropdown_vue_vue_type_template_id_30864194___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack://gestionTache/./src/views/widgets/WidgetsDropdown.vue?");
 
 /***/ })
 
 }]);
-//# sourceMappingURL=gestionTache.common.9.js.map
