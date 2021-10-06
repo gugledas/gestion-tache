@@ -1,0 +1,32 @@
+// Here you can add other styles
+.card-render-entity {
+  .card {
+    .card-header {
+      padding: 0;
+      .link-card {
+        width: auto;
+        flex: 1 1 auto;
+        padding: 0.75rem 1.25rem;
+      }
+    }
+    .card {
+      margin-bottom: 0;
+      &:hover {
+        .card-header {
+          background-color: #f0f8ff;
+        }
+      }
+    }
+  }
+
+  .card-body {
+    > .badge-type-ressource {
+      margin: 2.5rem 0 0.5rem 0;
+      background: #747474;
+      color: #fff;
+      &:nth-child(2) {
+        margin-top: 1.5rem;
+      }
+    }
+  }
+}
