@@ -224,7 +224,8 @@ export default {
   selectAll: function() {
     return new Promise((resolv) => {
       var query = "";
-      query += " c.idcontents is not NULL limit 0,50 ";
+      query +=
+        " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
       config
         .post("/gestion-project/select/select-project", query)
         .then((reponse) => {
@@ -257,7 +258,7 @@ export default {
         }
       }
       query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,50 ";
+      query += " limit 0,20 ";
       //console.log("query :: ", query);
       config
         .post("/gestion-project/select/select-tache-enours", query)

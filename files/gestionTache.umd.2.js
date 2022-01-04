@@ -996,7 +996,8 @@ var Utilities = {
             titre: datas.titre,
             type: datas.type,
             privaty: datas.privaty ? 1 : 0
-          }
+          },
+          action: "insert"
         };
         ligne.childstable = {
           colum_id_name: "idcontents",
@@ -1299,7 +1300,7 @@ var Utilities = {
             value: datas.idinvoicelist
           }];
           table1.action = "update";
-        } //mise à jour de la table societe
+        } // mise à jour de la table societe
 
 
         result.push(table1);
@@ -1314,7 +1315,7 @@ var Utilities = {
       console.log("fadin :", datas);
 
       if (datas && datas.idinvoicelist) {
-        //edition de la table contents
+        // Edition de la table contents
         var table1 = {
           table: "gestion_project_invoice_list",
           fields: {},
@@ -1323,7 +1324,7 @@ var Utilities = {
             column: "idinvoicelist",
             value: datas.idinvoicelist
           }]
-        }; //mise à jour de la table societe
+        }; // Mise à jour de la table societe
 
         result.push(table1);
       }
@@ -1538,7 +1539,7 @@ var Utilities = {
   selectAll: function selectAll() {
     return new Promise(function (resolv) {
       var query = "";
-      query += " c.idcontents is not NULL limit 0,50 ";
+      query += " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-project", query).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
@@ -1565,7 +1566,7 @@ var Utilities = {
       }
 
       query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,50 "; //console.log("query :: ", query);
+      query += " limit 0,20 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-tache-enours", query).then(function (reponse) {
         if (reponse.status) {

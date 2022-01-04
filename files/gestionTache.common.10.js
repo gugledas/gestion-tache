@@ -1122,7 +1122,7 @@ var usersData = [{
   selectAll: function selectAll() {
     return new Promise(function (resolv) {
       var query = "";
-      query += " c.idcontents is not NULL limit 0,50 ";
+      query += " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-project", query).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
@@ -1149,7 +1149,7 @@ var usersData = [{
       }
 
       query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,50 "; //console.log("query :: ", query);
+      query += " limit 0,20 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-tache-enours", query).then(function (reponse) {
         if (reponse.status) {

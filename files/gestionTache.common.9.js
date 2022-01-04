@@ -1373,7 +1373,8 @@ var Utilities = {
             titre: datas.titre,
             type: datas.type,
             privaty: datas.privaty ? 1 : 0
-          }
+          },
+          action: "insert"
         };
         ligne.childstable = {
           colum_id_name: "idcontents",
@@ -1676,7 +1677,7 @@ var Utilities = {
             value: datas.idinvoicelist
           }];
           table1.action = "update";
-        } //mise à jour de la table societe
+        } // mise à jour de la table societe
 
 
         result.push(table1);
@@ -1691,7 +1692,7 @@ var Utilities = {
       console.log("fadin :", datas);
 
       if (datas && datas.idinvoicelist) {
-        //edition de la table contents
+        // Edition de la table contents
         var table1 = {
           table: "gestion_project_invoice_list",
           fields: {},
@@ -1700,7 +1701,7 @@ var Utilities = {
             column: "idinvoicelist",
             value: datas.idinvoicelist
           }]
-        }; //mise à jour de la table societe
+        }; // Mise à jour de la table societe
 
         result.push(table1);
       }

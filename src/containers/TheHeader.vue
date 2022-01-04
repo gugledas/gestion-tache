@@ -104,7 +104,7 @@
         <td slot="user" slot-scope="{ item }">
           <CLink
             :to="{
-              path: 'projets/' + item.idcontents,
+              path: '/projets/' + item.idcontents,
             }"
             class="text-decoration-none"
             ><div @click="modalLast = !modalLast">

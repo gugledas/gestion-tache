@@ -175,6 +175,7 @@ const Utilities = {
             type: datas.type,
             privaty: datas.privaty ? 1 : 0,
           },
+          action: "insert",
         };
 
         ligne.childstable = {
@@ -495,8 +496,7 @@ const Utilities = {
           ];
           table1.action = "update";
         }
-        //mise à jour de la table societe
-
+        // mise à jour de la table societe
         result.push(table1);
       }
       resolv(result);
@@ -507,7 +507,7 @@ const Utilities = {
       var result = [];
       console.log("fadin :", datas);
       if (datas && datas.idinvoicelist) {
-        //edition de la table contents
+        // Edition de la table contents
         var table1 = {
           table: "gestion_project_invoice_list",
           fields: {},
@@ -519,9 +519,7 @@ const Utilities = {
             },
           ],
         };
-
-        //mise à jour de la table societe
-
+        // Mise à jour de la table societe
         result.push(table1);
       }
       resolv(result);

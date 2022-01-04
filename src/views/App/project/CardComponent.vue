@@ -18,9 +18,13 @@
         </div>
         <CProgress
           class="progress-xs card-prog"
-          :animated="dataLoad.status === '1' ? false : true"
+          :animated="
+            dataLoad.status === '1' || dataLoad.status === '3' ? false : true
+          "
           showPercentage
-          :striped="dataLoad.status === '1' ? false : true"
+          :striped="
+            dataLoad.status === '1' || dataLoad.status === '3' ? false : true
+          "
           style="height: 10px"
           :max="progress.max"
           :value="progress.val"
