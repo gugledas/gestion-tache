@@ -1,8 +1,12 @@
 import axios from "axios";
+import { AjaxBasic } from "wbuutilities";
 export default {
-  baseUrl: "http://gestion-taches-vps.habeuk.online",
+  ...AjaxBasic,
+  TestDomain: "http://gestiontaches.kksa",
+  baseUrl: "http://gestion-taches-vps.habeuk.com",
+  //baseUrl: "http://gestion-taches.kksa",
   ModeDebug: true,
-  post: function (request, datas = {}) {
+  postOld: function(request, datas = {}) {
     return new Promise((resolv) => {
       var configs = {
         headers: {},
@@ -18,7 +22,7 @@ export default {
         });
     });
   },
-  get: function (request, datas = {}) {
+  getOld: function(request, datas = {}) {
     // console.log("ssss");
     return new Promise((resolv) => {
       var configs = {

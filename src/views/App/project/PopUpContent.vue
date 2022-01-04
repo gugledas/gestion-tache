@@ -1,9 +1,11 @@
+<!--
+   Les modeles de champs sont dans : node_modules/@coreui/vue/src/components/form
+-->
 <template lang="html">
   <div :check-valid-form="checkForSave">
     <div>
       <CRow :gutters="false" class="form-group">
-        <!-- <pre>{{ this.options }}</pre> -->
-        <pre>duree: {{ dureeProjet }}</pre>
+        <!-- <pre> {{ postData }} </pre> -->
         <br />
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
 
@@ -15,7 +17,7 @@
             inline
           />
           <small v-if="postData.type.length < 2" class="text-danger">
-            ce champ est requis
+            Ce champ est requis
           </small>
         </CCol>
       </CRow>
@@ -88,7 +90,14 @@
           </CRow>
         </CCol>
       </CRow>
+
       <CRow>
+        <CCol sm="10">
+          <div class="form-group ">
+            Contenu privée ?:
+            <input type="checkbox" v-model="postData.privaty" />
+          </div>
+        </CCol>
         <CCol sm="7">
           <CInput
             label="Title:"
@@ -149,7 +158,7 @@ export default {
     },
     btnState: {
       type: Object,
-      default: function () {
+      default: function() {
         return { state: false };
       },
     },
@@ -178,6 +187,7 @@ export default {
         titre: "",
         price: "",
         text: "",
+        privaty: true,
       },
       fHeure: "",
       dHeure: "",
@@ -194,7 +204,7 @@ export default {
           config.baseUrl +
           "/modules/custom/gestion_tache/files/gestionTache.css'; body{margin:1em !important; background: #FFF;}",
         on: {
-          instanceReady: function () {
+          instanceReady: function() {
             // Output paragraphs as <p>Text</p>.
             this.dataProcessor.writer.setRules("p", {
               indent: true,
@@ -284,11 +294,11 @@ export default {
   watch: {
     formValues: {
       deep: true,
-      handler: function (val) {
+      handler: function(val) {
         //console.log("val : ", val);
         Utilities.fomatVal(val, this.postData).then(() => {});
-        console.log("result :", this.postData, this.fHeure);
-        console.log("debut heure : ", this.dHeure);
+        //console.log("result :", this.postData, this.fHeure);
+        //console.log("debut heure : ", this.dHeure);
       },
     },
   },
@@ -430,7 +440,7 @@ export default {
               }
               this.isLoading = false;
             })
-            .catch(function (error) {
+            .catch(function(error) {
               console.log("error", error);
             });
         }
@@ -503,7 +513,7 @@ export default {
               }
               this.isLoading = false;
             })
-            .catch(function (error) {
+            .catch(function(error) {
               console.log("error", error);
             });
         }

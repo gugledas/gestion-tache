@@ -3,9 +3,9 @@ const Utilities = {
   /**
    * Prepare les données pour la sauvagarde.
    */
-  formatData: function (datas) {
+  formatData: function(datas) {
     return new Promise((resolv) => {
-      //console.log("fdate : ", datas);
+      console.log("fdate : ", datas);
       var result = [];
       if (datas && datas.titre) {
         var ddp = moment(
@@ -16,6 +16,7 @@ const Utilities = {
           datas.date_fin_proposer + " " + datas.heure_fin,
           "YYYY-MM-DD  HH:mm"
         ).unix();
+
         //edition de la table contents
         var table1 = {
           table: "gestion_project_contents",
@@ -23,6 +24,7 @@ const Utilities = {
             text: datas.text,
             titre: datas.titre,
             type: datas.type,
+            privaty: datas.privaty ? 1 : 0,
           },
           action: "update",
         };
@@ -77,7 +79,7 @@ const Utilities = {
   /**
    * preparation des données pour la mise à jour de la hiérachie
    */
-  formatHierarchie: function (datas, nid) {
+  formatHierarchie: function(datas, nid) {
     return new Promise((resolv) => {
       console.log("fdate : ", nid);
       var result = [];
@@ -111,7 +113,7 @@ const Utilities = {
    * un tableau
    * @param [] cards
    */
-  formCard: function (cards) {
+  formCard: function(cards) {
     var results = [];
     for (const i in cards) {
       var card = cards[i];
@@ -130,7 +132,7 @@ const Utilities = {
    * @param datas Array
    * @param idc Number, id du contenu encours.
    */
-  formatAddData: function (datas, idc = 0, level = 0) {
+  formatAddData: function(datas, idc = 0, level = 0) {
     //console.log("formatAddData datas :", datas, "\n idc", idc);
     return new Promise((resolv) => {
       var childstable = [];
@@ -171,6 +173,7 @@ const Utilities = {
             text: datas.text,
             titre: datas.titre,
             type: datas.type,
+            privaty: datas.privaty ? 1 : 0,
           },
         };
 
@@ -184,8 +187,9 @@ const Utilities = {
     });
   },
   // Remplissage des champs pour l’édition d’un contenu du pop-up avec les contenus à éditer
-  fomatVal: function (result, postData) {
+  fomatVal: function(result, postData) {
     return new Promise((resolv) => {
+      //console.log("postData : ", postData);
       /*
       if (result.date_depart_proposer || result.date_fin_proposer) {
         console.log("val.date_depart_proposer ", result);
@@ -202,17 +206,18 @@ const Utilities = {
           } else if (i === "date_fin_proposer") {
             postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
             postData.heure_fin = moment.unix(result[i]).format("HH:mm");
+          } else if (i === "privaty") {
+            postData[i] = result[i] == "0" ? 0 : 1;
           } else {
             postData[i] = result[i];
           }
         }
       }
-
       resolv();
     });
   },
   // format data for deleted action
-  formatDeleteData: function (datas) {
+  formatDeleteData: function(datas) {
     return new Promise((resolv) => {
       var result = [];
       if (datas && datas.titre) {
@@ -267,7 +272,7 @@ const Utilities = {
   /**
    * preparation des données pour l'ajout d'un nouveau client
    */
-  formatDataClient: function (datas) {
+  formatDataClient: function(datas) {
     return new Promise((resolv) => {
       var result = [];
       if (datas && datas.nom) {
@@ -306,7 +311,7 @@ const Utilities = {
   /**
    * preparation des données pour l'ajout d'une nouvelle société
    */
-  formatDataSte: function (datas) {
+  formatDataSte: function(datas) {
     return new Promise((resolv) => {
       var result = [];
       if (datas && datas.nom) {
@@ -341,7 +346,7 @@ const Utilities = {
   },
 
   // format data for deleted action of entitie client or societe
-  formatDeleteClient: function (datas) {
+  formatDeleteClient: function(datas) {
     return new Promise((resolv) => {
       var result = [];
       if (datas.idclient) {
@@ -391,7 +396,7 @@ const Utilities = {
   },
 
   // Format data for create new invoice
-  formatAddInvoice: function (datas, update) {
+  formatAddInvoice: function(datas, update) {
     return new Promise((resolv) => {
       var result = [];
       var cat = moment().unix();
@@ -466,7 +471,7 @@ const Utilities = {
     });
   },
 
-  formatAddInvoiceList: function (datas, update) {
+  formatAddInvoiceList: function(datas, update) {
     return new Promise((resolv) => {
       var result = [];
       if (datas && datas.titre) {
