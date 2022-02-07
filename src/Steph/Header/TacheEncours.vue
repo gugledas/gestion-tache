@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <CModal
     title="Last Updated"
     color="info"
@@ -29,29 +29,28 @@
             {{ item.titre }}
           </div>
           <div class="small text-muted mt-1">
-            <span>
-              <template>New</template>
-              <template v-if="false">Recurring</template>
-            </span>
-            | Crée le: {{ item.created_at }}
+            Crée le: {{ item.created_at }}
           </div>
         </CLink>
       </td>
-      <!-- <td slot="country" slot-scope="{ item }" class="text-center">
+      <!-- 
+          <td slot="country" slot-scope="{ item }" class="text-center">
           <CIcon :name="item.country.flag" height="25" />
-        </td> -->
-      <td slot="usage" slot-scope="{ item }">
-        <div class="clearfix">
-          <div class="float-left">
-            <!-- <strong>{{ 20 }}%</strong> -->
-          </div>
-          <div class="float-right">
-            <small class="text-bold"
-              ><strong>Updated: </strong> {{ item.update_at }}</small
-            >
-          </div>
-        </div>
-        <!-- <CProgress class="progress-xs" :value="20" color="primary" /> -->
+        </td> 
+      -->
+      <td slot="usage" slot-scope="{ item }" width="300">
+        {{ progressItem(item) }}
+        <CProgress
+          class="progress-xs"
+          :animated="item.status === '1' || item.status === '3' ? false : true"
+          showPercentage
+          :striped="item.status === '1' || item.status === '3' ? false : true"
+          style="height: 10px"
+          :max="item.max"
+          :value="item.val"
+          :color="color(item.val, item.max)"
+          v-if="item.val && item.max"
+        />
       </td>
 
       <td slot="activity" slot-scope="{ item }">
@@ -76,6 +75,8 @@
 
 <script>
 import SelectDb from "../../views/App/config/SelectDb";
+import config from "../../views/App/config/config";
+import moment from "moment";
 
 export default {
   name: "TacheEncours",
@@ -97,10 +98,16 @@ export default {
         { key: "usage", _style: "min-width:200px;" },
         { key: "activity", _style: "width:600px;" },
       ],
+      progress: {
+        max: 0,
+        val: 0,
+      },
+      currentTime: moment().unix(),
     };
   },
   mounted() {
     this.LoadTacheData();
+    this.timing();
   },
   watch: {
     //
@@ -122,6 +129,31 @@ export default {
         this.itemsTache = response;
         this.isLoading = false;
       });
+    },
+    timing() {
+      if (this.dataLoad.status == 2) {
+        this.currentTime = moment().unix();
+        setInterval(() => {
+          this.currentTime = moment().unix();
+        }, 5000);
+      } else {
+        this.currentTime = moment().unix();
+      }
+    },
+    progressItem(item) {
+      var date_fin_proposer = moment.unix(item.date_fin_proposer);
+      var date_depart_proposer = moment.unix(item.date_depart_proposer);
+      var exact = moment.unix(this.currentTime);
+      if (item.date_fin_reel && item.date_fin_reel > 0) {
+        exact = moment.unix(this.dataLoad.date_fin_reel);
+      }
+      var val = exact.diff(date_depart_proposer, "minutes");
+      var max = date_fin_proposer.diff(date_depart_proposer, "minutes");
+      item.max = max;
+      item.val = val;
+    },
+    color(valueCurent, maxValue) {
+      return config.color(valueCurent, maxValue);
     },
   },
 };

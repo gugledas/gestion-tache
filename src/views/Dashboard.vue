@@ -460,6 +460,12 @@ export default {
     };
   },
   methods: {
+    /**
+     *
+     * @param {*} value
+     * @deprecated
+     */
+
     color(value) {
       let $color;
       if (value <= 25) {

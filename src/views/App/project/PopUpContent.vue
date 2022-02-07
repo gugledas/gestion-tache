@@ -92,10 +92,22 @@
       </CRow>
 
       <CRow>
+        <CCol sm="10" class="d-flex ">
+          <div class="form-group d-flex align-items-center">
+            <span class="pr-3 d-block"> Contenu privée ? </span>
+            <CSwitch
+              class="mr-1"
+              color="danger"
+              shape="pill"
+              :checked.sync="postData.privaty"
+              size="sm"
+            />
+          </div>
+        </CCol>
         <CCol sm="10">
-          <div class="form-group ">
-            Contenu privée ?:
-            <input type="checkbox" v-model="postData.privaty" />
+          <div class="form-group d-none">
+            Assigné :
+            <pre> {{ postData }} </pre>
           </div>
         </CCol>
         <CCol sm="7">

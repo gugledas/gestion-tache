@@ -39,4 +39,23 @@ export default {
         });
     });
   },
+  color: function(valueCurent, maxValue) {
+    let value = 0;
+    let $color;
+    if (maxValue > 0 && valueCurent > 0) {
+      value = (valueCurent * 100) / maxValue;
+    }
+    if (value <= 25) {
+      $color = "success";
+    } else if (value > 25 && value <= 50) {
+      $color = "info";
+    } else if (value > 50 && value <= 85) {
+      $color = "secondary";
+    } else if (value > 85 && value <= 100) {
+      $color = "warning";
+    } else {
+      $color = "danger";
+    }
+    return $color;
+  },
 };

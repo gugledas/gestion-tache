@@ -1193,6 +1193,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       });
     });
+  },
+  color: function color(valueCurent, maxValue) {
+    var value = 0;
+    var $color;
+
+    if (maxValue > 0 && valueCurent > 0) {
+      value = valueCurent * 100 / maxValue;
+    }
+
+    if (value <= 25) {
+      $color = "success";
+    } else if (value > 25 && value <= 50) {
+      $color = "info";
+    } else if (value > 50 && value <= 85) {
+      $color = "secondary";
+    } else if (value > 85 && value <= 100) {
+      $color = "warning";
+    } else {
+      $color = "danger";
+    }
+
+    return $color;
   }
 }));
 
