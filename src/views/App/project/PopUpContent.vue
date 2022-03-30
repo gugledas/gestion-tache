@@ -447,6 +447,7 @@ export default {
       this.postData.type = "tache";
     },
     EditProject() {
+      var self = this
       Utilities.formatData(this.postData, this.dHeure, this.fHeure).then(
         (reponse) => {
           //console.log(" EditProject : ", reponse);
@@ -459,11 +460,12 @@ export default {
             .then((reponse) => {
               if (reponse.status) {
                 //console.log("data after edit :", reponse);
-                this.$emit("edition-ok", reponse);
+                self.$emit("edition-ok", reponse);
               }
               this.isLoading = false;
             })
             .catch(function(error) {
+              self.$emit("edition-error");
               console.log("error", error);
             });
         }
@@ -523,6 +525,7 @@ export default {
       return result;
     },
     PostNewProject(idc) {
+      var self = this
       Utilities.formatAddData(this.postData, idc, this.level).then(
         (reponse) => {
           console.log("created", reponse);
@@ -535,12 +538,13 @@ export default {
         })
             .then((reponse) => {
               if (reponse.status) {
-                this.request = reponse.data[0];
-                this.$emit("addnew-ok");
+                self.request = reponse.data[0];
+                self.$emit("addnew-ok");
               }
               this.isLoading = false;
             })
             .catch(function(error) {
+              self.$emit("addnew-error");
               console.log("error", error);
             });
         }

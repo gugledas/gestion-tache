@@ -46,6 +46,15 @@
     </CHeaderBrand>
 
     <CHeaderNav class="mr-5 ml-sm-auto mt-1">
+      <CLink v-c-tooltip="'Log Out'"
+          ><CButton
+            size=""
+            shape="pill"
+            color="light"
+            @click="logOut"
+          >
+            <CIcon name="cil-account-logout" size="sm" /> </CButton
+        ></CLink>
       <AddNewProject></AddNewProject>
 
       <!-- <CHeaderNavItem class="d-md-down-none mx-2">
@@ -231,6 +240,10 @@ export default {
     this.LoadTacheData();
   },
   methods: {
+    logOut() {
+      window.localStorage.clear()
+      document.location.reload()
+    },
     LoadTacheData() {
       this.isLoading = true;
       SelectDb.selectAll().then((response) => {

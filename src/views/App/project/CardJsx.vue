@@ -119,6 +119,9 @@ export default {
                 "edition-ok": () => {
                   this.$emit("edition-ok");
                 },
+                "edition-error": () => {
+                  this.$emit("edition-error");
+                },
               },
             },
             cards

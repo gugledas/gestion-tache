@@ -285,6 +285,7 @@ export default {
       this.newIdParrent.id = data.idcontents;
     },
     ChangeHierarchie() {
+      var self = this
       this.spinner = true;
       //console.log("object", this.dataLoad.idcontents);
 
@@ -306,6 +307,7 @@ export default {
               this.hierarchiModal = false;
             })
             .catch(function(error) {
+              self.$emit("edition-error", reponse);
               console.log("error", error);
             });
         }
@@ -324,6 +326,7 @@ export default {
 
     //Supression d’un contenu
     DeleteContent() {
+      var self = this
       Utilities.formatDeleteData(this.dataLoad, "delete").then((reponse) => {
         console.log(" deleteProject : ", reponse);
         config
@@ -335,13 +338,13 @@ export default {
           .then((reponse) => {
             if (reponse.status) {
               console.log("data after delete :", reponse);
-              
               window.location.pathname = "/projets"
               this.$emit("suppression-ok");
             }
             this.isLoading = false;
           })
           .catch(function(error) {
+            self.$emit("suppression-error");
             console.log("error", error);
           });
       });

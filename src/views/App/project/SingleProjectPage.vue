@@ -19,8 +19,10 @@
           @modal-edit-on="modalEditOn"
           @Hide-type-project="HideTypeProject"
           @suppression-ok="LoadProjectData"
+          @suppression-error="addnewError"
           @change-parent="changeParent"
           @edition-ok="LoadProjectData"
+          @edition-error="addnewError"
         ></card-jsx>
         <!-- <CardComponent
           :dataLoad="dataLoad"
@@ -42,6 +44,7 @@
           :form-values="dataOfFormAdd"
           ref="child"
           @addnew-ok="LoadProjectData"
+          @addnew-error="addnewError"
           :level="level"
           :btn-state="btnStateAdd"
         ></PopUpContent>
@@ -53,11 +56,18 @@
             </CButton>
             <CButton
               @click="AddNewTask"
-              class="mx-1"
+              class="mx-1 d-flex align-items-center"
               :color="btnStateAdd.state ? 'info' : 'light'"
               desabled
-              >Save</CButton
-            >
+              >Save
+              <CSpinner
+                v-if="spinner"
+                class="mx-2"
+                tag="div"
+                color="primary"
+                style="width: 0.8rem; height: 0.8rem"
+              />
+            </CButton>
           </div>
         </template>
       </CModal>
@@ -129,6 +139,7 @@
             :form-values="dataOfForm"
             ref="edchild"
             @edition-ok="LoadProjectData"
+            @edition-error="addnewError"
             :btn-state="btnStateEdit"
             :level="level"
           ></PopUpContent>
@@ -139,10 +150,17 @@
               </CButton>
               <CButton
                 @click="EditModalPost"
-                class="mx-1"
+                class="mx-1 d-flex align-items-center"
                 :color="btnStateEdit.state ? 'success' : 'light'"
               >
                 Enregistrer les modifications
+                <CSpinner
+                  v-if="spinner"
+                  class="mx-2"
+                  tag="div"
+                  color="primary"
+                  style="width: 0.8rem; height: 0.8rem"
+                />
               </CButton>
             </div>
           </template>
@@ -180,15 +198,15 @@ export default {
   props: {
     idcontents: {
       type: String,
-      default: "52",
-    },
+      default: "52"
+    }
   },
   components: {
     ...Charts,
     PopUpContent: () => import("./PopUpContent.vue"),
     //CardComponent: () => import("./CardComponent"),
     "card-jsx": () => import("./CardJsx.vue"),
-    "filtre-project": () => import("../../../Steph/project/FilterProject.vue"),
+    "filtre-project": () => import("../../../Steph/project/FilterProject.vue")
   },
   data() {
     return {
@@ -209,14 +227,14 @@ export default {
       isCollapsed: true,
       editorConfig: {
         extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime",
+        codeSnippet_theme: "monokai_sublime"
       },
       options: [
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" },
+        { value: "memos", label: "Mémos" }
       ],
-      level: 0,
+      level: 0
     };
   },
   mounted() {
@@ -239,7 +257,7 @@ export default {
       });
 
       return newDiv.outerHTML;
-    },
+    }
   },
   methods: {
     changeParent(data) {
@@ -265,19 +283,19 @@ export default {
     // save content edieted
     EditModalPost() {
       if (this.btnStateEdit.state) {
-        this.modalEdit = false;
+        // this.modalEdit = false;
         this.$refs.edchild.EditProject();
       }
     },
     AddNewTask() {
       if (this.btnStateAdd.state) {
-        this.addingModal = false;
+        //this.addingModal = false;
         this.$refs.child.PostNewProject(this.idc);
       }
     },
     // Request for Loading data on DB
     LoadProjectData() {
-      let self = this
+      let self = this;
       this.spinner = true;
       this.isLoading = true;
       config
@@ -290,35 +308,43 @@ export default {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
             console.log("donnée chargées : ", this.dataLoad);
-             this.isLoading = false;
-          this.spinner = false;
+            this.isLoading = false;
+            this.spinner = false;
+            this.addingModal = false;
+            this.modalEdit = false;
           }
-         
         })
         .catch(function (error) {
           console.log("error", error);
-           self.isLoading = false;
+          self.isLoading = false;
           self.spinner = false;
         });
     },
+    addnewError() {
+      alert("Une erreur s'est produit");
+      this.spinner = false;
+    },
     EvFilter(filter) {
-      var self = this
+      var self = this;
       this.spinner = true;
       this.isLoading = true;
       config
-        .post("/gestion-project/project-with-childs/" + this.idcontents, filter,{
-          headers: {
-            Authorization: config.auth
+        .post(
+          "/gestion-project/project-with-childs/" + this.idcontents,
+          filter,
+          {
+            headers: {
+              Authorization: config.auth
+            }
           }
-        })
+        )
         .then((reponse) => {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
             console.log("donnée chargées : ", this.dataLoad);
             this.isLoading = false;
-          this.spinner = false;
+            this.spinner = false;
           }
-          
         })
         .catch(function (error) {
           console.log("error", error);
@@ -330,10 +356,10 @@ export default {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: "smooth",
+        behavior: "smooth"
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
