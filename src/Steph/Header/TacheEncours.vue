@@ -29,6 +29,7 @@
         >
           <div @click="modalLast = !modalLast">
             {{ item.titre }}
+             
           </div>
           <div class="small text-muted mt-1">
             Crée le: {{ item.created_at }}

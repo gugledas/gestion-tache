@@ -29,6 +29,14 @@
                 class="text-decoration-none"
               >
                 {{ item.titre }}
+                  <CBadge
+                v-if="item.privaty == '1'"
+                color="danger"
+                position="top-start"
+                shape="pill"
+              >
+                Privé
+              </CBadge>
               </CLink>
             </div>
             <div class="small text-muted mt-1">

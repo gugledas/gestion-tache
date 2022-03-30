@@ -21,7 +21,7 @@
         v-c-tooltip="{
           content: 'Afficher les dernieres taches visités.',
           html: true,
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         }"
       >
         <CIcon name="cilEyedropper"> </CIcon>
@@ -35,7 +35,7 @@
         v-c-tooltip="{
           content: 'Afficher les taches encours.',
           html: true,
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         }"
       >
         <CIcon name="cil-settings"> </CIcon>
@@ -89,11 +89,16 @@
     <!-- modal -->
     <CModal title="Last Updated" color="light" size="lg" :show.sync="modalLast">
       <div class="d-flex justify-content-end border-bottom-1 mr-3">
-          <CLink v-c-tooltip="'Actualiser'"
-          ><CButton size="sm"  shape="pill" color="secondary" @click="LoadTacheData">
+        <CLink v-c-tooltip="'Actualiser'"
+          ><CButton
+            size="sm"
+            shape="pill"
+            color="secondary"
+            @click="LoadTacheData"
+          >
             <CIcon name="cil-reload" size="sm" /> </CButton
         ></CLink>
-        </div>
+      </div>
       <CDataTable
         class="m-0 table-borderless"
         hover
@@ -101,7 +106,7 @@
         :items="itemsTache"
         :fields="tableFields"
         :header="false"
-         :loading="isLoading"
+        :loading="isLoading"
         cleaner
         table-filter
         items-per-page-select
@@ -111,11 +116,19 @@
         <td slot="user" slot-scope="{ item }">
           <CLink
             :to="{
-              path: '/projets/' + item.idcontents,
+              path: '/projets/' + item.idcontents
             }"
             class="text-decoration-none"
             ><div @click="modalLast = !modalLast">
               {{ item.titre }}
+              <CBadge
+                v-if="item.privaty == '1'"
+                color="danger"
+                position="top-start"
+                shape="pill"
+              >
+                Privé
+              </CBadge>
             </div>
             <div class="small text-muted mt-1">
               <span>
@@ -175,9 +188,7 @@
         </td>
       </CDataTable>
       <template slot="footer">
-        <div class="d-flex justify-content-end mr-3">
-      
-        </div>
+        <div class="d-flex justify-content-end mr-3"></div>
       </template>
     </CModal>
     <TacheEncours
@@ -200,7 +211,7 @@ export default {
     SSearch,
     AddNewProject,
     BreadCrumb,
-    TacheEncours,
+    TacheEncours
     //TheHeaderDropdownAccnt
   },
   data() {
@@ -211,9 +222,9 @@ export default {
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" },
+        { key: "activity", _style: "width:600px;" }
       ],
-      tacheEncoursModal: false,
+      tacheEncoursModal: false
     };
   },
   mounted() {
@@ -229,7 +240,7 @@ export default {
     },
     UpdateModal(val) {
       this.tacheEncoursModal = val;
-    },
-  },
+    }
+  }
 };
 </script>

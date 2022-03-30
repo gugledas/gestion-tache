@@ -12,6 +12,9 @@
           :to="'/projets/' + dataLoad.idcontents"
           class="text-dark text-decoration-none link-card"
           >{{ dataLoad.titre }}
+          <CBadge v-if="dataLoad.privaty == '1'" color="danger" position="top-start" shape="pill">
+    Privé
+  </CBadge>
         </CLink>
         <div class="px-2 date-created">
           <small>{{ createdAt }}</small>
