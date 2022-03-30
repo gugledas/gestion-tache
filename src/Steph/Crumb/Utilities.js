@@ -6,7 +6,11 @@ const Utilities = {
   GetCrumbs: function (project, result = []) {
     return new Promise((resolv) => {
       config
-        .post("/gestion-project/select/get-crumb", project)
+        .post("/gestion-project/select/get-crumb", project, {
+          headers: {
+            Authorization: config.auth
+          }
+        })
         .then((response) => {
           if (response.status) {
             response.data.reverse();
@@ -24,8 +28,8 @@ const Utilities = {
   formatTocrumb(project) {
     return {
       to: "/projets/" + project.idcontents,
-      text: project.titre,
+      text: project.titre
     };
-  },
+  }
 };
 export default Utilities;

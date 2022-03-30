@@ -89,7 +89,7 @@ export default {
     LoadStePopUp() {
       this.sisloading = true;
       SelectDb.selectClient("gestion_project_societe").then((response) => {
-        this.selectOption = response;
+      if(Array.isArray(response))  this.selectOption = response;
         this.sisloading = false;
       });
     },
@@ -109,7 +109,7 @@ export default {
     LoadClient() {
       this.cisloading = true;
       SelectDb.selectClients([]).then((response) => {
-        this.itemsClient = response;
+       if(Array.isArray(response)) this.itemsClient = response;
         this.cisloading = false;
       });
     },
@@ -117,7 +117,7 @@ export default {
     LoadSte() {
       this.sisloading = true;
       SelectDb.selectSte([]).then((response) => {
-        this.itemsSte = response;
+      if(Array.isArray(response))  this.itemsSte = response;
         this.sisloading = false;
         this.LoadStePopUp();
         this.LoadClient();

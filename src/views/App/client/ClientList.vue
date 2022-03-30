@@ -185,7 +185,11 @@ export default {
       Utilities.formatDeleteClient(this.id).then((reponse) => {
         console.log(" deleteProject : ", reponse);
         config
-          .post("/gestion-project/save-update", reponse)
+          .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
           .then((reponse) => {
             if (reponse.status) {
               this.$emit("suppression-ok");

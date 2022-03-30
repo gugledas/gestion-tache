@@ -282,7 +282,11 @@ export default {
         //console.log("created", reponse);
 
         config
-          .post("/gestion-project/save-update", reponse)
+          .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
           .then((reponse) => {
             //console.log("reponse", reponse);
             if (reponse.status) {

@@ -103,11 +103,14 @@
               size="sm"
             />
           </div>
+         
         </CCol>
         <CCol sm="10">
           <div class="form-group d-none">
             Assigné :
             <pre> {{ postData }} </pre>
+            formValues :
+            <pre> {{ formValues  }} </pre>
           </div>
         </CCol>
         <CCol sm="7">
@@ -161,6 +164,7 @@ import hljs from "highlight.js";
 import config from "../config/config";
 import moment from "moment";
 import ProjectOptionsType from "./ProjectOptionsType";
+
 export default {
   name: "PopUpContent",
   props: {
@@ -216,23 +220,24 @@ export default {
           config.baseUrl +
           "/modules/custom/gestion_tache/files/gestionTache.css'; body{margin:1em !important; background: #FFF;}",
         on: {
-          instanceReady: function() {
+          instanceReady: function(ev) {
             // Output paragraphs as <p>Text</p>.
-            this.dataProcessor.writer.setRules("p", {
+            //console.log('this',ev)
+            ev.sender.dataProcessor.writer.setRules("p", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: true,
               breakAfterClose: true,
             });
-            this.dataProcessor.writer.setRules("img", {
+            ev.sender.dataProcessor.writer.setRules("img", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false,
             });
-            this.dataProcessor.writer.setRules("h1", {
+            ev.sender.dataProcessor.writer.setRules("h1", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
@@ -240,42 +245,42 @@ export default {
               breakAfterClose: false,
             });
 
-            this.dataProcessor.writer.setRules("h2", {
+            ev.sender.dataProcessor.writer.setRules("h2", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false,
             });
-            this.dataProcessor.writer.setRules("h3", {
+            ev.sender.dataProcessor.writer.setRules("h3", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false,
             });
-            this.dataProcessor.writer.setRules("h4", {
+            ev.sender.dataProcessor.writer.setRules("h4", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false,
             });
-            this.dataProcessor.writer.setRules("h5", {
+            ev.sender.dataProcessor.writer.setRules("h5", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false,
             });
-            this.dataProcessor.writer.setRules("h6", {
+            ev.sender.dataProcessor.writer.setRules("h6", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false,
             });
-            this.dataProcessor.writer.setRules("div", {
+            ev.sender.dataProcessor.writer.setRules("div", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: true,
@@ -299,6 +304,7 @@ export default {
     };
   },
   mounted() {
+   
     ProjectOptionsType.loadType().then((reponse) => {
       this.options = reponse;
     });
@@ -307,7 +313,7 @@ export default {
     formValues: {
       deep: true,
       handler: function(val) {
-        //console.log("val : ", val);
+        console.log("val : ", val);
         Utilities.fomatVal(val, this.postData).then(() => {});
         //console.log("result :", this.postData, this.fHeure);
         //console.log("debut heure : ", this.dHeure);
@@ -315,6 +321,7 @@ export default {
     },
   },
   computed: {
+  
     dureeProjet() {
       var el;
       if (
@@ -444,7 +451,11 @@ export default {
         (reponse) => {
           //console.log(" EditProject : ", reponse);
           config
-            .post("/gestion-project/save-update", reponse)
+            .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
             .then((reponse) => {
               if (reponse.status) {
                 //console.log("data after edit :", reponse);
@@ -517,7 +528,11 @@ export default {
           console.log("created", reponse);
 
           config
-            .post("/gestion-project/save-update", reponse)
+            .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
             .then((reponse) => {
               if (reponse.status) {
                 this.request = reponse.data[0];

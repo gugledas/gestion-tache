@@ -1,5 +1,5 @@
 import axios from "axios";
-var formatBasicAuth = function(userName, password) {
+var formatBasicAuth = function (userName, password) {
   var basicAuthCredential = userName + ":" + password;
   var bace64 = btoa(basicAuthCredential);
   return "Basic " + bace64;
@@ -18,8 +18,8 @@ export default {
   ToastAutoHide: false,
   ajaxTitle: "",
   showAlert: false,
-  get: function(request, config = {}) {
-    return new Promise(resolv => {
+  get: function (request, config = {}) {
+    return new Promise((resolv) => {
       var params = {};
       if (config.useCredential) {
         params.headers = {
@@ -33,7 +33,7 @@ export default {
       }
       axios
         .get(this.baseUrl + request, params)
-        .then(reponse => {
+        .then((reponse) => {
           if (this.ModeDebug) {
             console.log("GET success", reponse);
           }
@@ -60,7 +60,7 @@ export default {
           }
           resolv({ status: true, data: reponse.data, reponse: reponse });
         })
-        .catch(error => {
+        .catch((error) => {
           if (this.ModeDebug) {
             console.log(
               "Error response: ",
@@ -84,9 +84,9 @@ export default {
         });
     });
   },
-  post: function(request, datas = {}) {
+  post: function (request, datas = {}) {
     console.log("ssss");
-    return new Promise(resolv => {
+    return new Promise((resolv) => {
       var configs = {
         headers: {
           //"Content-Type": "application/json",
@@ -103,7 +103,7 @@ export default {
 
       axios
         .post(this.baseUrl + request, datas, configs)
-        .then(reponse => {
+        .then((reponse) => {
           var ajaxTitle = this.ajaxTitle;
           if (this.ModeDebug) {
             console.log("Success POST", reponse);
@@ -118,7 +118,7 @@ export default {
           }
           resolv({ status: true, data: reponse.data, reponse: reponse });
         })
-        .catch(error => {
+        .catch((error) => {
           if (this.ModeDebug) {
             console.log(
               "Error responsei: ",
@@ -138,7 +138,7 @@ export default {
         });
     });
   },
-  postEntityFile: function(request, file) {
+  postEntityFile: function (request, file) {
     axios
       .post(this.baseUrl + request, file, {
         headers: {
@@ -147,7 +147,7 @@ export default {
           Authorization: this.basicAuth
         }
       })
-      .then(response => {
+      .then((response) => {
         this.Vmodels.field_image = response.data.fid[0].value;
       });
   },
@@ -155,10 +155,10 @@ export default {
    * il faut installer le moduele file_entity sur drupal.
    * pour voir les authorisations : rest.resource.entity.file.yml
    */
-  postFile: function(file, request = "/entity/file?_format=hal_json") {
+  postFile: function (file, request = "/entity/file?_format=hal_json") {
     console.log("file : ", file);
-    return new Promise(resolv => {
-      this.getBase64(file).then(fileBase64 => {
+    return new Promise((resolv) => {
+      this.getBase64(file).then((fileBase64) => {
         console.log("fileBase64 : ", fileBase64);
         var dataToPost = {
           _links: {
@@ -179,11 +179,11 @@ export default {
               Authorization: this.basicAuth
             }
           })
-          .then(reponse => {
+          .then((reponse) => {
             this.notification(this.ajaxTitle);
             resolv({ status: true, data: reponse.data, reponse: reponse });
           })
-          .catch(error => {
+          .catch((error) => {
             this.ajaxTitle = error.response
               ? error.response.statusText
               : error.stack;
@@ -193,8 +193,8 @@ export default {
       });
     });
   },
-  delete: function(request, source) {
-    return new Promise(resolv => {
+  delete: function (request, source) {
+    return new Promise((resolv) => {
       axios
         .delete(this.baseUrl + request, {
           headers: {
@@ -204,7 +204,7 @@ export default {
           },
           params: source
         })
-        .then(reponse => {
+        .then((reponse) => {
           var ajaxTitle = this.ajaxTitle;
           if (this.ModeDebug) {
             console.log("Delete", reponse);
@@ -227,7 +227,7 @@ export default {
           /**/
           resolv({ status: true, data: reponse.data, reponse: reponse });
         })
-        .catch(error => {
+        .catch((error) => {
           if (this.ModeDebug) {
             console.log(
               "Error response: ",
@@ -253,12 +253,12 @@ export default {
         });
     });
   },
-  confirmDelete: function(
+  confirmDelete: function (
     title = "Confirmer la suppression",
     body = "Etez vous certains de vouloir supprimer ? cette action est irreversible",
     config = {}
   ) {
-    return new Promise(resolv => {
+    return new Promise((resolv) => {
       this.$bvModal
         .msgBoxConfirm(body, {
           title: title,
@@ -270,15 +270,15 @@ export default {
           footerClass: "p-2",
           hideHeaderClose: false
         })
-        .then(value => {
+        .then((value) => {
           resolv({ status: value, value: value });
         })
-        .catch(err => {
+        .catch((err) => {
           resolv({ status: false, value: err });
         });
     });
   },
-  notification: function(ajaxTitle, variant = "success") {
+  notification: function (ajaxTitle, variant = "success") {
     console.log(ajaxTitle, variant);
     /*
     this.$bvToast.toast(" ", {
@@ -291,13 +291,13 @@ export default {
     });
     /**/
   },
-  getBase64: function(file) {
+  getBase64: function (file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       //reader.onload = () => resolve(reader.result);
       reader.onloadend = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
+      reader.onerror = (error) => reject(error);
     });
   },
   imagetest:

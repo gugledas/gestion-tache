@@ -277,37 +277,53 @@ export default {
     },
     // Request for Loading data on DB
     LoadProjectData() {
+      let self = this
       this.spinner = true;
       this.isLoading = true;
       config
-        .get("/gestion-project/project-with-childs/" + this.idcontents)
+        .get("/gestion-project/project-with-childs/" + this.idcontents, {
+          headers: {
+            Authorization: config.auth
+          }
+        })
         .then((reponse) => {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
             console.log("donnée chargées : ", this.dataLoad);
-          }
-          this.isLoading = false;
+             this.isLoading = false;
           this.spinner = false;
+          }
+         
         })
         .catch(function (error) {
           console.log("error", error);
+           self.isLoading = false;
+          self.spinner = false;
         });
     },
     EvFilter(filter) {
+      var self = this
       this.spinner = true;
       this.isLoading = true;
       config
-        .post("/gestion-project/project-with-childs/" + this.idcontents, filter)
+        .post("/gestion-project/project-with-childs/" + this.idcontents, filter,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
         .then((reponse) => {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
             console.log("donnée chargées : ", this.dataLoad);
-          }
-          this.isLoading = false;
+            this.isLoading = false;
           this.spinner = false;
+          }
+          
         })
         .catch(function (error) {
           console.log("error", error);
+          self.isLoading = false;
+          self.spinner = false;
         });
     },
     scrollTop() {

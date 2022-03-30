@@ -1,9 +1,10 @@
 import config from "./config";
+var authorization = config.auth;
 export default {
   /**
    * selectionne un enssemble de données à partir d'une requette personnalisé
    */
-  selectDatas: function(
+  selectDatas: function (
     where = [{ column: "c.type", operator: "=", value: "project" }]
   ) {
     return new Promise((resolv) => {
@@ -25,7 +26,11 @@ export default {
       query += " limit 0,50 ";
       //console.log("query :: ", query);
       config
-        .post("/gestion-project/select/selectdatas", query)
+        .post("/gestion-project/select/selectdatas", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
         .then((reponse) => {
           if (reponse.status) {
             resolv(reponse.data);
@@ -35,20 +40,26 @@ export default {
         });
     });
   },
-  selectTypes: function() {
+  selectTypes: function () {
     return new Promise((resolv) => {
-      config.get("/gestion-project/select/project-type").then((reponse) => {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
+      config
+        .get("/gestion-project/select/project-type", {
+          headers: {
+            Authorization: authorization
+          }
+        })
+        .then((reponse) => {
+          // console.log("selectDatas : ", reponse);
+          if (reponse.status) {
+            resolv(reponse.data);
+          } else {
+            resolv([]);
+          }
+        });
     });
   },
 
-  selectProject: function(where) {
+  selectProject: function (where) {
     return new Promise((resolv) => {
       var query = "";
       if (where.length) {
@@ -65,7 +76,11 @@ export default {
         }
       }
       config
-        .post("/gestion-project/select/select-project", query)
+        .post("/gestion-project/select/select-project", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
         .then((reponse) => {
           // console.log("selectDatas : ", reponse);
           if (reponse.status) {
@@ -77,7 +92,7 @@ export default {
     });
   },
 
-  selectFatureList: function(where) {
+  selectFatureList: function (where) {
     return new Promise((resolv) => {
       var query = "";
       query += " select * ";
@@ -97,18 +112,24 @@ export default {
             " ";
         }
       }
-      config.post("/gestion-project/select", query).then((reponse) => {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
+      config
+        .post("/gestion-project/select", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
+        .then((reponse) => {
+          // console.log("selectDatas : ", reponse);
+          if (reponse.status) {
+            resolv(reponse.data);
+          } else {
+            resolv([]);
+          }
+        });
     });
   },
 
-  selectInvoice: function(where) {
+  selectInvoice: function (where) {
     return new Promise((resolv) => {
       var query = "";
       query += " select * ";
@@ -128,18 +149,24 @@ export default {
             " ";
         }
       }
-      config.post("/gestion-project/select", query).then((reponse) => {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
+      config
+        .post("/gestion-project/select", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
+        .then((reponse) => {
+          // console.log("selectDatas : ", reponse);
+          if (reponse.status) {
+            resolv(reponse.data);
+          } else {
+            resolv([]);
+          }
+        });
     });
   },
 
-  selectClients: function(where) {
+  selectClients: function (where) {
     return new Promise((resolv) => {
       var query = "";
       query += " select * ";
@@ -160,18 +187,24 @@ export default {
         }
       }
       query += " limit 0,50 ";
-      config.post("/gestion-project/select", query).then((reponse) => {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
+      config
+        .post("/gestion-project/select", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
+        .then((reponse) => {
+          // console.log("selectDatas : ", reponse);
+          if (reponse.status) {
+            resolv(reponse.data);
+          } else {
+            resolv([]);
+          }
+        });
     });
   },
 
-  selectSte: function(where) {
+  selectSte: function (where) {
     return new Promise((resolv) => {
       var query = "";
       query += " select * ";
@@ -192,42 +225,12 @@ export default {
         }
       }
       query += " limit 0,50 ";
-      config.post("/gestion-project/select", query).then((reponse) => {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-
-  selectClient: function(table) {
-    return new Promise((resolv) => {
-      var query = "";
-      query += " select * ";
-      query += " from ";
-      query += this.formatStringTable(table);
-      query += " limit 0,50 ";
-      config.post("/gestion-project/select", query).then((reponse) => {
-        // console.log("selectDatas : ", reponse);
-        if (reponse.status) {
-          resolv(reponse.data);
-        } else {
-          resolv([]);
-        }
-      });
-    });
-  },
-  //selectionne et affiche les derniers données modifié
-  selectAll: function() {
-    return new Promise((resolv) => {
-      var query = "";
-      query +=
-        " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
       config
-        .post("/gestion-project/select/select-project", query)
+        .post("/gestion-project/select", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
         .then((reponse) => {
           // console.log("selectDatas : ", reponse);
           if (reponse.status) {
@@ -238,7 +241,53 @@ export default {
         });
     });
   },
-  SelectTacheEnours: function(
+
+  selectClient: function (table) {
+    return new Promise((resolv) => {
+      var query = "";
+      query += " select * ";
+      query += " from ";
+      query += this.formatStringTable(table);
+      query += " limit 0,50 ";
+      config
+        .post("/gestion-project/select", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
+        .then((reponse) => {
+          // console.log("selectDatas : ", reponse);
+          if (reponse.status) {
+            resolv(reponse.data);
+          } else {
+            resolv([]);
+          }
+        });
+    });
+  },
+  //selectionne et affiche les derniers données modifié
+  selectAll: function () {
+    return new Promise((resolv) => {
+      var query = "";
+      query +=
+        " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
+      config
+        .post("/gestion-project/select/select-project", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
+        .then((reponse) => {
+          // console.log("selectDatas : ", reponse);
+          if (reponse.status) {
+            resolv(reponse.data);
+          } else {
+            resolv([]);
+          }
+        });
+    });
+  },
+  SelectTacheEnours: function (
     where = [{ column: "t.status", operator: "=", value: 2 }]
   ) {
     return new Promise((resolv) => {
@@ -261,7 +310,11 @@ export default {
       query += " limit 0,20 ";
       //console.log("query :: ", query);
       config
-        .post("/gestion-project/select/select-tache-enours", query)
+        .post("/gestion-project/select/select-tache-enours", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
         .then((reponse) => {
           if (reponse.status) {
             resolv(reponse.data);
@@ -276,5 +329,5 @@ export default {
    */
   formatStringTable(table) {
     return "{" + table + "}";
-  },
+  }
 };

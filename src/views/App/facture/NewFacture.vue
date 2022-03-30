@@ -662,7 +662,11 @@ export default {
           (reponse) => {
             console.log("gestion_project_invoice_list : ", reponse);
             config
-              .post("/gestion-project/save-update", reponse)
+              .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
               .then((reponse) => {
                 if (reponse.status) {
                   this.request = reponse.data[0];

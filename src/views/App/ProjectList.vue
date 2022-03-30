@@ -84,7 +84,7 @@ export default {
   methods: {
     LoadProjectType() {
       SelectDb.selectTypes().then((response) => {
-        console.log("type : ", response);
+        //console.log("type : ", response);
         this.projectType = response;
       });
     },

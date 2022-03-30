@@ -5,6 +5,7 @@
     size="lg"
     :show.sync="modalLastStatus"
   >
+  modalLast: {{isLoading}}
     <CDataTable
       class="m-0 table-borderless"
       hover
@@ -12,6 +13,7 @@
       :items="itemsTache"
       :fields="tableFields"
       :header="false"
+       :loading="isLoading"
       cleaner
       table-filter
       items-per-page-select
@@ -21,7 +23,7 @@
       <td slot="user" slot-scope="{ item }">
         <CLink
           :to="{
-            path: '/projets/' + item.idcontents,
+            path: '/projets/' + item.idcontents
           }"
           class="text-decoration-none"
         >
@@ -68,8 +70,14 @@
       </td>
     </CDataTable>
     <template slot="footer">
-      <div class="d-flex justify-content-end mr-3"></div>
+      <div class="d-flex justify-content-end mr-3">
+        <CLink v-c-tooltip="'Actualiser'"
+          ><CButton size="sm"  shape="pill" color="secondary" @click="LoadTacheData">
+            <CIcon name="cil-reload" size="sm" /> </CButton
+        ></CLink>
+      </div>
     </template>
+    
   </CModal>
 </template>
 
@@ -84,25 +92,26 @@ export default {
     modalLast: {
       type: Boolean,
       required: true,
-      default: false,
-    },
+      default: false
+    }
   },
   components: {
     //
   },
   data() {
     return {
+      isLoading: false ,
       itemsTache: [],
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" },
+        { key: "activity", _style: "width:600px;" }
       ],
       progress: {
         max: 0,
-        val: 0,
+        val: 0
       },
-      currentTime: moment().unix(),
+      currentTime: moment().unix()
     };
   },
   mounted() {
@@ -119,8 +128,8 @@ export default {
       },
       set(val) {
         this.$emit("update-modal", val);
-      },
-    },
+      }
+    }
   },
   methods: {
     LoadTacheData() {
@@ -131,7 +140,7 @@ export default {
       });
     },
     timing() {
-      if (this.dataLoad.status == 2) {
+      if (this.dataLoad && this.dataLoad.status == 2) {
         this.currentTime = moment().unix();
         setInterval(() => {
           this.currentTime = moment().unix();
@@ -154,8 +163,8 @@ export default {
     },
     color(valueCurent, maxValue) {
       return config.color(valueCurent, maxValue);
-    },
-  },
+    }
+  }
 };
 </script>
 

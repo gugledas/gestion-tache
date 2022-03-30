@@ -1,16 +1,28 @@
 import axios from "axios";
 import { AjaxBasic } from "wbuutilities";
+var formatBasicAuth = function (userName, password) {
+  var basicAuthCredential = userName + ":" + password;
+  var bace64 = btoa(basicAuthCredential);
+  return "Basic " + bace64;
+};
 export default {
   ...AjaxBasic,
   TestDomain: "http://gestiontaches.kksa",
   baseUrl: "http://gestion-taches-vps.habeuk.com",
+  basicAuth: formatBasicAuth("stane", "azabzistany@gmail.com"),
   //baseUrl: "http://gestion-taches.kksa",
   ModeDebug: true,
-  postOld: function(request, datas = {}) {
+  postOld: function (request, datas = {}) {
     return new Promise((resolv) => {
       var configs = {
-        headers: {},
+        //withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: this.basicAuth
+        }
       };
+      console.log("Authorization", this.basicAuth);
       axios
         .post(this.baseUrl + request, datas, configs)
         .then((reponse) => {
@@ -22,11 +34,20 @@ export default {
         });
     });
   },
-  getOld: function(request, datas = {}) {
+  getOld: function (request, datas = {}) {
     // console.log("ssss");
     return new Promise((resolv) => {
       var configs = {
-        headers: {},
+        // withCredentials: true,
+        // auth: {
+        //   username: "stane",
+        //   password: "azabzistany@gmail.com"
+        // },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: this.basicAuth
+        }
       };
       axios
         .get(this.baseUrl + request, datas, configs)
@@ -39,7 +60,7 @@ export default {
         });
     });
   },
-  color: function(valueCurent, maxValue) {
+  color: function (valueCurent, maxValue) {
     let value = 0;
     let $color;
     if (maxValue > 0 && valueCurent > 0) {
@@ -57,5 +78,5 @@ export default {
       $color = "danger";
     }
     return $color;
-  },
+  }
 };

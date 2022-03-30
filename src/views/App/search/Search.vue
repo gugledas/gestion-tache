@@ -124,7 +124,11 @@ export default {
     LoadProjectData() {
       this.isLoading = true;
       config
-        .post("/gestion-project/search?key=" + this.value, { level: 0 })
+        .post("/gestion-project/search?key=" + this.value, { level: 0 },{
+          headers: {
+            Authorization: config.auth
+          }
+        })
         .then((reponse) => {
           if (reponse.status) {
             if (reponse) {

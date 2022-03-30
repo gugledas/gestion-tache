@@ -128,7 +128,7 @@ export default {
         var opt = [{ column: "c.type", operator: "=", value: this.name }];
         this.isLoading2 = true;
         SelectDb.selectDatas(opt).then((response) => {
-          console.log("name", this.name);
+          //console.log("name", this.name);
           this.items = response;
           this.isLoading = false;
         });

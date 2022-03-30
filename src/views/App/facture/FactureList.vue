@@ -171,7 +171,11 @@ export default {
         console.log("delete facture", reponse);
 
         config
-          .post("/gestion-project/save-update", reponse)
+          .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
           .then((reponse) => {
             console.log("reponse delete", reponse);
             if (reponse.status) {
@@ -193,7 +197,8 @@ export default {
     LoadFacture() {
       this.isLoading = true;
       SelectDb.selectInvoice([]).then((response) => {
-        this.items = response;
+    
+        if(Array.isArray(response))this.items = response;
         this.isLoading = false;
       });
     },

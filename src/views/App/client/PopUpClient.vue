@@ -147,7 +147,7 @@ export default {
   computed: {
     selectOptionFormat() {
       var result = [];
-      if (this.selectOption.length) {
+      if (this.selectOption && this.selectOption.length) {
         for (const i in this.selectOption) {
           result.push({
             label: this.selectOption[i].nom,
@@ -208,7 +208,11 @@ export default {
     EditProject() {
       Utilities.formatClient(this.postData).then((reponse) => {
         config
-          .post("/gestion-project/save-update", reponse)
+          .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
           .then((reponse) => {
             if (reponse.status) {
               this.$emit("edition-ok", reponse);
@@ -225,7 +229,11 @@ export default {
       if (this.modalType) {
         Utilities.formatDataClient(this.postData).then((reponse) => {
           config
-            .post("/gestion-project/save-update", reponse)
+            .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
             .then((reponse) => {
               if (reponse.status) {
                 this.request = reponse.data[0];
@@ -251,7 +259,11 @@ export default {
       } else {
         Utilities.formatDataSte(this.postData).then((reponse) => {
           config
-            .post("/gestion-project/save-update", reponse)
+            .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
             .then((reponse) => {
               if (reponse.status) {
                 this.request = reponse.data[0];

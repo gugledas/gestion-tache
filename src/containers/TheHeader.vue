@@ -88,6 +88,12 @@
 
     <!-- modal -->
     <CModal title="Last Updated" color="light" size="lg" :show.sync="modalLast">
+      <div class="d-flex justify-content-end border-bottom-1 mr-3">
+          <CLink v-c-tooltip="'Actualiser'"
+          ><CButton size="sm"  shape="pill" color="secondary" @click="LoadTacheData">
+            <CIcon name="cil-reload" size="sm" /> </CButton
+        ></CLink>
+        </div>
       <CDataTable
         class="m-0 table-borderless"
         hover
@@ -95,6 +101,7 @@
         :items="itemsTache"
         :fields="tableFields"
         :header="false"
+         :loading="isLoading"
         cleaner
         table-filter
         items-per-page-select
@@ -168,7 +175,9 @@
         </td>
       </CDataTable>
       <template slot="footer">
-        <div class="d-flex justify-content-end mr-3"></div>
+        <div class="d-flex justify-content-end mr-3">
+      
+        </div>
       </template>
     </CModal>
     <TacheEncours
@@ -197,6 +206,7 @@ export default {
   data() {
     return {
       modalLast: false,
+      isLoading: false,
       itemsTache: [],
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },

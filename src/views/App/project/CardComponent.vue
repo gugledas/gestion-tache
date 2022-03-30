@@ -289,7 +289,11 @@ export default {
         (reponse) => {
           //console.log(" change Hierarchie : ", reponse);
           config
-            .post("/gestion-project/save-update", reponse)
+            .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
             .then((reponse) => {
               if (reponse.status) {
                 console.log("data after edit :", reponse);
@@ -320,10 +324,16 @@ export default {
       Utilities.formatDeleteData(this.dataLoad, "delete").then((reponse) => {
         console.log(" deleteProject : ", reponse);
         config
-          .post("/gestion-project/save-update", reponse)
+          .post("/gestion-project/save-update", reponse,{
+          headers: {
+            Authorization: config.auth
+          }
+        })
           .then((reponse) => {
             if (reponse.status) {
               console.log("data after delete :", reponse);
+              
+              window.location.pathname = "/projets"
               this.$emit("suppression-ok");
             }
             this.isLoading = false;

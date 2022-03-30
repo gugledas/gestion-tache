@@ -9,6 +9,8 @@ import store from "./store";
 import moment from "moment";
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css";
+import connect from "./connect";
+connect.checkUserLogin();
 //Vue.config.performance = true;
 
 Vue.use(CoreuiVue);
@@ -24,6 +26,6 @@ new Vue({
   hljs,
   template: "<App/>",
   components: {
-    App,
-  },
+    App
+  }
 });
