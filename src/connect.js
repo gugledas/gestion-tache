@@ -43,21 +43,25 @@ export default {
   },
   testLogin(user, pass) {
     return new Promise((resolv, reject) => {
-      var credentials = "Basic " + btoa(user + ":" + pass);
+      //var credentials = "Basic " + btoa(user + ":" + pass);
       // console.log("aut", user, pass, credentials);
+      var data = {
+        name: [{ value: user }],
+        password: [{ value: pass }]
+      };
       axios
-        .get(
-          "http://gestiontaches.kksa/gestion-project/project/100?_format=json",
-
-          {
-            headers: {
-              // Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: credentials
-              // "Access-Control-Allow-Origin": "*",
-              // "X-CSRF-Token": "5E5HLcHV_GJn7RfFnL2ZYkMCa8HG1vyNdwBNER5EBDA"
-            }
-          }
+        .post(
+          "http://gestiontaches.kksa/login-rx-vuejs/user-connexion",
+          data
+          // {
+          //   headers: {
+          //     // Accept: "application/json",
+          //     "Content-Type": "application/json",
+          //     Authorization: credentials
+          //     // "Access-Control-Allow-Origin": "*",
+          //     // "X-CSRF-Token": "5E5HLcHV_GJn7RfFnL2ZYkMCa8HG1vyNdwBNER5EBDA"
+          //   }
+          // }
         )
         .then(function (response) {
           resolv(response);

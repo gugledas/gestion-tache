@@ -80,7 +80,9 @@ import {
   cilInbox,
   cilLowVision,
   cilReload,
-  cilAccountLogout
+  cilAccountLogout,
+  cilAddressBook,
+  cilShare
 } from "@coreui/icons";
 import { logo } from "./logo";
 
@@ -143,7 +145,9 @@ export const iconsSet = Object.assign(
     cilInbox,
     cilLowVision,
     cilReload,
-    cilAccountLogout
+    cilAccountLogout,
+    cilAddressBook,
+    cilShare
   },
   {
     cifUs,

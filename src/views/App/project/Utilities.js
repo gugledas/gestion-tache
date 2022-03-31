@@ -164,6 +164,16 @@ const Utilities = {
           level: level
         }
       });
+      if (datas.executant && datas.executant.length) {
+        for (let person of datas.executant) {
+          childstable.push({
+            table: "gestion_project_executant",
+            fields: {
+              uid: person["uid"]
+            }
+          });
+        }
+      }
 
       var result = [];
       if (datas && datas.titre) {
@@ -184,11 +194,12 @@ const Utilities = {
         };
         result.push(ligne);
       }
+      console.log("result ligne", result);
       resolv(result);
     });
   },
   // Remplissage des champs pour l’édition d’un contenu du pop-up avec les contenus à éditer
-  fomatVal: function (result, postData) {
+  fomatVal: function (result, postData, users) {
     return new Promise((resolv) => {
       //console.log("postData : ", postData);
       /*
@@ -209,6 +220,16 @@ const Utilities = {
             postData.heure_fin = moment.unix(result[i]).format("HH:mm");
           } else if (i === "privaty") {
             postData[i] = result[i] == "0" ? false : true;
+          } else if (i === "executant") {
+            postData[i] = [];
+            for (let user of result[i]) {
+              users.forEach((element) => {
+                if (user.uid == element.uid) {
+                  //console.log("user", user, element);
+                  postData[i].push(element);
+                }
+              });
+            }
           } else {
             postData[i] = result[i];
           }
@@ -250,6 +271,17 @@ const Utilities = {
             },
             {
               table: "gestion_project_hierachie",
+              fields: {},
+              action: "delete",
+              where: [
+                {
+                  column: "idcontents",
+                  value: datas.idcontents
+                }
+              ]
+            },
+            {
+              table: "gestion_project_executant",
               fields: {},
               action: "delete",
               where: [

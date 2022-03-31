@@ -22,6 +22,7 @@
       <PopUpContent
         ref="child"
         :formValues="formValues"
+         :utilisateur="utilisateur"
         :btnState="btnStateAdd"
         @addnew-ok="addnewOk"
         @addnew-error="addnewError"
@@ -88,8 +89,12 @@ export default {
       formValues: {},
     };
   },
-  mounted() {},
+  mounted() {
+  },
   computed: {
+    utilisateur (){
+      return this.$store.state.utilisateur
+    },
     ser() {
       var newDiv = document.createElement("div");
       newDiv.innerHTML = this.editorData;
@@ -117,7 +122,8 @@ export default {
     addnewError() {
       alert("Une erreur s'est produit")
       this.spinner = false
-    }
+    },
+   
   },
 };
 </script>

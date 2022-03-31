@@ -338,7 +338,7 @@ export default {
           .then((reponse) => {
             if (reponse.status) {
               console.log("data after delete :", reponse);
-              window.location.pathname = "/projets"
+             // window.location.pathname = "/projets"
               this.$emit("suppression-ok");
             }
             this.isLoading = false;
@@ -362,12 +362,13 @@ export default {
       this.$emit("Hide-type-project", this.dataLoad);
     },
     modalEditOn() {
-      //console.log("edit : ", this.dataLoad.titre);
+      console.log("ediut : ", this.dataLoad);
       this.$emit("modal-edit-on", this.dataLoad);
     },
     modalRessourceOn() {
       this.$emit("modal-ressource-on");
     },
+
     modalEditOnText(item) {
       console.log("Test edit : ", item.titre);
       this.$emit("ev-modal-edit-on", item);

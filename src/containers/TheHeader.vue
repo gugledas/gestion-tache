@@ -27,7 +27,7 @@
         <CIcon name="cilEyedropper"> </CIcon>
       </CButton>
       <CButton
-        @click="tacheEncoursModal = !tacheEncoursModal"
+        @click="loadTacheEncour"
         size="sm"
         variant="ghost"
         class=""
@@ -39,6 +39,16 @@
         }"
       >
         <CIcon name="cil-settings"> </CIcon>
+      </CButton>
+      <CButton
+           v-c-tooltip="'Mes tâches'"
+            size="sm"
+            shape=""
+            variant="ghost"
+            color="primary"
+            @click="loadMesTaches"
+          >
+            <CIcon name="cil-address-book" size="sm" />
       </CButton>
     </CHeaderNav>
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
@@ -53,7 +63,7 @@
             color="light"
             @click="logOut"
           >
-            <CIcon name="cil-account-logout" size="sm" /> </CButton
+            <CIcon name="cil-account-logout" size="sm" /></CButton
         ></CLink>
       <AddNewProject></AddNewProject>
 
@@ -85,7 +95,7 @@
       <BreadCrumb></BreadCrumb>
       <div class="ml-auto d-flex flex-wrap aling-items-end">
         <SSearch :styled="true"></SSearch>
-        <CDropdown color="dark" toggler-text="Options" class="ml-sm-n5 mt-2">
+        <CDropdown color="dark" toggler-text="Options" class="d-none ml-sm-n5 mt-2">
           <CDropdownItem>name</CDropdownItem>
           <CDropdownItem>statut</CDropdownItem>
           <CDropdownItem>Role</CDropdownItem>
@@ -96,7 +106,7 @@
     </CSubheader>
 
     <!-- modal -->
-    <CModal title="Last Updated" color="light" size="lg" :show.sync="modalLast">
+    <CModal title="Last Updated" color="dark" size="lg" :show.sync="modalLast">
       <div class="d-flex justify-content-end border-bottom-1 mr-3">
         <CLink v-c-tooltip="'Actualiser'"
           ><CButton
@@ -111,7 +121,7 @@
       <CDataTable
         class="m-0 table-borderless"
         hover
-        responsive
+        :responsive="false"
         :items="itemsTache"
         :fields="tableFields"
         :header="false"
@@ -201,7 +211,17 @@
       </template>
     </CModal>
     <TacheEncours
+    
+   @ev_modal_last = "ev_modal_last"
       :modalLast="tacheEncoursModal"
+      @update-modal="UpdateModalEncour"
+    ></TacheEncours>
+    <TacheEncours
+    @ev_modal_last = "ev_modal_last"
+    :type="mesTaches"
+    :titleModal="titleMesTaches"
+    :colorModal="colorMesTaches"
+      :modalLast="MesTachesModal"
       @update-modal="UpdateModal"
     ></TacheEncours>
   </CHeader>
@@ -225,6 +245,10 @@ export default {
   },
   data() {
     return {
+      mesTaches: 'mestaches',
+      titleMesTaches : 'Mes tâches',
+      colorMesTaches: 'primary',
+      MesTachesModal: false,
       modalLast: false,
       isLoading: false,
       itemsTache: [],
@@ -240,9 +264,15 @@ export default {
     this.LoadTacheData();
   },
   methods: {
+    loadMesTaches() {
+      this.MesTachesModal= true
+    },
+    loadTacheEncour() {
+      this.tacheEncoursModal= true
+    },
     logOut() {
       window.localStorage.clear()
-      document.location.reload()
+      document.location.pathname = "/pages/login"
     },
     LoadTacheData() {
       this.isLoading = true;
@@ -251,8 +281,14 @@ export default {
         this.isLoading = false;
       });
     },
-    UpdateModal(val) {
+    ev_modal_last() {
+      this.tacheEncoursModal= false
+       this.MesTachesModal= false
+    },
+    UpdateModalEncour(val) {
       this.tacheEncoursModal = val;
+    },UpdateModal(val) {
+       this.MesTachesModal= val
     }
   }
 };

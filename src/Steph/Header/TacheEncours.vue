@@ -1,19 +1,30 @@
 <template>
   <CModal
-    title="Last Updated"
-    color="info"
+    :title="titleModal"
     size="lg"
+    :color="colorModal"
     :show.sync="modalLastStatus"
   >
-  modalLast: {{isLoading}}
+   <CRow >
+     <CCol col="4">
+        <CSelect
+        :options="users"
+      label="Nom de l'utilisateur :"
+      placeholder="Select user tasks"
+      v-model="current_user"
+      @change="LoadTacheData"
+    >
+    </CSelect>
+     </CCol>
+   </CRow>
     <CDataTable
       class="m-0 table-borderless"
       hover
-      responsive
+      :responsive="false"
       :items="itemsTache"
       :fields="tableFields"
       :header="false"
-       :loading="isLoading"
+      :loading="isLoading"
       cleaner
       table-filter
       items-per-page-select
@@ -27,9 +38,10 @@
           }"
           class="text-decoration-none"
         >
-          <div @click="modalLast = !modalLast">
-            {{ item.titre }}
-             
+          <div @click="evModalLast">
+            {{ item.titre }} <CBadge v-if="item.privaty == '1'" color="danger" position="top-start" shape="pill">
+    Privé
+  </CBadge>
           </div>
           <div class="small text-muted mt-1">
             Crée le: {{ item.created_at }}
@@ -73,12 +85,16 @@
     <template slot="footer">
       <div class="d-flex justify-content-end mr-3">
         <CLink v-c-tooltip="'Actualiser'"
-          ><CButton size="sm"  shape="pill" color="secondary" @click="LoadTacheData">
+          ><CButton
+            size="sm"
+            shape="pill"
+            color="secondary"
+            @click="LoadTacheData"
+          >
             <CIcon name="cil-reload" size="sm" /> </CButton
         ></CLink>
       </div>
     </template>
-    
   </CModal>
 </template>
 
@@ -90,6 +106,18 @@ import moment from "moment";
 export default {
   name: "TacheEncours",
   props: {
+    colorModal: {
+      type: String,
+      default: "success"
+    },
+    titleModal: {
+      type: String,
+      default: "Dernières mises à jours"
+    },
+    type: {
+      type: String,
+      default: "encour"
+    },
     modalLast: {
       type: Boolean,
       required: true,
@@ -101,7 +129,8 @@ export default {
   },
   data() {
     return {
-      isLoading: false ,
+      current_user: null,
+      isLoading: false,
       itemsTache: [],
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
@@ -116,6 +145,8 @@ export default {
     };
   },
   mounted() {
+    this.current_user = config.current_user.toString();
+
     this.LoadTacheData();
     this.timing();
   },
@@ -123,6 +154,23 @@ export default {
     //
   },
   computed: {
+    utilisateur() {
+    return   this.$store.state.utilisateur
+    },
+    users() {
+      let user = [];
+      if (this.utilisateur && this.utilisateur.length) {
+        for (let person of this.utilisateur) {
+          let obj = {};
+          obj["label"] = person["name"][0]["value"];
+          obj["mail"] = person["mail"][0]["value"];
+          obj["value"] = person["uid"][0]["value"];
+          user.push(obj);
+        }
+      }
+
+      return user;
+    },
     modalLastStatus: {
       get() {
         return this.modalLast;
@@ -134,11 +182,34 @@ export default {
   },
   methods: {
     LoadTacheData() {
-      this.isLoading = true;
-      SelectDb.SelectTacheEnours().then((response) => {
-        this.itemsTache = response;
-        this.isLoading = false;
-      });
+      switch (this.type) {
+        case "encour":
+          this.isLoading = true;
+          SelectDb.SelectTacheEnours()
+            .then((response) => {
+              this.itemsTache = response;
+              this.isLoading = false;
+            })
+            .catch((er) => {
+              console.log("error encour", er);
+              this.isLoading = false;
+            });
+          break;
+        case "mestaches":
+          this.isLoading = true;
+          if(this.current_user) {
+            SelectDb.SelectMesTaches(this.current_user.toString())
+            .then((response) => {
+              this.itemsTache = response;
+              this.isLoading = false;
+            })
+            .catch((er) => {
+              console.log("error chargement mes taches", er);
+              this.isLoading = false;
+            });
+          }
+          break;
+      }
     },
     timing() {
       if (this.dataLoad && this.dataLoad.status == 2) {
@@ -149,6 +220,9 @@ export default {
       } else {
         this.currentTime = moment().unix();
       }
+    },
+    evModalLast() {
+      this.$emit("ev_modal_last");
     },
     progressItem(item) {
       var date_fin_proposer = moment.unix(item.date_fin_proposer);

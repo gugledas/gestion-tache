@@ -96,9 +96,17 @@ connect.checkUserLogin();
           username: this.user,
           password: this.pass
         }
-        window.localStorage.clear();
+        
+        if(reponse && reponse.data && reponse.data.uid) {
+          window.localStorage.clear();
+          localStorage.setItem('current_user',JSON.stringify(reponse.data.uid[0].value))
+       
+        }
+        
+        
         window.localStorage.setItem('user', JSON.stringify(user))
          if(window.location.href != window.document.referrer) {
+             
          window.location.href = window.document.referrer
         }else  {
          window.location.href = window.location.origin

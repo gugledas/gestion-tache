@@ -42,6 +42,7 @@
       >
         <PopUpContent
           :form-values="dataOfFormAdd"
+          :utilisateur="utilisateur"
           ref="child"
           @addnew-ok="LoadProjectData"
           @addnew-error="addnewError"
@@ -137,6 +138,7 @@
         >
           <PopUpContent
             :form-values="dataOfForm"
+            :utilisateur="utilisateur"
             ref="edchild"
             @edition-ok="LoadProjectData"
             @edition-error="addnewError"
@@ -244,6 +246,9 @@ export default {
     //
   },
   computed: {
+    utilisateur (){
+      return this.$store.state.utilisateur
+    },
     modalData() {
       //var room = this.dataLoad;
       var element = [];
@@ -260,6 +265,9 @@ export default {
     }
   },
   methods: {
+    updateUser(){
+      this.LoadProjectData(false);
+    },
     changeParent(data) {
       console.log("change-ppparent : ", data);
     },
@@ -294,7 +302,7 @@ export default {
       }
     },
     // Request for Loading data on DB
-    LoadProjectData() {
+    LoadProjectData(close) {
       let self = this;
       this.spinner = true;
       this.isLoading = true;
@@ -310,8 +318,10 @@ export default {
             console.log("donnée chargées : ", this.dataLoad);
             this.isLoading = false;
             this.spinner = false;
+            if(close) {
             this.addingModal = false;
             this.modalEdit = false;
+            }
           }
         })
         .catch(function (error) {
@@ -320,6 +330,7 @@ export default {
           self.spinner = false;
         });
     },
+    
     addnewError() {
       alert("Une erreur s'est produit");
       this.spinner = false;

@@ -290,7 +290,7 @@ export default {
   SelectTacheEnours: function (
     where = [{ column: "t.status", operator: "=", value: 2 }]
   ) {
-    return new Promise((resolv) => {
+    return new Promise((resolv, error) => {
       var query = "";
 
       if (where.length) {
@@ -321,9 +321,54 @@ export default {
           } else {
             resolv([]);
           }
+        })
+        .catch((er) => {
+          error(er);
         });
     });
   },
+  SelectMesTaches: function (
+    uid,
+    where = [{ column: "t.uid", operator: "=", value: 8 }]
+  ) {
+    return new Promise((resolv, error) => {
+      var query = "";
+
+      if (where.length) {
+        for (const i in where) {
+          query +=
+            where[i].column +
+            " " +
+            where[i].operator +
+            " " +
+            "'" +
+            where[i].value +
+            "'" +
+            " ";
+        }
+      }
+      query += " ORDER BY  c.`idcontents` DESC ";
+      query += " limit 0,20 ";
+      //console.log("query :: ", query);
+      config
+        .post("/gestion-project/select/select-mes-taches/" + uid, query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
+        .then((reponse) => {
+          if (reponse.status) {
+            resolv(reponse.data);
+          } else {
+            resolv([]);
+          }
+        })
+        .catch((er) => {
+          error(er);
+        });
+    });
+  },
+
   /**
    * Les tables sous drupal doivent etre encarée avec {}
    */

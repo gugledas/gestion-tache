@@ -92,7 +92,7 @@
       </CRow>
 
       <CRow>
-        <CCol sm="10" class="d-flex ">
+        <CCol sm="10" class="d-flex">
           <div class="form-group d-flex align-items-center">
             <span class="pr-3 d-block"> Contenu privée ? </span>
             <CSwitch
@@ -103,14 +103,13 @@
               size="sm"
             />
           </div>
-         
         </CCol>
         <CCol sm="10">
-          <div class="form-group d-none">
+          <div class="form-group d-anone">
             Assigné :
             <pre> {{ postData }} </pre>
             formValues :
-            <pre> {{ formValues  }} </pre>
+            <pre> {{ formValues }} </pre>
           </div>
         </CCol>
         <CCol sm="7">
@@ -130,6 +129,31 @@
             placeholder="Select or add new Client"
             v-model="postData.clientName"
           />
+        </CCol>
+        <CCol
+          sm="5"
+          v-if="postData.type !== 'ressource' && postData.type !== 'memos'"
+        >
+          <label class="typo__label">Exécuter par:</label>
+          <multiselect
+            :options="users"
+            placeholder="Selectionnez un utilisateur"
+            :multiple="true"
+            :close-on-select="false"
+            :clear-on-select="false"
+            :preserve-search="false"
+            :searchable="false"
+            label="name"
+            :loading="selectLoading"
+            track-by="name"
+            :preselect-first="false"
+            :hide-selected="true"
+            v-model="postData.executant"
+            @select="addExecutant"
+            @remove="deleteExecutant"
+          >
+           
+          </multiselect>
         </CCol>
       </CRow>
       <CRow>
@@ -164,30 +188,37 @@ import hljs from "highlight.js";
 import config from "../config/config";
 import moment from "moment";
 import ProjectOptionsType from "./ProjectOptionsType";
+import Multiselect from "vue-multiselect";
 
 export default {
   name: "PopUpContent",
   props: {
     formValues: {
       type: [Object],
-      required: true,
+      required: true
+    },
+    utilisateur: {
+      type: [Array],
+      required: true
     },
     btnState: {
       type: Object,
-      default: function() {
+      default: function () {
         return { state: false };
-      },
+      }
     },
     level: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   components: {
     ckeditor: CKEditor.component,
+    Multiselect
   },
   data() {
     return {
+      selectLoading: false,
       postData: {
         typeIsOk: false,
         type: "project",
@@ -204,6 +235,7 @@ export default {
         price: "",
         text: "",
         privaty: true,
+        executant: []
       },
       fHeure: "",
       dHeure: "",
@@ -220,7 +252,7 @@ export default {
           config.baseUrl +
           "/modules/custom/gestion_tache/files/gestionTache.css'; body{margin:1em !important; background: #FFF;}",
         on: {
-          instanceReady: function(ev) {
+          instanceReady: function (ev) {
             // Output paragraphs as <p>Text</p>.
             //console.log('this',ev)
             ev.sender.dataProcessor.writer.setRules("p", {
@@ -228,21 +260,21 @@ export default {
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: true,
-              breakAfterClose: true,
+              breakAfterClose: true
             });
             ev.sender.dataProcessor.writer.setRules("img", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h1", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
 
             ev.sender.dataProcessor.writer.setRules("h2", {
@@ -250,45 +282,45 @@ export default {
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h3", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h4", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h5", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h6", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("div", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: true,
               breakBeforeClose: true,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
-          },
-        },
+          }
+        }
       },
       options: [
         // { value: "project", label: "Projet" },
@@ -299,12 +331,11 @@ export default {
         { value: "0", label: "New" },
         { value: "2", label: "Encours" },
         { value: "1", label: "Terminé" },
-        { value: "3", label: "Annulé" },
-      ],
+        { value: "3", label: "Annulé" }
+      ]
     };
   },
   mounted() {
-   
     ProjectOptionsType.loadType().then((reponse) => {
       this.options = reponse;
     });
@@ -312,16 +343,29 @@ export default {
   watch: {
     formValues: {
       deep: true,
-      handler: function(val) {
+      handler: function (val) {
         console.log("val : ", val);
-        Utilities.fomatVal(val, this.postData).then(() => {});
+        Utilities.fomatVal(val, this.postData, this.users).then(() => {});
         //console.log("result :", this.postData, this.fHeure);
         //console.log("debut heure : ", this.dHeure);
-      },
-    },
+      }
+    }
   },
   computed: {
-  
+    users() {
+      let user = [];
+      if (this.utilisateur && this.utilisateur.length) {
+        for (let person of this.utilisateur) {
+          let obj = {};
+          obj["uid"] = person["uid"][0]["value"];
+          obj["name"] = person["name"][0]["value"];
+          obj["mail"] = person["mail"][0]["value"];
+          user.push(obj);
+        }
+      }
+
+      return user;
+    },
     dureeProjet() {
       var el;
       if (
@@ -371,12 +415,12 @@ export default {
       if (!window.location.host.includes("localhost--")) {
         return {
           extraPlugins: extraPlugins + ",quickuploader",
-          ...this.preEditorConfig,
+          ...this.preEditorConfig
         };
       } else {
         return {
           extraPlugins: extraPlugins,
-          ...this.preEditorConfig,
+          ...this.preEditorConfig
         };
       }
     },
@@ -391,9 +435,82 @@ export default {
       }
       //console.log("rs", rs);
       return rs;
-    },
+    }
   },
   methods: {
+    deleteExecutant(value) {
+      this.selectLoading = true;
+      console.log("user delet", value);
+      var self = this;
+      config
+        .delete(
+          "/gestion-project/executant/" +
+            this.postData.idcontents +
+            "/" +
+            value.uid,
+          {},
+          {
+            headers: {
+              Authorization: config.auth
+            }
+          }
+        )
+        .then((reponse) => {
+          if (reponse.status) {
+            //console.log("data after edit :", reponse);
+            self.updateFormValue(false, value);
+            self.selectLoading = false;
+          }
+        })
+        .catch(function (error) {
+          self.selectLoading = false;
+          console.log("error", error);
+        });
+    },
+    updateFormValue(add, user) {
+      let form = this.formValues.executant;
+      if (add) {
+        form.push(user);
+      } else {
+        let existe = form.filter((el) => el.uid == user.uid);
+        console.log("existe", existe);
+        for (let i in form) {
+          if (existe[0].uid == form[i].uid) {
+            form.splice(i, 1);
+          }
+        }
+      }
+    },
+    addExecutant(value) {
+      this.selectLoading = true;
+
+      console.log("user add", value, config.auth);
+      let self = this;
+      config
+        .post(
+          "/gestion-project/executant/" +
+            this.postData.idcontents +
+            "/" +
+            value.uid,
+          {},
+          {
+            headers: {
+              Authorization: config.auth
+            }
+          }
+        )
+        .then((reponse) => {
+          if (reponse.status) {
+            //console.log("data after edit :", reponse);
+            self.selectLoading = false;
+            self.updateFormValue(true, value);
+          }
+        })
+        .catch(function (error) {
+          self.selectLoading = false;
+          console.log("error", error);
+        });
+    },
     onNamespaceLoaded(CKEDITOR) {
       // Add external `placeholder` plugin which will be available for each
       // editor instance on the page.
@@ -447,16 +564,16 @@ export default {
       this.postData.type = "tache";
     },
     EditProject() {
-      var self = this
+      var self = this;
       Utilities.formatData(this.postData, this.dHeure, this.fHeure).then(
         (reponse) => {
           //console.log(" EditProject : ", reponse);
           config
-            .post("/gestion-project/save-update", reponse,{
-          headers: {
-            Authorization: config.auth
-          }
-        })
+            .post("/gestion-project/save-update", reponse, {
+              headers: {
+                Authorization: config.auth
+              }
+            })
             .then((reponse) => {
               if (reponse.status) {
                 //console.log("data after edit :", reponse);
@@ -464,7 +581,7 @@ export default {
               }
               this.isLoading = false;
             })
-            .catch(function(error) {
+            .catch(function (error) {
               self.$emit("edition-error");
               console.log("error", error);
             });
@@ -481,7 +598,7 @@ export default {
       rest.push({
         idcontents: id,
         date_depart_proposer: ddp,
-        date_fin_proposer: dfp,
+        date_fin_proposer: dfp
         // date_fin_reel: "reelD",
         // status: status,
         // temps_pause: "temps_pause",
@@ -499,7 +616,7 @@ export default {
         fields: {
           text: data.text,
           titre: data.titre,
-          type: data.type,
+          type: data.type
         },
         childstable: {
           colum_id_name: "idcontents",
@@ -509,33 +626,33 @@ export default {
               fields: {
                 date_depart_proposer: ddp,
                 date_fin_proposer: dfp,
-                status: state,
-              },
+                status: state
+              }
             },
             {
               table: "gestion_project_hierachie",
               fields: {
                 idcontentsparent: idc,
-                ordre: 0,
-              },
-            },
-          ],
-        },
+                ordre: 0
+              }
+            }
+          ]
+        }
       });
       return result;
     },
     PostNewProject(idc) {
-      var self = this
+      var self = this;
       Utilities.formatAddData(this.postData, idc, this.level).then(
         (reponse) => {
           console.log("created", reponse);
 
           config
-            .post("/gestion-project/save-update", reponse,{
-          headers: {
-            Authorization: config.auth
-          }
-        })
+            .post("/gestion-project/save-update", reponse, {
+              headers: {
+                Authorization: config.auth
+              }
+            })
             .then((reponse) => {
               if (reponse.status) {
                 self.request = reponse.data[0];
@@ -543,14 +660,14 @@ export default {
               }
               this.isLoading = false;
             })
-            .catch(function(error) {
+            .catch(function (error) {
               self.$emit("addnew-error");
               console.log("error", error);
             });
         }
       );
-    },
-  },
+    }
+  }
 };
 </script>
 

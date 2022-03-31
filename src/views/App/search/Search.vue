@@ -6,42 +6,47 @@
       :options="project"
       placeholder="Tapez une recherche"
       :hide-selected="true"
-      :max-height="600"
+      :max-height="700"
       :option-height="20"
       :show-labels="false"
       :searchable="true"
       :loading="isLoading"
       track-by="titre"
-      :internal-search="true"
+      :internal-search="false"
       :showPointer="true"
       label="titre"
       @search-change="TypingSearch"
     >
-      <template slot="singleLabel" slot-scope="props"
+      <template slot="singleLabel" slot-scope="{option}"
         ><span class="option__desc d-inline-flex flex-column">
-          <span class="option__title">{{ props.option.titre }}</span>
+         
+          <span class="option__title d-none">{{ option.titre }}</span>
         </span>
       </template>
       <template slot="option" slot-scope="props">
+       <router-link :to="'/projets/' + props.option.idcontents">
         <div
           v-if="styled"
           class="option__desc d-inline-flex flex-column align-items-start"
         >
-          <span class="option__title mb-2">
-            <CIcon name="cilFolder" class="mr-1 text-info"></CIcon>
-            {{ props.option.titre }}
+         
+          <span class="option__title  d-flex align-items-center">
+            <CBadge class="mr-2"  :color="badgeColor(props.option.type)" position="top-start"  size="sm" shape="pill">
+               {{props.option.type}}
+            </CBadge>
+              <span class="titre-option">{{ props.option.titre }}</span>
+            <CIcon name="cilShare" :class="'text-' +badgeColor(props.option.type)" size="sm" class="ml-3 pb-0 "></CIcon>
           </span>
-          <div class="d-flex aling-items-center">
-            <span class="text-info bg-light p-1 mt-2 h6">{{
+          <div class="d-flex align-items-center">
+            <!-- <span class="text-info bg-light p-1 mt-2 h6">{{
               props.option.type
-            }}</span>
-            <router-link :to="'/projets/' + props.option.idcontents">
-              <CButton class="ml-4" variant="ghost" color="warning" size="sm">
-                <CIcon name="cilPencil"></CIcon>
-              </CButton>
-            </router-link>
+            }}</span> -->
+           
+             
           </div>
+         
         </div>
+         </router-link>
 
         <div
           v-if="!styled"
@@ -57,6 +62,9 @@
           </span>
         </div>
       </template>
+      <span slot="noResult" class="p-3">
+          Ooops! Aucun élement trouvé...
+      </span>
     </multiselect>
   </div>
 </template>
@@ -93,6 +101,7 @@ export default {
   },
   watch: {},
   computed: {
+    
     pOptions() {
       var tab = [];
       if (this.project.length) {
@@ -104,6 +113,29 @@ export default {
     },
   },
   methods: {
+    badgeColor(type) {
+      var color= ""
+      switch(type) {
+        case 'project' : 
+         color = 'dark';
+         break;
+        case 'bug' : 
+         color ='danger';
+         break;
+        case 'a_faire' : 
+         color ='dark';
+         break;
+        case 'tache' : 
+         color = 'success';
+         break;
+         case 'sous-projet' : 
+         color = 'secondary';
+         break;
+        default :
+        color = "light"
+      }
+      return color
+    },
     ParentSelected(data) {
       console.log("dataSelected :", data.option);
       this.$emit("parent-selected", data.option);
@@ -152,13 +184,53 @@ export default {
 
 <style lang="scss">
 .searchForm {
-  width: 350px;
+  width: 550px;
   .multiselect__tags {
     padding: 2px 40px 0px 8px;
     margin-top: 7px;
     min-height: 20px;
+   
+  }
+  .multiselect__select {
+    top: -4px;
+  }
+  .multiselect__placeholder {
+    margin-bottom: 5px;
+  }
+  .multiselect__option--highlight {
+ // background-color: ;
+ .titre-option {
+   color :white
+ }
+}
+.multiselect__option {
+  padding: 0;
+  display: flex; 
+  //padding-top: 15px;
+  align-items: center;
+  &:hover {
+    color :white
+  }
+  
+}
+
+.multiselect__element {
+  
+  a {
+    line-height: 1;
+    padding: 14px;
+    color: #425c76;
+  }
+  
+  &:hover {
+    a {
+      color: white;
+    text-decoration: none;
+    }
   }
 }
+}
+
 .text-type {
   font-size: 11px;
 }
