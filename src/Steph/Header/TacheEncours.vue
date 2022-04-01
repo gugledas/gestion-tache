@@ -6,6 +6,7 @@
     :show.sync="modalLastStatus"
   >
    <CRow >
+    
      <CCol col="4">
         <CSelect
         :options="users"
@@ -13,8 +14,7 @@
       placeholder="Select user tasks"
       v-model="current_user"
       @change="LoadTacheData"
-    >
-    </CSelect>
+    />
      </CCol>
    </CRow>
     <CDataTable
@@ -129,7 +129,7 @@ export default {
   },
   data() {
     return {
-      current_user: null,
+      current_user: "",
       isLoading: false,
       itemsTache: [],
       tableFields: [
@@ -181,7 +181,8 @@ export default {
     }
   },
   methods: {
-    LoadTacheData() {
+    LoadTacheData(val) {
+     
       switch (this.type) {
         case "encour":
           this.isLoading = true;
@@ -197,16 +198,21 @@ export default {
           break;
         case "mestaches":
           this.isLoading = true;
-          if(this.current_user) {
-            SelectDb.SelectMesTaches(this.current_user.toString())
-            .then((response) => {
-              this.itemsTache = response;
-              this.isLoading = false;
-            })
-            .catch((er) => {
-              console.log("error chargement mes taches", er);
-              this.isLoading = false;
-            });
+          if (this.current_user) {
+            let uid;
+            if (val && val.target) {
+              uid = val.target.value;
+              this.current_user = uid;
+            } else uid = this.current_user;
+            SelectDb.SelectMesTaches(uid)
+              .then((response) => {
+                this.itemsTache = response;
+                this.isLoading = false;
+              })
+              .catch((er) => {
+                console.log("error chargement mes taches", er);
+                this.isLoading = false;
+              });
           }
           break;
       }
