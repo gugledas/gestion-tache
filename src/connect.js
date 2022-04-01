@@ -1,4 +1,4 @@
-import axios from "axios";
+import config from "./views/App/config/config";
 export default {
   checkUserLogin() {
     let user = JSON.parse(window.localStorage.getItem("user"));
@@ -49,7 +49,7 @@ export default {
         name: [{ value: user }],
         password: [{ value: pass }]
       };
-      axios
+      config
         .post(
           "http://gestiontaches.kksa/login-rx-vuejs/user-connexion",
           data

@@ -6,7 +6,9 @@
 export default {
   name: "App",
   mounted() {
-    this.$store.dispatch('getUtilisateur')
+    if(window.localStorage.getItem('user')) {
+      this.$store.dispatch('getUtilisateur')
+    }
     
     this.$store.dispatch("getUser");
   }

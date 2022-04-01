@@ -105,7 +105,7 @@
           </div>
         </CCol>
         <CCol sm="10">
-          <div class="form-group d-anone">
+          <div class="form-group d-none">
             Assigné :
             <pre> {{ postData }} </pre>
             formValues :

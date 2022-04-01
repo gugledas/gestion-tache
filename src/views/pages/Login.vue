@@ -19,7 +19,7 @@
                     type="password"
                     v-model="pass"
                     :isValid="invalidPass"
-                    invalidFeedback="nom d'utilisateur ou mot de passe incorrect"
+                    :invalidFeedback="invalidFeedback"
                    required
                   >
                     <template #prepend-content
@@ -74,6 +74,7 @@ export default {
   name: "Login",
   data(){
     return {
+      invalidFeedback: "nom d'utilisateur ou mot de passe incorrect",
       user: "stanee",
       pass: "azabzistany@gmail.com",
       invalidPass: null,
@@ -114,6 +115,9 @@ connect.checkUserLogin();
         this.isloading= false
       },(er)=> {
         console.log('error',er)
+        if(er && er.error && er.error.statusText) {
+          this.invalidFeedback = er.error.statusText
+        }
         this.isloading= false
         this.invalidPass= false
         
