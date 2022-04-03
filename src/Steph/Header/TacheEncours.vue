@@ -5,18 +5,21 @@
     :color="colorModal"
     :show.sync="modalLastStatus"
   >
-   <CRow >
-     <CCol col="4">
+    user:
+    <pre> {{ users }} </pre>
+    <pre> {{ current_user }} </pre>
+    <CRow>
+      <CCol col="4">
         <CSelect
-        :options="users"
-      label="Nom de l'utilisateur :"
-      placeholder="Select user tasks"
-      v-model="current_user"
-      @change="LoadTacheData"
-    >
-    </CSelect>
-     </CCol>
-   </CRow>
+          :options="users"
+          label="Nom de l'utilisateur :"
+          placeholder="Select user tasks"
+          v-model="current_user"
+          @change="LoadTacheData"
+          :multiple="false"
+        />
+      </CCol>
+    </CRow>
     <CDataTable
       class="m-0 table-borderless"
       hover
@@ -34,14 +37,20 @@
       <td slot="user" slot-scope="{ item }">
         <CLink
           :to="{
-            path: '/projets/' + item.idcontents
+            path: '/projets/' + item.idcontents,
           }"
           class="text-decoration-none"
         >
           <div @click="evModalLast">
-            {{ item.titre }} <CBadge v-if="item.privaty == '1'" color="danger" position="top-start" shape="pill">
-    Privé
-  </CBadge>
+            {{ item.titre }}
+            <CBadge
+              v-if="item.privaty == '1'"
+              color="danger"
+              position="top-start"
+              shape="pill"
+            >
+              Privé
+            </CBadge>
           </div>
           <div class="small text-muted mt-1">
             Crée le: {{ item.created_at }}
@@ -108,21 +117,21 @@ export default {
   props: {
     colorModal: {
       type: String,
-      default: "success"
+      default: "success",
     },
     titleModal: {
       type: String,
-      default: "Dernières mises à jours"
+      default: "Dernières mises à jours",
     },
     type: {
       type: String,
-      default: "encour"
+      default: "encour",
     },
     modalLast: {
       type: Boolean,
       required: true,
-      default: false
-    }
+      default: false,
+    },
   },
   components: {
     //
@@ -135,13 +144,13 @@ export default {
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" }
+        { key: "activity", _style: "width:600px;" },
       ],
       progress: {
         max: 0,
-        val: 0
+        val: 0,
       },
-      currentTime: moment().unix()
+      currentTime: moment().unix(),
     };
   },
   mounted() {
@@ -155,7 +164,7 @@ export default {
   },
   computed: {
     utilisateur() {
-    return   this.$store.state.utilisateur
+      return this.$store.state.utilisateur;
     },
     users() {
       let user = [];
@@ -177,11 +186,11 @@ export default {
       },
       set(val) {
         this.$emit("update-modal", val);
-      }
-    }
+      },
+    },
   },
   methods: {
-    LoadTacheData() {
+    LoadTacheData(val) {
       switch (this.type) {
         case "encour":
           this.isLoading = true;
@@ -197,16 +206,21 @@ export default {
           break;
         case "mestaches":
           this.isLoading = true;
-          if(this.current_user) {
-            SelectDb.SelectMesTaches(this.current_user.toString())
-            .then((response) => {
-              this.itemsTache = response;
-              this.isLoading = false;
-            })
-            .catch((er) => {
-              console.log("error chargement mes taches", er);
-              this.isLoading = false;
-            });
+          if (this.current_user) {
+            let uid;
+            if (val && val.target) {
+              uid = val.target.value;
+              this.current_user = uid;
+            } else uid = this.current_user;
+            SelectDb.SelectMesTaches(uid)
+              .then((response) => {
+                this.itemsTache = response;
+                this.isLoading = false;
+              })
+              .catch((er) => {
+                console.log("error chargement mes taches", er);
+                this.isLoading = false;
+              });
           }
           break;
       }
@@ -238,8 +252,8 @@ export default {
     },
     color(valueCurent, maxValue) {
       return config.color(valueCurent, maxValue);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -7,12 +7,12 @@
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=template&id=78d8e4a0&scoped=true&lang=html&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"check-valid-form":_vm.checkForSave}},[_c('div',[_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('br'),_c('CCol',{attrs:{"sm":"3"}},[_c('p',[_vm._v("Choisir un type:")])]),_c('CCol',{attrs:{"sm":"9"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.options,"checked":_vm.postData.type,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "type", $event)}}}),(_vm.postData.type.length < 2)?_c('small',{staticClass:"text-danger"},[_vm._v(" Ce champ est requis ")]):_vm._e()],1)],1)],1),_c('hr'),_c('div',{staticClass:"pl-sm-2"},[(_vm.postData.type !== 'memos' && _vm.postData.date_fin_reel === '')?_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('CCol',{attrs:{"sm":"2"}},[_c('p',[_vm._v("Statut:")])]),_c('CCol',{attrs:{"sm":"10"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.statusOpt,"checked":_vm.postData.status,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "status", $event)}}})],1),(_vm.showInputRaison)?_c('CCol',{attrs:{"sm":"8","md":"7"}},[_c('CTextarea',{attrs:{"label":"Raison:","type":"textarea","horizontal":"","placeholder":"writes something...","rows":"2","description":"Une description de la raison du changement de status"},model:{value:(_vm.postData.raison),callback:function ($$v) {_vm.$set(_vm.postData, "raison", $$v)},expression:"postData.raison"}})],1):_vm._e()],1):_vm._e(),(_vm.postData.type !== 'memos')?_c('CRow',[_c('CCol',{attrs:{"col":"12","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Debut:","type":"date","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"horizontal":""},model:{value:(_vm.postData.date_depart_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_depart_proposer", $$v)},expression:"postData.date_depart_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_debut),callback:function ($$v) {_vm.$set(_vm.postData, "heure_debut", $$v)},expression:"postData.heure_debut"}})],1)],1),_c('CCol',{attrs:{"col":"10","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Fin:","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"date","horizontal":""},model:{value:(_vm.postData.date_fin_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_fin_proposer", $$v)},expression:"postData.date_fin_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_fin),callback:function ($$v) {_vm.$set(_vm.postData, "heure_fin", $$v)},expression:"postData.heure_fin"}})],1)],1)],1):_vm._e(),_c('CRow',[_c('CCol',{staticClass:"d-flex ",attrs:{"sm":"10"}},[_c('div',{staticClass:"form-group d-flex align-items-center"},[_c('span',{staticClass:"pr-3 d-block"},[_vm._v(" Contenu privée ? ")]),_c('CSwitch',{staticClass:"mr-1",attrs:{"color":"danger","shape":"pill","checked":_vm.postData.privaty,"size":"sm"},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "privaty", $event)}}})],1)]),_c('CCol',{attrs:{"sm":"10"}},[_c('div',{staticClass:"form-group d-none"},[_vm._v(" Assigné : "),_c('pre',[_vm._v(" "+_vm._s(_vm.postData)+" ")])])]),_c('CCol',{attrs:{"sm":"7"}},[_c('CInput',{attrs:{"label":"Title:","placeholder":"Entrez un titre","wasValidated":_vm.wasValidated,"validFeedback":"ok","invalidFeedback":"requis","isValid":_vm.inputValidation},model:{value:(_vm.postData.titre),callback:function ($$v) {_vm.$set(_vm.postData, "titre", $$v)},expression:"postData.titre"}})],1),(_vm.postData.type == 'project')?_c('CCol',{attrs:{"sm":"5"}},[_c('CInput',{attrs:{"label":"Nom du Client:","placeholder":"Select or add new Client"},model:{value:(_vm.postData.clientName),callback:function ($$v) {_vm.$set(_vm.postData, "clientName", $$v)},expression:"postData.clientName"}})],1):_vm._e()],1),_c('CRow',[_c('CCol',{attrs:{"sm":"12"}},[_c('label',[_vm._v("Description:")]),_c('ckeditor',{attrs:{"config":_vm.editorConfig},on:{"namespaceloaded":_vm.onNamespaceLoaded},model:{value:(_vm.postData.text),callback:function ($$v) {_vm.$set(_vm.postData, "text", $$v)},expression:"postData.text"}})],1)],1),(_vm.postData.type == 'project')?_c('CRow',[_c('CCol',{attrs:{"col":"8","lg":"4"}},[_c('CInput',{attrs:{"label":"Estimation du coût:","append":".00","description":"montant","prepend":"$"},model:{value:(_vm.postData.price),callback:function ($$v) {_vm.$set(_vm.postData, "price", $$v)},expression:"postData.price"}})],1)],1):_vm._e()],1)])}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=template&id=4f76eac5&scoped=true&lang=html&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"check-valid-form":_vm.checkForSave}},[_c('div',[_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('br'),_c('CCol',{attrs:{"sm":"3"}},[_c('p',[_vm._v("Choisir un type:")])]),_c('CCol',{attrs:{"sm":"9"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.options,"checked":_vm.postData.type,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "type", $event)}}}),(_vm.postData.type.length < 2)?_c('small',{staticClass:"text-danger"},[_vm._v(" Ce champ est requis ")]):_vm._e()],1)],1)],1),_c('hr'),_c('div',{staticClass:"pl-sm-2"},[(_vm.postData.type !== 'memos' && _vm.postData.date_fin_reel === '')?_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('CCol',{attrs:{"sm":"2"}},[_c('p',[_vm._v("Statut:")])]),_c('CCol',{attrs:{"sm":"10"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.statusOpt,"checked":_vm.postData.status,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "status", $event)}}})],1),(_vm.showInputRaison)?_c('CCol',{attrs:{"sm":"8","md":"7"}},[_c('CTextarea',{attrs:{"label":"Raison:","type":"textarea","horizontal":"","placeholder":"writes something...","rows":"2","description":"Une description de la raison du changement de status"},model:{value:(_vm.postData.raison),callback:function ($$v) {_vm.$set(_vm.postData, "raison", $$v)},expression:"postData.raison"}})],1):_vm._e()],1):_vm._e(),(_vm.postData.type !== 'memos')?_c('CRow',[_c('CCol',{attrs:{"col":"12","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Debut:","type":"date","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"horizontal":""},model:{value:(_vm.postData.date_depart_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_depart_proposer", $$v)},expression:"postData.date_depart_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_debut),callback:function ($$v) {_vm.$set(_vm.postData, "heure_debut", $$v)},expression:"postData.heure_debut"}})],1)],1),_c('CCol',{attrs:{"col":"10","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Fin:","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"date","horizontal":""},model:{value:(_vm.postData.date_fin_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_fin_proposer", $$v)},expression:"postData.date_fin_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_fin),callback:function ($$v) {_vm.$set(_vm.postData, "heure_fin", $$v)},expression:"postData.heure_fin"}})],1)],1)],1):_vm._e(),_c('CRow',[_c('CCol',{staticClass:"d-flex",attrs:{"sm":"10"}},[_c('div',{staticClass:"form-group d-flex align-items-center"},[_c('span',{staticClass:"pr-3 d-block"},[_vm._v(" Contenu privée ? ")]),_c('CSwitch',{staticClass:"mr-1",attrs:{"color":"danger","shape":"pill","checked":_vm.postData.privaty,"size":"sm"},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "privaty", $event)}}})],1)]),_c('CCol',{attrs:{"sm":"10"}},[_c('div',{staticClass:"form-group d-none"},[_vm._v(" Assigné : "),_c('pre',[_vm._v(" "+_vm._s(_vm.postData)+" ")]),_vm._v(" formValues : "),_c('pre',[_vm._v(" "+_vm._s(_vm.formValues)+" ")])])]),_c('CCol',{attrs:{"sm":"7"}},[_c('CInput',{attrs:{"label":"Title:","placeholder":"Entrez un titre","wasValidated":_vm.wasValidated,"validFeedback":"ok","invalidFeedback":"requis","isValid":_vm.inputValidation},model:{value:(_vm.postData.titre),callback:function ($$v) {_vm.$set(_vm.postData, "titre", $$v)},expression:"postData.titre"}})],1),(_vm.postData.type == 'project')?_c('CCol',{attrs:{"sm":"5"}},[_c('CInput',{attrs:{"label":"Nom du Client:","placeholder":"Select or add new Client"},model:{value:(_vm.postData.clientName),callback:function ($$v) {_vm.$set(_vm.postData, "clientName", $$v)},expression:"postData.clientName"}})],1):_vm._e(),(_vm.postData.type !== 'ressource' && _vm.postData.type !== 'memos')?_c('CCol',{attrs:{"sm":"5"}},[_c('label',{staticClass:"typo__label"},[_vm._v("Exécuter par:")]),_c('multiselect',{attrs:{"options":_vm.users,"placeholder":"Selectionnez un utilisateur","multiple":true,"close-on-select":false,"clear-on-select":false,"preserve-search":false,"searchable":false,"label":"name","loading":_vm.selectLoading,"track-by":"name","preselect-first":false,"hide-selected":true},on:{"select":_vm.addExecutant,"remove":_vm.deleteExecutant},model:{value:(_vm.postData.executant),callback:function ($$v) {_vm.$set(_vm.postData, "executant", $$v)},expression:"postData.executant"}})],1):_vm._e()],1),_c('CRow',[_c('CCol',{attrs:{"sm":"12"}},[_c('label',[_vm._v("Description:")]),_c('ckeditor',{attrs:{"config":_vm.editorConfig},on:{"namespaceloaded":_vm.onNamespaceLoaded},model:{value:(_vm.postData.text),callback:function ($$v) {_vm.$set(_vm.postData, "text", $$v)},expression:"postData.text"}})],1)],1),(_vm.postData.type == 'project')?_c('CRow',[_c('CCol',{attrs:{"col":"8","lg":"4"}},[_c('CInput',{attrs:{"label":"Estimation du coût:","append":".00","description":"montant","prepend":"$"},model:{value:(_vm.postData.price),callback:function ($$v) {_vm.$set(_vm.postData, "price", $$v)},expression:"postData.price"}})],1)],1):_vm._e()],1)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=template&id=78d8e4a0&scoped=true&lang=html&
+// CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=template&id=4f76eac5&scoped=true&lang=html&
 
 // EXTERNAL MODULE: ./src/views/App/project/Utilities.js
 var Utilities = __webpack_require__("d111");
@@ -25,7 +25,7 @@ var ckeditor_default = /*#__PURE__*/__webpack_require__.n(ckeditor);
 var lib = __webpack_require__("1487");
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
-// EXTERNAL MODULE: ./src/views/App/config/config.js
+// EXTERNAL MODULE: ./src/views/App/config/config.js + 72 modules
 var config = __webpack_require__("b8a6");
 
 // EXTERNAL MODULE: ./node_modules/moment/moment.js
@@ -35,19 +35,23 @@ var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 // EXTERNAL MODULE: ./src/views/App/project/ProjectOptionsType.js
 var ProjectOptionsType = __webpack_require__("f9cf");
 
+// EXTERNAL MODULE: ./node_modules/vue-multiselect/dist/vue-multiselect.min.js
+var vue_multiselect_min = __webpack_require__("8e5f");
+var vue_multiselect_min_default = /*#__PURE__*/__webpack_require__.n(vue_multiselect_min);
+
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=script&lang=js&
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -204,6 +208,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -215,6 +247,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: {
     formValues: {
       type: [Object],
+      required: true
+    },
+    utilisateur: {
+      type: [Array],
       required: true
     },
     btnState: {
@@ -231,10 +267,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   components: {
-    ckeditor: ckeditor_default.a.component
+    ckeditor: ckeditor_default.a.component,
+    Multiselect: vue_multiselect_min_default.a
   },
   data: function data() {
     return {
+      selectLoading: false,
       postData: {
         typeIsOk: false,
         type: "project",
@@ -250,7 +288,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         titre: "",
         price: "",
         text: "",
-        privaty: true
+        privaty: true,
+        executant: []
       },
       fHeure: "",
       dHeure: "",
@@ -264,65 +303,66 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         stylesSet: [],
         contentsCss: " @import '" + config["a" /* default */].baseUrl + "/modules/custom/gestion_tache/files/gestionTache.css'; body{margin:1em !important; background: #FFF;}",
         on: {
-          instanceReady: function instanceReady() {
+          instanceReady: function instanceReady(ev) {
             // Output paragraphs as <p>Text</p>.
-            this.dataProcessor.writer.setRules("p", {
+            //console.log('this',ev)
+            ev.sender.dataProcessor.writer.setRules("p", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: true,
               breakAfterClose: true
             });
-            this.dataProcessor.writer.setRules("img", {
+            ev.sender.dataProcessor.writer.setRules("img", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false
             });
-            this.dataProcessor.writer.setRules("h1", {
+            ev.sender.dataProcessor.writer.setRules("h1", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false
             });
-            this.dataProcessor.writer.setRules("h2", {
+            ev.sender.dataProcessor.writer.setRules("h2", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false
             });
-            this.dataProcessor.writer.setRules("h3", {
+            ev.sender.dataProcessor.writer.setRules("h3", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false
             });
-            this.dataProcessor.writer.setRules("h4", {
+            ev.sender.dataProcessor.writer.setRules("h4", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false
             });
-            this.dataProcessor.writer.setRules("h5", {
+            ev.sender.dataProcessor.writer.setRules("h5", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false
             });
-            this.dataProcessor.writer.setRules("h6", {
+            ev.sender.dataProcessor.writer.setRules("h6", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
               breakAfterClose: false
             });
-            this.dataProcessor.writer.setRules("div", {
+            ev.sender.dataProcessor.writer.setRules("div", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: true,
@@ -362,13 +402,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     formValues: {
       deep: true,
       handler: function handler(val) {
-        //console.log("val : ", val);
-        Utilities["a" /* default */].fomatVal(val, this.postData).then(function () {}); //console.log("result :", this.postData, this.fHeure);
+        console.log("val : ", val);
+        Utilities["a" /* default */].fomatVal(val, this.postData, this.users).then(function () {}); //console.log("result :", this.postData, this.fHeure);
         //console.log("debut heure : ", this.dHeure);
       }
     }
   },
   computed: {
+    users: function users() {
+      var user = [];
+
+      if (this.utilisateur && this.utilisateur.length) {
+        var _iterator = _createForOfIteratorHelper(this.utilisateur),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var person = _step.value;
+            var obj = {};
+            obj["uid"] = person["uid"][0]["value"];
+            obj["name"] = person["name"][0]["value"];
+            obj["mail"] = person["mail"][0]["value"];
+            user.push(obj);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      }
+
+      return user;
+    },
     dureeProjet: function dureeProjet() {
       var el;
 
@@ -423,12 +488,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     optionsTache: function optionsTache() {
       var rs = [];
 
-      var _iterator = _createForOfIteratorHelper(this.options),
-          _step;
+      var _iterator2 = _createForOfIteratorHelper(this.options),
+          _step2;
 
       try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var i = _step.value;
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var i = _step2.value;
 
           if (i.value == "project") {//console.log("iii :");
           } else {
@@ -437,15 +502,71 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } //console.log("rs", rs);
 
       } catch (err) {
-        _iterator.e(err);
+        _iterator2.e(err);
       } finally {
-        _iterator.f();
+        _iterator2.f();
       }
 
       return rs;
     }
   },
   methods: {
+    deleteExecutant: function deleteExecutant(value) {
+      this.selectLoading = true;
+      console.log("user delet", value);
+      var self = this;
+      config["a" /* default */].delete("/gestion-project/executant/" + this.postData.idcontents + "/" + value.uid, {}, {
+        headers: {
+          Authorization: config["a" /* default */].auth
+        }
+      }).then(function (reponse) {
+        if (reponse.status) {
+          //console.log("data after edit :", reponse);
+          self.updateFormValue(false, value);
+          self.selectLoading = false;
+        }
+      }).catch(function (error) {
+        self.selectLoading = false;
+        console.log("error", error);
+      });
+    },
+    updateFormValue: function updateFormValue(add, user) {
+      var form = this.formValues.executant;
+
+      if (add) {
+        form.push(user);
+      } else {
+        var existe = form.filter(function (el) {
+          return el.uid == user.uid;
+        });
+        console.log("existe", existe);
+
+        for (var i in form) {
+          if (existe[0].uid == form[i].uid) {
+            form.splice(i, 1);
+          }
+        }
+      }
+    },
+    addExecutant: function addExecutant(value) {
+      this.selectLoading = true;
+      console.log("user add", value, config["a" /* default */].auth);
+      var self = this;
+      config["a" /* default */].post("/gestion-project/executant/" + this.postData.idcontents + "/" + value.uid, {}, {
+        headers: {
+          Authorization: config["a" /* default */].auth
+        }
+      }).then(function (reponse) {
+        if (reponse.status) {
+          //console.log("data after edit :", reponse);
+          self.selectLoading = false;
+          self.updateFormValue(true, value);
+        }
+      }).catch(function (error) {
+        self.selectLoading = false;
+        console.log("error", error);
+      });
+    },
     onNamespaceLoaded: function onNamespaceLoaded(CKEDITOR) {
       // Add external `placeholder` plugin which will be available for each
       // editor instance on the page.
@@ -492,16 +613,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     EditProject: function EditProject() {
       var _this2 = this;
 
+      var self = this;
       Utilities["a" /* default */].formatData(this.postData, this.dHeure, this.fHeure).then(function (reponse) {
         //console.log(" EditProject : ", reponse);
-        config["a" /* default */].post("/gestion-project/save-update", reponse).then(function (reponse) {
+        config["a" /* default */].post("/gestion-project/save-update", reponse, {
+          headers: {
+            Authorization: config["a" /* default */].auth
+          }
+        }).then(function (reponse) {
           if (reponse.status) {
             //console.log("data after edit :", reponse);
-            _this2.$emit("edition-ok", reponse);
+            self.$emit("edition-ok", reponse);
           }
 
           _this2.isLoading = false;
         }).catch(function (error) {
+          self.$emit("edition-error");
           console.log("error", error);
         });
       });
@@ -558,17 +685,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     PostNewProject: function PostNewProject(idc) {
       var _this3 = this;
 
+      var self = this;
       Utilities["a" /* default */].formatAddData(this.postData, idc, this.level).then(function (reponse) {
         console.log("created", reponse);
-        config["a" /* default */].post("/gestion-project/save-update", reponse).then(function (reponse) {
+        config["a" /* default */].post("/gestion-project/save-update", reponse, {
+          headers: {
+            Authorization: config["a" /* default */].auth
+          }
+        }).then(function (reponse) {
           if (reponse.status) {
-            _this3.request = reponse.data[0];
-
-            _this3.$emit("addnew-ok");
+            self.request = reponse.data[0];
+            self.$emit("addnew-ok");
           }
 
           _this3.isLoading = false;
         }).catch(function (error) {
+          self.$emit("addnew-error");
           console.log("error", error);
         });
       });
@@ -594,780 +726,12 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   null,
-  "78d8e4a0",
+  "4f76eac5",
   null
   
 )
 
 /* harmony default export */ var PopUpContent = __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "4bd1":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/AddNewProject.vue?vue&type=template&id=8cb8c75e&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('CRow',{staticClass:"ml-2 mt-n2 d-flex",attrs:{"alignVertical":"center"}},[_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Nouveau projet'),expression:"'Nouveau projet'"}],attrs:{"size":"sm","color":"warning","shape":"pill"},on:{"click":_vm.modalAddOn}},[_c('CIcon',{staticClass:"text-white",attrs:{"name":"cilPlus","height":35,"size":"xl"}})],1),(_vm.showSideText)?_c('h6',{staticClass:"ml-1 mt-1"},[_vm._v("Nouveau projet")]):_vm._e()],1),_c('CModal',{attrs:{"size":"lg","title":"Nouveau projet","color":"warning","show":_vm.modalAdd,"footer":false},on:{"update:show":function($event){_vm.modalAdd=$event}}},[_c('PopUpContent',{ref:"child",attrs:{"formValues":_vm.formValues,"btn-state":_vm.btnStateAdd}}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.modalAdd = false}}},[_vm._v(" Cancel ")]),_c('CButton',{staticClass:"mx-1",attrs:{"color":_vm.btnStateAdd.state ? 'warning' : 'light'},on:{"click":_vm.PostNewProject}},[_vm._v(" Save ")])],1)])],2)],1)}
-var staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/views/App/project/AddNewProject.vue?vue&type=template&id=8cb8c75e&
-
-// EXTERNAL MODULE: ./node_modules/highlight.js/lib/index.js
-var lib = __webpack_require__("1487");
-var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
-
-// EXTERNAL MODULE: ./src/views/App/project/PopUpContent.vue + 4 modules
-var PopUpContent = __webpack_require__("2a5d");
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/AddNewProject.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ var AddNewProjectvue_type_script_lang_js_ = ({
-  components: {
-    PopUpContent: PopUpContent["default"]
-  },
-  props: {
-    showSideText: {
-      type: Boolean,
-      default: null
-    }
-  },
-  data: function data() {
-    return {
-      postData: {
-        starttime: "",
-        endtime: "",
-        title: "",
-        text: ""
-      },
-      btnStateAdd: {
-        state: false
-      },
-      editorData: "<p>content...</p>",
-      selected: "projet",
-      modalAdd: false,
-      editorConfig: {
-        extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime"
-      },
-      options: [{
-        value: "projet",
-        label: "Projet"
-      }, {
-        value: "tache",
-        label: "Tâche"
-      }, {
-        value: "memos",
-        label: "Mémos"
-      }],
-      formValues: {}
-    };
-  },
-  mounted: function mounted() {},
-  computed: {
-    ser: function ser() {
-      var newDiv = document.createElement("div");
-      newDiv.innerHTML = this.editorData;
-      newDiv.querySelectorAll("pre code").forEach(function (block) {
-        lib_default.a.highlightBlock(block);
-      });
-      return newDiv.outerHTML;
-    }
-  },
-  methods: {
-    modalAddOn: function modalAddOn() {
-      this.modalAdd = true;
-      this.$refs.child.TimeNow();
-    },
-    PostNewProject: function PostNewProject() {
-      if (this.btnStateAdd.state) {
-        this.modalAdd = false;
-        this.$refs.child.PostNewProject();
-      }
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/views/App/project/AddNewProject.vue?vue&type=script&lang=js&
- /* harmony default export */ var project_AddNewProjectvue_type_script_lang_js_ = (AddNewProjectvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-var componentNormalizer = __webpack_require__("2877");
-
-// CONCATENATED MODULE: ./src/views/App/project/AddNewProject.vue
-
-
-
-
-
-/* normalize component */
-
-var component = Object(componentNormalizer["a" /* default */])(
-  project_AddNewProjectvue_type_script_lang_js_,
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ var AddNewProject = __webpack_exports__["a"] = (component.exports);
-
-/***/ }),
-
-/***/ "b8a6":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("bc3a");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var wbuutilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("bfb1");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-/* harmony default export */ __webpack_exports__["a"] = (_objectSpread(_objectSpread({}, wbuutilities__WEBPACK_IMPORTED_MODULE_1__[/* AjaxBasic */ "a"]), {}, {
-  TestDomain: "http://gestiontaches.kksa",
-  baseUrl: "http://gestion-taches-vps.habeuk.com",
-  //baseUrl: "http://gestion-taches.kksa",
-  ModeDebug: true,
-  postOld: function postOld(request) {
-    var _this = this;
-
-    var datas = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    return new Promise(function (resolv) {
-      var configs = {
-        headers: {}
-      };
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(_this.baseUrl + request, datas, configs).then(function (reponse) {
-        //console.log("Config success : ", reponse);
-        resolv({
-          status: true,
-          data: reponse.data,
-          reponse: reponse
-        });
-      }).catch(function (error) {
-        resolv({
-          status: false,
-          error: error.response
-        });
-      });
-    });
-  },
-  getOld: function getOld(request) {
-    var _this2 = this;
-
-    var datas = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    // console.log("ssss");
-    return new Promise(function (resolv) {
-      var configs = {
-        headers: {}
-      };
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(_this2.baseUrl + request, datas, configs).then(function (reponse) {
-        console.log("Config get success : ", reponse);
-        resolv({
-          status: true,
-          data: reponse.data,
-          reponse: reponse
-        });
-      }).catch(function (error) {
-        resolv({
-          status: false,
-          error: error.response
-        });
-      });
-    });
-  },
-  color: function color(valueCurent, maxValue) {
-    var value = 0;
-    var $color;
-
-    if (maxValue > 0 && valueCurent > 0) {
-      value = valueCurent * 100 / maxValue;
-    }
-
-    if (value <= 25) {
-      $color = "success";
-    } else if (value > 25 && value <= 50) {
-      $color = "info";
-    } else if (value > 50 && value <= 85) {
-      $color = "secondary";
-    } else if (value > 85 && value <= 100) {
-      $color = "warning";
-    } else {
-      $color = "danger";
-    }
-
-    return $color;
-  }
-}));
-
-/***/ }),
-
-/***/ "d111":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c1df");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-var Utilities = {
-  /**
-   * Prepare les données pour la sauvagarde.
-   */
-  formatData: function formatData(datas) {
-    return new Promise(function (resolv) {
-      console.log("fdate : ", datas);
-      var result = [];
-
-      if (datas && datas.titre) {
-        var ddp = moment__WEBPACK_IMPORTED_MODULE_0___default()(datas.date_depart_proposer + " " + datas.heure_debut, "YYYY-MM-DD  HH:mm").unix();
-        var dfp = moment__WEBPACK_IMPORTED_MODULE_0___default()(datas.date_fin_proposer + " " + datas.heure_fin, "YYYY-MM-DD  HH:mm").unix(); //edition de la table contents
-
-        var table1 = {
-          table: "gestion_project_contents",
-          fields: {
-            text: datas.text,
-            titre: datas.titre,
-            type: datas.type,
-            privaty: datas.privaty ? 1 : 0
-          },
-          action: "update"
-        };
-
-        if (datas.idcontents) {
-          table1.where = [{
-            column: "idcontents",
-            value: datas.idcontents
-          }];
-        } //Edition de la table times
-
-
-        if (datas.date_depart_proposer.length && datas.date_fin_proposer.length) {
-          var table2 = {
-            table: "gestion_project_times",
-            fields: {
-              status: datas.status,
-              date_depart_proposer: ddp,
-              date_fin_proposer: dfp
-            },
-            action: "update",
-            where: [{
-              column: "idcontents",
-              value: datas.idcontents
-            }]
-          };
-
-          if (parseInt(datas.status) === 1 && (!datas.date_fin_reel || datas.date_fin_reel === "")) {
-            table2.fields.date_fin_reel = moment__WEBPACK_IMPORTED_MODULE_0___default()().unix();
-          }
-
-          result.push(table2);
-        } //mise à jour de la table gestion times
-
-
-        result.push(table1);
-        console.log("ligne", result);
-      }
-
-      resolv(result);
-    });
-  },
-
-  /**
-   * preparation des données pour la mise à jour de la hiérachie
-   */
-  formatHierarchie: function formatHierarchie(datas, nid) {
-    return new Promise(function (resolv) {
-      console.log("fdate : ", nid);
-      var result = [];
-
-      if (datas && datas.titre) {
-        //Edition de la table times
-        var table3 = {
-          table: "gestion_project_hierachie",
-          fields: {
-            idcontentsparent: nid.id,
-            idcontents: datas.idcontents,
-            ordre: nid.ordre
-          },
-          action: "update",
-          where: [{
-            column: "idcontents",
-            value: datas.idcontents
-          }]
-        }; //mise à jour de la table gestion times
-
-        result.push(table3);
-        console.log("ligne", result);
-      }
-
-      resolv(result);
-    });
-  },
-
-  /**
-   * un tableau
-   * @param [] cards
-   */
-  formCard: function formCard(cards) {
-    var results = [];
-
-    for (var i in cards) {
-      var card = cards[i];
-
-      if (card.cards) {
-        card.cards = this.formCard(card.cards);
-      }
-
-      results.push(_objectSpread(_objectSpread({}, card), {}, {
-        open: false
-      }));
-    }
-
-    return results;
-  },
-
-  /**
-   * Format les données pour la creation d'un nouveau project, taches, memos, à faire , bugs ...
-   * @param datas Array
-   * @param idc Number, id du contenu encours.
-   */
-  formatAddData: function formatAddData(datas) {
-    var idc = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var level = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    //console.log("formatAddData datas :", datas, "\n idc", idc);
-    return new Promise(function (resolv) {
-      var childstable = [];
-      var state = parseInt(datas.status, 10);
-      level = parseInt(level, 10);
-
-      if (datas.date_depart_proposer.length && datas.date_fin_proposer) {
-        var ddp = moment__WEBPACK_IMPORTED_MODULE_0___default()(datas.date_depart_proposer + " " + datas.heure_debut, "YYYY-MM-DD  HH:mm").unix();
-        var dfp = moment__WEBPACK_IMPORTED_MODULE_0___default()(datas.date_fin_proposer + " " + datas.heure_fin, "YYYY-MM-DD  HH:mm").unix();
-        childstable.push({
-          table: "gestion_project_times",
-          fields: {
-            date_depart_proposer: ddp,
-            date_fin_proposer: dfp,
-            status: state
-          }
-        });
-      }
-
-      childstable.push({
-        table: "gestion_project_hierachie",
-        fields: {
-          idcontentsparent: idc,
-          ordre: 0,
-          level: level
-        }
-      });
-      var result = [];
-
-      if (datas && datas.titre) {
-        var ligne = {
-          table: "gestion_project_contents",
-          fields: {
-            text: datas.text,
-            titre: datas.titre,
-            type: datas.type,
-            privaty: datas.privaty ? 1 : 0
-          },
-          action: "insert"
-        };
-        ligne.childstable = {
-          colum_id_name: "idcontents",
-          tables: childstable
-        };
-        result.push(ligne);
-      }
-
-      resolv(result);
-    });
-  },
-  // Remplissage des champs pour l’édition d’un contenu du pop-up avec les contenus à éditer
-  fomatVal: function fomatVal(result, postData) {
-    return new Promise(function (resolv) {
-      //console.log("postData : ", postData);
-
-      /*
-      if (result.date_depart_proposer || result.date_fin_proposer) {
-        console.log("val.date_depart_proposer ", result);
-      }
-      /**/
-      if (result.idcontents) {
-        postData.idcontents = result.idcontents;
-      }
-
-      for (var i in postData) {
-        if (result[i]) {
-          if (i === "date_depart_proposer") {
-            postData[i] = moment__WEBPACK_IMPORTED_MODULE_0___default.a.unix(result[i]).format("YYYY-MM-DD");
-            postData.heure_debut = moment__WEBPACK_IMPORTED_MODULE_0___default.a.unix(result[i]).format("HH:mm");
-          } else if (i === "date_fin_proposer") {
-            postData[i] = moment__WEBPACK_IMPORTED_MODULE_0___default.a.unix(result[i]).format("YYYY-MM-DD");
-            postData.heure_fin = moment__WEBPACK_IMPORTED_MODULE_0___default.a.unix(result[i]).format("HH:mm");
-          } else if (i === "privaty") {
-            postData[i] = result[i] == "0" ? 0 : 1;
-          } else {
-            postData[i] = result[i];
-          }
-        }
-      }
-
-      resolv();
-    });
-  },
-  // format data for deleted action
-  formatDeleteData: function formatDeleteData(datas) {
-    return new Promise(function (resolv) {
-      var result = [];
-
-      if (datas && datas.titre) {
-        var ligne = {
-          table: "gestion_project_contents",
-          fields: {}
-        };
-        ligne.action = "delete";
-
-        if (datas.idcontents) {
-          ligne.where = [{
-            column: "idcontents",
-            value: datas.idcontents
-          }];
-        }
-
-        ligne.childstable = {
-          tables: [{
-            table: "gestion_project_times",
-            fields: {},
-            action: "delete",
-            where: [{
-              column: "idcontents",
-              value: datas.idcontents
-            }]
-          }, {
-            table: "gestion_project_hierachie",
-            fields: {},
-            action: "delete",
-            where: [{
-              column: "idcontents",
-              value: datas.idcontents
-            }]
-          }]
-        };
-        result.push(ligne);
-        console.log("ligne", result);
-      }
-
-      resolv(result);
-    });
-  },
-  //client and societé format
-
-  /**
-   * preparation des données pour l'ajout d'un nouveau client
-   */
-  formatDataClient: function formatDataClient(datas) {
-    return new Promise(function (resolv) {
-      var result = [];
-
-      if (datas && datas.nom) {
-        //edition de la table contents
-        var table1 = {
-          table: "gestion_project_client",
-          fields: {
-            nom: datas.nom,
-            uid: datas.uid,
-            prenom: datas.prenom,
-            phone: datas.phone,
-            adresse: datas.adresse,
-            fonction: datas.fonction,
-            idsociete: datas.idsociete
-          },
-          action: "update"
-        };
-
-        if (datas.idclient) {
-          table1.where = [{
-            column: "idclient",
-            value: datas.idclient
-          }];
-        } //mise à jour de la table gestion times
-
-
-        result.push(table1);
-      }
-
-      resolv(result);
-    });
-  },
-
-  /**
-   * preparation des données pour l'ajout d'une nouvelle société
-   */
-  formatDataSte: function formatDataSte(datas) {
-    return new Promise(function (resolv) {
-      var result = [];
-
-      if (datas && datas.nom) {
-        //edition de la table contents
-        var table1 = {
-          table: "gestion_project_societe",
-          fields: {
-            nom: datas.nom,
-            email: datas.email,
-            phone: datas.phone,
-            adresse: datas.adresse,
-            siteweb: datas.siteweb
-          },
-          action: "update"
-        };
-
-        if (datas.idsociete) {
-          table1.where = [{
-            column: "idsociete",
-            value: datas.idsociete
-          }];
-        } //mise à jour de la table societe
-
-
-        result.push(table1);
-      }
-
-      resolv(result);
-    });
-  },
-  // format data for deleted action of entitie client or societe
-  formatDeleteClient: function formatDeleteClient(datas) {
-    return new Promise(function (resolv) {
-      var result = [];
-
-      if (datas.idclient) {
-        var ligne = {
-          table: "gestion_project_client",
-          fields: {},
-          action: "delete",
-          where: [{
-            column: "idclient",
-            value: datas.idclient
-          }]
-        };
-        result.push(ligne);
-        console.log("ligne 1", result);
-      } else if (datas.idsociete) {
-        ligne = {
-          table: "gestion_project_client",
-          fields: {},
-          action: "delete",
-          where: [{
-            column: "idsociete",
-            value: datas.idsociete
-          }]
-        };
-        var ligne1 = {
-          table: "gestion_project_societe",
-          fields: {},
-          action: "delete",
-          where: [{
-            column: "idsociete",
-            value: datas.idsociete
-          }]
-        };
-        result.push(ligne);
-        result.push(ligne1);
-        console.log("ligne2", result);
-      }
-
-      resolv(result);
-    });
-  },
-  // Format data for create new invoice
-  formatAddInvoice: function formatAddInvoice(datas, update) {
-    return new Promise(function (resolv) {
-      var result = [];
-      var cat = moment__WEBPACK_IMPORTED_MODULE_0___default()().unix();
-      var uat = moment__WEBPACK_IMPORTED_MODULE_0___default()().unix();
-      console.log("fadin :", datas);
-
-      if (datas && datas.numero) {
-        // Edition de la table contents.
-        var table1 = {
-          table: "gestion_project_invoice",
-          fields: {
-            numero: datas.numero,
-            idcontents: datas.idcontents !== "" ? datas.idcontents : null,
-            idclients: datas.idclients,
-            objet: datas.objet,
-            creaated: cat,
-            proprietaire: datas.proprietaire,
-            updated: uat
-          }
-        };
-
-        if (update == true) {
-          table1.where = [{
-            column: "numero",
-            value: datas.numero
-          }];
-          table1.action = "update";
-        } //mise à jour de la table societe
-
-
-        result.push(table1);
-      }
-
-      resolv(result);
-    });
-  },
-  // suppression d’une facture
-  formatDeleteInvoice: function formatDeleteInvoice(datas) {
-    return new Promise(function (resolv) {
-      var result = [];
-
-      if (datas && datas.numero) {
-        //edition de la table contents
-        var table1 = {
-          table: "gestion_project_invoice",
-          fields: {},
-          action: "delete",
-          where: [{
-            column: "numero",
-            value: datas.numero
-          }]
-        };
-        var table2 = {
-          table: "gestion_project_invoice_list",
-          fields: {},
-          action: "delete",
-          where: [{
-            column: "idinvoice",
-            value: datas.numero
-          }]
-        }; //mise à jour de la table societe
-
-        result.push(table2);
-        result.push(table1);
-      }
-
-      resolv(result);
-    });
-  },
-  formatAddInvoiceList: function formatAddInvoiceList(datas, update) {
-    return new Promise(function (resolv) {
-      var result = [];
-
-      if (datas && datas.titre) {
-        //edition de la table contents
-        var table1 = {
-          table: "gestion_project_invoice_list",
-          fields: {
-            titre: datas.titre,
-            idcontents: datas.idcontents !== "" ? datas.idcontents : null,
-            description: datas.description,
-            cout: datas.cout,
-            idinvoice: datas.idinvoice
-          }
-        };
-
-        if (update == true) {
-          table1.where = [{
-            column: "idinvoicelist",
-            value: datas.idinvoicelist
-          }];
-          table1.action = "update";
-        } // mise à jour de la table societe
-
-
-        result.push(table1);
-      }
-
-      resolv(result);
-    });
-  },
-  formatDeleteInvoiceList: function formatDeleteInvoiceList(datas) {
-    return new Promise(function (resolv) {
-      var result = [];
-      console.log("fadin :", datas);
-
-      if (datas && datas.idinvoicelist) {
-        // Edition de la table contents
-        var table1 = {
-          table: "gestion_project_invoice_list",
-          fields: {},
-          action: "delete",
-          where: [{
-            column: "idinvoicelist",
-            value: datas.idinvoicelist
-          }]
-        }; // Mise à jour de la table societe
-
-        result.push(table1);
-      }
-
-      resolv(result);
-    });
-  }
-};
-/* harmony default export */ __webpack_exports__["a"] = (Utilities);
 
 /***/ }),
 
@@ -1377,6 +741,7 @@ var Utilities = {
 "use strict";
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b8a6");
 
+var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth;
 /* harmony default export */ __webpack_exports__["a"] = ({
   /**
    * selectionne un enssemble de données à partir d'une requette personnalisé
@@ -1399,7 +764,11 @@ var Utilities = {
       query += " ORDER BY  c.`idcontents` DESC";
       query += " limit 0,50 "; //console.log("query :: ", query);
 
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/selectdatas", query).then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/selectdatas", query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         if (reponse.status) {
           resolv(reponse.data);
         } else {
@@ -1410,7 +779,11 @@ var Utilities = {
   },
   selectTypes: function selectTypes() {
     return new Promise(function (resolv) {
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].get("/gestion-project/select/project-type").then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].get("/gestion-project/select/project-type", {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -1430,7 +803,11 @@ var Utilities = {
         }
       }
 
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-project", query).then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-project", query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -1457,7 +834,11 @@ var Utilities = {
         }
       }
 
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -1484,7 +865,11 @@ var Utilities = {
         }
       }
 
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -1512,7 +897,11 @@ var Utilities = {
       }
 
       query += " limit 0,50 ";
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -1540,7 +929,11 @@ var Utilities = {
       }
 
       query += " limit 0,50 ";
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -1559,7 +952,11 @@ var Utilities = {
       query += " from ";
       query += _this5.formatStringTable(table);
       query += " limit 0,50 ";
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query).then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select", query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -1574,7 +971,11 @@ var Utilities = {
     return new Promise(function (resolv) {
       var query = "";
       query += " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-project", query).then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-project", query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         // console.log("selectDatas : ", reponse);
         if (reponse.status) {
           resolv(reponse.data);
@@ -1590,7 +991,7 @@ var Utilities = {
       operator: "=",
       value: 2
     }];
-    return new Promise(function (resolv) {
+    return new Promise(function (resolv, error) {
       var query = "";
 
       if (where.length) {
@@ -1602,12 +1003,51 @@ var Utilities = {
       query += " ORDER BY  c.`idcontents` DESC ";
       query += " limit 0,20 "; //console.log("query :: ", query);
 
-      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-tache-enours", query).then(function (reponse) {
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-tache-enours", query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
         if (reponse.status) {
           resolv(reponse.data);
         } else {
           resolv([]);
         }
+      }).catch(function (er) {
+        error(er);
+      });
+    });
+  },
+  SelectMesTaches: function SelectMesTaches(uid) {
+    var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [{
+      column: "t.uid",
+      operator: "=",
+      value: 8
+    }];
+    return new Promise(function (resolv, error) {
+      var query = "";
+
+      if (where.length) {
+        for (var i in where) {
+          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
+        }
+      }
+
+      query += " ORDER BY  c.`idcontents` DESC ";
+      query += " limit 0,20 "; //console.log("query :: ", query);
+
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-mes-taches/" + uid, query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      }).catch(function (er) {
+        error(er);
       });
     });
   },
