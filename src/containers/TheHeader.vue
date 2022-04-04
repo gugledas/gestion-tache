@@ -21,7 +21,7 @@
         v-c-tooltip="{
           content: 'Afficher les dernieres taches visités.',
           html: true,
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         }"
       >
         <CIcon name="cilEyedropper"> </CIcon>
@@ -35,20 +35,20 @@
         v-c-tooltip="{
           content: 'Afficher les taches encours.',
           html: true,
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         }"
       >
         <CIcon name="cil-settings"> </CIcon>
       </CButton>
       <CButton
-           v-c-tooltip="'Mes tâches'"
-            size="sm"
-            shape=""
-            variant="ghost"
-            color="primary"
-            @click="loadMesTaches"
-          >
-            <CIcon name="cil-address-book" size="sm" />
+        v-c-tooltip="'Mes tâches'"
+        size="sm"
+        shape=""
+        variant="ghost"
+        color="primary"
+        @click="loadMesTaches"
+      >
+        <CIcon name="cil-address-book" size="sm" />
       </CButton>
     </CHeaderNav>
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
@@ -57,14 +57,9 @@
 
     <CHeaderNav class="mr-5 ml-sm-auto mt-1">
       <CLink v-c-tooltip="'Log Out'"
-          ><CButton
-            size=""
-            shape="pill"
-            color="light"
-            @click="logOut"
-          >
-            <CIcon name="cil-account-logout" size="sm" /></CButton
-        ></CLink>
+        ><CButton size="" shape="pill" color="light" @click="logOut">
+          <CIcon name="cil-account-logout" size="sm"/></CButton
+      ></CLink>
       <AddNewProject></AddNewProject>
 
       <!-- <CHeaderNavItem class="d-md-down-none mx-2">
@@ -95,7 +90,11 @@
       <BreadCrumb></BreadCrumb>
       <div class="ml-auto d-flex flex-wrap aling-items-end">
         <SSearch :styled="true"></SSearch>
-        <CDropdown color="dark" toggler-text="Options" class="d-none ml-sm-n5 mt-2">
+        <CDropdown
+          color="dark"
+          toggler-text="Options"
+          class="d-none ml-sm-n5 mt-2"
+        >
           <CDropdownItem>name</CDropdownItem>
           <CDropdownItem>statut</CDropdownItem>
           <CDropdownItem>Role</CDropdownItem>
@@ -135,7 +134,7 @@
         <td slot="user" slot-scope="{ item }">
           <CLink
             :to="{
-              path: '/projets/' + item.idcontents
+              path: '/projets/' + item.idcontents,
             }"
             class="text-decoration-none"
             ><div @click="modalLast = !modalLast">
@@ -211,16 +210,15 @@
       </template>
     </CModal>
     <TacheEncours
-    
-   @ev_modal_last = "ev_modal_last"
+      @ev_modal_last="ev_modal_last"
       :modalLast="tacheEncoursModal"
       @update-modal="UpdateModalEncour"
     ></TacheEncours>
     <TacheEncours
-    @ev_modal_last = "ev_modal_last"
-    :type="mesTaches"
-    :titleModal="titleMesTaches"
-    :colorModal="colorMesTaches"
+      @ev_modal_last="ev_modal_last"
+      :type="mesTaches"
+      :titleModal="titleMesTaches"
+      :colorModal="colorMesTaches"
       :modalLast="MesTachesModal"
       @update-modal="UpdateModal"
     ></TacheEncours>
@@ -240,14 +238,14 @@ export default {
     SSearch,
     AddNewProject,
     BreadCrumb,
-    TacheEncours
+    TacheEncours,
     //TheHeaderDropdownAccnt
   },
   data() {
     return {
-      mesTaches: 'mestaches',
-      titleMesTaches : 'Mes tâches',
-      colorMesTaches: 'primary',
+      mesTaches: "mestaches",
+      titleMesTaches: "Mes tâches",
+      colorMesTaches: "primary",
       MesTachesModal: false,
       modalLast: false,
       isLoading: false,
@@ -255,9 +253,9 @@ export default {
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" }
+        { key: "activity", _style: "width:600px;" },
       ],
-      tacheEncoursModal: false
+      tacheEncoursModal: false,
     };
   },
   mounted() {
@@ -265,14 +263,20 @@ export default {
   },
   methods: {
     loadMesTaches() {
-      this.MesTachesModal= true
+      this.MesTachesModal = true;
     },
     loadTacheEncour() {
-      this.tacheEncoursModal= true
+      this.tacheEncoursModal = true;
     },
     logOut() {
-      window.localStorage.clear()
-      document.location.pathname = "/pages/login"
+      window.localStorage.clear();
+      let redirectPage = window.location.origin + "#/pages/login";
+      if (window.location.pathname != "/")
+        redirectPage =
+          window.location.origin + window.location.pathname + "#/pages/login";
+      console.log("utilisateur deconnecter", redirectPage);
+      window.location.replace(redirectPage);
+      // document.location.pathname = "#/pages/login";
     },
     LoadTacheData() {
       this.isLoading = true;
@@ -282,14 +286,15 @@ export default {
       });
     },
     ev_modal_last() {
-      this.tacheEncoursModal= false
-       this.MesTachesModal= false
+      this.tacheEncoursModal = false;
+      this.MesTachesModal = false;
     },
     UpdateModalEncour(val) {
       this.tacheEncoursModal = val;
-    },UpdateModal(val) {
-       this.MesTachesModal= val
-    }
-  }
+    },
+    UpdateModal(val) {
+      this.MesTachesModal = val;
+    },
+  },
 };
 </script>

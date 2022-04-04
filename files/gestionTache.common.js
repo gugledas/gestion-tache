@@ -59741,7 +59741,8 @@ module.exports = TO_STRING_TAG_SUPPORT ? {}.toString : function toString() {
   checkUserLogin: function checkUserLogin() {
     var user = JSON.parse(window.localStorage.getItem("user")); //let currentPage = window.location.href
 
-    var redirectPage = window.location.origin + "/pages/login";
+    var redirectPage = window.location.origin + "#/pages/login";
+    if (window.location.pathname != "/") redirectPage = window.location.origin + window.location.pathname + "#/pages/login";
     var hash = window.location.pathname;
     console.log("hash,", hash.includes("/login"), user);
 
@@ -107281,12 +107282,12 @@ var lib = __webpack_require__("e792");
 var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
 var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=2eee1c0a&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=1da9cba2&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('router-view')}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=2eee1c0a&
+// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=1da9cba2&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=script&lang=js&
 //
@@ -107296,11 +107297,17 @@ var staticRenderFns = []
 /* harmony default export */ var Appvue_type_script_lang_js_ = ({
   name: "App",
   mounted: function mounted() {
-    if (window.localStorage.getItem('user')) {
-      this.$store.dispatch('getUtilisateur');
+    if (window.localStorage.getItem("user")) {
+      this.$store.dispatch("getUtilisateur");
     }
 
     this.$store.dispatch("getUser");
+  },
+  computed: {
+    currentRouteName: function currentRouteName() {
+      console.log("route : ", this.$route.name);
+      return this.$route.name;
+    }
   }
 });
 // CONCATENATED MODULE: ./src/App.vue?vue&type=script&lang=js&
@@ -110418,7 +110425,7 @@ var NewFacture = function NewFacture() {
 
 external_commonjs_vue_commonjs2_vue_root_Vue_default.a.use(vue_router_esm);
 /* harmony default export */ var router = (new vue_router_esm({
-  mode: "history",
+  mode: "hash",
   // https://router.vuejs.org/api/#mode
   linkActiveClass: "active",
   scrollBehavior: function scrollBehavior() {

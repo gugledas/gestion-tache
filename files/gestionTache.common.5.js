@@ -1391,28 +1391,28 @@ var component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var TheSidebar = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/containers/TheHeader.vue?vue&type=template&id=4af87b57&
-var TheHeadervue_type_template_id_4af87b57_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('CHeader',{attrs:{"fixed":"","with-subheader":"","light":""}},[_c('CToggler',{staticClass:"ml-3 d-lg-none",attrs:{"in-header":""},on:{"click":function($event){return _vm.$store.commit('toggleSidebarMobile')}}}),_c('CToggler',{staticClass:"ml-3 d-md-down-none",attrs:{"in-header":""},on:{"click":function($event){return _vm.$store.commit('toggleSidebarDesktop')}}}),_c('CHeaderNav',[_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:({
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/containers/TheHeader.vue?vue&type=template&id=df44c39e&
+var TheHeadervue_type_template_id_df44c39e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('CHeader',{attrs:{"fixed":"","with-subheader":"","light":""}},[_c('CToggler',{staticClass:"ml-3 d-lg-none",attrs:{"in-header":""},on:{"click":function($event){return _vm.$store.commit('toggleSidebarMobile')}}}),_c('CToggler',{staticClass:"ml-3 d-md-down-none",attrs:{"in-header":""},on:{"click":function($event){return _vm.$store.commit('toggleSidebarDesktop')}}}),_c('CHeaderNav',[_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:({
         content: 'Afficher les dernieres taches visités.',
         html: true,
-        placement: 'bottom-start'
-      }),expression:"{\n        content: 'Afficher les dernieres taches visités.',\n        html: true,\n        placement: 'bottom-start'\n      }"}],attrs:{"size":"sm","variant":"ghost","color":"warning"},on:{"click":function($event){_vm.modalLast = !_vm.modalLast}}},[_c('CIcon',{attrs:{"name":"cilEyedropper"}})],1),_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:({
+        placement: 'bottom-start',
+      }),expression:"{\n        content: 'Afficher les dernieres taches visités.',\n        html: true,\n        placement: 'bottom-start',\n      }"}],attrs:{"size":"sm","variant":"ghost","color":"warning"},on:{"click":function($event){_vm.modalLast = !_vm.modalLast}}},[_c('CIcon',{attrs:{"name":"cilEyedropper"}})],1),_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:({
         content: 'Afficher les taches encours.',
         html: true,
-        placement: 'bottom-start'
-      }),expression:"{\n        content: 'Afficher les taches encours.',\n        html: true,\n        placement: 'bottom-start'\n      }"}],attrs:{"size":"sm","variant":"ghost","color":"warning"},on:{"click":_vm.loadTacheEncour}},[_c('CIcon',{attrs:{"name":"cil-settings"}})],1),_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Mes tâches'),expression:"'Mes tâches'"}],attrs:{"size":"sm","shape":"","variant":"ghost","color":"primary"},on:{"click":_vm.loadMesTaches}},[_c('CIcon',{attrs:{"name":"cil-address-book","size":"sm"}})],1)],1),_c('CHeaderBrand',{staticClass:"mx-auto d-lg-none",attrs:{"to":"/"}},[_c('CIcon',{attrs:{"name":"logo","height":"48","alt":"Logo"}})],1),_c('CHeaderNav',{staticClass:"mr-5 ml-sm-auto mt-1"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Log Out'),expression:"'Log Out'"}]},[_c('CButton',{attrs:{"size":"","shape":"pill","color":"light"},on:{"click":_vm.logOut}},[_c('CIcon',{attrs:{"name":"cil-account-logout","size":"sm"}})],1)],1),_c('AddNewProject')],1),_c('CSubheader',{staticClass:"px-3"},[_c('BreadCrumb'),_c('div',{staticClass:"ml-auto d-flex flex-wrap aling-items-end"},[_c('SSearch',{attrs:{"styled":true}}),_c('CDropdown',{staticClass:"d-none ml-sm-n5 mt-2",attrs:{"color":"dark","toggler-text":"Options"}},[_c('CDropdownItem',[_vm._v("name")]),_c('CDropdownItem',[_vm._v("statut")]),_c('CDropdownItem',[_vm._v("Role")]),_c('CDropdownDivider'),_c('CDropdownItem',[_vm._v("date")])],1)],1)],1),_c('CModal',{attrs:{"title":"Last Updated","color":"dark","size":"lg","show":_vm.modalLast},on:{"update:show":function($event){_vm.modalLast=$event}}},[_c('div',{staticClass:"d-flex justify-content-end border-bottom-1 mr-3"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Actualiser'),expression:"'Actualiser'"}]},[_c('CButton',{attrs:{"size":"sm","shape":"pill","color":"secondary"},on:{"click":_vm.LoadTacheData}},[_c('CIcon',{attrs:{"name":"cil-reload","size":"sm"}})],1)],1)],1),_c('CDataTable',{staticClass:"m-0 table-borderless",attrs:{"hover":"","responsive":false,"items":_vm.itemsTache,"fields":_vm.tableFields,"header":false,"loading":_vm.isLoading,"cleaner":"","table-filter":"","items-per-page-select":"","items-per-page":10,"pagination":""},scopedSlots:_vm._u([{key:"user",fn:function(ref){
+        placement: 'bottom-start',
+      }),expression:"{\n        content: 'Afficher les taches encours.',\n        html: true,\n        placement: 'bottom-start',\n      }"}],attrs:{"size":"sm","variant":"ghost","color":"warning"},on:{"click":_vm.loadTacheEncour}},[_c('CIcon',{attrs:{"name":"cil-settings"}})],1),_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Mes tâches'),expression:"'Mes tâches'"}],attrs:{"size":"sm","shape":"","variant":"ghost","color":"primary"},on:{"click":_vm.loadMesTaches}},[_c('CIcon',{attrs:{"name":"cil-address-book","size":"sm"}})],1)],1),_c('CHeaderBrand',{staticClass:"mx-auto d-lg-none",attrs:{"to":"/"}},[_c('CIcon',{attrs:{"name":"logo","height":"48","alt":"Logo"}})],1),_c('CHeaderNav',{staticClass:"mr-5 ml-sm-auto mt-1"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Log Out'),expression:"'Log Out'"}]},[_c('CButton',{attrs:{"size":"","shape":"pill","color":"light"},on:{"click":_vm.logOut}},[_c('CIcon',{attrs:{"name":"cil-account-logout","size":"sm"}})],1)],1),_c('AddNewProject')],1),_c('CSubheader',{staticClass:"px-3"},[_c('BreadCrumb'),_c('div',{staticClass:"ml-auto d-flex flex-wrap aling-items-end"},[_c('SSearch',{attrs:{"styled":true}}),_c('CDropdown',{staticClass:"d-none ml-sm-n5 mt-2",attrs:{"color":"dark","toggler-text":"Options"}},[_c('CDropdownItem',[_vm._v("name")]),_c('CDropdownItem',[_vm._v("statut")]),_c('CDropdownItem',[_vm._v("Role")]),_c('CDropdownDivider'),_c('CDropdownItem',[_vm._v("date")])],1)],1)],1),_c('CModal',{attrs:{"title":"Last Updated","color":"dark","size":"lg","show":_vm.modalLast},on:{"update:show":function($event){_vm.modalLast=$event}}},[_c('div',{staticClass:"d-flex justify-content-end border-bottom-1 mr-3"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Actualiser'),expression:"'Actualiser'"}]},[_c('CButton',{attrs:{"size":"sm","shape":"pill","color":"secondary"},on:{"click":_vm.LoadTacheData}},[_c('CIcon',{attrs:{"name":"cil-reload","size":"sm"}})],1)],1)],1),_c('CDataTable',{staticClass:"m-0 table-borderless",attrs:{"hover":"","responsive":false,"items":_vm.itemsTache,"fields":_vm.tableFields,"header":false,"loading":_vm.isLoading,"cleaner":"","table-filter":"","items-per-page-select":"","items-per-page":10,"pagination":""},scopedSlots:_vm._u([{key:"user",fn:function(ref){
       var item = ref.item;
 return _c('td',{},[_c('CLink',{staticClass:"text-decoration-none",attrs:{"to":{
-            path: '/projets/' + item.idcontents
+            path: '/projets/' + item.idcontents,
           }}},[_c('div',{on:{"click":function($event){_vm.modalLast = !_vm.modalLast}}},[_vm._v(" "+_vm._s(item.titre)+" "),(item.privaty == '1')?_c('CBadge',{attrs:{"color":"danger","position":"top-start","shape":"pill"}},[_vm._v(" Privé ")]):_vm._e()],1),_c('div',{staticClass:"small text-muted mt-1"},[_c('span',[[_vm._v("New")],(false)?undefined:_vm._e()],2),_vm._v(" | Crée le: "+_vm._s(item.created_at)+" ")])])],1)}},{key:"usage",fn:function(ref){
           var item = ref.item;
 return _c('td',{},[_c('div',{staticClass:"clearfix"},[_c('div',{staticClass:"float-left"}),_c('div',{staticClass:"float-right"},[_c('small',{staticClass:"text-bold"},[_c('strong',[_vm._v("Updated: ")]),_vm._v(" "+_vm._s(item.update_at))])])])])}},{key:"activity",fn:function(ref){
           var item = ref.item;
 return _c('td',{},[_c('CRow',{staticClass:"ml-4 d-flex justify-content-arround flex-nowrap"},[_c('CLink',{staticClass:"mx-3",attrs:{"color":"primary","variant":"ghost","shape":"pill","size":"sm"}},[_vm._v(" "+_vm._s(item.type)+" ")])],1)],1)}}])}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"})])],2),_c('TacheEncours',{attrs:{"modalLast":_vm.tacheEncoursModal},on:{"ev_modal_last":_vm.ev_modal_last,"update-modal":_vm.UpdateModalEncour}}),_c('TacheEncours',{attrs:{"type":_vm.mesTaches,"titleModal":_vm.titleMesTaches,"colorModal":_vm.colorMesTaches,"modalLast":_vm.MesTachesModal},on:{"ev_modal_last":_vm.ev_modal_last,"update-modal":_vm.UpdateModal}})],1)}
-var TheHeadervue_type_template_id_4af87b57_staticRenderFns = []
+var TheHeadervue_type_template_id_df44c39e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/containers/TheHeader.vue?vue&type=template&id=4af87b57&
+// CONCATENATED MODULE: ./src/containers/TheHeader.vue?vue&type=template&id=df44c39e&
 
 // EXTERNAL MODULE: ./src/views/App/search/Search.vue + 4 modules
 var Search = __webpack_require__("c71b");
@@ -1698,8 +1698,8 @@ var BreadCrumb_component = Object(componentNormalizer["a" /* default */])(
 // EXTERNAL MODULE: ./src/views/App/config/SelectDb.js
 var SelectDb = __webpack_require__("f0ae");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/Steph/Header/TacheEncours.vue?vue&type=template&id=0f1b9d8a&scoped=true&
-var TacheEncoursvue_type_template_id_0f1b9d8a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('CModal',{attrs:{"title":_vm.titleModal,"size":"lg","color":_vm.colorModal,"show":_vm.modalLastStatus},on:{"update:show":function($event){_vm.modalLastStatus=$event}}},[_vm._v(" user: "),_c('pre',[_vm._v(" "+_vm._s(_vm.users)+" ")]),_c('pre',[_vm._v(" "+_vm._s(_vm.current_user)+" ")]),_c('CRow',[_c('CCol',{attrs:{"col":"4"}},[_c('CSelect',{attrs:{"options":_vm.users,"label":"Nom de l'utilisateur :","placeholder":"Select user tasks","multiple":false},on:{"change":_vm.LoadTacheData},model:{value:(_vm.current_user),callback:function ($$v) {_vm.current_user=$$v},expression:"current_user"}})],1)],1),_c('CDataTable',{staticClass:"m-0 table-borderless",attrs:{"hover":"","responsive":false,"items":_vm.itemsTache,"fields":_vm.tableFields,"header":false,"loading":_vm.isLoading,"cleaner":"","table-filter":"","items-per-page-select":"","items-per-page":10,"pagination":""},scopedSlots:_vm._u([{key:"user",fn:function(ref){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/Steph/Header/TacheEncours.vue?vue&type=template&id=21eba84d&scoped=true&
+var TacheEncoursvue_type_template_id_21eba84d_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('CModal',{attrs:{"title":_vm.titleModal,"size":"lg","color":_vm.colorModal,"show":_vm.modalLastStatus},on:{"update:show":function($event){_vm.modalLastStatus=$event}}},[_c('CRow',[_c('CCol',{attrs:{"col":"4"}},[_c('CSelect',{attrs:{"options":_vm.users,"label":"Nom de l'utilisateur :","placeholder":"Select user tasks","multiple":false},on:{"change":_vm.LoadTacheData},model:{value:(_vm.current_user),callback:function ($$v) {_vm.current_user=$$v},expression:"current_user"}})],1)],1),_c('CDataTable',{staticClass:"m-0 table-borderless",attrs:{"hover":"","responsive":false,"items":_vm.itemsTache,"fields":_vm.tableFields,"header":false,"loading":_vm.isLoading,"cleaner":"","table-filter":"","items-per-page-select":"","items-per-page":10,"pagination":""},scopedSlots:_vm._u([{key:"user",fn:function(ref){
 var item = ref.item;
 return _c('td',{},[_c('CLink',{staticClass:"text-decoration-none",attrs:{"to":{
           path: '/projets/' + item.idcontents,
@@ -1708,10 +1708,10 @@ return _c('td',{},[_c('CLink',{staticClass:"text-decoration-none",attrs:{"to":{
 return _c('td',{attrs:{"width":"300"}},[_vm._v(" "+_vm._s(_vm.progressItem(item))+" "),(item.val && item.max)?_c('CProgress',{staticClass:"progress-xs",staticStyle:{"height":"10px"},attrs:{"animated":item.status === '1' || item.status === '3' ? false : true,"showPercentage":"","striped":item.status === '1' || item.status === '3' ? false : true,"max":item.max,"value":item.val,"color":_vm.color(item.val, item.max)}}):_vm._e()],1)}},{key:"activity",fn:function(ref){
         var item = ref.item;
 return _c('td',{},[_c('CRow',{staticClass:"ml-4 d-flex justify-content-arround flex-nowrap"},[_c('CLink',{staticClass:"mx-3",attrs:{"color":"primary","variant":"ghost","shape":"pill","size":"sm"}},[_vm._v(" "+_vm._s(item.type)+" ")])],1)],1)}}])}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Actualiser'),expression:"'Actualiser'"}]},[_c('CButton',{attrs:{"size":"sm","shape":"pill","color":"secondary"},on:{"click":_vm.LoadTacheData}},[_c('CIcon',{attrs:{"name":"cil-reload","size":"sm"}})],1)],1)],1)])],2)}
-var TacheEncoursvue_type_template_id_0f1b9d8a_scoped_true_staticRenderFns = []
+var TacheEncoursvue_type_template_id_21eba84d_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/Steph/Header/TacheEncours.vue?vue&type=template&id=0f1b9d8a&scoped=true&
+// CONCATENATED MODULE: ./src/Steph/Header/TacheEncours.vue?vue&type=template&id=21eba84d&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/moment/moment.js
 var moment = __webpack_require__("c1df");
@@ -1724,9 +1724,6 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-//
-//
-//
 //
 //
 //
@@ -2012,19 +2009,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
   Header_TacheEncoursvue_type_script_lang_js_,
-  TacheEncoursvue_type_template_id_0f1b9d8a_scoped_true_render,
-  TacheEncoursvue_type_template_id_0f1b9d8a_scoped_true_staticRenderFns,
+  TacheEncoursvue_type_template_id_21eba84d_scoped_true_render,
+  TacheEncoursvue_type_template_id_21eba84d_scoped_true_staticRenderFns,
   false,
   null,
-  "0f1b9d8a",
+  "21eba84d",
   null
   
 )
 
 /* harmony default export */ var TacheEncours = (TacheEncours_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/containers/TheHeader.vue?vue&type=script&lang=js&
-//
-//
 //
 //
 //
@@ -2269,9 +2264,9 @@ var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
   },
   data: function data() {
     return {
-      mesTaches: 'mestaches',
-      titleMesTaches: 'Mes tâches',
-      colorMesTaches: 'primary',
+      mesTaches: "mestaches",
+      titleMesTaches: "Mes tâches",
+      colorMesTaches: "primary",
       MesTachesModal: false,
       modalLast: false,
       isLoading: false,
@@ -2302,7 +2297,10 @@ var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
     },
     logOut: function logOut() {
       window.localStorage.clear();
-      document.location.pathname = "/pages/login";
+      var redirectPage = window.location.origin + "#/pages/login";
+      if (window.location.pathname != "/") redirectPage = window.location.origin + window.location.pathname + "#/pages/login";
+      console.log("utilisateur deconnecter", redirectPage);
+      window.location.replace(redirectPage); // document.location.pathname = "#/pages/login";
     },
     LoadTacheData: function LoadTacheData() {
       var _this = this;
@@ -2337,8 +2335,8 @@ var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
 
 var TheHeader_component = Object(componentNormalizer["a" /* default */])(
   containers_TheHeadervue_type_script_lang_js_,
-  TheHeadervue_type_template_id_4af87b57_render,
-  TheHeadervue_type_template_id_4af87b57_staticRenderFns,
+  TheHeadervue_type_template_id_df44c39e_render,
+  TheHeadervue_type_template_id_df44c39e_staticRenderFns,
   false,
   null,
   null,

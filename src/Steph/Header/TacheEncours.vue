@@ -5,9 +5,6 @@
     :color="colorModal"
     :show.sync="modalLastStatus"
   >
-    user:
-    <pre> {{ users }} </pre>
-    <pre> {{ current_user }} </pre>
     <CRow>
       <CCol col="4">
         <CSelect

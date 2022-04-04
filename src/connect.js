@@ -3,7 +3,11 @@ export default {
   checkUserLogin() {
     let user = JSON.parse(window.localStorage.getItem("user"));
     //let currentPage = window.location.href
-    let redirectPage = window.location.origin + "/pages/login";
+    let redirectPage = window.location.origin + "#/pages/login";
+    if (window.location.pathname != "/")
+      redirectPage =
+        window.location.origin + window.location.pathname + "#/pages/login";
+
     let hash = window.location.pathname;
     console.log("hash,", hash.includes("/login"), user);
     if (user && user.username && user.password) {
@@ -47,7 +51,7 @@ export default {
       // console.log("aut", user, pass, credentials);
       var data = {
         name: [{ value: user }],
-        password: [{ value: pass }]
+        password: [{ value: pass }],
       };
       config
         .post(
@@ -63,12 +67,12 @@ export default {
           //   }
           // }
         )
-        .then(function (response) {
+        .then(function(response) {
           resolv(response);
         })
-        .catch(function (error) {
+        .catch(function(error) {
           reject(error);
         });
     });
-  }
+  },
 };
