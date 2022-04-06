@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AjaxBasic } from "wbuutilities";
-var formatBasicAuth = function (userName, password) {
+var formatBasicAuth = function(userName, password) {
   var basicAuthCredential = userName + ":" + password;
   var bace64 = btoa(basicAuthCredential);
   return "Basic " + bace64;
@@ -8,19 +8,19 @@ var formatBasicAuth = function (userName, password) {
 export default {
   ...AjaxBasic,
   TestDomain: "http://gestiontaches.kksa",
-  baseUrl: "http://gestion-taches-vps.habeuk.com",
+  baseUrl: "https://gestion-taches-vps.habeuk.com",
   basicAuth: formatBasicAuth("stane", "azabzistany@gmail.com"),
   //baseUrl: "http://gestion-taches.kksa",
   ModeDebug: true,
-  postOld: function (request, datas = {}) {
+  postOld: function(request, datas = {}) {
     return new Promise((resolv) => {
       var configs = {
         //withCredentials: true,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: this.basicAuth
-        }
+          Authorization: this.basicAuth,
+        },
       };
       console.log("Authorization", this.basicAuth);
       axios
@@ -34,7 +34,7 @@ export default {
         });
     });
   },
-  getOld: function (request, datas = {}) {
+  getOld: function(request, datas = {}) {
     // console.log("ssss");
     return new Promise((resolv) => {
       var configs = {
@@ -46,8 +46,8 @@ export default {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: this.basicAuth
-        }
+          Authorization: this.basicAuth,
+        },
       };
       axios
         .get(this.baseUrl + request, datas, configs)
@@ -60,7 +60,7 @@ export default {
         });
     });
   },
-  color: function (valueCurent, maxValue) {
+  color: function(valueCurent, maxValue) {
     let value = 0;
     let $color;
     if (maxValue > 0 && valueCurent > 0) {
@@ -78,5 +78,5 @@ export default {
       $color = "danger";
     }
     return $color;
-  }
+  },
 };

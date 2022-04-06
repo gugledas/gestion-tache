@@ -13,10 +13,10 @@
           placeholder="Select user tasks"
           v-model="current_user"
           @change="LoadTacheData"
-          :multiple="false"
         />
       </CCol>
     </CRow>
+
     <CDataTable
       class="m-0 table-borderless"
       hover
@@ -135,7 +135,7 @@ export default {
   },
   data() {
     return {
-      current_user: null,
+      current_user: "",
       isLoading: false,
       itemsTache: [],
       tableFields: [

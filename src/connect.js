@@ -55,7 +55,7 @@ export default {
       };
       config
         .post(
-          "http://gestiontaches.kksa/login-rx-vuejs/user-connexion",
+          "/login-rx-vuejs/user-connexion",
           data
           // {
           //   headers: {
