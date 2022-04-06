@@ -75,8 +75,8 @@ export default {
   data(){
     return {
       invalidFeedback: "nom d'utilisateur ou mot de passe incorrect",
-      user: "stanee",
-      pass: "azabzistany@gmail.com",
+      user: "",
+      pass: "",
       invalidPass: null,
       invalidUser: null,
       isloading: false
