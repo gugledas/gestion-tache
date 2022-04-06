@@ -56,7 +56,7 @@
     </CHeaderBrand>
 
     <CHeaderNav class="mr-5 d-flex align-items-center ml-sm-auto mt-1">
-      <div class="d-flex mx-3 user-space"><span><CIcon class="mr-2 mb-1" name="cil-user" size="lg"/></span> <span class="logUser">{{currentUser}}</span> </div>
+      <div class="d-flex mx-3 user-space" v-if="currentUser"><span><CIcon class="mr-2 mb-1" name="cil-user" size="lg"/></span> <span class="logUser">{{currentUser}}</span> </div>
       <div><CLink v-c-tooltip="'Log Out'"
         ><CButton size="" shape="pill" color="light" @click="logOut">
           <CIcon name="cil-account-logout" size="sm"/></CButton
