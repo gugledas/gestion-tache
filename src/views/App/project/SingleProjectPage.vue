@@ -4,7 +4,7 @@
       <!-- filtre -->
       <filtre-project @ev-filter="EvFilter"></filtre-project>
     </CRow>
-    <CRow v-if="spinner">
+    <CRow v-if="isLoading ">
       <CSpinner
         class="mx-auto mt-5"
         tag="div"
@@ -12,7 +12,7 @@
         style="width: 4rem; height: 4rem"
       />
     </CRow>
-    <CRow v-if="!spinner">
+    <CRow v-if="!isLoading">
       <CCol md="12">
         <card-jsx
           :dataLoad="dataLoad"
@@ -44,7 +44,7 @@
           :form-values="dataOfFormAdd"
           :utilisateur="utilisateur"
           ref="child"
-          @addnew-ok="LoadProjectData"
+          @addnew-ok="addNewOk"
           @addnew-error="addnewError"
           :level="level"
           :btn-state="btnStateAdd"
@@ -56,16 +56,30 @@
               Cancel
             </CButton>
             <CButton
-              @click="AddNewTask"
+              @click="AddNewTask(true)"
+              class="mx-1 d-flex align-items-center"
+              :color="btnStateAdd.state ? 'dark' : 'light'"
+              desabled
+              >Save & add New : 
+              <CSpinner
+                v-if="spinnerNew"
+                class="mx-2"
+                tag="div"
+                color="light"
+                style="width: 0.8rem; height: 0.8rem"
+              />
+            </CButton>
+            <CButton
+              @click="AddNewTask(false)"
               class="mx-1 d-flex align-items-center"
               :color="btnStateAdd.state ? 'info' : 'light'"
               desabled
-              >Save
+              >Save {{spinner}}
               <CSpinner
                 v-if="spinner"
                 class="mx-2"
                 tag="div"
-                color="primary"
+                color="light"
                 style="width: 0.8rem; height: 0.8rem"
               />
             </CButton>
@@ -150,6 +164,7 @@
               <CButton @click="modalEdit = false" class="mx-1" color="light">
                 Cancel
               </CButton>
+              
               <CButton
                 @click="EditModalPost"
                 class="mx-1 d-flex align-items-center"
@@ -213,6 +228,8 @@ export default {
   data() {
     return {
       spinner: false,
+      spinnerNew : false,
+      isLoading: false,
       dataOfForm: {},
       dataOfFormAdd: {},
       btnStateEdit: { state: false },
@@ -265,6 +282,19 @@ export default {
     }
   },
   methods: {
+   async addNewOk(data) {
+      this.spinner = false
+      
+      
+      if(data && data.level) {
+      let allo = await  this.LoadProjectData()
+      console.log('Actualisation off',allo)
+        this.reOpenModal(data)
+      }else {
+        this.LoadProjectData()
+      }
+     
+    },
     updateUser(){
       this.LoadProjectData(false);
     },
@@ -282,6 +312,7 @@ export default {
     // Hide type project if we want to create  content inside project
 
     HideTypeProject(data) {
+      console.log('hide type',data)
       this.idc = data.idcontents;
       this.level = parseInt(data.level) + 1;
       this.addingModal = true;
@@ -291,22 +322,42 @@ export default {
     // save content edieted
     EditModalPost() {
       if (this.btnStateEdit.state) {
+        this.spinner = true
         // this.modalEdit = false;
         this.$refs.edchild.EditProject();
       }
     },
-    AddNewTask() {
+    reOpenModal(data) {
+     //console.log("reopen",data)
+      this.idc = data.id;
+      this.level = parseInt(data.level) + 1;
+      this.addingModal = true;
+      this.$refs.child.changeType();
+      this.$refs.child.TimeNow();
+    },
+    AddNewTask(nouveau = false) {
+     
       if (this.btnStateAdd.state) {
-        //this.addingModal = false;
+         
+        if(!nouveau) {
+        this.spinner = true
         this.$refs.child.PostNewProject(this.idc);
-      }
+        } else {
+          this.spinnerNew = true
+          this.$refs.child.PostNewProject(this.idc,this.level);
+        }
+      
+     
+       }
+      
     },
     // Request for Loading data on DB
-    LoadProjectData(close) {
+    LoadProjectData() {
       let self = this;
       this.spinner = true;
       this.isLoading = true;
-      config
+     return new Promise ((resolv)=> {
+        config
         .get("/gestion-project/project-with-childs/" + this.idcontents, {
           headers: {
             Authorization: config.auth
@@ -318,10 +369,12 @@ export default {
             console.log("donnée chargées : ", this.dataLoad);
             this.isLoading = false;
             this.spinner = false;
-            if(close) {
+          
             this.addingModal = false;
             this.modalEdit = false;
-            }
+            
+            this.spinnerNew = false
+            resolv (true)
           }
         })
         .catch(function (error) {
@@ -329,11 +382,13 @@ export default {
           self.isLoading = false;
           self.spinner = false;
         });
+     })
     },
     
     addnewError() {
       alert("Une erreur s'est produit");
       this.spinner = false;
+      this.spinnerNew = false;
     },
     EvFilter(filter) {
       var self = this;
@@ -352,7 +407,7 @@ export default {
         .then((reponse) => {
           if (reponse.status) {
             this.dataLoad = Utilities.formCard(reponse.data);
-            console.log("donnée chargées : ", this.dataLoad);
+            console.log("donnée filtrée : ", this.dataLoad);
             this.isLoading = false;
             this.spinner = false;
           }

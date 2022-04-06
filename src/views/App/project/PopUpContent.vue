@@ -92,7 +92,7 @@
       </CRow>
 
       <CRow>
-        <CCol sm="10" class="d-flex">
+        <CCol sm="6" class="d-flex">
           <div class="form-group d-flex align-items-center">
             <span class="pr-3 d-block"> Contenu privée ? </span>
             <CSwitch
@@ -104,6 +104,31 @@
             />
           </div>
         </CCol>
+        <CCol sm="5" class="d-flex">
+          <div class="form-group d-flex align-items-center">
+            <span class="pr-3 d-block">Prime ? </span>
+            <CSwitch
+              class="mr-1"
+              color="danger"
+              shape="pill"
+              type="checkbox"
+              :checked.sync="postData.primeStatus"
+              size="sm"
+              @update:checked="updatePrime"
+            />
+          </div>
+        </CCol>
+        
+        <CCol v-if="postData.primeStatus"  sm="5" class="d-flex align-items-start">
+          <CInput
+           
+            append=".00"
+            description="Montant de la prime:"
+            prepend="F"
+            v-model="postData.primePrice"
+          />
+        </CCol>
+   
         <CCol sm="10">
           <div class="form-group d-none">
             Assigné :
@@ -152,7 +177,6 @@
             @select="addExecutant"
             @remove="deleteExecutant"
           >
-           
           </multiselect>
         </CCol>
       </CRow>
@@ -177,11 +201,13 @@
           />
         </CCol>
       </CRow>
+      
     </div>
   </div>
 </template>
 
 <script>
+
 import Utilities from "./Utilities.js";
 import CKEditor from "ckeditor4-vue";
 import hljs from "highlight.js";
@@ -234,6 +260,8 @@ export default {
         titre: "",
         price: "",
         text: "",
+        primeStatus: null,
+        primePrice: "",
         privaty: true,
         executant: []
       },
@@ -344,7 +372,7 @@ export default {
     formValues: {
       deep: true,
       handler: function (val) {
-        console.log("val : ", val);
+       // console.log("val : ", val);
         Utilities.fomatVal(val, this.postData, this.users).then(() => {});
         //console.log("result :", this.postData, this.fHeure);
         //console.log("debut heure : ", this.dHeure);
@@ -352,6 +380,7 @@ export default {
     }
   },
   computed: {
+    
     users() {
       let user = [];
       if (this.utilisateur && this.utilisateur.length) {
@@ -438,11 +467,52 @@ export default {
     }
   },
   methods: {
+   async updatePrime(value) {
+      if(this.postData.idcontents) {
+
+         console.log("user",value );
+
+      // try   {
+      //   let reponse = await config.post('' + value)
+      //   console.log("user",reponse );
+      // }
+      // catch (er) {
+      //   console.log('er',er)
+      // }
+      //let self = this;
+      // config
+      //   .post(
+      //     "/gestion-project/executant/" +
+      //       this.postData.idcontents +
+      //       "/" +
+      //       value.uid,
+      //     {},
+      //     {
+      //       headers: {
+      //         Authorization: config.auth
+      //       }
+      //     }
+      //   )
+      //   .then((reponse) => {
+      //     if (reponse.status) {
+      //       //console.log("data after edit :", reponse);
+      //       self.selectLoading = false;
+      //       self.updateFormValue(true, value);
+      //     }
+      //   })
+      //   .catch(function (error) {
+      //     self.selectLoading = false;
+      //     console.log("error", error);
+      //   });
+      }
+    },
     deleteExecutant(value) {
-      this.selectLoading = true;
-      console.log("user delet", value);
+      
+      //console.log("user delet", value);
       var self = this;
-      config
+      if(this.postData.idcontents) {
+        this.selectLoading = true;
+        config
         .delete(
           "/gestion-project/executant/" +
             this.postData.idcontents +
@@ -466,6 +536,7 @@ export default {
           self.selectLoading = false;
           console.log("error", error);
         });
+      }
     },
     updateFormValue(add, user) {
       let form = this.formValues.executant;
@@ -473,7 +544,7 @@ export default {
         form.push(user);
       } else {
         let existe = form.filter((el) => el.uid == user.uid);
-        console.log("existe", existe);
+       // console.log("existe", existe);
         for (let i in form) {
           if (existe[0].uid == form[i].uid) {
             form.splice(i, 1);
@@ -482,11 +553,13 @@ export default {
       }
     },
     addExecutant(value) {
-      this.selectLoading = true;
+      
 
-      console.log("user add", value, config.auth);
+     // console.log("user add", value, config.auth);
       let self = this;
-      config
+      if(this.postData.idcontents) {
+        this.selectLoading = true;
+        config
         .post(
           "/gestion-project/executant/" +
             this.postData.idcontents +
@@ -510,6 +583,7 @@ export default {
           self.selectLoading = false;
           console.log("error", error);
         });
+      }
     },
     onNamespaceLoaded(CKEDITOR) {
       // Add external `placeholder` plugin which will be available for each
@@ -641,11 +715,11 @@ export default {
       });
       return result;
     },
-    PostNewProject(idc) {
+    PostNewProject(idc,level) {
       var self = this;
       Utilities.formatAddData(this.postData, idc, this.level).then(
         (reponse) => {
-          console.log("created", reponse);
+        //  console.log("created", reponse);
 
           config
             .post("/gestion-project/save-update", reponse, {
@@ -656,7 +730,13 @@ export default {
             .then((reponse) => {
               if (reponse.status) {
                 self.request = reponse.data[0];
-                self.$emit("addnew-ok");
+            
+                if(level) {
+                  self.$emit("addnew-ok", {id:idc,level:level});
+                }else {
+                  self.$emit("addnew-ok", {id: reponse.data[0].result});
+                }
+              
               }
               this.isLoading = false;
             })

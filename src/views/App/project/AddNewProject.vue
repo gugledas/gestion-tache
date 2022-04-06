@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CRow class="ml-2 mt-n2 d-flex" alignVertical="center">
+    <CRow class="ml-2  d-flex" alignVertical="center">
       <CButton
         @click="modalAddOn"
         v-c-tooltip="'Nouveau projet'"
@@ -108,16 +108,41 @@ export default {
   methods: {
     modalAddOn() {
       this.modalAdd = true;
+      this.formValues = {
+        typeIsOk: false,
+        type: "project",
+        status: "0",
+        date_depart_proposer: "",
+        date_fin_proposer: "",
+        date_fin_reel: "",
+        temps_pause: "",
+        raison: "",
+        heure_debut: "",
+        heure_fin: "",
+        clientName: "",
+        titre: "",
+        price: "",
+        text: "",
+        primeStatus: null,
+        primePrice: "",
+        privaty: true,
+        executant: []
+      }
       this.$refs.child.TimeNow();
     },
     PostNewProject() {
+      this.spinner  = true
       if (this.btnStateAdd.state) {
         this.$refs.child.PostNewProject();
       }
     },
-    addnewOk() {
+    addnewOk(data) {
       this.spinner = false
       this.modalAdd = false;
+      console.log('reponse add', data)
+      console.log('router', this)
+      this.$router.push({params: {idcontents:data.id}})
+      this.spinner = false
     },
     addnewError() {
       alert("Une erreur s'est produit")

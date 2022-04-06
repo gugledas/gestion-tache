@@ -1,5 +1,6 @@
 <template>
   <div class="card-block card-render-entity">
+  
     <CCard>
       <CCardHeader
         class="shadow-sm"
@@ -15,7 +16,14 @@
           <CBadge v-if="dataLoad.privaty == '1'" color="danger" position="top-start" shape="pill">
     Privé
   </CBadge>
+  
+  <span v-if="dataLoad.executant && dataLoad.executant.length"> <small class="ml-2"> <CIcon size="sm" name="cilArrowRight" /> </small>
+    <CBadge  color="primary" class="mx-2" position="top-start" v-for="(ex,i) in dataLoad.executant " :key="i" shape="pill">
+    {{formatExecutant(ex.uid)}}
+  </CBadge>
+  </span>
         </CLink>
+        
         <div class="px-2 date-created">
           <small>{{ createdAt }}</small>
         </div>
@@ -114,7 +122,13 @@
             >Cancel</CButton
           >
           <CButton @click="DeleteContent" class="mx-1" color="danger" desabled
-            >Supprimer</CButton
+            >Supprimer <CSpinner
+                  v-if="spinnerDelete"
+                  class="mx-2"
+                  tag="div"
+                  color="light"
+                  style="width: 0.8rem; height: 0.8rem"
+                /></CButton
           >
         </div>
       </template>
@@ -204,6 +218,7 @@ export default {
       show: true,
       max: "",
       spinner: false,
+      spinnerDelete :false,
       selected: "projet",
       addingModal: false,
       modalRessource: false,
@@ -228,6 +243,21 @@ export default {
     this.timing();
   },
   computed: {
+     users() {
+       let utilisateur = this.$store.state.utilisateur
+      let user = [];
+      if (utilisateur && utilisateur.length) {
+        for (let person of utilisateur) {
+          let obj = {};
+          obj["uid"] = person["uid"][0]["value"];
+          obj["name"] = person["name"][0]["value"];
+          obj["mail"] = person["mail"][0]["value"];
+          user.push(obj);
+        }
+      }
+
+      return user;
+    },
     background() {
       var back = "card-back";
       var sts = this.dataLoad.status;
@@ -267,6 +297,16 @@ export default {
     },
   },
   methods: {
+    formatExecutant(id) {
+      let  name =""
+      this.users.forEach(el=> {
+        if(el.uid == id) {
+          name = el.name
+        }
+      })
+      
+      return name;
+    },
     timing() {
       if (this.dataLoad.status == 2) {
         this.currentTime = moment().unix();
@@ -300,7 +340,7 @@ export default {
         })
             .then((reponse) => {
               if (reponse.status) {
-                console.log("data after edit :", reponse);
+               // console.log("data after edit :", reponse);
                 this.$emit("edition-ok", reponse);
               }
               this.spinner = false;
@@ -308,13 +348,13 @@ export default {
             })
             .catch(function(error) {
               self.$emit("edition-error", reponse);
-              console.log("error", error);
+             console.log("error", error);
             });
         }
       );
     },
     changeParent() {
-      console.log("changeparent", this.dataLoad);
+     // console.log("changeparent", this.dataLoad);
       this.$emit("change-parent", this.dataLoad);
       this.newIdParrent.ordre = this.dataLoad.ordre;
 
@@ -326,9 +366,10 @@ export default {
 
     //Supression d’un contenu
     DeleteContent() {
+      this.spinnerDelete = true
       var self = this
       Utilities.formatDeleteData(this.dataLoad, "delete").then((reponse) => {
-        console.log(" deleteProject : ", reponse);
+       // console.log(" deleteProject : ", reponse);
         config
           .post("/gestion-project/save-update", reponse,{
           headers: {
@@ -337,8 +378,9 @@ export default {
         })
           .then((reponse) => {
             if (reponse.status) {
-              console.log("data after delete :", reponse);
+             // console.log("data after delete :", reponse);
              // window.location.pathname = "/projets"
+             this.spinnerDelete = false
               this.$emit("suppression-ok");
             }
             this.isLoading = false;
@@ -362,7 +404,7 @@ export default {
       this.$emit("Hide-type-project", this.dataLoad);
     },
     modalEditOn() {
-      console.log("ediut : ", this.dataLoad);
+      //console.log("ediut : ", this.dataLoad);
       this.$emit("modal-edit-on", this.dataLoad);
     },
     modalRessourceOn() {
@@ -370,7 +412,7 @@ export default {
     },
 
     modalEditOnText(item) {
-      console.log("Test edit : ", item.titre);
+      //console.log("Test edit : ", item.titre);
       this.$emit("ev-modal-edit-on", item);
     },
   },

@@ -55,11 +55,12 @@
       <CIcon name="logo" height="48" alt="Logo" />
     </CHeaderBrand>
 
-    <CHeaderNav class="mr-5 ml-sm-auto mt-1">
-      <CLink v-c-tooltip="'Log Out'"
+    <CHeaderNav class="mr-5 d-flex align-items-center ml-sm-auto mt-1">
+      <div class="d-flex mx-3 user-space"><span><CIcon class="mr-2 mb-1" name="cil-user" size="lg"/></span> <span class="logUser">{{currentUser}}</span> </div>
+      <div><CLink v-c-tooltip="'Log Out'"
         ><CButton size="" shape="pill" color="light" @click="logOut">
           <CIcon name="cil-account-logout" size="sm"/></CButton
-      ></CLink>
+      ></CLink></div>
       <AddNewProject></AddNewProject>
 
       <!-- <CHeaderNavItem class="d-md-down-none mx-2">
@@ -261,7 +262,37 @@ export default {
   mounted() {
     this.LoadTacheData();
   },
+  computed : {
+     users() {
+       let utilisateur = this.$store.state.utilisateur
+      let user = [];
+      if (utilisateur && utilisateur.length) {
+        for (let person of utilisateur) {
+          let obj = {};
+          obj["uid"] = person["uid"][0]["value"];
+          obj["name"] = person["name"][0]["value"];
+          obj["mail"] = person["mail"][0]["value"];
+          user.push(obj);
+        }
+      }
+
+      return user;
+    },
+    currentUser() {
+      let utilisateur = this.users
+      let vallue = ''
+      let user = JSON.parse(window.localStorage.getItem("current_user"))
+      if(user) {
+        utilisateur.forEach(element => {
+          if(element.uid == user)vallue= element
+        });
+        
+      }
+       return vallue.name
+    }
+  },
   methods: {
+
     loadMesTaches() {
       this.MesTachesModal = true;
     },
@@ -298,3 +329,29 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+@keyframes bat {
+  25%{transform: scale(103%);}
+  50%{transform: scale(100%);}
+  75%{transform: scale(103%);}
+  100%{transform: scale(100%);}
+}
+.user-space {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //height: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 16px rgb(163, 163 ,163 , 0.45);
+  padding: 5px 10px;
+  transition: ease-in-out 1s;
+  transform: scale(100%);
+  animation: bat 5s linear  infinite ;
+}
+.logUser {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;    
+  //margin-top: 5px;
+}
+</style>

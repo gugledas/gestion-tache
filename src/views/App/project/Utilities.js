@@ -174,6 +174,15 @@ const Utilities = {
           });
         }
       }
+      if (datas.primeStatus) {
+        childstable.push({
+          table: "gestion_project_prime",
+          fields: {
+            montant: datas.primePrice,
+            status: datas.primeStatus ? 1 : 0
+          }
+        });
+      }
 
       var result = [];
       if (datas && datas.titre) {
@@ -207,6 +216,7 @@ const Utilities = {
         console.log("val.date_depart_proposer ", result);
       }
       /**/
+      console.log("executant", result.executant);
       if (result.idcontents) {
         postData.idcontents = result.idcontents;
       }
@@ -219,6 +229,8 @@ const Utilities = {
             postData[i] = moment.unix(result[i]).format("YYYY-MM-DD");
             postData.heure_fin = moment.unix(result[i]).format("HH:mm");
           } else if (i === "privaty") {
+            postData[i] = result[i] == "0" ? false : true;
+          } else if (i === "primeStatus") {
             postData[i] = result[i] == "0" ? false : true;
           } else if (i === "executant") {
             postData[i] = [];
@@ -282,6 +294,17 @@ const Utilities = {
             },
             {
               table: "gestion_project_executant",
+              fields: {},
+              action: "delete",
+              where: [
+                {
+                  column: "idcontents",
+                  value: datas.idcontents
+                }
+              ]
+            },
+            {
+              table: "gestion_project_prime",
               fields: {},
               action: "delete",
               where: [
