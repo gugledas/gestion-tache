@@ -330,28 +330,30 @@ export default {
 };
 </script>
 <style lang="scss">
-@keyframes bat {
-  25%{transform: scale(103%);}
-  50%{transform: scale(100%);}
-  75%{transform: scale(103%);}
-  100%{transform: scale(100%);}
-}
+// @keyframes bat {
+//   25%{transform: scale(103%);}
+//   50%{transform: scale(100%);}
+//   75%{transform: scale(103%);}
+//   100%{transform: scale(100%);}
+// }
 .user-space {
   display: flex;
   justify-content: center;
   align-items: center;
   //height: 50px;
   border-radius: 10px;
-  box-shadow: 0px 0px 16px rgb(163, 163 ,163 , 0.45);
+  //box-shadow: 0px 0px 16px rgb(163, 163 ,163 , 0.45);
   padding: 5px 10px;
   transition: ease-in-out 1s;
   transform: scale(100%);
-  animation: bat 5s linear  infinite ;
+ // animation: bat 5s linear  infinite ;
 }
 .logUser {
-  text-transform: uppercase;
-  font-size: 13px;
-  font-weight: 700;    
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 700;  
+  color :black;
+  letter-spacing: 2px;
   //margin-top: 5px;
 }
 </style>

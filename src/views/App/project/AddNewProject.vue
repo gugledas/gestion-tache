@@ -7,6 +7,7 @@
         size="sm"
         color="warning"
         shape="pill"
+       
       >
         <CIcon class="text-white" name="cilPlus" :height="35" size="xl" />
       </CButton>
@@ -107,8 +108,7 @@ export default {
   },
   methods: {
     modalAddOn() {
-      this.modalAdd = true;
-      this.formValues = {
+      this.$refs.child.postData = {
         typeIsOk: false,
         type: "project",
         status: "0",
@@ -128,6 +128,7 @@ export default {
         privaty: true,
         executant: []
       }
+       this.modalAdd = true;
       this.$refs.child.TimeNow();
     },
     PostNewProject() {
@@ -141,13 +142,14 @@ export default {
       this.modalAdd = false;
       console.log('reponse add', data)
       console.log('router', this)
-      this.$router.push({params: {idcontents:data.id}})
+      this.$router.push({name:'Projet',params: {idcontents:data.id}})
       this.spinner = false
     },
     addnewError() {
       alert("Une erreur s'est produit")
       this.spinner = false
     },
+    
    
   },
 };

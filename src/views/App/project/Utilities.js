@@ -216,7 +216,7 @@ const Utilities = {
         console.log("val.date_depart_proposer ", result);
       }
       /**/
-      console.log("executant", result.executant);
+      // console.log("executant", result);
       if (result.idcontents) {
         postData.idcontents = result.idcontents;
       }
@@ -294,6 +294,17 @@ const Utilities = {
             },
             {
               table: "gestion_project_executant",
+              fields: {},
+              action: "delete",
+              where: [
+                {
+                  column: "idcontents",
+                  value: datas.idcontents
+                }
+              ]
+            },
+            {
+              table: "gestion_project_prime",
               fields: {},
               action: "delete",
               where: [

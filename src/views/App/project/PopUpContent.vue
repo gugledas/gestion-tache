@@ -130,14 +130,14 @@
         </CCol>
    
         <CCol sm="10">
-          <div class="form-group d-none">
+          <div class="form-group d-inone">
             Assigné :
             <pre> {{ postData }} </pre>
             formValues :
             <pre> {{ formValues }} </pre>
           </div>
         </CCol>
-        <CCol sm="7">
+        <CCol sm="12">
           <CInput
             label="Title:"
             v-model="postData.titre"
@@ -372,7 +372,7 @@ export default {
     formValues: {
       deep: true,
       handler: function (val) {
-       // console.log("val : ", val);
+        console.log("val : ", val);
         Utilities.fomatVal(val, this.postData, this.users).then(() => {});
         //console.log("result :", this.postData, this.fHeure);
         //console.log("debut heure : ", this.dHeure);
@@ -469,9 +469,7 @@ export default {
   methods: {
    async updatePrime(value) {
       if(this.postData.idcontents) {
-
          console.log("user",value );
-
       // try   {
       //   let reponse = await config.post('' + value)
       //   console.log("user",reponse );
@@ -480,12 +478,11 @@ export default {
       //   console.log('er',er)
       // }
       //let self = this;
-      // config
+    // if(this.postData.idcontents) {
+        // config
       //   .post(
-      //     "/gestion-project/executant/" +
+      //     "/gestion-project/prime/ +
       //       this.postData.idcontents +
-      //       "/" +
-      //       value.uid,
       //     {},
       //     {
       //       headers: {
@@ -504,10 +501,10 @@ export default {
       //     self.selectLoading = false;
       //     console.log("error", error);
       //   });
+     //}
       }
     },
     deleteExecutant(value) {
-      
       //console.log("user delet", value);
       var self = this;
       if(this.postData.idcontents) {
