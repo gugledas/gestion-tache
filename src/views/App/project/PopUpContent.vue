@@ -112,25 +112,25 @@
               color="danger"
               shape="pill"
               type="checkbox"
-              :checked.sync="postData.primeStatus"
+              :checked.sync="postData.prime_status"
               size="sm"
               @update:checked="updatePrime"
             />
           </div>
         </CCol>
         
-        <CCol v-if="postData.primeStatus"  sm="5" class="d-flex align-items-start">
+        <CCol v-if="postData.prime_status"  sm="5" class="d-flex align-items-start">
           <CInput
            
             append=".00"
             description="Montant de la prime:"
             prepend="F"
-            v-model="postData.primePrice"
+            v-model="postData.prime_price"
           />
         </CCol>
    
         <CCol sm="10">
-          <div class="form-group d-inone">
+          <div class="form-group d-none">
             Assigné :
             <pre> {{ postData }} </pre>
             formValues :
@@ -260,8 +260,8 @@ export default {
         titre: "",
         price: "",
         text: "",
-        primeStatus: null,
-        primePrice: "",
+        prime_status: null,
+        prime_price: "",
         privaty: true,
         executant: []
       },

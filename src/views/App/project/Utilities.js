@@ -174,12 +174,12 @@ const Utilities = {
           });
         }
       }
-      if (datas.primeStatus) {
+      if (datas.prime_status) {
         childstable.push({
           table: "gestion_project_prime",
           fields: {
-            montant: datas.primePrice,
-            status: datas.primeStatus ? 1 : 0
+            montant: datas.prime_price,
+            status: datas.prime_status ? 1 : 0
           }
         });
       }
@@ -230,7 +230,7 @@ const Utilities = {
             postData.heure_fin = moment.unix(result[i]).format("HH:mm");
           } else if (i === "privaty") {
             postData[i] = result[i] == "0" ? false : true;
-          } else if (i === "primeStatus") {
+          } else if (i === "prime_status") {
             postData[i] = result[i] == "0" ? false : true;
           } else if (i === "executant") {
             postData[i] = [];
