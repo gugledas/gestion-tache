@@ -43,10 +43,10 @@
           v-if="progress.val && progress.max"
         />
 
-        <div class="card-header-actions">
+        <div class="card-header-actions pr-2">
           <CLink
             href="#"
-            class="btn-close m-2"
+            class="btn-close p-2"
             @click="descToggle = !descToggle"
             v-c-tooltip="'Afficher/Cacher la description'"
           >
@@ -56,7 +56,7 @@
           </CLink>
           <CLink
             href="#"
-            class="btn-close m-2"
+            class="btn-close p-2"
             v-c-tooltip="'Edité le contenu'"
             @click="modalEditOn"
           >
@@ -64,7 +64,7 @@
           </CLink>
           <CLink
             href="#"
-            class="btn-close m-2"
+            class="btn-close p-2"
             v-c-tooltip="'Modifier le parent'"
             @click="changeParent"
           >
@@ -72,7 +72,7 @@
           </CLink>
           <CLink
             href="#"
-            class="btn-close m-1"
+            class="btn-close p-2"
             v-c-tooltip="'Créer un sous contenu'"
             @click="HideTypeProject"
           >
@@ -82,7 +82,7 @@
             <CIcon name="cil-settings" />
           </CLink>
           <CLink
-            class="m-1 btn-minimize"
+            class="p-2 btn-minimize"
             @click="Collapsed"
             v-c-tooltip="'Afficher/Cacher les sous projects'"
           >
@@ -90,12 +90,20 @@
           </CLink>
           <CLink
             href="#"
-            class="m-2 btn-close text-danger"
+            class="p-2 btn-close text-danger"
             v-c-tooltip="'Supprimer ce contenu'"
             @click="DeleteModalOn"
           >
             <CIcon color="danger" name="cil-x-circle" />
           </CLink>
+          <!-- <CLink
+            href="#"
+            class="p-2 btn-close text-dark "
+            v-c-tooltip="'Définir comme favoris'"
+            @click="defineFavoris"
+          >
+            <CIcon color="secondary" class="icon-favoris text-warning" name="cil-star" />
+          </CLink> -->
         </div>
       </CCardHeader>
       <CCollapse :show="dataLoad.open" :duration="400">
@@ -285,6 +293,9 @@ export default {
     },
   },
   methods: {
+    defineFavoris() {
+      console.log('favoris', this.dataLoad.uid)
+    },
     formatExecutant(id) {
       let  name =""
       this.users.forEach(el=> {
@@ -408,6 +419,7 @@ export default {
 </script>
 
 <style lang="scss">
+// .icon-favoris {}
 .date-created {
   color: #9a9a9a;
   font-style: oblique;

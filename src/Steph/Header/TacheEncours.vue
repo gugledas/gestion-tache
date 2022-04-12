@@ -12,7 +12,7 @@
           label="Nom de l'utilisateur :"
           placeholder="Select user tasks"
           v-model="current_user"
-          @change="LoadTacheData"
+          @update:value="LoadTacheData"
         />
       </CCol>
     </CRow>
@@ -95,7 +95,7 @@
             size="sm"
             shape="pill"
             color="secondary"
-            @click="LoadTacheData"
+            @click="LoadTacheData(false)"
           >
             <CIcon name="cil-reload" size="sm" /> </CButton
         ></CLink>
@@ -188,6 +188,10 @@ export default {
   },
   methods: {
     LoadTacheData(val) {
+      if(val  ) {
+        console.log('Current User: ',val)
+        this.current_user = val
+      }
       switch (this.type) {
         case "encour":
           this.isLoading = true;
@@ -203,13 +207,7 @@ export default {
           break;
         case "mestaches":
           this.isLoading = true;
-          if (this.current_user) {
-            let uid;
-            if (val && val.target) {
-              uid = val.target.value;
-              this.current_user = uid;
-            } else uid = this.current_user;
-            SelectDb.SelectMesTaches(uid)
+             SelectDb.SelectMesTaches(this.current_user)
               .then((response) => {
                 this.itemsTache = response;
                 this.isLoading = false;
@@ -218,7 +216,24 @@ export default {
                 console.log("error chargement mes taches", er);
                 this.isLoading = false;
               });
-          }
+          // console.log('Current User: ',this.current_user)
+          // if (this.current_user) {
+          //   let uid;
+          //   if (val && val.target) {
+          //     uid = val.target.value;
+          //     this.current_user = uid;
+          //   } else uid = this.current_user;
+          //   console.log('Current Usere: ',this.current_user,val)
+          //   SelectDb.SelectMesTaches(uid)
+          //     .then((response) => {
+          //       this.itemsTache = response;
+          //       this.isLoading = false;
+          //     })
+          //     .catch((er) => {
+          //       console.log("error chargement mes taches", er);
+          //       this.isLoading = false;
+          //     });
+          // }
           break;
       }
     },
@@ -239,7 +254,7 @@ export default {
       var date_fin_proposer = moment.unix(item.date_fin_proposer);
       var date_depart_proposer = moment.unix(item.date_depart_proposer);
       var exact = moment.unix(this.currentTime);
-      if (item.date_fin_reel && item.date_fin_reel > 0) {
+      if (item && item.date_fin_reel && item.date_fin_reel > 0) {
         exact = moment.unix(this.dataLoad.date_fin_reel);
       }
       var val = exact.diff(date_depart_proposer, "minutes");
