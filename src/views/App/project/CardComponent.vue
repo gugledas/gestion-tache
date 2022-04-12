@@ -244,19 +244,7 @@ export default {
   },
   computed: {
      users() {
-       let utilisateur = this.$store.state.utilisateur
-      let user = [];
-      if (utilisateur && utilisateur.length) {
-        for (let person of utilisateur) {
-          let obj = {};
-          obj["uid"] = person["uid"][0]["value"];
-          obj["name"] = person["name"][0]["value"];
-          obj["mail"] = person["mail"][0]["value"];
-          user.push(obj);
-        }
-      }
-
-      return user;
+       return this.$store.getters.userList
     },
     background() {
       var back = "card-back";

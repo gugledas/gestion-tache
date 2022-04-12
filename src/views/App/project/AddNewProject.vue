@@ -23,7 +23,6 @@
       <PopUpContent
         ref="child"
         :formValues="formValues"
-         :utilisateur="utilisateur"
         :btnState="btnStateAdd"
         @addnew-ok="addnewOk"
         @addnew-error="addnewError"

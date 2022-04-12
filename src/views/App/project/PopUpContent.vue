@@ -23,7 +23,6 @@
       </CRow>
     </div>
     <hr />
-
     <div class="pl-sm-2">
       <CRow
         :gutters="false"
@@ -112,6 +111,7 @@
               color="danger"
               shape="pill"
               type="checkbox"
+              :disabled="!cantUpdatePrime"
               :checked.sync="postData.prime_status"
               size="sm"
               @update:checked="updatePrime"
@@ -121,11 +121,13 @@
         
         <CCol v-if="postData.prime_status"  sm="5" class="d-flex align-items-start">
           <CInput
-           
+           type="number"
             append=".00"
             description="Montant de la prime:"
             prepend="F"
-            v-model="postData.prime_price"
+            :disabled="!cantUpdatePrime"
+            @change="reUpdatePrime"
+            v-model="postData.prime_montant"
           />
         </CCol>
    
@@ -161,6 +163,7 @@
         >
           <label class="typo__label">Exécuter par:</label>
           <multiselect
+          :disabled="!cantUpdatePrime"
             :options="users"
             placeholder="Selectionnez un utilisateur"
             :multiple="true"
@@ -223,10 +226,7 @@ export default {
       type: [Object],
       required: true
     },
-    utilisateur: {
-      type: [Array],
-      required: true
-    },
+   
     btnState: {
       type: Object,
       default: function () {
@@ -261,7 +261,7 @@ export default {
         price: "",
         text: "",
         prime_status: null,
-        prime_price: "",
+        prime_montant: 0,
         privaty: true,
         executant: []
       },
@@ -380,20 +380,19 @@ export default {
     }
   },
   computed: {
-    
-    users() {
-      let user = [];
-      if (this.utilisateur && this.utilisateur.length) {
-        for (let person of this.utilisateur) {
-          let obj = {};
-          obj["uid"] = person["uid"][0]["value"];
-          obj["name"] = person["name"][0]["value"];
-          obj["mail"] = person["mail"][0]["value"];
-          user.push(obj);
-        }
+    cantUpdatePrime() {
+      let current =this.$store.getters.currentUser
+      if(this.formValues &&  this.formValues.uid) {
+        if(current.uid == this.formValues.uid) {
+        return true
+       }else {
+         return false
+       }
       }
-
-      return user;
+      return true
+    },
+    users() {
+      return this.$store.getters.userList
     },
     dureeProjet() {
       var el;
@@ -467,9 +466,41 @@ export default {
     }
   },
   methods: {
+    reUpdatePrime(val) {
+      console.log('reUpdate Prime: ',val)
+      this.updatePrime(this.postData.prime_status)
+    },
    async updatePrime(value) {
+     var self = this
       if(this.postData.idcontents) {
-         console.log("user",value );
+        let params = {
+           id:this.postData.idcontents,
+           status:value,
+           montant:this.postData.prime_montant}
+         
+         var data  = await Utilities.formatPrimeData(params, this.formValues.prime_status !== null ? true: false)
+         console.log("formatPrimeData",data );
+           config
+        .post("/gestion-project/save-update",
+         data,
+          {
+            headers: {
+              Authorization: config.auth
+            }
+          }
+        )
+        .then((reponse) => {
+          if (reponse.status) {
+            console.log("prime update :", reponse);
+            this.formValues.prime_status = value 
+            this.formValues.prime_montant = this.postData.prime_montant 
+          }
+        })
+        .catch(function (error) {
+          alert('Erreur lors de l\'activation de la prime sur cette tâche')
+          console.log("error", error);
+          self.postData.prime_status = null
+        });
       // try   {
       //   let reponse = await config.post('' + value)
       //   console.log("user",reponse );
@@ -479,28 +510,7 @@ export default {
       // }
       //let self = this;
     // if(this.postData.idcontents) {
-        // config
-      //   .post(
-      //     "/gestion-project/prime/ +
-      //       this.postData.idcontents +
-      //     {},
-      //     {
-      //       headers: {
-      //         Authorization: config.auth
-      //       }
-      //     }
-      //   )
-      //   .then((reponse) => {
-      //     if (reponse.status) {
-      //       //console.log("data after edit :", reponse);
-      //       self.selectLoading = false;
-      //       self.updateFormValue(true, value);
-      //     }
-      //   })
-      //   .catch(function (error) {
-      //     self.selectLoading = false;
-      //     console.log("error", error);
-      //   });
+      
      //}
       }
     },

@@ -56,7 +56,7 @@
     </CHeaderBrand>
 
     <CHeaderNav class="mr-5 d-flex align-items-center ml-sm-auto mt-1">
-      <div class="d-flex mx-3 user-space" v-if="currentUser"><span><CIcon class="mr-2 mb-1" name="cil-user" size="lg"/></span> <span class="logUser">{{currentUser}}</span> </div>
+      <div class="d-flex mx-3 user-space" v-if="currentUser"><span><CIcon class="mr-2 mb-1" name="cil-user" size="lg"/></span> <span class="logUser">{{currentUser.name}}</span> </div>
       <div><CLink v-c-tooltip="'Log Out'"
         ><CButton size="" shape="pill" color="light" @click="logOut">
           <CIcon name="cil-account-logout" size="sm"/></CButton
@@ -264,31 +264,10 @@ export default {
   },
   computed : {
      users() {
-       let utilisateur = this.$store.state.utilisateur
-      let user = [];
-      if (utilisateur && utilisateur.length) {
-        for (let person of utilisateur) {
-          let obj = {};
-          obj["uid"] = person["uid"][0]["value"];
-          obj["name"] = person["name"][0]["value"];
-          obj["mail"] = person["mail"][0]["value"];
-          user.push(obj);
-        }
-      }
-
-      return user;
+       return this.$store.getters.userList
     },
     currentUser() {
-      let utilisateur = this.users
-      let vallue = ''
-      let user = JSON.parse(window.localStorage.getItem("current_user"))
-      if(user) {
-        utilisateur.forEach(element => {
-          if(element.uid == user)vallue= element
-        });
-        
-      }
-       return vallue.name
+       return this.$store.getters.currentUser
     }
   },
   methods: {

@@ -10,7 +10,33 @@ const state = {
   user: null,
   utilisateur: []
 };
+const getters = {
+  userList(state) {
+    let user = [];
+    if (state.utilisateur && state.utilisateur.length) {
+      for (let person of state.utilisateur) {
+        let obj = {};
+        obj["uid"] = person["uid"][0]["value"];
+        obj["name"] = person["name"][0]["value"];
+        obj["mail"] = person["mail"][0]["value"];
+        user.push(obj);
+      }
+    }
 
+    return user;
+  },
+  currentUser(state, getters) {
+    let utilisateur = getters.userList;
+    let vallue = "";
+    let user = JSON.parse(window.localStorage.getItem("current_user"));
+    if (user) {
+      utilisateur.forEach((element) => {
+        if (element.uid == user) vallue = element;
+      });
+    }
+    return vallue;
+  }
+};
 const mutations = {
   toggleSidebarDesktop(state) {
     const sidebarOpened = [true, "responsive"].includes(state.sidebarShow);
@@ -70,6 +96,7 @@ const actions = {
 
 export default new Vuex.Store({
   state,
+  getters,
   mutations,
   actions
 });

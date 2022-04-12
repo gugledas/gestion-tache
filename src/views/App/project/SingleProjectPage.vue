@@ -42,7 +42,6 @@
       >
         <PopUpContent
           :form-values="dataOfFormAdd"
-          :utilisateur="utilisateur"
           ref="child"
           @addnew-ok="addNewOk"
           @addnew-error="addnewError"
@@ -152,7 +151,6 @@
         >
           <PopUpContent
             :form-values="dataOfForm"
-            :utilisateur="utilisateur"
             ref="edchild"
             @edition-ok="LoadProjectData"
             @edition-error="addnewError"
@@ -263,9 +261,7 @@ export default {
     //
   },
   computed: {
-    utilisateur (){
-      return this.$store.state.utilisateur
-    },
+    
     modalData() {
       //var room = this.dataLoad;
       var element = [];
