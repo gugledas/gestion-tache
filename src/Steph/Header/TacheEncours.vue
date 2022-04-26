@@ -251,11 +251,13 @@ export default {
       this.$emit("ev_modal_last");
     },
     progressItem(item) {
+      
       var date_fin_proposer = moment.unix(item.date_fin_proposer);
       var date_depart_proposer = moment.unix(item.date_depart_proposer);
       var exact = moment.unix(this.currentTime);
       if (item && item.date_fin_reel && item.date_fin_reel > 0) {
-        exact = moment.unix(this.dataLoad.date_fin_reel);
+        
+        exact = moment.unix(item.date_fin_reel);
       }
       var val = exact.diff(date_depart_proposer, "minutes");
       var max = date_fin_proposer.diff(date_depart_proposer, "minutes");
