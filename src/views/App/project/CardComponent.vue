@@ -14,14 +14,19 @@
           class="text-dark text-decoration-none link-card"
           >{{ dataLoad.titre }}
           <CBadge v-if="dataLoad.privaty == '1'" color="danger" position="top-start" shape="pill">
-    Privé
-  </CBadge>
+              Privé
+          </CBadge>
   
-  <span v-if="dataLoad.executant && dataLoad.executant.length"> <small class="ml-2"> <CIcon size="sm" name="cilArrowRight" /> </small>
-    <CBadge  color="primary" class="mx-2" position="top-start" v-for="(ex,i) in dataLoad.executant " :key="i" shape="pill">
-    {{formatExecutant(ex.uid)}}
-  </CBadge>
-  </span>
+          <span v-if="dataLoad.executant && dataLoad.executant.length"> <small class="ml-2"> <CIcon size="sm" name="cilArrowRight" /> </small>
+            <CBadge  color="primary" class="mx-2" position="top-start" v-for="(ex,i) in dataLoad.executant " :key="i" shape="pill">
+            {{formatExecutant(ex.uid)}}
+          </CBadge>
+          </span>
+          <span v-if="isPrime"  class="prime-badge">
+            <CBadge  color="warning" class="" position="top-start" shape="">
+            Prime {{dataLoad.prime_status}}
+          </CBadge>
+          </span>
         </CLink>
         
         <div class="px-2 date-created">
@@ -251,6 +256,13 @@ export default {
     this.timing();
   },
   computed: {
+    isPrime () {
+      let prime = this.dataLoad.prime_status;
+      if (prime == 1 || prime == true) {
+        return true
+      }
+  return false
+    },
      users() {
        return this.$store.getters.userList
     },
@@ -499,5 +511,15 @@ export default {
   margin-right: 5px;
   margin-left: auto;
   width: 15%;
+}
+.prime-badge {
+  position: absolute;
+    left: 0;
+    top: -6px;
+    
+    .badge {
+      border-radius: 0;
+      //color:#000000bf
+    }
 }
 </style>
