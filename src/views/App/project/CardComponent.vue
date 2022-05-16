@@ -126,8 +126,9 @@
       title="Confirmer la suppression"
       color="danger"
       :show.sync="deleteModal"
+       :closeOnBackdrop="false"  
     >
-      êtes vous sûre de vouloir supprimer ce contenu? <br />
+      Êtes vous sûre de vouloir supprimer ce contenu? <br />
       <small class="mt-2 text-center">Cette action est irréversible.</small>
       <template slot="footer">
         <div class="d-flex justify-content-end mr-3">
