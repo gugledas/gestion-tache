@@ -173,7 +173,7 @@
                   v-if="spinner"
                   class="mx-2"
                   tag="div"
-                  color="primary"
+                  color="light"
                   style="width: 0.8rem; height: 0.8rem"
                 />
               </CButton>
