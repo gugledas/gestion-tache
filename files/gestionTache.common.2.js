@@ -7,12 +7,12 @@
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=template&id=4f76eac5&scoped=true&lang=html&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"check-valid-form":_vm.checkForSave}},[_c('div',[_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('br'),_c('CCol',{attrs:{"sm":"3"}},[_c('p',[_vm._v("Choisir un type:")])]),_c('CCol',{attrs:{"sm":"9"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.options,"checked":_vm.postData.type,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "type", $event)}}}),(_vm.postData.type.length < 2)?_c('small',{staticClass:"text-danger"},[_vm._v(" Ce champ est requis ")]):_vm._e()],1)],1)],1),_c('hr'),_c('div',{staticClass:"pl-sm-2"},[(_vm.postData.type !== 'memos' && _vm.postData.date_fin_reel === '')?_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('CCol',{attrs:{"sm":"2"}},[_c('p',[_vm._v("Statut:")])]),_c('CCol',{attrs:{"sm":"10"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.statusOpt,"checked":_vm.postData.status,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "status", $event)}}})],1),(_vm.showInputRaison)?_c('CCol',{attrs:{"sm":"8","md":"7"}},[_c('CTextarea',{attrs:{"label":"Raison:","type":"textarea","horizontal":"","placeholder":"writes something...","rows":"2","description":"Une description de la raison du changement de status"},model:{value:(_vm.postData.raison),callback:function ($$v) {_vm.$set(_vm.postData, "raison", $$v)},expression:"postData.raison"}})],1):_vm._e()],1):_vm._e(),(_vm.postData.type !== 'memos')?_c('CRow',[_c('CCol',{attrs:{"col":"12","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Debut:","type":"date","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"horizontal":""},model:{value:(_vm.postData.date_depart_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_depart_proposer", $$v)},expression:"postData.date_depart_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_debut),callback:function ($$v) {_vm.$set(_vm.postData, "heure_debut", $$v)},expression:"postData.heure_debut"}})],1)],1),_c('CCol',{attrs:{"col":"10","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Fin:","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"date","horizontal":""},model:{value:(_vm.postData.date_fin_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_fin_proposer", $$v)},expression:"postData.date_fin_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_fin),callback:function ($$v) {_vm.$set(_vm.postData, "heure_fin", $$v)},expression:"postData.heure_fin"}})],1)],1)],1):_vm._e(),_c('CRow',[_c('CCol',{staticClass:"d-flex",attrs:{"sm":"10"}},[_c('div',{staticClass:"form-group d-flex align-items-center"},[_c('span',{staticClass:"pr-3 d-block"},[_vm._v(" Contenu privée ? ")]),_c('CSwitch',{staticClass:"mr-1",attrs:{"color":"danger","shape":"pill","checked":_vm.postData.privaty,"size":"sm"},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "privaty", $event)}}})],1)]),_c('CCol',{attrs:{"sm":"10"}},[_c('div',{staticClass:"form-group d-none"},[_vm._v(" Assigné : "),_c('pre',[_vm._v(" "+_vm._s(_vm.postData)+" ")]),_vm._v(" formValues : "),_c('pre',[_vm._v(" "+_vm._s(_vm.formValues)+" ")])])]),_c('CCol',{attrs:{"sm":"7"}},[_c('CInput',{attrs:{"label":"Title:","placeholder":"Entrez un titre","wasValidated":_vm.wasValidated,"validFeedback":"ok","invalidFeedback":"requis","isValid":_vm.inputValidation},model:{value:(_vm.postData.titre),callback:function ($$v) {_vm.$set(_vm.postData, "titre", $$v)},expression:"postData.titre"}})],1),(_vm.postData.type == 'project')?_c('CCol',{attrs:{"sm":"5"}},[_c('CInput',{attrs:{"label":"Nom du Client:","placeholder":"Select or add new Client"},model:{value:(_vm.postData.clientName),callback:function ($$v) {_vm.$set(_vm.postData, "clientName", $$v)},expression:"postData.clientName"}})],1):_vm._e(),(_vm.postData.type !== 'ressource' && _vm.postData.type !== 'memos')?_c('CCol',{attrs:{"sm":"5"}},[_c('label',{staticClass:"typo__label"},[_vm._v("Exécuter par:")]),_c('multiselect',{attrs:{"options":_vm.users,"placeholder":"Selectionnez un utilisateur","multiple":true,"close-on-select":false,"clear-on-select":false,"preserve-search":false,"searchable":false,"label":"name","loading":_vm.selectLoading,"track-by":"name","preselect-first":false,"hide-selected":true},on:{"select":_vm.addExecutant,"remove":_vm.deleteExecutant},model:{value:(_vm.postData.executant),callback:function ($$v) {_vm.$set(_vm.postData, "executant", $$v)},expression:"postData.executant"}})],1):_vm._e()],1),_c('CRow',[_c('CCol',{attrs:{"sm":"12"}},[_c('label',[_vm._v("Description:")]),_c('ckeditor',{attrs:{"config":_vm.editorConfig},on:{"namespaceloaded":_vm.onNamespaceLoaded},model:{value:(_vm.postData.text),callback:function ($$v) {_vm.$set(_vm.postData, "text", $$v)},expression:"postData.text"}})],1)],1),(_vm.postData.type == 'project')?_c('CRow',[_c('CCol',{attrs:{"col":"8","lg":"4"}},[_c('CInput',{attrs:{"label":"Estimation du coût:","append":".00","description":"montant","prepend":"$"},model:{value:(_vm.postData.price),callback:function ($$v) {_vm.$set(_vm.postData, "price", $$v)},expression:"postData.price"}})],1)],1):_vm._e()],1)])}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=template&id=2c9cbbf6&scoped=true&lang=html&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"check-valid-form":_vm.checkForSave}},[_c('div',[_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('br'),_c('CCol',{attrs:{"sm":"3"}},[_c('p',[_vm._v("Choisir un type:")])]),_c('CCol',{attrs:{"sm":"9"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.options,"checked":_vm.postData.type,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "type", $event)}}}),(_vm.postData.type.length < 2)?_c('small',{staticClass:"text-danger"},[_vm._v(" Ce champ est requis ")]):_vm._e()],1)],1)],1),_c('hr'),_c('div',{staticClass:"pl-sm-2"},[(_vm.postData.type !== 'memos' && _vm.postData.date_fin_reel === '')?_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('CCol',{attrs:{"sm":"2"}},[_c('p',[_vm._v("Statut:")])]),_c('CCol',{attrs:{"sm":"10"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.statusOpt,"checked":_vm.postData.status,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "status", $event)}}})],1),(_vm.showInputRaison)?_c('CCol',{attrs:{"sm":"8","md":"7"}},[_c('CTextarea',{attrs:{"label":"Raison:","type":"textarea","horizontal":"","placeholder":"writes something...","rows":"2","description":"Une description de la raison du changement de status"},model:{value:(_vm.postData.raison),callback:function ($$v) {_vm.$set(_vm.postData, "raison", $$v)},expression:"postData.raison"}})],1):_vm._e()],1):_vm._e(),(_vm.postData.type !== 'memos')?_c('CRow',[_c('CCol',{attrs:{"col":"12","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Debut:","type":"date","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"horizontal":""},model:{value:(_vm.postData.date_depart_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_depart_proposer", $$v)},expression:"postData.date_depart_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_debut),callback:function ($$v) {_vm.$set(_vm.postData, "heure_debut", $$v)},expression:"postData.heure_debut"}})],1)],1),_c('CCol',{attrs:{"col":"10","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Fin:","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"date","horizontal":""},model:{value:(_vm.postData.date_fin_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_fin_proposer", $$v)},expression:"postData.date_fin_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_fin),callback:function ($$v) {_vm.$set(_vm.postData, "heure_fin", $$v)},expression:"postData.heure_fin"}})],1)],1)],1):_vm._e(),_c('CRow',[_c('CCol',{staticClass:"d-flex",attrs:{"sm":"6"}},[_c('div',{staticClass:"form-group d-flex align-items-center"},[_c('span',{staticClass:"pr-3 d-block"},[_vm._v(" Contenu privée ? ")]),_c('CSwitch',{staticClass:"mr-1",attrs:{"color":"danger","shape":"pill","checked":_vm.postData.privaty,"size":"sm"},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "privaty", $event)}}})],1)]),_c('CCol',{staticClass:"d-flex",attrs:{"sm":"5"}},[_c('div',{staticClass:"form-group d-flex align-items-center"},[_c('span',{staticClass:"pr-3 d-block"},[_vm._v("Prime ? ")]),_c('CSwitch',{staticClass:"mr-1",attrs:{"color":"danger","shape":"pill","type":"checkbox","disabled":!_vm.cantUpdatePrime,"checked":_vm.postData.prime_status,"size":"sm"},on:{"update:checked":[function($event){return _vm.$set(_vm.postData, "prime_status", $event)},_vm.updatePrime]}})],1)]),(_vm.postData.prime_status)?_c('CCol',{staticClass:"d-flex align-items-start",attrs:{"sm":"5"}},[_c('CInput',{attrs:{"type":"number","append":".00","description":"Montant de la prime:","prepend":"F","disabled":!_vm.cantUpdatePrime},on:{"change":_vm.reUpdatePrime},model:{value:(_vm.postData.prime_montant),callback:function ($$v) {_vm.$set(_vm.postData, "prime_montant", $$v)},expression:"postData.prime_montant"}})],1):_vm._e(),_c('CCol',{attrs:{"sm":"10"}},[_c('div',{staticClass:"form-group d-none"},[_vm._v(" Assigné : "),_c('pre',[_vm._v(" "+_vm._s(_vm.postData)+" ")]),_vm._v(" formValues : "),_c('pre',[_vm._v(" "+_vm._s(_vm.formValues)+" ")])])]),_c('CCol',{attrs:{"sm":"12"}},[_c('CInput',{attrs:{"label":"Title:","placeholder":"Entrez un titre","wasValidated":_vm.wasValidated,"validFeedback":"ok","invalidFeedback":"requis","isValid":_vm.inputValidation},model:{value:(_vm.postData.titre),callback:function ($$v) {_vm.$set(_vm.postData, "titre", $$v)},expression:"postData.titre"}})],1),(_vm.postData.type == 'project')?_c('CCol',{attrs:{"sm":"5"}},[_c('CInput',{attrs:{"label":"Nom du Client:","placeholder":"Select or add new Client"},model:{value:(_vm.postData.clientName),callback:function ($$v) {_vm.$set(_vm.postData, "clientName", $$v)},expression:"postData.clientName"}})],1):_vm._e(),(_vm.postData.type !== 'ressource' && _vm.postData.type !== 'memos')?_c('CCol',{attrs:{"sm":"5"}},[_c('label',{staticClass:"typo__label"},[_vm._v("Exécuter par:")]),_c('multiselect',{attrs:{"disabled":!_vm.cantUpdatePrime,"options":_vm.users,"placeholder":"Selectionnez un utilisateur","multiple":true,"close-on-select":false,"clear-on-select":false,"preserve-search":false,"searchable":false,"label":"name","loading":_vm.selectLoading,"track-by":"name","preselect-first":false,"hide-selected":true},on:{"select":_vm.addExecutant,"remove":_vm.deleteExecutant},model:{value:(_vm.postData.executant),callback:function ($$v) {_vm.$set(_vm.postData, "executant", $$v)},expression:"postData.executant"}})],1):_vm._e()],1),_c('CRow',[_c('CCol',{attrs:{"sm":"12"}},[_c('label',[_vm._v("Description:")]),_c('ckeditor',{attrs:{"config":_vm.editorConfig},on:{"namespaceloaded":_vm.onNamespaceLoaded},model:{value:(_vm.postData.text),callback:function ($$v) {_vm.$set(_vm.postData, "text", $$v)},expression:"postData.text"}})],1)],1),(_vm.postData.type == 'project')?_c('CRow',[_c('CCol',{attrs:{"col":"8","lg":"4"}},[_c('CInput',{attrs:{"label":"Estimation du coût:","append":".00","description":"montant","prepend":"$"},model:{value:(_vm.postData.price),callback:function ($$v) {_vm.$set(_vm.postData, "price", $$v)},expression:"postData.price"}})],1)],1):_vm._e()],1)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=template&id=4f76eac5&scoped=true&lang=html&
+// CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=template&id=2c9cbbf6&scoped=true&lang=html&
 
 // EXTERNAL MODULE: ./src/views/App/project/Utilities.js
 var Utilities = __webpack_require__("d111");
@@ -40,11 +40,9 @@ var vue_multiselect_min = __webpack_require__("8e5f");
 var vue_multiselect_min_default = /*#__PURE__*/__webpack_require__.n(vue_multiselect_min);
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=script&lang=js&
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
@@ -52,6 +50,40 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -249,10 +281,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       type: [Object],
       required: true
     },
-    utilisateur: {
-      type: [Array],
-      required: true
-    },
     btnState: {
       type: Object,
       default: function _default() {
@@ -288,6 +316,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         titre: "",
         price: "",
         text: "",
+        prime_status: null,
+        prime_montant: 0,
         privaty: true,
         executant: []
       },
@@ -409,30 +439,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   computed: {
-    users: function users() {
-      var user = [];
+    cantUpdatePrime: function cantUpdatePrime() {
+      var current = this.$store.getters.currentUser;
 
-      if (this.utilisateur && this.utilisateur.length) {
-        var _iterator = _createForOfIteratorHelper(this.utilisateur),
-            _step;
-
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var person = _step.value;
-            var obj = {};
-            obj["uid"] = person["uid"][0]["value"];
-            obj["name"] = person["name"][0]["value"];
-            obj["mail"] = person["mail"][0]["value"];
-            user.push(obj);
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
+      if (this.formValues && this.formValues.uid) {
+        if (current.uid == this.formValues.uid) {
+          return true;
+        } else {
+          return false;
         }
       }
 
-      return user;
+      return true;
+    },
+    users: function users() {
+      return this.$store.getters.userList;
     },
     dureeProjet: function dureeProjet() {
       var el;
@@ -488,12 +509,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     optionsTache: function optionsTache() {
       var rs = [];
 
-      var _iterator2 = _createForOfIteratorHelper(this.options),
-          _step2;
+      var _iterator = _createForOfIteratorHelper(this.options),
+          _step;
 
       try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var i = _step2.value;
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var i = _step.value;
 
           if (i.value == "project") {//console.log("iii :");
           } else {
@@ -502,33 +523,100 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } //console.log("rs", rs);
 
       } catch (err) {
-        _iterator2.e(err);
+        _iterator.e(err);
       } finally {
-        _iterator2.f();
+        _iterator.f();
       }
 
       return rs;
     }
   },
   methods: {
+    reUpdatePrime: function reUpdatePrime(val) {
+      console.log('reUpdate Prime: ', val);
+      this.updatePrime(this.postData.prime_status);
+    },
+    updatePrime: function updatePrime(value) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var self, params, data;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                self = _this2;
+
+                if (!_this2.postData.idcontents) {
+                  _context.next = 8;
+                  break;
+                }
+
+                params = {
+                  id: _this2.postData.idcontents,
+                  status: value,
+                  montant: _this2.postData.prime_montant
+                };
+                _context.next = 5;
+                return Utilities["a" /* default */].formatPrimeData(params, _this2.formValues.prime_status !== null ? true : false);
+
+              case 5:
+                data = _context.sent;
+                console.log("formatPrimeData", data);
+                config["a" /* default */].post("/gestion-project/save-update", data, {
+                  headers: {
+                    Authorization: config["a" /* default */].auth
+                  }
+                }).then(function (reponse) {
+                  if (reponse.status) {
+                    console.log("prime update :", reponse);
+                    _this2.formValues.prime_status = value;
+                    _this2.formValues.prime_montant = _this2.postData.prime_montant;
+                  }
+                }).catch(function (error) {
+                  alert('Erreur lors de l\'activation de la prime sur cette tâche');
+                  console.log("error", error);
+                  self.postData.prime_status = null;
+                }); // try   {
+                //   let reponse = await config.post('' + value)
+                //   console.log("user",reponse );
+                // }
+                // catch (er) {
+                //   console.log('er',er)
+                // }
+                //let self = this;
+                // if(this.postData.idcontents) {
+                //}
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
     deleteExecutant: function deleteExecutant(value) {
-      this.selectLoading = true;
-      console.log("user delet", value);
+      //console.log("user delet", value);
       var self = this;
-      config["a" /* default */].delete("/gestion-project/executant/" + this.postData.idcontents + "/" + value.uid, {}, {
-        headers: {
-          Authorization: config["a" /* default */].auth
-        }
-      }).then(function (reponse) {
-        if (reponse.status) {
-          //console.log("data after edit :", reponse);
-          self.updateFormValue(false, value);
+
+      if (this.postData.idcontents) {
+        this.selectLoading = true;
+        config["a" /* default */].delete("/gestion-project/executant/" + this.postData.idcontents + "/" + value.uid, {}, {
+          headers: {
+            Authorization: config["a" /* default */].auth
+          }
+        }).then(function (reponse) {
+          if (reponse.status) {
+            //console.log("data after edit :", reponse);
+            self.updateFormValue(false, value);
+            self.selectLoading = false;
+          }
+        }).catch(function (error) {
           self.selectLoading = false;
-        }
-      }).catch(function (error) {
-        self.selectLoading = false;
-        console.log("error", error);
-      });
+          console.log("error", error);
+        });
+      }
     },
     updateFormValue: function updateFormValue(add, user) {
       var form = this.formValues.executant;
@@ -538,8 +626,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       } else {
         var existe = form.filter(function (el) {
           return el.uid == user.uid;
-        });
-        console.log("existe", existe);
+        }); // console.log("existe", existe);
 
         for (var i in form) {
           if (existe[0].uid == form[i].uid) {
@@ -549,23 +636,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
     },
     addExecutant: function addExecutant(value) {
-      this.selectLoading = true;
-      console.log("user add", value, config["a" /* default */].auth);
+      // console.log("user add", value, config.auth);
       var self = this;
-      config["a" /* default */].post("/gestion-project/executant/" + this.postData.idcontents + "/" + value.uid, {}, {
-        headers: {
-          Authorization: config["a" /* default */].auth
-        }
-      }).then(function (reponse) {
-        if (reponse.status) {
-          //console.log("data after edit :", reponse);
+
+      if (this.postData.idcontents) {
+        this.selectLoading = true;
+        config["a" /* default */].post("/gestion-project/executant/" + this.postData.idcontents + "/" + value.uid, {}, {
+          headers: {
+            Authorization: config["a" /* default */].auth
+          }
+        }).then(function (reponse) {
+          if (reponse.status) {
+            //console.log("data after edit :", reponse);
+            self.selectLoading = false;
+            self.updateFormValue(true, value);
+          }
+        }).catch(function (error) {
           self.selectLoading = false;
-          self.updateFormValue(true, value);
-        }
-      }).catch(function (error) {
-        self.selectLoading = false;
-        console.log("error", error);
-      });
+          console.log("error", error);
+        });
+      }
     },
     onNamespaceLoaded: function onNamespaceLoaded(CKEDITOR) {
       // Add external `placeholder` plugin which will be available for each
@@ -611,7 +701,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.postData.type = "tache";
     },
     EditProject: function EditProject() {
-      var _this2 = this;
+      var _this3 = this;
 
       var self = this;
       Utilities["a" /* default */].formatData(this.postData, this.dHeure, this.fHeure).then(function (reponse) {
@@ -626,7 +716,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             self.$emit("edition-ok", reponse);
           }
 
-          _this2.isLoading = false;
+          _this3.isLoading = false;
         }).catch(function (error) {
           self.$emit("edition-error");
           console.log("error", error);
@@ -682,12 +772,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
       return result;
     },
-    PostNewProject: function PostNewProject(idc) {
-      var _this3 = this;
+    PostNewProject: function PostNewProject(idc, level) {
+      var _this4 = this;
 
       var self = this;
       Utilities["a" /* default */].formatAddData(this.postData, idc, this.level).then(function (reponse) {
-        console.log("created", reponse);
+        //  console.log("created", reponse);
         config["a" /* default */].post("/gestion-project/save-update", reponse, {
           headers: {
             Authorization: config["a" /* default */].auth
@@ -695,10 +785,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }).then(function (reponse) {
           if (reponse.status) {
             self.request = reponse.data[0];
-            self.$emit("addnew-ok");
+
+            if (level) {
+              self.$emit("addnew-ok", {
+                id: idc,
+                level: level
+              });
+            } else {
+              self.$emit("addnew-ok", {
+                id: reponse.data[0].result
+              });
+            }
           }
 
-          _this3.isLoading = false;
+          _this4.isLoading = false;
         }).catch(function (error) {
           self.$emit("addnew-error");
           console.log("error", error);
@@ -726,7 +826,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   null,
-  "4f76eac5",
+  "2c9cbbf6",
   null
   
 )

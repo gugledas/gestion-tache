@@ -7,12 +7,12 @@
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/pages/Login.vue?vue&type=template&id=504099fe&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/pages/Login.vue?vue&type=template&id=4c887834&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"c-app flex-row align-items-center"},[_c('CContainer',[_c('CRow',{staticClass:"justify-content-center"},[_c('CCol',{attrs:{"md":"8"}},[_c('CCardGroup',[_c('CCard',{staticClass:"p-4"},[_c('CCardBody',[_c('CForm',{attrs:{"novalidation":""},on:{"submit":_vm.validUserInfo}},[_c('h1',[_vm._v("Connexion")]),_c('p',{staticClass:"text-muted"},[_vm._v("Connecter-vous à votre compte")]),_c('CInput',{attrs:{"placeholder":"Username","isValid":_vm.invalidUser,"required":""},scopedSlots:_vm._u([{key:"prepend-content",fn:function(){return [_c('CIcon',{attrs:{"name":"cil-user"}})]},proxy:true}]),model:{value:(_vm.user),callback:function ($$v) {_vm.user=$$v},expression:"user"}}),_c('CInput',{attrs:{"placeholder":"Password","type":"password","isValid":_vm.invalidPass,"invalidFeedback":_vm.invalidFeedback,"required":""},scopedSlots:_vm._u([{key:"prepend-content",fn:function(){return [_c('CIcon',{attrs:{"name":"cil-lock-locked"}})]},proxy:true}]),model:{value:(_vm.pass),callback:function ($$v) {_vm.pass=$$v},expression:"pass"}}),_c('CRow',{staticClass:"flex-wrap d-flex",attrs:{"align-vertical":"center"}},[_c('CCol',{staticClass:"text-left col-12 col-sm-6"},[_c('CButton',{staticClass:"px-2 w-100 d-flex justify-content-around align-items-center ",attrs:{"color":"primary","type":"submit"}},[_vm._v(" Se connecter "),(_vm.isloading)?_c('CSpinner',{staticClass:"ml-2",attrs:{"size":"sm","color":"secondary"}}):_vm._e()],1)],1),_c('CCol',{staticClass:"text-right col-12 col-sm-6"},[_c('CButton',{staticClass:"px-0",attrs:{"color":"link"}},[_vm._v(" Forgot password? ")]),_c('CButton',{staticClass:"d-lg-none",attrs:{"color":"link"}},[_vm._v(" Register now! ")])],1)],1)],1)],1)],1),_c('CCard',{staticClass:"text-center py-5 d-lg-down-none",attrs:{"color":"primary","text-color":"white","body-wrapper":""}},[_c('CCardBody',[_c('h2',[_vm._v("Gestion des tâches")]),_c('p',[_vm._v(" Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ")])])],1)],1)],1)],1)],1)],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/pages/Login.vue?vue&type=template&id=504099fe&
+// CONCATENATED MODULE: ./src/views/pages/Login.vue?vue&type=template&id=4c887834&
 
 // EXTERNAL MODULE: ./src/connect.js
 var connect = __webpack_require__("b0bd");
@@ -94,8 +94,8 @@ var connect = __webpack_require__("b0bd");
   data: function data() {
     return {
       invalidFeedback: "nom d'utilisateur ou mot de passe incorrect",
-      user: "stanee",
-      pass: "azabzistany@gmail.com",
+      user: "",
+      pass: "",
       invalidPass: null,
       invalidUser: null,
       isloading: false

@@ -406,12 +406,12 @@ var Home_component = Object(componentNormalizer["a" /* default */])(
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/AddNewProject.vue?vue&type=template&id=435cb0c3&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('CRow',{staticClass:"ml-2 mt-n2 d-flex",attrs:{"alignVertical":"center"}},[_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Nouveau projet'),expression:"'Nouveau projet'"}],attrs:{"size":"sm","color":"warning","shape":"pill"},on:{"click":_vm.modalAddOn}},[_c('CIcon',{staticClass:"text-white",attrs:{"name":"cilPlus","height":35,"size":"xl"}})],1),(_vm.showSideText)?_c('h6',{staticClass:"ml-1 mt-1"},[_vm._v("Nouveau projet")]):_vm._e()],1),_c('CModal',{attrs:{"size":"lg","title":"Nouveau projet","color":"warning","show":_vm.modalAdd,"footer":false},on:{"update:show":function($event){_vm.modalAdd=$event}}},[_c('PopUpContent',{ref:"child",attrs:{"formValues":_vm.formValues,"utilisateur":_vm.utilisateur,"btnState":_vm.btnStateAdd},on:{"addnew-ok":_vm.addnewOk,"addnew-error":_vm.addnewError}}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.modalAdd = false}}},[_vm._v(" Cancel ")]),_c('CButton',{staticClass:"mx-1 d-flex align-items-center",attrs:{"color":_vm.btnStateAdd.state ? 'warning' : 'light'},on:{"click":_vm.PostNewProject}},[_vm._v(" Save "),(_vm.spinner)?_c('CSpinner',{staticClass:"mx-2",staticStyle:{"width":"0.8rem","height":"0.8rem"},attrs:{"tag":"div","color":"primary"}}):_vm._e()],1)],1)])],2)],1)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/AddNewProject.vue?vue&type=template&id=128a5f50&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('CRow',{staticClass:"ml-2  d-flex",attrs:{"alignVertical":"center"}},[_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Nouveau projet'),expression:"'Nouveau projet'"}],attrs:{"size":"sm","color":"warning","shape":"pill"},on:{"click":_vm.modalAddOn}},[_c('CIcon',{staticClass:"text-white",attrs:{"name":"cilPlus","height":35,"size":"xl"}})],1),(_vm.showSideText)?_c('h6',{staticClass:"ml-1 mt-1"},[_vm._v("Nouveau projet")]):_vm._e()],1),_c('CModal',{attrs:{"size":"lg","title":"Nouveau projet","color":"warning","show":_vm.modalAdd,"footer":false},on:{"update:show":function($event){_vm.modalAdd=$event}}},[_c('PopUpContent',{ref:"child",attrs:{"formValues":_vm.formValues,"btnState":_vm.btnStateAdd},on:{"addnew-ok":_vm.addnewOk,"addnew-error":_vm.addnewError}}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.modalAdd = false}}},[_vm._v(" Cancel ")]),_c('CButton',{staticClass:"mx-1 d-flex align-items-center",attrs:{"color":_vm.btnStateAdd.state ? 'warning' : 'light'},on:{"click":_vm.PostNewProject}},[_vm._v(" Save "),(_vm.spinner)?_c('CSpinner',{staticClass:"mx-2",staticStyle:{"width":"0.8rem","height":"0.8rem"},attrs:{"tag":"div","color":"primary"}}):_vm._e()],1)],1)])],2)],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/App/project/AddNewProject.vue?vue&type=template&id=435cb0c3&
+// CONCATENATED MODULE: ./src/views/App/project/AddNewProject.vue?vue&type=template&id=128a5f50&
 
 // EXTERNAL MODULE: ./node_modules/highlight.js/lib/index.js
 var lib = __webpack_require__("1487");
@@ -536,17 +536,48 @@ var PopUpContent = __webpack_require__("2a5d");
   },
   methods: {
     modalAddOn: function modalAddOn() {
+      this.$refs.child.postData = {
+        typeIsOk: false,
+        type: "project",
+        status: "0",
+        date_depart_proposer: "",
+        date_fin_proposer: "",
+        date_fin_reel: "",
+        temps_pause: "",
+        raison: "",
+        heure_debut: "",
+        heure_fin: "",
+        clientName: "",
+        titre: "",
+        price: "",
+        text: "",
+        primeStatus: null,
+        primePrice: "",
+        privaty: true,
+        executant: []
+      };
       this.modalAdd = true;
       this.$refs.child.TimeNow();
     },
     PostNewProject: function PostNewProject() {
+      this.spinner = true;
+
       if (this.btnStateAdd.state) {
         this.$refs.child.PostNewProject();
       }
     },
-    addnewOk: function addnewOk() {
+    addnewOk: function addnewOk(data) {
       this.spinner = false;
       this.modalAdd = false;
+      console.log('reponse add', data);
+      console.log('router', this);
+      this.$router.push({
+        name: 'Projet',
+        params: {
+          idcontents: data.id
+        }
+      });
+      this.spinner = false;
     },
     addnewError: function addnewError() {
       alert("Une erreur s'est produit");
@@ -1451,6 +1482,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var Utilities = {
+  /* 
+  data for add delete prime 
+  */
+  formatPrimeData: function formatPrimeData(data, method) {
+    return new Promise(function (resolv) {
+      var result = [];
+      var table = {
+        table: "gestion_project_prime",
+        fields: {
+          status: data.status ? 1 : 0,
+          montant: Number(data.montant, 10),
+          idcontents: data.id
+        }
+      };
+
+      if (method) {
+        table["action"] = "update";
+        table["where"] = [{
+          column: "idcontents",
+          value: data.id
+        }];
+      }
+
+      result.push(table);
+      resolv(result);
+    });
+  },
+
   /**
    * Prepare les données pour la sauvagarde.
    */
@@ -1624,6 +1683,16 @@ var Utilities = {
         }
       }
 
+      if (datas.prime_status) {
+        childstable.push({
+          table: "gestion_project_prime",
+          fields: {
+            montant: datas.prime_montant,
+            status: datas.prime_status ? 1 : 0
+          }
+        });
+      }
+
       var result = [];
 
       if (datas && datas.titre) {
@@ -1658,6 +1727,7 @@ var Utilities = {
         console.log("val.date_depart_proposer ", result);
       }
       /**/
+      // console.log("executant", result);
       if (result.idcontents) {
         postData.idcontents = result.idcontents;
       }
@@ -1671,6 +1741,8 @@ var Utilities = {
             postData[i] = moment__WEBPACK_IMPORTED_MODULE_0___default.a.unix(result[i]).format("YYYY-MM-DD");
             postData.heure_fin = moment__WEBPACK_IMPORTED_MODULE_0___default.a.unix(result[i]).format("HH:mm");
           } else if (i === "privaty") {
+            postData[i] = result[i] == "0" ? false : true;
+          } else if (i === "prime_status") {
             postData[i] = result[i] == "0" ? false : true;
           } else if (i === "executant") {
             postData[i] = [];
@@ -1748,6 +1820,22 @@ var Utilities = {
             }]
           }, {
             table: "gestion_project_executant",
+            fields: {},
+            action: "delete",
+            where: [{
+              column: "idcontents",
+              value: datas.idcontents
+            }]
+          }, {
+            table: "gestion_project_prime",
+            fields: {},
+            action: "delete",
+            where: [{
+              column: "idcontents",
+              value: datas.idcontents
+            }]
+          }, {
+            table: "gestion_project_prime",
             fields: {},
             action: "delete",
             where: [{
