@@ -23,7 +23,16 @@
       </CRow>
     </div>
     <hr />
+
     <div class="pl-sm-2">
+       <CRow @click="togleVisible" class="mb-4 mt-n2">
+         <CCol><CButton variant="ghost" color="light w-100" href="#" class="text-dark d-fleex plus-bouton" >
+           <span>plus</span>
+           <span  v-show="!visible"><CIcon class="ml-auto" style="float:right;" name="cil-chevron-bottom"  /></span>
+           <span  v-show="visible"><CIcon class="ml-auto" style="float:right;" name="cil-chevron-top"  /></span>
+           </CButton></CCol>
+       </CRow>
+       <CCollapse :show="visible" :navbar="true" >
       <CRow
         :gutters="false"
         class="form-group"
@@ -50,6 +59,7 @@
           />
         </CCol>
       </CRow>
+    
       <CRow v-if="postData.type !== 'memos'">
         <CCol col="12" lg="6">
           <CRow class="">
@@ -89,6 +99,7 @@
           </CRow>
         </CCol>
       </CRow>
+      </CCollapse>
 
       <CRow>
         <CCol sm="6" class="d-flex">
@@ -158,7 +169,7 @@
           />
         </CCol>
         <CCol
-          sm="5"
+          lg="5"
           v-if="postData.type !== 'ressource' && postData.type !== 'memos'"
         >
           <label class="typo__label">Exécuter par:</label>
@@ -245,6 +256,7 @@ export default {
   data() {
     return {
       selectLoading: false,
+      visible: true,
       postData: {
         typeIsOk: false,
         type: "project",
@@ -367,6 +379,9 @@ export default {
     ProjectOptionsType.loadType().then((reponse) => {
       this.options = reponse;
     });
+    let sm = window.matchMedia('(max-width:768px)')
+    sm.addEventListener('change',this.smallMedia)
+    this.smallMedia(sm)
   },
   watch: {
     formValues: {
@@ -466,6 +481,16 @@ export default {
     }
   },
   methods: {
+    smallMedia(bp) {
+      if(bp.matches) {
+        this.visible = false;
+      }else {
+        this.visible = true;
+      }
+    },
+    togleVisible()  {
+      this.visible = !this.visible
+    },
     reUpdatePrime(val) {
       console.log('reUpdate Prime: ',val)
       this.updatePrime(this.postData.prime_status)
@@ -758,7 +783,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.plus-bouton{
+  box-shadow: 0px 0px 5px rgba(224, 224, 224, 0.664)
+}
+</style>
 
 <!--
  //nom du fichier en pascal.

@@ -3,7 +3,7 @@
   
     <CCard>
       <CCardHeader
-        class="shadow-sm"
+        class="shadow-sm flex-wrap flex-md-nowrap"
         :class="[
           'card-progress  card-color card-border card-border--' + dataLoad.type,
           background,
@@ -11,7 +11,7 @@
       >
         <CLink
           :to="'/projets/' + dataLoad.idcontents"
-          class="text-dark text-decoration-none link-card"
+          class="text-dark  text-decoration-none link-card"
           >{{ dataLoad.titre }}
           <CBadge v-if="dataLoad.privaty == '1'" color="danger" position="top-start" shape="pill">
               Privé
@@ -29,11 +29,11 @@
           </span>
         </CLink>
         
-        <div class="px-2 date-created">
+        <div class="px-2 date-created py-2 " >
           <small>{{ createdAt }}</small>
         </div>
         <CProgress
-          class="progress-xs card-prog"
+          class="progress-xs mx-2 card-prog"
           :animated="
             dataLoad.status === '1' || dataLoad.status === '3' ? false : true
           "
@@ -48,7 +48,7 @@
           v-if="progress.val && progress.max"
         />
 
-        <div class="card-header-actions pr-2">
+        <div class="card-header-actions px-2">
           <CLink
             href="#"
             class="btn-close p-2"
@@ -83,7 +83,7 @@
           >
             <CIcon name="cil-plus" />
           </CLink>
-          <CLink href="#" class="m-2 btn-setting" @click="modalRessourceOn">
+          <CLink href="#" class="btn-close p-2" @click="modalRessourceOn">
             <CIcon name="cil-settings" />
           </CLink>
           <CLink
@@ -93,7 +93,8 @@
           >
             <CIcon :name="`cil-chevron-${dataLoad.open ? 'bottom' : 'top'}`" />
           </CLink>
-          <CLink
+          <span v-if="permission">
+            <CLink
             href="#"
             class="p-2 btn-close text-danger"
             v-c-tooltip="'Supprimer ce contenu'"
@@ -101,6 +102,7 @@
           >
             <CIcon color="danger" name="cil-x-circle" />
           </CLink>
+          </span>
           <!-- <CLink
             href="#"
             class="p-2 btn-close text-dark "
@@ -153,6 +155,7 @@
       title="Modification de la hiérarchie"
       color="dark"
       :show.sync="hierarchiModal"
+      class=" modal-dialog-scrollable"
     >
       <CRow>
         <CCol col="8" sm="5" class="mr-0 pr-0">
@@ -257,6 +260,12 @@ export default {
     this.timing();
   },
   computed: {
+    permission() {
+      let perm = this.$store.getters.currentUser
+      console.log('perm',perm)
+      if(perm.uid == this.dataLoad.uid) return true
+      return false
+    },
     isPrime () {
       let prime = this.dataLoad.prime_status;
       if (prime == 1 || prime == true) {
@@ -433,6 +442,26 @@ export default {
 
 <style lang="scss">
 // .icon-favoris {}
+.card-header-actions  {
+  display: flex;
+  gap: 1px;
+  flex-wrap: wrap;
+  overflow: hidden;
+  min-width: 250px;
+  margin-left: auto;
+  justify-content: flex-end;
+  & > span {
+    display: inline-flex;
+  }
+  a {
+  //  background: #9a9a9a;
+    transition: ease-in-out 0.25s;
+    &:hover {
+      transform: scale(1.3);
+      box-shadow: 0px 0px 5px rgba(190, 190, 190, 0.774);
+    }
+  }
+}
 .date-created {
   color: #9a9a9a;
   font-style: oblique;
@@ -476,7 +505,9 @@ export default {
     border-top: 0;
     border-bottom: 0;
   }
-
+// .card-render-entity {
+  
+// }
   .card {
     border-right: 0;
     border-bottom: 0;
@@ -492,6 +523,11 @@ export default {
       width: 19%;
       background: #b5b5b5;
     }
+    // &:hover {
+    //   .card-header {
+    //     background: white;
+    //   }
+    // }
   }
 }
 .card-back {
@@ -512,6 +548,7 @@ export default {
   margin-right: 5px;
   margin-left: auto;
   width: 15%;
+  min-width: 7rem
 }
 .prime-badge {
   position: absolute;

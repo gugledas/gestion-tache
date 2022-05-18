@@ -105,6 +105,7 @@
       color="danger"
       :show.sync="deleteModal"
       :closeOnBackdrop="false"
+      class=" modal-dialog-scrollable"
     >
       êtes vous sûre de vouloir supprimer ce contenu? <br />
       <small class="mt-2 text-center">Cette action est irréversible.</small>

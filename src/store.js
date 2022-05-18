@@ -84,7 +84,6 @@ const actions = {
         if (reponse.status) {
           if (reponse) {
             commit("SET_UTILISATEUR", reponse.data);
-            console.log("Utilisateur", reponse);
           }
         }
       })

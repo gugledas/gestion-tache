@@ -1,5 +1,7 @@
 <template lang="html">
   <div>
+    
+
     <CRow>
       <!-- filtre -->
       <filtre-project @ev-filter="EvFilter"></filtre-project>
@@ -38,7 +40,7 @@
         title="Nouveau projet"
         color="info"
         :show.sync="addingModal"
-        :closeOnBackdrop="false"
+        :closeOnBackdrop="false"  class=" modal-dialog-scrollable"
       >
         <PopUpContent
           :form-values="dataOfFormAdd"
@@ -73,7 +75,7 @@
               class="mx-1 d-flex align-items-center"
               :color="btnStateAdd.state ? 'info' : 'light'"
               desabled
-              >Save {{spinner}}
+              >Save 
               <CSpinner
                 v-if="spinner"
                 class="mx-2"
@@ -94,6 +96,7 @@
         color="light"
         :show.sync="modalRessource"
         :closeOnBackdrop="false"
+         class=" modal-dialog-scrollable"
       >
         <div class="pl-sm-2" v-if="selected == 'projet'">
           <CRow class="d-flex flex-nowrap">
@@ -148,6 +151,7 @@
           color="success"
           :show.sync="modalEdit"
           :closeOnBackdrop="false"
+           class=" modal-dialog-scrollable"
         >
           <PopUpContent
             :form-values="dataOfForm"
@@ -225,6 +229,7 @@ export default {
   },
   data() {
     return {
+     
       spinner: false,
       spinnerNew : false,
       isLoading: false,
@@ -278,6 +283,7 @@ export default {
     }
   },
   methods: {
+    
    async addNewOk(data) {
       this.spinner = false
       

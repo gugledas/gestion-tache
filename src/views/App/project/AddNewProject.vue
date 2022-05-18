@@ -19,6 +19,7 @@
       color="warning"
       :show.sync="modalAdd"
       :footer="false"
+       class=" modal-dialog-scrollable"
     >
       <PopUpContent
         ref="child"

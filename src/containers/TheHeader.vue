@@ -50,6 +50,18 @@
       >
         <CIcon name="cil-address-book" size="sm" />
       </CButton>
+      <CButton
+        v-c-tooltip="'Notes administrative'"
+        size="sm"
+        shape=""
+        variant="ghost"
+        color="danger"
+        @click="loadNoteAdmin"
+        class="bouton-note"
+        v-if='notebtn'
+      >
+        <CIcon name="cil-speech" size="sm" />
+      </CButton>
     </CHeaderNav>
     <CHeaderBrand class="mx-auto d-lg-none" to="/">
       <CIcon name="logo" height="48" alt="Logo" />
@@ -89,7 +101,7 @@
         ]"
       />-->
       <BreadCrumb></BreadCrumb>
-      <div class="ml-auto d-flex flex-wrap aling-items-end">
+      <div class="ml-auto d-inline-flex flex-wrap aling-items-end justify-content-end sub-div">
         <SSearch :styled="true"></SSearch>
         <CDropdown
           color="dark"
@@ -126,6 +138,7 @@
         :fields="tableFields"
         :header="false"
         :loading="isLoading"
+        
         cleaner
         table-filter
         items-per-page-select
@@ -223,6 +236,7 @@
       :modalLast="MesTachesModal"
       @update-modal="UpdateModal"
     ></TacheEncours>
+    <NoteAdmin @ev_modal_last="ev_modal_last" @hide-note="hideNote" @update-modal="updateNoteAd" :modalLast="notesAdmin"></NoteAdmin>
   </CHeader>
 </template>
 
@@ -240,6 +254,7 @@ export default {
     AddNewProject,
     BreadCrumb,
     TacheEncours,
+    NoteAdmin: () => import('../Steph/Header/NoteAdmin.vue'),
     //TheHeaderDropdownAccnt
   },
   data() {
@@ -251,12 +266,14 @@ export default {
       modalLast: false,
       isLoading: false,
       itemsTache: [],
+      notebtn: false,
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
         { key: "activity", _style: "width:600px;" },
       ],
       tacheEncoursModal: false,
+      notesAdmin: false
     };
   },
   mounted() {
@@ -271,6 +288,12 @@ export default {
     }
   },
   methods: {
+    hideNote() {
+      this.notebtn = true
+    },
+    loadNoteAdmin() {
+      this.notesAdmin = true;
+    },
 
     loadMesTaches() {
       this.MesTachesModal = true;
@@ -296,14 +319,19 @@ export default {
       });
     },
     ev_modal_last() {
+   
       this.tacheEncoursModal = false;
       this.MesTachesModal = false;
+      this.notesAdmin = false;
     },
     UpdateModalEncour(val) {
       this.tacheEncoursModal = val;
     },
     UpdateModal(val) {
       this.MesTachesModal = val;
+    },
+    updateNoteAd(val) {
+      this.notesAdmin = val;
     },
   },
 };
@@ -315,6 +343,12 @@ export default {
 //   75%{transform: scale(103%);}
 //   100%{transform: scale(100%);}
 // }
+.sub-div {
+  @media only screen and (max-width:768px) {
+    display: block;
+    width: 100%;
+  }
+}
 .user-space {
   display: flex;
   justify-content: center;
@@ -334,5 +368,20 @@ export default {
   color :black;
   letter-spacing: 2px;
   //margin-top: 5px;
+}
+.bouton-note{
+  animation: moove infinite ease-in-out 4s   ;
+  transition: 0.3s;
+  &:hover {
+    animation:none;
+  }
+}
+@keyframes moove {
+  
+  0%   {transform: scale(1);}
+  25%  {transform: scale(1.3);}
+  50%  {transform: scale(1);}
+  75%  {transform: scale(1.3);}
+  100% {transform: scale(1);}
 }
 </style>

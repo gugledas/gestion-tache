@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AjaxBasic } from "wbuutilities";
-var formatBasicAuth = function(userName, password) {
+var formatBasicAuth = function (userName, password) {
   var basicAuthCredential = userName + ":" + password;
   var bace64 = btoa(basicAuthCredential);
   return "Basic " + bace64;
@@ -12,15 +12,15 @@ export default {
   basicAuth: formatBasicAuth("stane", "azabzistany@gmail.com"),
   //baseUrl: "http://gestion-taches.kksa",
   ModeDebug: true,
-  postOld: function(request, datas = {}) {
+  postOld: function (request, datas = {}) {
     return new Promise((resolv) => {
       var configs = {
         //withCredentials: true,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: this.basicAuth,
-        },
+          Authorization: this.basicAuth
+        }
       };
       console.log("Authorization", this.basicAuth);
       axios
@@ -34,7 +34,7 @@ export default {
         });
     });
   },
-  getOld: function(request, datas = {}) {
+  getOld: function (request, datas = {}) {
     // console.log("ssss");
     return new Promise((resolv) => {
       var configs = {
@@ -46,8 +46,8 @@ export default {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: this.basicAuth,
-        },
+          Authorization: this.basicAuth
+        }
       };
       axios
         .get(this.baseUrl + request, datas, configs)
@@ -60,7 +60,7 @@ export default {
         });
     });
   },
-  color: function(valueCurent, maxValue) {
+  color: function (valueCurent, maxValue) {
     let value = 0;
     let $color;
     if (maxValue > 0 && valueCurent > 0) {
@@ -79,4 +79,20 @@ export default {
     }
     return $color;
   },
+  formatWhere: function (where) {
+    let query = "";
+    for (const i in where) {
+      query +=
+        where[i].column +
+        " " +
+        where[i].operator +
+        " " +
+        "'" +
+        where[i].value +
+        "'" +
+        " ";
+      if (i < where.length - 1) query += "and ";
+    }
+    return query;
+  }
 };

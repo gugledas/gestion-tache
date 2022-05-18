@@ -5,25 +5,19 @@ export default {
    * selectionne un enssemble de données à partir d'une requette personnalisé
    */
   selectDatas: function (
-    where = [{ column: "c.type", operator: "=", value: "project" }]
+    where = [{ column: "gpc.type", operator: "=", value: "project" }]
   ) {
     return new Promise((resolv) => {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
+
       if (where.length) {
-        for (const i in where) {
-          query +=
-            where[i].column +
-            " " +
-            where[i].operator +
-            " " +
-            "'" +
-            where[i].value +
-            "'" +
-            " ";
-        }
+        query.where += config.formatWhere(where);
       }
-      query += " ORDER BY  c.`idcontents` DESC";
-      query += " limit 0,50 ";
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,50 ";
       //console.log("query :: ", query);
       config
         .post("/gestion-project/select/selectdatas", query, {
@@ -270,7 +264,7 @@ export default {
     return new Promise((resolv) => {
       var query = "";
       query +=
-        " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
+        " gpc.idcontents is not NULL order by gpc.update_at DESC limit 0,30 ";
       config
         .post("/gestion-project/select/select-project", query, {
           headers: {
@@ -288,26 +282,19 @@ export default {
     });
   },
   SelectTacheEnours: function (
-    where = [{ column: "t.status", operator: "=", value: 2 }]
+    where = [{ column: "gpt.status", operator: "=", value: 2 }]
   ) {
     return new Promise((resolv, error) => {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (const i in where) {
-          query +=
-            where[i].column +
-            " " +
-            where[i].operator +
-            " " +
-            "'" +
-            where[i].value +
-            "'" +
-            " ";
-        }
+        query.where += config.formatWhere(where);
       }
-      query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,20 ";
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 ";
       //console.log("query :: ", query);
       config
         .post("/gestion-project/select/select-tache-enours", query, {
@@ -329,26 +316,19 @@ export default {
   },
   SelectMesTaches: function (
     uid,
-    where = [{ column: "t.uid", operator: "=", value: 8 }]
+    where = [{ column: "gpe.uid", operator: "=", value: 8 }]
   ) {
     return new Promise((resolv, error) => {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (const i in where) {
-          query +=
-            where[i].column +
-            " " +
-            where[i].operator +
-            " " +
-            "'" +
-            where[i].value +
-            "'" +
-            " ";
-        }
+        query.where += config.formatWhere(where);
       }
-      query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,20 ";
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 ";
       //console.log("query :: ", query);
       config
         .post("/gestion-project/select/select-mes-taches/" + uid, query, {
@@ -368,7 +348,44 @@ export default {
         });
     });
   },
+  SelectNotesAd: function (
+    uid,
+    where = [
+      { column: "gpc.type", operator: "=", value: "note" },
+      { column: "gpe.uid", operator: "=", value: uid },
+      { column: "gpt.status", operator: "!=", value: 1 }
+    ]
+  ) {
+    return new Promise((resolv, error) => {
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
+      if (where.length) {
+        query.where += config.formatWhere(where);
+      }
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 ";
+      // console.log("query were :: ", query, where);
+      config
+        .post("/gestion-project/custom-request", query, {
+          headers: {
+            Authorization: authorization
+          }
+        })
+        .then((reponse) => {
+          if (reponse.status) {
+            resolv(reponse.data);
+          } else {
+            resolv([]);
+          }
+        })
+        .catch((er) => {
+          error(er);
+        });
+    });
+  },
   /**
    * Les tables sous drupal doivent etre encarée avec {}
    */
