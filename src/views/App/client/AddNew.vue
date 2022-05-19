@@ -13,6 +13,7 @@
       :color="plusColor"
       :show.sync="modalAdd"
       :footer="false"
+      class=" modal-dialog-scrollable"
     >
       <PopUpClient
         ref="pop"

@@ -133,7 +133,7 @@ export default {
   methods: {
     LoadDatasType() {
       if (this.name.length) {
-        var opt = [{ column: "c.type", operator: "=", value: this.name }];
+        var opt = [{ column: "gpc.type", operator: "=", value: this.name }];
         this.isLoading2 = true;
         SelectDb.selectDatas(opt).then((response) => {
           //console.log("name", this.name);

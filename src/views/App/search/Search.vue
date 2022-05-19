@@ -184,7 +184,11 @@ export default {
 
 <style lang="scss">
 .searchForm {
-  width: 550px;
+  width: 551px;
+  @media only screen and (max-width:768px) {
+    display: block;
+    width: 100%;
+  }
   .multiselect__tags {
     padding: 2px 40px 0px 8px;
     margin-top: 7px;
