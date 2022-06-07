@@ -43,14 +43,14 @@
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/CardComponent.vue?vue&type=template&id=2701771b&
-var CardComponentvue_type_template_id_2701771b_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-block card-render-entity"},[_c('CCard',[_c('CCardHeader',{staticClass:"shadow-sm",class:[
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/CardComponent.vue?vue&type=template&id=e963adec&
+var CardComponentvue_type_template_id_e963adec_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-block card-render-entity"},[_c('CCard',[_c('CCardHeader',{staticClass:"shadow-sm flex-wrap flex-md-nowrap",class:[
         'card-progress  card-color card-border card-border--' + _vm.dataLoad.type,
-        _vm.background ]},[_c('CLink',{staticClass:"text-dark text-decoration-none link-card",attrs:{"to":'/projets/' + _vm.dataLoad.idcontents}},[_vm._v(_vm._s(_vm.dataLoad.titre)+" "),(_vm.dataLoad.privaty == '1')?_c('CBadge',{attrs:{"color":"danger","position":"top-start","shape":"pill"}},[_vm._v(" Privé ")]):_vm._e(),(_vm.dataLoad.executant && _vm.dataLoad.executant.length)?_c('span',[_c('small',{staticClass:"ml-2"},[_c('CIcon',{attrs:{"size":"sm","name":"cilArrowRight"}})],1),_vm._l((_vm.dataLoad.executant),function(ex,i){return _c('CBadge',{key:i,staticClass:"mx-2",attrs:{"color":"primary","position":"top-start","shape":"pill"}},[_vm._v(" "+_vm._s(_vm.formatExecutant(ex.uid))+" ")])})],2):_vm._e(),(_vm.isPrime)?_c('span',{staticClass:"prime-badge"},[_c('CBadge',{attrs:{"color":"warning","position":"top-start","shape":""}},[_vm._v(" Prime "+_vm._s(_vm.dataLoad.prime_status)+" ")])],1):_vm._e()],1),_c('div',{staticClass:"px-2 date-created"},[_c('small',[_vm._v(_vm._s(_vm.createdAt))])]),(_vm.progress.val && _vm.progress.max)?_c('CProgress',{staticClass:"progress-xs card-prog",staticStyle:{"height":"10px"},attrs:{"animated":_vm.dataLoad.status === '1' || _vm.dataLoad.status === '3' ? false : true,"showPercentage":"","striped":_vm.dataLoad.status === '1' || _vm.dataLoad.status === '3' ? false : true,"max":_vm.progress.max,"value":_vm.progress.val,"color":_vm.color(_vm.progress.val, _vm.progress.max)}}):_vm._e(),_c('div',{staticClass:"card-header-actions pr-2"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Afficher/Cacher la description'),expression:"'Afficher/Cacher la description'"}],staticClass:"btn-close p-2",attrs:{"href":"#"},on:{"click":function($event){_vm.descToggle = !_vm.descToggle}}},[_c('CIcon',{attrs:{"name":("cil-chevron-circle-" + (_vm.descToggle ? 'down' : 'up') + "-alt")}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Edité le contenu'),expression:"'Edité le contenu'"}],staticClass:"btn-close p-2",attrs:{"href":"#"},on:{"click":_vm.modalEditOn}},[_c('CIcon',{attrs:{"name":"cil-pencil"}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Modifier le parent'),expression:"'Modifier le parent'"}],staticClass:"btn-close p-2",attrs:{"href":"#"},on:{"click":_vm.changeParent}},[_c('CIcon',{attrs:{"name":"cil-cursor-move"}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Créer un sous contenu'),expression:"'Créer un sous contenu'"}],staticClass:"btn-close p-2",attrs:{"href":"#"},on:{"click":_vm.HideTypeProject}},[_c('CIcon',{attrs:{"name":"cil-plus"}})],1),_c('CLink',{staticClass:"m-2 btn-setting",attrs:{"href":"#"},on:{"click":_vm.modalRessourceOn}},[_c('CIcon',{attrs:{"name":"cil-settings"}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Afficher/Cacher les sous projects'),expression:"'Afficher/Cacher les sous projects'"}],staticClass:"p-2 btn-minimize",on:{"click":_vm.Collapsed}},[_c('CIcon',{attrs:{"name":("cil-chevron-" + (_vm.dataLoad.open ? 'bottom' : 'top'))}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Supprimer ce contenu'),expression:"'Supprimer ce contenu'"}],staticClass:"p-2 btn-close text-danger",attrs:{"href":"#"},on:{"click":_vm.DeleteModalOn}},[_c('CIcon',{attrs:{"color":"danger","name":"cil-x-circle"}})],1)],1)],1),_c('CCollapse',{attrs:{"show":_vm.dataLoad.open,"duration":400}},[_c('CCardBody',[_c('CCollapse',{attrs:{"show":_vm.descToggle,"duration":400}},[_c('div',{domProps:{"innerHTML":_vm._s(_vm.textDisplay)}})]),_vm._t("default")],2)],1)],1),_c('CModal',{attrs:{"title":"Confirmer la suppression","color":"danger","show":_vm.deleteModal,"closeOnBackdrop":false},on:{"update:show":function($event){_vm.deleteModal=$event}}},[_vm._v(" Êtes vous sûre de vouloir supprimer ce contenu? "),_c('br'),_c('small',{staticClass:"mt-2 text-center"},[_vm._v("Cette action est irréversible.")]),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.deleteModal = false}}},[_vm._v("Cancel")]),_c('CButton',{staticClass:"mx-1",attrs:{"color":"danger","desabled":""},on:{"click":_vm.DeleteContent}},[_vm._v("Supprimer "),(_vm.spinnerDelete)?_c('CSpinner',{staticClass:"mx-2",staticStyle:{"width":"0.8rem","height":"0.8rem"},attrs:{"tag":"div","color":"light"}}):_vm._e()],1)],1)])],2),_c('CModal',{attrs:{"title":"Modification de la hiérarchie","color":"dark","show":_vm.hierarchiModal},on:{"update:show":function($event){_vm.hierarchiModal=$event}}},[_c('CRow',[_c('CCol',{staticClass:"mr-0 pr-0",attrs:{"col":"8","sm":"5"}},[_c('CInput',{attrs:{"label":"Ordre:","type":"number","horizontal":""},model:{value:(_vm.newIdParrent.ordre),callback:function ($$v) {_vm.$set(_vm.newIdParrent, "ordre", $$v)},expression:"newIdParrent.ordre"}})],1),_c('CCol',{attrs:{"md":"10"}},[_c('SSearch',{on:{"parent-selected":_vm.parentSelected}}),_c('small',[_vm._v("Choisir le nouveau parent")]),_vm._v(" "),_c('br'),_c('small',[_vm._v("Parent Actuel: "),_c('strong',[_vm._v(_vm._s(_vm.dataLoad.idcontentsparent))])])],1)],1),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.hierarchiModal = false}}},[_vm._v("Cancel")]),_c('CButton',{staticClass:"mx-1",attrs:{"color":"dark","desabled":""},on:{"click":_vm.ChangeHierarchie}},[_vm._v("Enregistrer "),(_vm.spinner)?_c('CSpinner',{staticStyle:{"width":"1rem","height":"1rem"},attrs:{"size":"sm","tag":"small","color":"primary"}}):_vm._e()],1)],1)])],2)],1)}
+        _vm.background ]},[_c('CLink',{staticClass:"text-dark  text-decoration-none link-card",attrs:{"to":'/projets/' + _vm.dataLoad.idcontents}},[_vm._v(_vm._s(_vm.dataLoad.titre)+" "),(_vm.dataLoad.privaty == '1')?_c('CBadge',{attrs:{"color":"danger","position":"top-start","shape":"pill"}},[_vm._v(" Privé ")]):_vm._e(),(_vm.dataLoad.executant && _vm.dataLoad.executant.length)?_c('span',[_c('small',{staticClass:"ml-2"},[_c('CIcon',{attrs:{"size":"sm","name":"cilArrowRight"}})],1),_vm._l((_vm.dataLoad.executant),function(ex,i){return _c('CBadge',{key:i,staticClass:"mx-2",attrs:{"color":"primary","position":"top-start","shape":"pill"}},[_vm._v(" "+_vm._s(_vm.formatExecutant(ex.uid))+" ")])})],2):_vm._e(),(_vm.isPrime)?_c('span',{staticClass:"prime-badge"},[_c('CBadge',{attrs:{"color":"warning","position":"top-start","shape":""}},[_vm._v(" Prime "+_vm._s(_vm.dataLoad.prime_status)+" ")])],1):_vm._e()],1),_c('div',{staticClass:"px-2 date-created py-2 "},[_c('small',[_vm._v(_vm._s(_vm.createdAt))])]),(_vm.progress.val && _vm.progress.max)?_c('CProgress',{staticClass:"progress-xs mx-2 card-prog",staticStyle:{"height":"10px"},attrs:{"animated":_vm.dataLoad.status === '1' || _vm.dataLoad.status === '3' ? false : true,"showPercentage":"","striped":_vm.dataLoad.status === '1' || _vm.dataLoad.status === '3' ? false : true,"max":_vm.progress.max,"value":_vm.progress.val,"color":_vm.color(_vm.progress.val, _vm.progress.max)}}):_vm._e(),_c('div',{staticClass:"card-header-actions px-2"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Afficher/Cacher la description'),expression:"'Afficher/Cacher la description'"}],staticClass:"btn-close p-2",attrs:{"href":"#"},on:{"click":function($event){_vm.descToggle = !_vm.descToggle}}},[_c('CIcon',{attrs:{"name":("cil-chevron-circle-" + (_vm.descToggle ? 'down' : 'up') + "-alt")}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Edité le contenu'),expression:"'Edité le contenu'"}],staticClass:"btn-close p-2",attrs:{"href":"#"},on:{"click":_vm.modalEditOn}},[_c('CIcon',{attrs:{"name":"cil-pencil"}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Modifier le parent'),expression:"'Modifier le parent'"}],staticClass:"btn-close p-2",attrs:{"href":"#"},on:{"click":_vm.changeParent}},[_c('CIcon',{attrs:{"name":"cil-cursor-move"}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Créer un sous contenu'),expression:"'Créer un sous contenu'"}],staticClass:"btn-close p-2",attrs:{"href":"#"},on:{"click":_vm.HideTypeProject}},[_c('CIcon',{attrs:{"name":"cil-plus"}})],1),_c('CLink',{staticClass:"btn-close p-2",attrs:{"href":"#"},on:{"click":_vm.modalRessourceOn}},[_c('CIcon',{attrs:{"name":"cil-settings"}})],1),_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Afficher/Cacher les sous projects'),expression:"'Afficher/Cacher les sous projects'"}],staticClass:"p-2 btn-minimize",on:{"click":_vm.Collapsed}},[_c('CIcon',{attrs:{"name":("cil-chevron-" + (_vm.dataLoad.open ? 'bottom' : 'top'))}})],1),(_vm.permission)?_c('span',[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Supprimer ce contenu'),expression:"'Supprimer ce contenu'"}],staticClass:"p-2 btn-close text-danger",attrs:{"href":"#"},on:{"click":_vm.DeleteModalOn}},[_c('CIcon',{attrs:{"color":"danger","name":"cil-x-circle"}})],1)],1):_vm._e()],1)],1),_c('CCollapse',{attrs:{"show":_vm.dataLoad.open,"duration":400}},[_c('CCardBody',[_c('CCollapse',{attrs:{"show":_vm.descToggle,"duration":400}},[_c('div',{domProps:{"innerHTML":_vm._s(_vm.textDisplay)}})]),_vm._t("default")],2)],1)],1),_c('CModal',{attrs:{"title":"Confirmer la suppression","color":"danger","show":_vm.deleteModal,"closeOnBackdrop":false},on:{"update:show":function($event){_vm.deleteModal=$event}}},[_vm._v(" Êtes vous sûre de vouloir supprimer ce contenu? "),_c('br'),_c('small',{staticClass:"mt-2 text-center"},[_vm._v("Cette action est irréversible.")]),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.deleteModal = false}}},[_vm._v("Cancel")]),_c('CButton',{staticClass:"mx-1",attrs:{"color":"danger","desabled":""},on:{"click":_vm.DeleteContent}},[_vm._v("Supprimer "),(_vm.spinnerDelete)?_c('CSpinner',{staticClass:"mx-2",staticStyle:{"width":"0.8rem","height":"0.8rem"},attrs:{"tag":"div","color":"light"}}):_vm._e()],1)],1)])],2),_c('CModal',{staticClass:" modal-dialog-scrollable",attrs:{"title":"Modification de la hiérarchie","color":"dark","show":_vm.hierarchiModal},on:{"update:show":function($event){_vm.hierarchiModal=$event}}},[_c('CRow',[_c('CCol',{staticClass:"mr-0 pr-0",attrs:{"col":"8","sm":"5"}},[_c('CInput',{attrs:{"label":"Ordre:","type":"number","horizontal":""},model:{value:(_vm.newIdParrent.ordre),callback:function ($$v) {_vm.$set(_vm.newIdParrent, "ordre", $$v)},expression:"newIdParrent.ordre"}})],1),_c('CCol',{attrs:{"md":"10"}},[_c('SSearch',{on:{"parent-selected":_vm.parentSelected}}),_c('small',[_vm._v("Choisir le nouveau parent")]),_vm._v(" "),_c('br'),_c('small',[_vm._v("Parent Actuel: "),_c('strong',[_vm._v(_vm._s(_vm.dataLoad.idcontentsparent))])])],1)],1),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.hierarchiModal = false}}},[_vm._v("Cancel")]),_c('CButton',{staticClass:"mx-1",attrs:{"color":"dark","desabled":""},on:{"click":_vm.ChangeHierarchie}},[_vm._v("Enregistrer "),(_vm.spinner)?_c('CSpinner',{staticStyle:{"width":"1rem","height":"1rem"},attrs:{"size":"sm","tag":"small","color":"primary"}}):_vm._e()],1)],1)])],2)],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/App/project/CardComponent.vue?vue&type=template&id=2701771b&
+// CONCATENATED MODULE: ./src/views/App/project/CardComponent.vue?vue&type=template&id=e963adec&
 
 // EXTERNAL MODULE: ./src/views/App/search/Search.vue + 4 modules
 var Search = __webpack_require__("c71b");
@@ -70,6 +70,9 @@ var moment = __webpack_require__("c1df");
 var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/CardComponent.vue?vue&type=script&lang=js&
+//
+//
+//
 //
 //
 //
@@ -336,6 +339,12 @@ var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
     this.timing();
   },
   computed: {
+    permission: function permission() {
+      var perm = this.$store.getters.currentUser;
+      console.log('perm', perm);
+      if (perm.uid == this.dataLoad.uid) return true;
+      return false;
+    },
     isPrime: function isPrime() {
       var prime = this.dataLoad.prime_status;
 
@@ -521,7 +530,7 @@ var componentNormalizer = __webpack_require__("2877");
 
 var component = Object(componentNormalizer["a" /* default */])(
   project_CardComponentvue_type_script_lang_js_,
-  CardComponentvue_type_template_id_2701771b_render,
+  CardComponentvue_type_template_id_e963adec_render,
   staticRenderFns,
   false,
   null,
@@ -757,14 +766,14 @@ var CardJsx_component = Object(componentNormalizer["a" /* default */])(
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/search/Search.vue?vue&type=template&id=5cd5d492&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/search/Search.vue?vue&type=template&id=5bd92960&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.styled ? 'searchForm' : ''},[_c('multiselect',{attrs:{"options":_vm.project,"placeholder":"Tapez une recherche","hide-selected":true,"max-height":700,"option-height":20,"show-labels":false,"searchable":true,"loading":_vm.isLoading,"track-by":"titre","internal-search":false,"showPointer":true,"label":"titre"},on:{"search-change":_vm.TypingSearch},scopedSlots:_vm._u([{key:"singleLabel",fn:function(ref){
 var option = ref.option;
 return [_c('span',{staticClass:"option__desc d-inline-flex flex-column"},[_c('span',{staticClass:"option__title d-none"},[_vm._v(_vm._s(option.titre))])])]}},{key:"option",fn:function(props){return [_c('router-link',{attrs:{"to":'/projets/' + props.option.idcontents}},[(_vm.styled)?_c('div',{staticClass:"option__desc d-inline-flex flex-column align-items-start"},[_c('span',{staticClass:"option__title  d-flex align-items-center"},[_c('CBadge',{staticClass:"mr-2",attrs:{"color":_vm.badgeColor(props.option.type),"position":"top-start","size":"sm","shape":"pill"}},[_vm._v(" "+_vm._s(props.option.type)+" ")]),_c('span',{staticClass:"titre-option"},[_vm._v(_vm._s(props.option.titre))]),_c('CIcon',{staticClass:"ml-3 pb-0 ",class:'text-' +_vm.badgeColor(props.option.type),attrs:{"name":"cilShare","size":"sm"}})],1),_c('div',{staticClass:"d-flex align-items-center"})]):_vm._e()]),(!_vm.styled)?_c('div',{staticClass:"option__desc d-inline-flex flex-column align-items-start",on:{"click":function($event){return _vm.ParentSelected(props)}}},[_c('span',{staticClass:"option__title mb-2"},[_c('CIcon',{staticClass:"mr-1 text-dark",attrs:{"name":"cilFolder"}}),_vm._v(" "+_vm._s(props.option.titre)+" "),_c('small',{staticClass:"text-dark p-1 mt-2 ml-2 text-type"},[_vm._v(_vm._s(props.option.type))])],1)]):_vm._e()]}}]),model:{value:(_vm.searchValue),callback:function ($$v) {_vm.searchValue=$$v},expression:"searchValue"}},[_c('span',{staticClass:"p-3",attrs:{"slot":"noResult"},slot:"noResult"},[_vm._v(" Ooops! Aucun élement trouvé... ")])])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/App/search/Search.vue?vue&type=template&id=5cd5d492&
+// CONCATENATED MODULE: ./src/views/App/search/Search.vue?vue&type=template&id=5bd92960&
 
 // EXTERNAL MODULE: ./node_modules/vue-multiselect/dist/vue-multiselect.min.js
 var vue_multiselect_min = __webpack_require__("8e5f");
@@ -1013,21 +1022,22 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
    */
   selectDatas: function selectDatas() {
     var where = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{
-      column: "c.type",
+      column: "gpc.type",
       operator: "=",
       value: "project"
     }];
     return new Promise(function (resolv) {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
       }
 
-      query += " ORDER BY  c.`idcontents` DESC";
-      query += " limit 0,50 "; //console.log("query :: ", query);
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,50 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/selectdatas", query, {
         headers: {
@@ -1235,7 +1245,7 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
   selectAll: function selectAll() {
     return new Promise(function (resolv) {
       var query = "";
-      query += " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
+      query += " gpc.idcontents is not NULL order by gpc.update_at DESC limit 0,30 ";
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-project", query, {
         headers: {
           Authorization: authorization
@@ -1252,21 +1262,22 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
   },
   SelectTacheEnours: function SelectTacheEnours() {
     var where = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{
-      column: "t.status",
+      column: "gpt.status",
       operator: "=",
       value: 2
     }];
     return new Promise(function (resolv, error) {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
       }
 
-      query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,20 "; //console.log("query :: ", query);
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-tache-enours", query, {
         headers: {
@@ -1285,23 +1296,66 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
   },
   SelectMesTaches: function SelectMesTaches(uid) {
     var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [{
-      column: "t.uid",
+      column: "gpe.uid",
       operator: "=",
       value: 8
     }];
     return new Promise(function (resolv, error) {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
       }
 
-      query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,20 "; //console.log("query :: ", query);
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-mes-taches/" + uid, query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      }).catch(function (er) {
+        error(er);
+      });
+    });
+  },
+  SelectNotesAd: function SelectNotesAd(uid) {
+    var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [{
+      column: "gpc.type",
+      operator: "=",
+      value: "note"
+    }, {
+      column: "gpe.uid",
+      operator: "=",
+      value: uid
+    }, {
+      column: "gpt.status",
+      operator: "!=",
+      value: 1
+    }];
+    return new Promise(function (resolv, error) {
+      var query = {
+        where: "",
+        orther_query: ""
+      };
+
+      if (where.length) {
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
+      }
+
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 "; // console.log("query were :: ", query, where);
+
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/custom-request", query, {
         headers: {
           Authorization: authorization
         }

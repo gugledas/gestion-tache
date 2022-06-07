@@ -1507,21 +1507,22 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
    */
   selectDatas: function selectDatas() {
     var where = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{
-      column: "c.type",
+      column: "gpc.type",
       operator: "=",
       value: "project"
     }];
     return new Promise(function (resolv) {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
       }
 
-      query += " ORDER BY  c.`idcontents` DESC";
-      query += " limit 0,50 "; //console.log("query :: ", query);
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,50 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/selectdatas", query, {
         headers: {
@@ -1729,7 +1730,7 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
   selectAll: function selectAll() {
     return new Promise(function (resolv) {
       var query = "";
-      query += " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
+      query += " gpc.idcontents is not NULL order by gpc.update_at DESC limit 0,30 ";
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-project", query, {
         headers: {
           Authorization: authorization
@@ -1746,21 +1747,22 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
   },
   SelectTacheEnours: function SelectTacheEnours() {
     var where = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{
-      column: "t.status",
+      column: "gpt.status",
       operator: "=",
       value: 2
     }];
     return new Promise(function (resolv, error) {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
       }
 
-      query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,20 "; //console.log("query :: ", query);
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-tache-enours", query, {
         headers: {
@@ -1779,23 +1781,66 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
   },
   SelectMesTaches: function SelectMesTaches(uid) {
     var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [{
-      column: "t.uid",
+      column: "gpe.uid",
       operator: "=",
       value: 8
     }];
     return new Promise(function (resolv, error) {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
       }
 
-      query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,20 "; //console.log("query :: ", query);
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-mes-taches/" + uid, query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      }).catch(function (er) {
+        error(er);
+      });
+    });
+  },
+  SelectNotesAd: function SelectNotesAd(uid) {
+    var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [{
+      column: "gpc.type",
+      operator: "=",
+      value: "note"
+    }, {
+      column: "gpe.uid",
+      operator: "=",
+      value: uid
+    }, {
+      column: "gpt.status",
+      operator: "!=",
+      value: 1
+    }];
+    return new Promise(function (resolv, error) {
+      var query = {
+        where: "",
+        orther_query: ""
+      };
+
+      if (where.length) {
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
+      }
+
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 "; // console.log("query were :: ", query, where);
+
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/custom-request", query, {
         headers: {
           Authorization: authorization
         }

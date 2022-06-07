@@ -83,11 +83,11 @@ module.exports =
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"4":1,"5":1,"6":1,"7":1,"9":1,"10":1,"11":1};
+/******/ 		var cssChunks = {"2":1,"4":1,"5":1,"6":1,"7":1,"9":1,"10":1,"11":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "css/" + ({}[chunkId]||chunkId) + "." + {"0":"31d6cfe0","1":"31d6cfe0","2":"31d6cfe0","4":"3273f3dc","5":"10de29c5","6":"a1f6bc80","7":"cb1bc02b","8":"31d6cfe0","9":"7af17b67","10":"96a655cf","11":"422cf218","12":"31d6cfe0","13":"31d6cfe0","14":"31d6cfe0","15":"31d6cfe0","16":"31d6cfe0","17":"31d6cfe0","18":"31d6cfe0","19":"31d6cfe0","20":"31d6cfe0"}[chunkId] + ".css";
+/******/ 				var href = "css/" + ({}[chunkId]||chunkId) + "." + {"0":"31d6cfe0","1":"31d6cfe0","2":"0175587b","4":"5cbe5434","5":"14597724","6":"a1f6bc80","7":"cb1bc02b","8":"31d6cfe0","9":"7cb9e6ee","10":"96a655cf","11":"422cf218","12":"31d6cfe0","13":"31d6cfe0","14":"31d6cfe0","15":"31d6cfe0","16":"31d6cfe0","17":"31d6cfe0","18":"31d6cfe0","19":"31d6cfe0","20":"31d6cfe0","21":"31d6cfe0"}[chunkId] + ".css";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
@@ -62716,6 +62716,11 @@ const basicRequest = {
    */
   baseUrl: null,
   /**
+   * Utiliser si le module supporte la traduction
+   * example : fr, en, ar ...
+   */
+  languageId: null,
+  /**
    * Permet de determiner, si nous sommes en local ou pas.
    * @public
    * @returns Booleans
@@ -62742,6 +62747,8 @@ const basicRequest = {
   },
   post: function(url, datas, configs) {
     return new Promise((resolv, reject) => {
+      if (this.languageId) url = "/" + this.languageId + url;
+      console.log(" LanguageId : ", this.languageId);
       const urlFinal = url.includes("://") ? url : this.getBaseUrl() + url;
       InstAxios.post(urlFinal, datas, configs)
         .then((reponse) => {
@@ -62777,6 +62784,7 @@ const basicRequest = {
   },
   get: function(url, configs) {
     return new Promise((resolv, reject) => {
+      if (this.languageId) url = "/" + this.languageId + url;
       const urlFinal = url.includes("://") ? url : this.getBaseUrl() + url;
       InstAxios.get(urlFinal, configs)
         .then((reponse) => {
@@ -69030,6 +69038,16 @@ var config_formatBasicAuth = function formatBasicAuth(userName, password) {
     }
 
     return $color;
+  },
+  formatWhere: function formatWhere(where) {
+    var query = "";
+
+    for (var i in where) {
+      query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
+      if (i < where.length - 1) query += "and ";
+    }
+
+    return query;
   }
 }));
 
@@ -110395,19 +110413,19 @@ var Dashboard = function Dashboard() {
 
 
 var Page404 = function Page404() {
-  return __webpack_require__.e(/* import() */ 17).then(__webpack_require__.bind(null, "3a87"));
+  return __webpack_require__.e(/* import() */ 18).then(__webpack_require__.bind(null, "3a87"));
 };
 
 var Page500 = function Page500() {
-  return __webpack_require__.e(/* import() */ 18).then(__webpack_require__.bind(null, "f1bd"));
+  return __webpack_require__.e(/* import() */ 19).then(__webpack_require__.bind(null, "f1bd"));
 };
 
 var Login = function Login() {
-  return __webpack_require__.e(/* import() */ 16).then(__webpack_require__.bind(null, "8b48"));
+  return __webpack_require__.e(/* import() */ 17).then(__webpack_require__.bind(null, "8b48"));
 };
 
 var Register = function Register() {
-  return __webpack_require__.e(/* import() */ 19).then(__webpack_require__.bind(null, "aaf8"));
+  return __webpack_require__.e(/* import() */ 20).then(__webpack_require__.bind(null, "aaf8"));
 };
 
 var Document = function Document() {
@@ -110958,7 +110976,6 @@ var actions = {
       if (reponse.status) {
         if (reponse) {
           commit("SET_UTILISATEUR", reponse.data);
-          console.log("Utilisateur", reponse);
         }
       }
     }).catch(function (error) {

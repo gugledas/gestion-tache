@@ -37,12 +37,12 @@
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/AddNewProject.vue?vue&type=template&id=128a5f50&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('CRow',{staticClass:"ml-2  d-flex",attrs:{"alignVertical":"center"}},[_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Nouveau projet'),expression:"'Nouveau projet'"}],attrs:{"size":"sm","color":"warning","shape":"pill"},on:{"click":_vm.modalAddOn}},[_c('CIcon',{staticClass:"text-white",attrs:{"name":"cilPlus","height":35,"size":"xl"}})],1),(_vm.showSideText)?_c('h6',{staticClass:"ml-1 mt-1"},[_vm._v("Nouveau projet")]):_vm._e()],1),_c('CModal',{attrs:{"size":"lg","title":"Nouveau projet","color":"warning","show":_vm.modalAdd,"footer":false},on:{"update:show":function($event){_vm.modalAdd=$event}}},[_c('PopUpContent',{ref:"child",attrs:{"formValues":_vm.formValues,"btnState":_vm.btnStateAdd},on:{"addnew-ok":_vm.addnewOk,"addnew-error":_vm.addnewError}}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.modalAdd = false}}},[_vm._v(" Cancel ")]),_c('CButton',{staticClass:"mx-1 d-flex align-items-center",attrs:{"color":_vm.btnStateAdd.state ? 'warning' : 'light'},on:{"click":_vm.PostNewProject}},[_vm._v(" Save "),(_vm.spinner)?_c('CSpinner',{staticClass:"mx-2",staticStyle:{"width":"0.8rem","height":"0.8rem"},attrs:{"tag":"div","color":"primary"}}):_vm._e()],1)],1)])],2)],1)}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/AddNewProject.vue?vue&type=template&id=8452f9be&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('CRow',{staticClass:"ml-2  d-flex",attrs:{"alignVertical":"center"}},[_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Nouveau projet'),expression:"'Nouveau projet'"}],attrs:{"size":"sm","color":"warning","shape":"pill"},on:{"click":_vm.modalAddOn}},[_c('CIcon',{staticClass:"text-white",attrs:{"name":"cilPlus","height":35,"size":"xl"}})],1),(_vm.showSideText)?_c('h6',{staticClass:"ml-1 mt-1"},[_vm._v("Nouveau projet")]):_vm._e()],1),_c('CModal',{staticClass:" modal-dialog-scrollable",attrs:{"size":"lg","title":"Nouveau projet","color":"warning","show":_vm.modalAdd,"footer":false},on:{"update:show":function($event){_vm.modalAdd=$event}}},[_c('PopUpContent',{ref:"child",attrs:{"formValues":_vm.formValues,"btnState":_vm.btnStateAdd},on:{"addnew-ok":_vm.addnewOk,"addnew-error":_vm.addnewError}}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CButton',{staticClass:"mx-1",attrs:{"color":"light"},on:{"click":function($event){_vm.modalAdd = false}}},[_vm._v(" Cancel ")]),_c('CButton',{staticClass:"mx-1 d-flex align-items-center",attrs:{"color":_vm.btnStateAdd.state ? 'warning' : 'light'},on:{"click":_vm.PostNewProject}},[_vm._v(" Save "),(_vm.spinner)?_c('CSpinner',{staticClass:"mx-2",staticStyle:{"width":"0.8rem","height":"0.8rem"},attrs:{"tag":"div","color":"primary"}}):_vm._e()],1)],1)])],2)],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/App/project/AddNewProject.vue?vue&type=template&id=128a5f50&
+// CONCATENATED MODULE: ./src/views/App/project/AddNewProject.vue?vue&type=template&id=8452f9be&
 
 // EXTERNAL MODULE: ./node_modules/highlight.js/lib/index.js
 var lib = __webpack_require__("1487");
@@ -52,6 +52,7 @@ var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 var PopUpContent = __webpack_require__("2a5d");
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/AddNewProject.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -271,14 +272,14 @@ var component = Object(componentNormalizer["a" /* default */])(
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/search/Search.vue?vue&type=template&id=5cd5d492&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/search/Search.vue?vue&type=template&id=5bd92960&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.styled ? 'searchForm' : ''},[_c('multiselect',{attrs:{"options":_vm.project,"placeholder":"Tapez une recherche","hide-selected":true,"max-height":700,"option-height":20,"show-labels":false,"searchable":true,"loading":_vm.isLoading,"track-by":"titre","internal-search":false,"showPointer":true,"label":"titre"},on:{"search-change":_vm.TypingSearch},scopedSlots:_vm._u([{key:"singleLabel",fn:function(ref){
 var option = ref.option;
 return [_c('span',{staticClass:"option__desc d-inline-flex flex-column"},[_c('span',{staticClass:"option__title d-none"},[_vm._v(_vm._s(option.titre))])])]}},{key:"option",fn:function(props){return [_c('router-link',{attrs:{"to":'/projets/' + props.option.idcontents}},[(_vm.styled)?_c('div',{staticClass:"option__desc d-inline-flex flex-column align-items-start"},[_c('span',{staticClass:"option__title  d-flex align-items-center"},[_c('CBadge',{staticClass:"mr-2",attrs:{"color":_vm.badgeColor(props.option.type),"position":"top-start","size":"sm","shape":"pill"}},[_vm._v(" "+_vm._s(props.option.type)+" ")]),_c('span',{staticClass:"titre-option"},[_vm._v(_vm._s(props.option.titre))]),_c('CIcon',{staticClass:"ml-3 pb-0 ",class:'text-' +_vm.badgeColor(props.option.type),attrs:{"name":"cilShare","size":"sm"}})],1),_c('div',{staticClass:"d-flex align-items-center"})]):_vm._e()]),(!_vm.styled)?_c('div',{staticClass:"option__desc d-inline-flex flex-column align-items-start",on:{"click":function($event){return _vm.ParentSelected(props)}}},[_c('span',{staticClass:"option__title mb-2"},[_c('CIcon',{staticClass:"mr-1 text-dark",attrs:{"name":"cilFolder"}}),_vm._v(" "+_vm._s(props.option.titre)+" "),_c('small',{staticClass:"text-dark p-1 mt-2 ml-2 text-type"},[_vm._v(_vm._s(props.option.type))])],1)]):_vm._e()]}}]),model:{value:(_vm.searchValue),callback:function ($$v) {_vm.searchValue=$$v},expression:"searchValue"}},[_c('span',{staticClass:"p-3",attrs:{"slot":"noResult"},slot:"noResult"},[_vm._v(" Ooops! Aucun élement trouvé... ")])])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/App/search/Search.vue?vue&type=template&id=5cd5d492&
+// CONCATENATED MODULE: ./src/views/App/search/Search.vue?vue&type=template&id=5bd92960&
 
 // EXTERNAL MODULE: ./node_modules/vue-multiselect/dist/vue-multiselect.min.js
 var vue_multiselect_min = __webpack_require__("8e5f");
@@ -1497,8 +1498,8 @@ var component = Object(componentNormalizer["a" /* default */])(
 )
 
 /* harmony default export */ var TheSidebar = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/containers/TheHeader.vue?vue&type=template&id=b3bb7b94&
-var TheHeadervue_type_template_id_b3bb7b94_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('CHeader',{attrs:{"fixed":"","with-subheader":"","light":""}},[_c('CToggler',{staticClass:"ml-3 d-lg-none",attrs:{"in-header":""},on:{"click":function($event){return _vm.$store.commit('toggleSidebarMobile')}}}),_c('CToggler',{staticClass:"ml-3 d-md-down-none",attrs:{"in-header":""},on:{"click":function($event){return _vm.$store.commit('toggleSidebarDesktop')}}}),_c('CHeaderNav',[_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:({
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/containers/TheHeader.vue?vue&type=template&id=0792e3c8&
+var TheHeadervue_type_template_id_0792e3c8_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('CHeader',{attrs:{"fixed":"","with-subheader":"","light":""}},[_c('CToggler',{staticClass:"ml-3 d-lg-none",attrs:{"in-header":""},on:{"click":function($event){return _vm.$store.commit('toggleSidebarMobile')}}}),_c('CToggler',{staticClass:"ml-3 d-md-down-none",attrs:{"in-header":""},on:{"click":function($event){return _vm.$store.commit('toggleSidebarDesktop')}}}),_c('CHeaderNav',[_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:({
         content: 'Afficher les dernieres taches visités.',
         html: true,
         placement: 'bottom-start',
@@ -1506,7 +1507,7 @@ var TheHeadervue_type_template_id_b3bb7b94_render = function () {var _vm=this;va
         content: 'Afficher les taches encours.',
         html: true,
         placement: 'bottom-start',
-      }),expression:"{\n        content: 'Afficher les taches encours.',\n        html: true,\n        placement: 'bottom-start',\n      }"}],attrs:{"size":"sm","variant":"ghost","color":"warning"},on:{"click":_vm.loadTacheEncour}},[_c('CIcon',{attrs:{"name":"cil-settings"}})],1),_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Mes tâches'),expression:"'Mes tâches'"}],attrs:{"size":"sm","shape":"","variant":"ghost","color":"primary"},on:{"click":_vm.loadMesTaches}},[_c('CIcon',{attrs:{"name":"cil-address-book","size":"sm"}})],1)],1),_c('CHeaderBrand',{staticClass:"mx-auto d-lg-none",attrs:{"to":"/"}},[_c('CIcon',{attrs:{"name":"logo","height":"48","alt":"Logo"}})],1),_c('CHeaderNav',{staticClass:"mr-5 d-flex align-items-center ml-sm-auto mt-1"},[(_vm.currentUser)?_c('div',{staticClass:"d-flex mx-3 user-space"},[_c('span',[_c('CIcon',{staticClass:"mr-2 mb-1",attrs:{"name":"cil-user","size":"lg"}})],1),_vm._v(" "),_c('span',{staticClass:"logUser"},[_vm._v(_vm._s(_vm.currentUser.name))])]):_vm._e(),_c('div',[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Log Out'),expression:"'Log Out'"}]},[_c('CButton',{attrs:{"size":"","shape":"pill","color":"light"},on:{"click":_vm.logOut}},[_c('CIcon',{attrs:{"name":"cil-account-logout","size":"sm"}})],1)],1)],1),_c('AddNewProject')],1),_c('CSubheader',{staticClass:"px-3"},[_c('BreadCrumb'),_c('div',{staticClass:"ml-auto d-flex flex-wrap aling-items-end"},[_c('SSearch',{attrs:{"styled":true}}),_c('CDropdown',{staticClass:"d-none ml-sm-n5 mt-2",attrs:{"color":"dark","toggler-text":"Options"}},[_c('CDropdownItem',[_vm._v("name")]),_c('CDropdownItem',[_vm._v("statut")]),_c('CDropdownItem',[_vm._v("Role")]),_c('CDropdownDivider'),_c('CDropdownItem',[_vm._v("date")])],1)],1)],1),_c('CModal',{attrs:{"title":"Last Updated","color":"dark","size":"lg","show":_vm.modalLast},on:{"update:show":function($event){_vm.modalLast=$event}}},[_c('div',{staticClass:"d-flex justify-content-end border-bottom-1 mr-3"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Actualiser'),expression:"'Actualiser'"}]},[_c('CButton',{attrs:{"size":"sm","shape":"pill","color":"secondary"},on:{"click":_vm.LoadTacheData}},[_c('CIcon',{attrs:{"name":"cil-reload","size":"sm"}})],1)],1)],1),_c('CDataTable',{staticClass:"m-0 table-borderless",attrs:{"hover":"","responsive":false,"items":_vm.itemsTache,"fields":_vm.tableFields,"header":false,"loading":_vm.isLoading,"cleaner":"","table-filter":"","items-per-page-select":"","items-per-page":10,"pagination":""},scopedSlots:_vm._u([{key:"user",fn:function(ref){
+      }),expression:"{\n        content: 'Afficher les taches encours.',\n        html: true,\n        placement: 'bottom-start',\n      }"}],attrs:{"size":"sm","variant":"ghost","color":"warning"},on:{"click":_vm.loadTacheEncour}},[_c('CIcon',{attrs:{"name":"cil-settings"}})],1),_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Mes tâches'),expression:"'Mes tâches'"}],attrs:{"size":"sm","shape":"","variant":"ghost","color":"primary"},on:{"click":_vm.loadMesTaches}},[_c('CIcon',{attrs:{"name":"cil-address-book","size":"sm"}})],1),(_vm.notebtn)?_c('CButton',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Notes administrative'),expression:"'Notes administrative'"}],staticClass:"bouton-note",attrs:{"size":"sm","shape":"","variant":"ghost","color":"danger"},on:{"click":_vm.loadNoteAdmin}},[_c('CIcon',{attrs:{"name":"cil-speech","size":"sm"}})],1):_vm._e()],1),_c('CHeaderBrand',{staticClass:"mx-auto d-lg-none",attrs:{"to":"/"}},[_c('CIcon',{attrs:{"name":"logo","height":"48","alt":"Logo"}})],1),_c('CHeaderNav',{staticClass:"mr-5 d-flex align-items-center ml-sm-auto mt-1"},[(_vm.currentUser)?_c('div',{staticClass:"d-flex mx-3 user-space"},[_c('span',[_c('CIcon',{staticClass:"mr-2 mb-1",attrs:{"name":"cil-user","size":"lg"}})],1),_vm._v(" "),_c('span',{staticClass:"logUser"},[_vm._v(_vm._s(_vm.currentUser.name))])]):_vm._e(),_c('div',[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Log Out'),expression:"'Log Out'"}]},[_c('CButton',{attrs:{"size":"","shape":"pill","color":"light"},on:{"click":_vm.logOut}},[_c('CIcon',{attrs:{"name":"cil-account-logout","size":"sm"}})],1)],1)],1),_c('AddNewProject')],1),_c('CSubheader',{staticClass:"px-3"},[_c('BreadCrumb'),_c('div',{staticClass:"ml-auto d-inline-flex flex-wrap aling-items-end justify-content-end sub-div"},[_c('SSearch',{attrs:{"styled":true}}),_c('CDropdown',{staticClass:"d-none ml-sm-n5 mt-2",attrs:{"color":"dark","toggler-text":"Options"}},[_c('CDropdownItem',[_vm._v("name")]),_c('CDropdownItem',[_vm._v("statut")]),_c('CDropdownItem',[_vm._v("Role")]),_c('CDropdownDivider'),_c('CDropdownItem',[_vm._v("date")])],1)],1)],1),_c('CModal',{attrs:{"title":"Last Updated","color":"dark","size":"lg","show":_vm.modalLast},on:{"update:show":function($event){_vm.modalLast=$event}}},[_c('div',{staticClass:"d-flex justify-content-end border-bottom-1 mr-3"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Actualiser'),expression:"'Actualiser'"}]},[_c('CButton',{attrs:{"size":"sm","shape":"pill","color":"secondary"},on:{"click":_vm.LoadTacheData}},[_c('CIcon',{attrs:{"name":"cil-reload","size":"sm"}})],1)],1)],1),_c('CDataTable',{staticClass:"m-0 table-borderless",attrs:{"hover":"","responsive":false,"items":_vm.itemsTache,"fields":_vm.tableFields,"header":false,"loading":_vm.isLoading,"cleaner":"","table-filter":"","items-per-page-select":"","items-per-page":10,"pagination":""},scopedSlots:_vm._u([{key:"user",fn:function(ref){
       var item = ref.item;
 return _c('td',{},[_c('CLink',{staticClass:"text-decoration-none",attrs:{"to":{
             path: '/projets/' + item.idcontents,
@@ -1514,11 +1515,11 @@ return _c('td',{},[_c('CLink',{staticClass:"text-decoration-none",attrs:{"to":{
           var item = ref.item;
 return _c('td',{},[_c('div',{staticClass:"clearfix"},[_c('div',{staticClass:"float-left"}),_c('div',{staticClass:"float-right"},[_c('small',{staticClass:"text-bold"},[_c('strong',[_vm._v("Updated: ")]),_vm._v(" "+_vm._s(item.update_at))])])])])}},{key:"activity",fn:function(ref){
           var item = ref.item;
-return _c('td',{},[_c('CRow',{staticClass:"ml-4 d-flex justify-content-arround flex-nowrap"},[_c('CLink',{staticClass:"mx-3",attrs:{"color":"primary","variant":"ghost","shape":"pill","size":"sm"}},[_vm._v(" "+_vm._s(item.type)+" ")])],1)],1)}}])}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"})])],2),_c('TacheEncours',{attrs:{"modalLast":_vm.tacheEncoursModal},on:{"ev_modal_last":_vm.ev_modal_last,"update-modal":_vm.UpdateModalEncour}}),_c('TacheEncours',{attrs:{"type":_vm.mesTaches,"titleModal":_vm.titleMesTaches,"colorModal":_vm.colorMesTaches,"modalLast":_vm.MesTachesModal},on:{"ev_modal_last":_vm.ev_modal_last,"update-modal":_vm.UpdateModal}})],1)}
-var TheHeadervue_type_template_id_b3bb7b94_staticRenderFns = []
+return _c('td',{},[_c('CRow',{staticClass:"ml-4 d-flex justify-content-arround flex-nowrap"},[_c('CLink',{staticClass:"mx-3",attrs:{"color":"primary","variant":"ghost","shape":"pill","size":"sm"}},[_vm._v(" "+_vm._s(item.type)+" ")])],1)],1)}}])}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"})])],2),_c('TacheEncours',{attrs:{"modalLast":_vm.tacheEncoursModal},on:{"ev_modal_last":_vm.ev_modal_last,"update-modal":_vm.UpdateModalEncour}}),_c('TacheEncours',{attrs:{"type":_vm.mesTaches,"titleModal":_vm.titleMesTaches,"colorModal":_vm.colorMesTaches,"modalLast":_vm.MesTachesModal},on:{"ev_modal_last":_vm.ev_modal_last,"update-modal":_vm.UpdateModal}}),_c('NoteAdmin',{attrs:{"modalLast":_vm.notesAdmin},on:{"ev_modal_last":_vm.ev_modal_last,"hide-note":_vm.hideNote,"update-modal":_vm.updateNoteAd}})],1)}
+var TheHeadervue_type_template_id_0792e3c8_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/containers/TheHeader.vue?vue&type=template&id=b3bb7b94&
+// CONCATENATED MODULE: ./src/containers/TheHeader.vue?vue&type=template&id=0792e3c8&
 
 // EXTERNAL MODULE: ./src/views/App/search/Search.vue + 4 modules
 var Search = __webpack_require__("c71b");
@@ -2366,6 +2367,20 @@ var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //import TheHeaderDropdownAccnt from "./TheHeaderDropdownAccnt";
 
 
@@ -2378,7 +2393,10 @@ var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
     SSearch: Search["a" /* default */],
     AddNewProject: AddNewProject["a" /* default */],
     BreadCrumb: BreadCrumb,
-    TacheEncours: TacheEncours //TheHeaderDropdownAccnt
+    TacheEncours: TacheEncours,
+    NoteAdmin: function NoteAdmin() {
+      return __webpack_require__.e(/* import() */ 15).then(__webpack_require__.bind(null, "13d7"));
+    } //TheHeaderDropdownAccnt
 
   },
   data: function data() {
@@ -2390,6 +2408,7 @@ var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
       modalLast: false,
       isLoading: false,
       itemsTache: [],
+      notebtn: false,
       tableFields: [{
         key: "user",
         _style: "min-width:550px;",
@@ -2401,7 +2420,8 @@ var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
         key: "activity",
         _style: "width:600px;"
       }],
-      tacheEncoursModal: false
+      tacheEncoursModal: false,
+      notesAdmin: false
     };
   },
   mounted: function mounted() {
@@ -2416,6 +2436,12 @@ var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
     }
   },
   methods: {
+    hideNote: function hideNote() {
+      this.notebtn = true;
+    },
+    loadNoteAdmin: function loadNoteAdmin() {
+      this.notesAdmin = true;
+    },
     loadMesTaches: function loadMesTaches() {
       this.MesTachesModal = true;
     },
@@ -2441,12 +2467,16 @@ var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
     ev_modal_last: function ev_modal_last() {
       this.tacheEncoursModal = false;
       this.MesTachesModal = false;
+      this.notesAdmin = false;
     },
     UpdateModalEncour: function UpdateModalEncour(val) {
       this.tacheEncoursModal = val;
     },
     UpdateModal: function UpdateModal(val) {
       this.MesTachesModal = val;
+    },
+    updateNoteAd: function updateNoteAd(val) {
+      this.notesAdmin = val;
     }
   }
 });
@@ -2466,8 +2496,8 @@ var TheHeadervue_type_style_index_0_lang_scss_ = __webpack_require__("08ca");
 
 var TheHeader_component = Object(componentNormalizer["a" /* default */])(
   containers_TheHeadervue_type_script_lang_js_,
-  TheHeadervue_type_template_id_b3bb7b94_render,
-  TheHeadervue_type_template_id_b3bb7b94_staticRenderFns,
+  TheHeadervue_type_template_id_0792e3c8_render,
+  TheHeadervue_type_template_id_0792e3c8_staticRenderFns,
   false,
   null,
   null,

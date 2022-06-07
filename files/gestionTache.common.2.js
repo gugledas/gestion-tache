@@ -7,12 +7,12 @@
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=template&id=2c9cbbf6&scoped=true&lang=html&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"check-valid-form":_vm.checkForSave}},[_c('div',[_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('br'),_c('CCol',{attrs:{"sm":"3"}},[_c('p',[_vm._v("Choisir un type:")])]),_c('CCol',{attrs:{"sm":"9"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.options,"checked":_vm.postData.type,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "type", $event)}}}),(_vm.postData.type.length < 2)?_c('small',{staticClass:"text-danger"},[_vm._v(" Ce champ est requis ")]):_vm._e()],1)],1)],1),_c('hr'),_c('div',{staticClass:"pl-sm-2"},[(_vm.postData.type !== 'memos' && _vm.postData.date_fin_reel === '')?_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('CCol',{attrs:{"sm":"2"}},[_c('p',[_vm._v("Statut:")])]),_c('CCol',{attrs:{"sm":"10"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.statusOpt,"checked":_vm.postData.status,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "status", $event)}}})],1),(_vm.showInputRaison)?_c('CCol',{attrs:{"sm":"8","md":"7"}},[_c('CTextarea',{attrs:{"label":"Raison:","type":"textarea","horizontal":"","placeholder":"writes something...","rows":"2","description":"Une description de la raison du changement de status"},model:{value:(_vm.postData.raison),callback:function ($$v) {_vm.$set(_vm.postData, "raison", $$v)},expression:"postData.raison"}})],1):_vm._e()],1):_vm._e(),(_vm.postData.type !== 'memos')?_c('CRow',[_c('CCol',{attrs:{"col":"12","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Debut:","type":"date","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"horizontal":""},model:{value:(_vm.postData.date_depart_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_depart_proposer", $$v)},expression:"postData.date_depart_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_debut),callback:function ($$v) {_vm.$set(_vm.postData, "heure_debut", $$v)},expression:"postData.heure_debut"}})],1)],1),_c('CCol',{attrs:{"col":"10","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Fin:","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"date","horizontal":""},model:{value:(_vm.postData.date_fin_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_fin_proposer", $$v)},expression:"postData.date_fin_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_fin),callback:function ($$v) {_vm.$set(_vm.postData, "heure_fin", $$v)},expression:"postData.heure_fin"}})],1)],1)],1):_vm._e(),_c('CRow',[_c('CCol',{staticClass:"d-flex",attrs:{"sm":"6"}},[_c('div',{staticClass:"form-group d-flex align-items-center"},[_c('span',{staticClass:"pr-3 d-block"},[_vm._v(" Contenu privée ? ")]),_c('CSwitch',{staticClass:"mr-1",attrs:{"color":"danger","shape":"pill","checked":_vm.postData.privaty,"size":"sm"},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "privaty", $event)}}})],1)]),_c('CCol',{staticClass:"d-flex",attrs:{"sm":"5"}},[_c('div',{staticClass:"form-group d-flex align-items-center"},[_c('span',{staticClass:"pr-3 d-block"},[_vm._v("Prime ? ")]),_c('CSwitch',{staticClass:"mr-1",attrs:{"color":"danger","shape":"pill","type":"checkbox","disabled":!_vm.cantUpdatePrime,"checked":_vm.postData.prime_status,"size":"sm"},on:{"update:checked":[function($event){return _vm.$set(_vm.postData, "prime_status", $event)},_vm.updatePrime]}})],1)]),(_vm.postData.prime_status)?_c('CCol',{staticClass:"d-flex align-items-start",attrs:{"sm":"5"}},[_c('CInput',{attrs:{"type":"number","append":".00","description":"Montant de la prime:","prepend":"F","disabled":!_vm.cantUpdatePrime},on:{"change":_vm.reUpdatePrime},model:{value:(_vm.postData.prime_montant),callback:function ($$v) {_vm.$set(_vm.postData, "prime_montant", $$v)},expression:"postData.prime_montant"}})],1):_vm._e(),_c('CCol',{attrs:{"sm":"10"}},[_c('div',{staticClass:"form-group d-none"},[_vm._v(" Assigné : "),_c('pre',[_vm._v(" "+_vm._s(_vm.postData)+" ")]),_vm._v(" formValues : "),_c('pre',[_vm._v(" "+_vm._s(_vm.formValues)+" ")])])]),_c('CCol',{attrs:{"sm":"12"}},[_c('CInput',{attrs:{"label":"Title:","placeholder":"Entrez un titre","wasValidated":_vm.wasValidated,"validFeedback":"ok","invalidFeedback":"requis","isValid":_vm.inputValidation},model:{value:(_vm.postData.titre),callback:function ($$v) {_vm.$set(_vm.postData, "titre", $$v)},expression:"postData.titre"}})],1),(_vm.postData.type == 'project')?_c('CCol',{attrs:{"sm":"5"}},[_c('CInput',{attrs:{"label":"Nom du Client:","placeholder":"Select or add new Client"},model:{value:(_vm.postData.clientName),callback:function ($$v) {_vm.$set(_vm.postData, "clientName", $$v)},expression:"postData.clientName"}})],1):_vm._e(),(_vm.postData.type !== 'ressource' && _vm.postData.type !== 'memos')?_c('CCol',{attrs:{"sm":"5"}},[_c('label',{staticClass:"typo__label"},[_vm._v("Exécuter par:")]),_c('multiselect',{attrs:{"disabled":!_vm.cantUpdatePrime,"options":_vm.users,"placeholder":"Selectionnez un utilisateur","multiple":true,"close-on-select":false,"clear-on-select":false,"preserve-search":false,"searchable":false,"label":"name","loading":_vm.selectLoading,"track-by":"name","preselect-first":false,"hide-selected":true},on:{"select":_vm.addExecutant,"remove":_vm.deleteExecutant},model:{value:(_vm.postData.executant),callback:function ($$v) {_vm.$set(_vm.postData, "executant", $$v)},expression:"postData.executant"}})],1):_vm._e()],1),_c('CRow',[_c('CCol',{attrs:{"sm":"12"}},[_c('label',[_vm._v("Description:")]),_c('ckeditor',{attrs:{"config":_vm.editorConfig},on:{"namespaceloaded":_vm.onNamespaceLoaded},model:{value:(_vm.postData.text),callback:function ($$v) {_vm.$set(_vm.postData, "text", $$v)},expression:"postData.text"}})],1)],1),(_vm.postData.type == 'project')?_c('CRow',[_c('CCol',{attrs:{"col":"8","lg":"4"}},[_c('CInput',{attrs:{"label":"Estimation du coût:","append":".00","description":"montant","prepend":"$"},model:{value:(_vm.postData.price),callback:function ($$v) {_vm.$set(_vm.postData, "price", $$v)},expression:"postData.price"}})],1)],1):_vm._e()],1)])}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/views/App/project/PopUpContent.vue?vue&type=template&id=7724fdce&scoped=true&lang=html&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"check-valid-form":_vm.checkForSave}},[_c('div',[_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('br'),_c('CCol',{attrs:{"sm":"3"}},[_c('p',[_vm._v("Choisir un type:")])]),_c('CCol',{attrs:{"sm":"9"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.options,"checked":_vm.postData.type,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "type", $event)}}}),(_vm.postData.type.length < 2)?_c('small',{staticClass:"text-danger"},[_vm._v(" Ce champ est requis ")]):_vm._e()],1)],1)],1),_c('hr'),_c('div',{staticClass:"pl-sm-2"},[_c('CRow',{staticClass:"mb-4 mt-n2",on:{"click":_vm.togleVisible}},[_c('CCol',[_c('CButton',{staticClass:"text-dark d-fleex plus-bouton",attrs:{"variant":"ghost","color":"light w-100","href":"#"}},[_c('span',[_vm._v("plus")]),_c('span',{directives:[{name:"show",rawName:"v-show",value:(!_vm.visible),expression:"!visible"}]},[_c('CIcon',{staticClass:"ml-auto",staticStyle:{"float":"right"},attrs:{"name":"cil-chevron-bottom"}})],1),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}]},[_c('CIcon',{staticClass:"ml-auto",staticStyle:{"float":"right"},attrs:{"name":"cil-chevron-top"}})],1)])],1)],1),_c('CCollapse',{attrs:{"show":_vm.visible,"navbar":true}},[(_vm.postData.type !== 'memos' && _vm.postData.date_fin_reel === '')?_c('CRow',{staticClass:"form-group",attrs:{"gutters":false}},[_c('CCol',{attrs:{"sm":"2"}},[_c('p',[_vm._v("Statut:")])]),_c('CCol',{attrs:{"sm":"10"}},[_c('CInputRadioGroup',{attrs:{"options":_vm.statusOpt,"checked":_vm.postData.status,"custom":"","inline":""},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "status", $event)}}})],1),(_vm.showInputRaison)?_c('CCol',{attrs:{"sm":"8","md":"7"}},[_c('CTextarea',{attrs:{"label":"Raison:","type":"textarea","horizontal":"","placeholder":"writes something...","rows":"2","description":"Une description de la raison du changement de status"},model:{value:(_vm.postData.raison),callback:function ($$v) {_vm.$set(_vm.postData, "raison", $$v)},expression:"postData.raison"}})],1):_vm._e()],1):_vm._e(),(_vm.postData.type !== 'memos')?_c('CRow',[_c('CCol',{attrs:{"col":"12","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Debut:","type":"date","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"horizontal":""},model:{value:(_vm.postData.date_depart_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_depart_proposer", $$v)},expression:"postData.date_depart_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_debut),callback:function ($$v) {_vm.$set(_vm.postData, "heure_debut", $$v)},expression:"postData.heure_debut"}})],1)],1),_c('CCol',{attrs:{"col":"10","lg":"6"}},[_c('CRow',{},[_c('CInput',{staticClass:"col-10 col-sm-7",attrs:{"label":"Fin:","readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"date","horizontal":""},model:{value:(_vm.postData.date_fin_proposer),callback:function ($$v) {_vm.$set(_vm.postData, "date_fin_proposer", $$v)},expression:"postData.date_fin_proposer"}}),_c('CInput',{staticClass:"col-8 ml-sm-0 pl-sm-0 col-sm-5",attrs:{"readonly":_vm.postData.date_fin_reel > 0 ? true : false,"type":"time","horizontal":""},model:{value:(_vm.postData.heure_fin),callback:function ($$v) {_vm.$set(_vm.postData, "heure_fin", $$v)},expression:"postData.heure_fin"}})],1)],1)],1):_vm._e()],1),_c('CRow',[_c('CCol',{staticClass:"d-flex",attrs:{"sm":"6"}},[_c('div',{staticClass:"form-group d-flex align-items-center"},[_c('span',{staticClass:"pr-3 d-block"},[_vm._v(" Contenu privée ? ")]),_c('CSwitch',{staticClass:"mr-1",attrs:{"color":"danger","shape":"pill","checked":_vm.postData.privaty,"size":"sm"},on:{"update:checked":function($event){return _vm.$set(_vm.postData, "privaty", $event)}}})],1)]),_c('CCol',{staticClass:"d-flex",attrs:{"sm":"5"}},[_c('div',{staticClass:"form-group d-flex align-items-center"},[_c('span',{staticClass:"pr-3 d-block"},[_vm._v("Prime ? ")]),_c('CSwitch',{staticClass:"mr-1",attrs:{"color":"danger","shape":"pill","type":"checkbox","disabled":!_vm.cantUpdatePrime,"checked":_vm.postData.prime_status,"size":"sm"},on:{"update:checked":[function($event){return _vm.$set(_vm.postData, "prime_status", $event)},_vm.updatePrime]}})],1)]),(_vm.postData.prime_status)?_c('CCol',{staticClass:"d-flex align-items-start",attrs:{"sm":"5"}},[_c('CInput',{attrs:{"type":"number","append":".00","description":"Montant de la prime:","prepend":"F","disabled":!_vm.cantUpdatePrime},on:{"change":_vm.reUpdatePrime},model:{value:(_vm.postData.prime_montant),callback:function ($$v) {_vm.$set(_vm.postData, "prime_montant", $$v)},expression:"postData.prime_montant"}})],1):_vm._e(),_c('CCol',{attrs:{"sm":"10"}},[_c('div',{staticClass:"form-group d-none"},[_vm._v(" Assigné : "),_c('pre',[_vm._v(" "+_vm._s(_vm.postData)+" ")]),_vm._v(" formValues : "),_c('pre',[_vm._v(" "+_vm._s(_vm.formValues)+" ")])])]),_c('CCol',{attrs:{"sm":"12"}},[_c('CInput',{attrs:{"label":"Title:","placeholder":"Entrez un titre","wasValidated":_vm.wasValidated,"validFeedback":"ok","invalidFeedback":"requis","isValid":_vm.inputValidation},model:{value:(_vm.postData.titre),callback:function ($$v) {_vm.$set(_vm.postData, "titre", $$v)},expression:"postData.titre"}})],1),(_vm.postData.type == 'project')?_c('CCol',{attrs:{"sm":"5"}},[_c('CInput',{attrs:{"label":"Nom du Client:","placeholder":"Select or add new Client"},model:{value:(_vm.postData.clientName),callback:function ($$v) {_vm.$set(_vm.postData, "clientName", $$v)},expression:"postData.clientName"}})],1):_vm._e(),(_vm.postData.type !== 'ressource' && _vm.postData.type !== 'memos')?_c('CCol',{attrs:{"lg":"5"}},[_c('label',{staticClass:"typo__label"},[_vm._v("Exécuter par:")]),_c('multiselect',{attrs:{"disabled":!_vm.cantUpdatePrime,"options":_vm.users,"placeholder":"Selectionnez un utilisateur","multiple":true,"close-on-select":false,"clear-on-select":false,"preserve-search":false,"searchable":false,"label":"name","loading":_vm.selectLoading,"track-by":"name","preselect-first":false,"hide-selected":true},on:{"select":_vm.addExecutant,"remove":_vm.deleteExecutant},model:{value:(_vm.postData.executant),callback:function ($$v) {_vm.$set(_vm.postData, "executant", $$v)},expression:"postData.executant"}})],1):_vm._e()],1),_c('CRow',[_c('CCol',{attrs:{"sm":"12"}},[_c('label',[_vm._v("Description:")]),_c('ckeditor',{attrs:{"config":_vm.editorConfig},on:{"namespaceloaded":_vm.onNamespaceLoaded},model:{value:(_vm.postData.text),callback:function ($$v) {_vm.$set(_vm.postData, "text", $$v)},expression:"postData.text"}})],1)],1),(_vm.postData.type == 'project')?_c('CRow',[_c('CCol',{attrs:{"col":"8","lg":"4"}},[_c('CInput',{attrs:{"label":"Estimation du coût:","append":".00","description":"montant","prepend":"$"},model:{value:(_vm.postData.price),callback:function ($$v) {_vm.$set(_vm.postData, "price", $$v)},expression:"postData.price"}})],1)],1):_vm._e()],1)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=template&id=2c9cbbf6&scoped=true&lang=html&
+// CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=template&id=7724fdce&scoped=true&lang=html&
 
 // EXTERNAL MODULE: ./src/views/App/project/Utilities.js
 var Utilities = __webpack_require__("d111");
@@ -267,6 +267,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -301,6 +312,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       selectLoading: false,
+      visible: true,
       postData: {
         typeIsOk: false,
         type: "project",
@@ -427,6 +439,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ProjectOptionsType["a" /* default */].loadType().then(function (reponse) {
       _this.options = reponse;
     });
+    var sm = window.matchMedia('(max-width:768px)');
+    sm.addEventListener('change', this.smallMedia);
+    this.smallMedia(sm);
   },
   watch: {
     formValues: {
@@ -532,6 +547,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   methods: {
+    smallMedia: function smallMedia(bp) {
+      if (bp.matches) {
+        this.visible = false;
+      } else {
+        this.visible = true;
+      }
+    },
+    togleVisible: function togleVisible() {
+      this.visible = !this.visible;
+    },
     reUpdatePrime: function reUpdatePrime(val) {
       console.log('reUpdate Prime: ', val);
       this.updatePrime(this.postData.prime_status);
@@ -809,10 +834,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 });
 // CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=script&lang=js&
  /* harmony default export */ var project_PopUpContentvue_type_script_lang_js_ = (PopUpContentvue_type_script_lang_js_); 
+// EXTERNAL MODULE: ./src/views/App/project/PopUpContent.vue?vue&type=style&index=0&id=7724fdce&lang=scss&scoped=true&
+var PopUpContentvue_type_style_index_0_id_7724fdce_lang_scss_scoped_true_ = __webpack_require__("9b16");
+
 // EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 var componentNormalizer = __webpack_require__("2877");
 
 // CONCATENATED MODULE: ./src/views/App/project/PopUpContent.vue
+
 
 
 
@@ -826,12 +855,30 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   null,
-  "2c9cbbf6",
+  "7724fdce",
   null
   
 )
 
 /* harmony default export */ var PopUpContent = __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "9b16":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PopUpContent_vue_vue_type_style_index_0_id_7724fdce_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c82e");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PopUpContent_vue_vue_type_style_index_0_id_7724fdce_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_dist_cjs_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PopUpContent_vue_vue_type_style_index_0_id_7724fdce_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+
+
+/***/ }),
+
+/***/ "c82e":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -848,21 +895,22 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
    */
   selectDatas: function selectDatas() {
     var where = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{
-      column: "c.type",
+      column: "gpc.type",
       operator: "=",
       value: "project"
     }];
     return new Promise(function (resolv) {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
       }
 
-      query += " ORDER BY  c.`idcontents` DESC";
-      query += " limit 0,50 "; //console.log("query :: ", query);
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,50 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/selectdatas", query, {
         headers: {
@@ -1070,7 +1118,7 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
   selectAll: function selectAll() {
     return new Promise(function (resolv) {
       var query = "";
-      query += " c.idcontents is not NULL order by c.update_at DESC limit 0,30 ";
+      query += " gpc.idcontents is not NULL order by gpc.update_at DESC limit 0,30 ";
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-project", query, {
         headers: {
           Authorization: authorization
@@ -1087,21 +1135,22 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
   },
   SelectTacheEnours: function SelectTacheEnours() {
     var where = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [{
-      column: "t.status",
+      column: "gpt.status",
       operator: "=",
       value: 2
     }];
     return new Promise(function (resolv, error) {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
       }
 
-      query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,20 "; //console.log("query :: ", query);
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-tache-enours", query, {
         headers: {
@@ -1120,23 +1169,66 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
   },
   SelectMesTaches: function SelectMesTaches(uid) {
     var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [{
-      column: "t.uid",
+      column: "gpe.uid",
       operator: "=",
       value: 8
     }];
     return new Promise(function (resolv, error) {
-      var query = "";
+      var query = {
+        where: "",
+        orther_query: ""
+      };
 
       if (where.length) {
-        for (var i in where) {
-          query += where[i].column + " " + where[i].operator + " " + "'" + where[i].value + "'" + " ";
-        }
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
       }
 
-      query += " ORDER BY  c.`idcontents` DESC ";
-      query += " limit 0,20 "; //console.log("query :: ", query);
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 "; //console.log("query :: ", query);
 
       _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/select/select-mes-taches/" + uid, query, {
+        headers: {
+          Authorization: authorization
+        }
+      }).then(function (reponse) {
+        if (reponse.status) {
+          resolv(reponse.data);
+        } else {
+          resolv([]);
+        }
+      }).catch(function (er) {
+        error(er);
+      });
+    });
+  },
+  SelectNotesAd: function SelectNotesAd(uid) {
+    var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [{
+      column: "gpc.type",
+      operator: "=",
+      value: "note"
+    }, {
+      column: "gpe.uid",
+      operator: "=",
+      value: uid
+    }, {
+      column: "gpt.status",
+      operator: "!=",
+      value: 1
+    }];
+    return new Promise(function (resolv, error) {
+      var query = {
+        where: "",
+        orther_query: ""
+      };
+
+      if (where.length) {
+        query.where += _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].formatWhere(where);
+      }
+
+      query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
+      query.orther_query += " limit 0,20 "; // console.log("query were :: ", query, where);
+
+      _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/gestion-project/custom-request", query, {
         headers: {
           Authorization: authorization
         }
