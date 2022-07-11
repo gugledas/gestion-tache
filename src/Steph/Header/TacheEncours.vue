@@ -34,7 +34,7 @@
       <td slot="user" slot-scope="{ item }">
         <CLink
           :to="{
-            path: '/projets/' + item.idcontents,
+            path: '/projets/' + item.idcontents
           }"
           class="text-decoration-none"
         >
@@ -114,21 +114,21 @@ export default {
   props: {
     colorModal: {
       type: String,
-      default: "success",
+      default: "success"
     },
     titleModal: {
       type: String,
-      default: "Dernières mises à jours",
+      default: "Dernières mises à jours"
     },
     type: {
       type: String,
-      default: "encour",
+      default: "encour"
     },
     modalLast: {
       type: Boolean,
       required: true,
-      default: false,
-    },
+      default: false
+    }
   },
   components: {
     //
@@ -141,13 +141,13 @@ export default {
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" },
+        { key: "activity", _style: "width:600px;" }
       ],
       progress: {
         max: 0,
-        val: 0,
+        val: 0
       },
-      currentTime: moment().unix(),
+      currentTime: moment().unix()
     };
   },
   mounted() {
@@ -183,14 +183,14 @@ export default {
       },
       set(val) {
         this.$emit("update-modal", val);
-      },
-    },
+      }
+    }
   },
   methods: {
     LoadTacheData(val) {
-      if(val  ) {
-        console.log('Current User: ',val)
-        this.current_user = val
+      if (val) {
+        console.log("Current User: ", val);
+        this.current_user = val;
       }
       switch (this.type) {
         case "encour":
@@ -207,15 +207,15 @@ export default {
           break;
         case "mestaches":
           this.isLoading = true;
-             SelectDb.SelectMesTaches(this.current_user)
-              .then((response) => {
-                this.itemsTache = response;
-                this.isLoading = false;
-              })
-              .catch((er) => {
-                console.log("error chargement mes taches", er);
-                this.isLoading = false;
-              });
+          SelectDb.SelectMesTaches(this.current_user)
+            .then((response) => {
+              this.itemsTache = response;
+              this.isLoading = false;
+            })
+            .catch((er) => {
+              console.log("error chargement mes taches", er);
+              this.isLoading = false;
+            });
           // console.log('Current User: ',this.current_user)
           // if (this.current_user) {
           //   let uid;
@@ -251,12 +251,10 @@ export default {
       this.$emit("ev_modal_last");
     },
     progressItem(item) {
-      
       var date_fin_proposer = moment.unix(item.date_fin_proposer);
       var date_depart_proposer = moment.unix(item.date_depart_proposer);
       var exact = moment.unix(this.currentTime);
       if (item && item.date_fin_reel && item.date_fin_reel > 0) {
-        
         exact = moment.unix(item.date_fin_reel);
       }
       var val = exact.diff(date_depart_proposer, "minutes");
@@ -266,8 +264,8 @@ export default {
     },
     color(valueCurent, maxValue) {
       return config.color(valueCurent, maxValue);
-    },
-  },
+    }
+  }
 };
 </script>
 
