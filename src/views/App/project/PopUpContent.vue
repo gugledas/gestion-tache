@@ -25,80 +25,96 @@
     <hr />
 
     <div class="pl-sm-2">
-       <CRow @click="togleVisible" class="mb-4 mt-n2">
-         <CCol><CButton variant="ghost" color="light w-100" href="#" class="text-dark d-fleex plus-bouton" >
-           <span>plus</span>
-           <span  v-show="!visible"><CIcon class="ml-auto" style="float:right;" name="cil-chevron-bottom"  /></span>
-           <span  v-show="visible"><CIcon class="ml-auto" style="float:right;" name="cil-chevron-top"  /></span>
-           </CButton></CCol>
-       </CRow>
-       <CCollapse :show="visible" :navbar="true" >
-      <CRow
-        :gutters="false"
-        class="form-group"
-        v-if="postData.type !== 'memos' && postData.date_fin_reel === ''"
-      >
-        <CCol sm="2"> <p>Statut:</p> </CCol>
-        <CCol sm="10">
-          <CInputRadioGroup
-            :options="statusOpt"
-            :checked.sync="postData.status"
-            custom
-            inline
-          />
-        </CCol>
-        <CCol sm="8" md="7" v-if="showInputRaison">
-          <CTextarea
-            label="Raison:"
-            type="textarea"
-            v-model="postData.raison"
-            horizontal
-            placeholder="writes something..."
-            rows="2"
-            description="Une description de la raison du changement de status"
-          />
-        </CCol>
+      <CRow @click="togleVisible" class="mb-4 mt-n2">
+        <CCol
+          ><CButton
+            variant="ghost"
+            color="light w-100"
+            href="#"
+            class="text-dark d-fleex plus-bouton"
+          >
+            <span>plus</span>
+            <span v-show="!visible"
+              ><CIcon
+                class="ml-auto"
+                style="float:right;"
+                name="cil-chevron-bottom"
+            /></span>
+            <span v-show="visible"
+              ><CIcon
+                class="ml-auto"
+                style="float:right;"
+                name="cil-chevron-top"
+            /></span> </CButton
+        ></CCol>
       </CRow>
-    
-      <CRow v-if="postData.type !== 'memos'">
-        <CCol col="12" lg="6">
-          <CRow class="">
-            <CInput
-              label="Debut:"
-              type="date"
-              v-model="postData.date_depart_proposer"
-              :readonly="postData.date_fin_reel > 0 ? true : false"
-              horizontal
-              class="col-10 col-sm-7"
+      <CCollapse :show="visible" :navbar="true">
+        <CRow
+          :gutters="false"
+          class="form-group"
+          v-if="postData.type !== 'memos' && postData.date_fin_reel === ''"
+        >
+          <CCol sm="2"> <p>Statut:</p> </CCol>
+          <CCol sm="10">
+            <CInputRadioGroup
+              :options="statusOpt"
+              :checked.sync="postData.status"
+              custom
+              inline
             />
-            <CInput
-              v-model="postData.heure_debut"
-              :readonly="postData.date_fin_reel > 0 ? true : false"
-              type="time"
-              class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
+          </CCol>
+          <CCol sm="8" md="7" v-if="showInputRaison">
+            <CTextarea
+              label="Raison:"
+              type="textarea"
+              v-model="postData.raison"
               horizontal
+              placeholder="writes something..."
+              rows="2"
+              description="Une description de la raison du changement de status"
             />
-          </CRow>
-        </CCol>
-        <CCol col="10" lg="6">
-          <CRow class="">
-            <CInput
-              label="Fin:"
-              v-model="postData.date_fin_proposer"
-              :readonly="postData.date_fin_reel > 0 ? true : false"
-              type="date"
-              horizontal
-              class="col-10 col-sm-7"
-            /><CInput
-              v-model="postData.heure_fin"
-              :readonly="postData.date_fin_reel > 0 ? true : false"
-              type="time"
-              class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
-              horizontal
-            />
-          </CRow>
-        </CCol>
-      </CRow>
+          </CCol>
+        </CRow>
+
+        <CRow v-if="postData.type !== 'memos'">
+          <CCol col="12" lg="6">
+            <CRow class="">
+              <CInput
+                label="Debut:"
+                type="date"
+                v-model="postData.date_depart_proposer"
+                :readonly="postData.date_fin_reel > 0 ? true : false"
+                horizontal
+                class="col-10 col-sm-7"
+              />
+              <CInput
+                v-model="postData.heure_debut"
+                :readonly="postData.date_fin_reel > 0 ? true : false"
+                type="time"
+                class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
+                horizontal
+              />
+            </CRow>
+          </CCol>
+          <CCol col="10" lg="6">
+            <CRow class="">
+              <CInput
+                label="Fin:"
+                v-model="postData.date_fin_proposer"
+                :readonly="postData.date_fin_reel > 0 ? true : false"
+                type="date"
+                horizontal
+                class="col-10 col-sm-7"
+              /><CInput
+                v-model="postData.heure_fin"
+                :readonly="postData.date_fin_reel > 0 ? true : false"
+                type="time"
+                class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
+                horizontal
+              />
+            </CRow>
+          </CCol>
+        </CRow>
       </CCollapse>
 
       <CRow>
@@ -129,10 +145,14 @@
             />
           </div>
         </CCol>
-        
-        <CCol v-if="postData.prime_status"  sm="5" class="d-flex align-items-start">
+
+        <CCol
+          v-if="postData.prime_status"
+          sm="5"
+          class="d-flex align-items-start"
+        >
           <CInput
-           type="number"
+            type="number"
             append=".00"
             description="Montant de la prime:"
             prepend="F"
@@ -141,7 +161,7 @@
             v-model="postData.prime_montant"
           />
         </CCol>
-   
+
         <CCol sm="10">
           <div class="form-group d-none">
             Assigné :
@@ -174,7 +194,7 @@
         >
           <label class="typo__label">Exécuter par:</label>
           <multiselect
-          :disabled="!cantUpdatePrime"
+            :disabled="!cantUpdatePrime"
             :options="users"
             placeholder="Selectionnez un utilisateur"
             :multiple="true"
@@ -215,13 +235,11 @@
           />
         </CCol>
       </CRow>
-      
     </div>
   </div>
 </template>
 
 <script>
-
 import Utilities from "./Utilities.js";
 import CKEditor from "ckeditor4-vue";
 import hljs from "highlight.js";
@@ -235,23 +253,23 @@ export default {
   props: {
     formValues: {
       type: [Object],
-      required: true
+      required: true,
     },
-   
+
     btnState: {
       type: Object,
-      default: function () {
+      default: function() {
         return { state: false };
-      }
+      },
     },
     level: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   components: {
     ckeditor: CKEditor.component,
-    Multiselect
+    Multiselect,
   },
   data() {
     return {
@@ -275,7 +293,7 @@ export default {
         prime_status: null,
         prime_montant: 0,
         privaty: true,
-        executant: []
+        executant: [],
       },
       fHeure: "",
       dHeure: "",
@@ -292,7 +310,7 @@ export default {
           config.baseUrl +
           "/modules/custom/gestion_tache/files/gestionTache.css'; body{margin:1em !important; background: #FFF;}",
         on: {
-          instanceReady: function (ev) {
+          instanceReady: function(ev) {
             // Output paragraphs as <p>Text</p>.
             //console.log('this',ev)
             ev.sender.dataProcessor.writer.setRules("p", {
@@ -300,21 +318,21 @@ export default {
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: true,
-              breakAfterClose: true
+              breakAfterClose: true,
             });
             ev.sender.dataProcessor.writer.setRules("img", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             ev.sender.dataProcessor.writer.setRules("h1", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
 
             ev.sender.dataProcessor.writer.setRules("h2", {
@@ -322,45 +340,45 @@ export default {
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             ev.sender.dataProcessor.writer.setRules("h3", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             ev.sender.dataProcessor.writer.setRules("h4", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             ev.sender.dataProcessor.writer.setRules("h5", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             ev.sender.dataProcessor.writer.setRules("h6", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
             ev.sender.dataProcessor.writer.setRules("div", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: true,
               breakBeforeClose: true,
-              breakAfterClose: false
+              breakAfterClose: false,
             });
-          }
-        }
+          },
+        },
       },
       options: [
         // { value: "project", label: "Projet" },
@@ -371,43 +389,43 @@ export default {
         { value: "0", label: "New" },
         { value: "2", label: "Encours" },
         { value: "1", label: "Terminé" },
-        { value: "3", label: "Annulé" }
-      ]
+        { value: "3", label: "Annulé" },
+      ],
     };
   },
   mounted() {
     ProjectOptionsType.loadType().then((reponse) => {
       this.options = reponse;
     });
-    let sm = window.matchMedia('(max-width:768px)')
-    sm.addEventListener('change',this.smallMedia)
-    this.smallMedia(sm)
+    let sm = window.matchMedia("(max-width:768px)");
+    sm.addEventListener("change", this.smallMedia);
+    this.smallMedia(sm);
   },
   watch: {
     formValues: {
       deep: true,
-      handler: function (val) {
+      handler: function(val) {
         console.log("val : ", val);
         Utilities.fomatVal(val, this.postData, this.users).then(() => {});
         //console.log("result :", this.postData, this.fHeure);
         //console.log("debut heure : ", this.dHeure);
-      }
-    }
+      },
+    },
   },
   computed: {
     cantUpdatePrime() {
-      let current =this.$store.getters.currentUser
-      if(this.formValues &&  this.formValues.uid) {
-        if(current.uid == this.formValues.uid) {
-        return true
-       }else {
-         return false
-       }
+      let current = this.$store.getters.currentUser;
+      if (this.formValues && this.formValues.uid) {
+        if (current.uid == this.formValues.uid) {
+          return true;
+        } else {
+          return false;
+        }
       }
-      return true
+      return true;
     },
     users() {
-      return this.$store.getters.userList
+      return this.$store.getters.userList;
     },
     dureeProjet() {
       var el;
@@ -458,12 +476,12 @@ export default {
       if (!window.location.host.includes("localhost--")) {
         return {
           extraPlugins: extraPlugins + ",quickuploader",
-          ...this.preEditorConfig
+          ...this.preEditorConfig,
         };
       } else {
         return {
           extraPlugins: extraPlugins,
-          ...this.preEditorConfig
+          ...this.preEditorConfig,
         };
       }
     },
@@ -478,96 +496,97 @@ export default {
       }
       //console.log("rs", rs);
       return rs;
-    }
+    },
   },
   methods: {
     smallMedia(bp) {
-      if(bp.matches) {
+      if (bp.matches) {
         this.visible = false;
-      }else {
+      } else {
         this.visible = true;
       }
     },
-    togleVisible()  {
-      this.visible = !this.visible
+    togleVisible() {
+      this.visible = !this.visible;
     },
     reUpdatePrime(val) {
-      console.log('reUpdate Prime: ',val)
-      this.updatePrime(this.postData.prime_status)
+      console.log("reUpdate Prime: ", val);
+      this.updatePrime(this.postData.prime_status);
     },
-   async updatePrime(value) {
-     var self = this
-      if(this.postData.idcontents) {
+    async updatePrime(value) {
+      var self = this;
+      if (this.postData.idcontents) {
         let params = {
-           id:this.postData.idcontents,
-           status:value,
-           montant:this.postData.prime_montant}
-         
-         var data  = await Utilities.formatPrimeData(params, this.formValues.prime_status !== null ? true: false)
-         console.log("formatPrimeData",data );
-           config
-        .post("/gestion-project/save-update",
-         data,
-          {
+          id: this.postData.idcontents,
+          status: value,
+          montant: this.postData.prime_montant,
+        };
+
+        var data = await Utilities.formatPrimeData(
+          params,
+          this.formValues.prime_status !== null ? true : false
+        );
+        console.log("formatPrimeData", data);
+        config
+          .post("/gestion-project/save-update", data, {
             headers: {
-              Authorization: config.auth
+              Authorization: config.auth,
+            },
+          })
+          .then((reponse) => {
+            if (reponse.status) {
+              console.log("prime update :", reponse);
+              this.formValues.prime_status = value;
+              this.formValues.prime_montant = this.postData.prime_montant;
             }
-          }
-        )
-        .then((reponse) => {
-          if (reponse.status) {
-            console.log("prime update :", reponse);
-            this.formValues.prime_status = value 
-            this.formValues.prime_montant = this.postData.prime_montant 
-          }
-        })
-        .catch(function (error) {
-          alert('Erreur lors de l\'activation de la prime sur cette tâche')
-          console.log("error", error);
-          self.postData.prime_status = null
-        });
-      // try   {
-      //   let reponse = await config.post('' + value)
-      //   console.log("user",reponse );
-      // }
-      // catch (er) {
-      //   console.log('er',er)
-      // }
-      //let self = this;
-    // if(this.postData.idcontents) {
-      
-     //}
+          })
+          .catch(function(error) {
+            alert("Erreur lors de l'activation de la prime sur cette tâche");
+            console.log("error", error);
+            self.postData.prime_status = null;
+          });
+        // try   {
+        //   let reponse = await config.post('' + value)
+        //   console.log("user",reponse );
+        // }
+        // catch (er) {
+        //   console.log('er',er)
+        // }
+        //let self = this;
+        // if(this.postData.idcontents) {
+
+        //}
       }
     },
     deleteExecutant(value) {
       //console.log("user delet", value);
       var self = this;
-      if(this.postData.idcontents) {
+      if (this.postData.idcontents) {
         this.selectLoading = true;
         config
-        .delete(
-          "/gestion-project/executant/" +
-            this.postData.idcontents +
-            "/" +
-            value.uid,
-          {},
-          {
-            headers: {
-              Authorization: config.auth
+          .delete(
+            "/gestion-project/executant/" +
+              this.postData.idcontents +
+              "/" +
+              value.uid,
+            {},
+            {
+              headers: {
+                Authorization: config.auth,
+              },
             }
-          }
-        )
-        .then((reponse) => {
-          if (reponse.status) {
-            //console.log("data after edit :", reponse);
-            self.updateFormValue(false, value);
+          )
+          .then((reponse) => {
+            if (reponse.status) {
+              //console.log("data after edit :", reponse);
+              self.updateFormValue(false, value);
+              self.selectLoading = false;
+            }
+          })
+          .catch(function(error) {
             self.selectLoading = false;
-          }
-        })
-        .catch(function (error) {
-          self.selectLoading = false;
-          console.log("error", error);
-        });
+            console.log("error", error);
+          });
       }
     },
     updateFormValue(add, user) {
@@ -576,7 +595,7 @@ export default {
         form.push(user);
       } else {
         let existe = form.filter((el) => el.uid == user.uid);
-       // console.log("existe", existe);
+        // console.log("existe", existe);
         for (let i in form) {
           if (existe[0].uid == form[i].uid) {
             form.splice(i, 1);
@@ -585,36 +604,34 @@ export default {
       }
     },
     addExecutant(value) {
-      
-
-     // console.log("user add", value, config.auth);
+      // console.log("user add", value, config.auth);
       let self = this;
-      if(this.postData.idcontents) {
+      if (this.postData.idcontents) {
         this.selectLoading = true;
         config
-        .post(
-          "/gestion-project/executant/" +
-            this.postData.idcontents +
-            "/" +
-            value.uid,
-          {},
-          {
-            headers: {
-              Authorization: config.auth
+          .post(
+            "/gestion-project/executant/" +
+              this.postData.idcontents +
+              "/" +
+              value.uid,
+            {},
+            {
+              headers: {
+                Authorization: config.auth,
+              },
             }
-          }
-        )
-        .then((reponse) => {
-          if (reponse.status) {
-            //console.log("data after edit :", reponse);
+          )
+          .then((reponse) => {
+            if (reponse.status) {
+              //console.log("data after edit :", reponse);
+              self.selectLoading = false;
+              self.updateFormValue(true, value);
+            }
+          })
+          .catch(function(error) {
             self.selectLoading = false;
-            self.updateFormValue(true, value);
-          }
-        })
-        .catch(function (error) {
-          self.selectLoading = false;
-          console.log("error", error);
-        });
+            console.log("error", error);
+          });
       }
     },
     onNamespaceLoaded(CKEDITOR) {
@@ -632,8 +649,7 @@ export default {
       CKEDITOR.config.htmlEncodeOutput = false;
       CKEDITOR.config.entities = false;
       CKEDITOR.config.quickuploaderUploadUrl = config.baseUrl;
-      // CKEDITOR.config.entities_processNumerical = 'force';
-
+      //                                     CKEDITOR.config.entities_processNumerical = 'force';
       CKEDITOR.dtd.$removeEmpty.span = 0;
       CKEDITOR.dtd.$removeEmpty.i = 0;
       CKEDITOR.dtd.$removeEmpty.label = 0;
@@ -677,8 +693,8 @@ export default {
           config
             .post("/gestion-project/save-update", reponse, {
               headers: {
-                Authorization: config.auth
-              }
+                Authorization: config.auth,
+              },
             })
             .then((reponse) => {
               if (reponse.status) {
@@ -687,7 +703,7 @@ export default {
               }
               this.isLoading = false;
             })
-            .catch(function (error) {
+            .catch(function(error) {
               self.$emit("edition-error");
               console.log("error", error);
             });
@@ -704,7 +720,7 @@ export default {
       rest.push({
         idcontents: id,
         date_depart_proposer: ddp,
-        date_fin_proposer: dfp
+        date_fin_proposer: dfp,
         // date_fin_reel: "reelD",
         // status: status,
         // temps_pause: "temps_pause",
@@ -722,7 +738,7 @@ export default {
         fields: {
           text: data.text,
           titre: data.titre,
-          type: data.type
+          type: data.type,
         },
         childstable: {
           colum_id_name: "idcontents",
@@ -732,60 +748,59 @@ export default {
               fields: {
                 date_depart_proposer: ddp,
                 date_fin_proposer: dfp,
-                status: state
-              }
+                status: state,
+              },
             },
             {
               table: "gestion_project_hierachie",
               fields: {
                 idcontentsparent: idc,
-                ordre: 0
-              }
-            }
-          ]
-        }
+                ordre: 0,
+              },
+            },
+          ],
+        },
       });
       return result;
     },
-    PostNewProject(idc,level) {
+    PostNewProject(idc, level) {
       var self = this;
       Utilities.formatAddData(this.postData, idc, this.level).then(
         (reponse) => {
-        //  console.log("created", reponse);
+          //  console.log("created", reponse);
 
           config
             .post("/gestion-project/save-update", reponse, {
               headers: {
-                Authorization: config.auth
-              }
+                Authorization: config.auth,
+              },
             })
             .then((reponse) => {
               if (reponse.status) {
                 self.request = reponse.data[0];
-            
-                if(level) {
-                  self.$emit("addnew-ok", {id:idc,level:level});
-                }else {
-                  self.$emit("addnew-ok", {id: reponse.data[0].result});
+
+                if (level) {
+                  self.$emit("addnew-ok", { id: idc, level: level });
+                } else {
+                  self.$emit("addnew-ok", { id: reponse.data[0].result });
                 }
-              
               }
               this.isLoading = false;
             })
-            .catch(function (error) {
+            .catch(function(error) {
               self.$emit("addnew-error");
               console.log("error", error);
             });
         }
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.plus-bouton{
-  box-shadow: 0px 0px 5px rgba(224, 224, 224, 0.664)
+.plus-bouton {
+  box-shadow: 0px 0px 5px rgba(224, 224, 224, 0.664);
 }
 </style>
 

@@ -1842,7 +1842,7 @@ var authorization = _config__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].auth
     var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [{
       column: "gpe.uid",
       operator: "=",
-      value: 8
+      value: uid
     }];
     return new Promise(function (resolv, error) {
       var query = {

@@ -1805,20 +1805,20 @@ var BreadCrumb_component = Object(componentNormalizer["a" /* default */])(
 // EXTERNAL MODULE: ./src/views/App/config/SelectDb.js
 var SelectDb = __webpack_require__("f0ae");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/Steph/Header/TacheEncours.vue?vue&type=template&id=d67257b8&scoped=true&
-var TacheEncoursvue_type_template_id_d67257b8_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('CModal',{attrs:{"title":_vm.titleModal,"size":"lg","color":_vm.colorModal,"show":_vm.modalLastStatus},on:{"update:show":function($event){_vm.modalLastStatus=$event}}},[_c('CRow',[_c('CCol',{attrs:{"col":"4"}},[_c('CSelect',{attrs:{"options":_vm.users,"label":"Nom de l'utilisateur :","placeholder":"Select user tasks"},on:{"update:value":_vm.LoadTacheData},model:{value:(_vm.current_user),callback:function ($$v) {_vm.current_user=$$v},expression:"current_user"}})],1)],1),_c('CDataTable',{staticClass:"m-0 table-borderless",attrs:{"hover":"","responsive":false,"items":_vm.itemsTache,"fields":_vm.tableFields,"header":false,"loading":_vm.isLoading,"cleaner":"","table-filter":"","items-per-page-select":"","items-per-page":10,"pagination":""},scopedSlots:_vm._u([{key:"user",fn:function(ref){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"780923cc-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/Steph/Header/TacheEncours.vue?vue&type=template&id=1d109f68&scoped=true&
+var TacheEncoursvue_type_template_id_1d109f68_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('CModal',{attrs:{"title":_vm.titleModal,"size":"lg","color":_vm.colorModal,"show":_vm.modalLastStatus},on:{"update:show":function($event){_vm.modalLastStatus=$event}}},[_c('CRow',[_c('CCol',{attrs:{"col":"4"}},[_c('CSelect',{attrs:{"options":_vm.users,"label":"Nom de l'utilisateur :","placeholder":"Select user tasks"},on:{"update:value":_vm.LoadTacheData},model:{value:(_vm.current_user),callback:function ($$v) {_vm.current_user=$$v},expression:"current_user"}})],1)],1),_c('CDataTable',{staticClass:"m-0 table-borderless",attrs:{"hover":"","responsive":false,"items":_vm.itemsTache,"fields":_vm.tableFields,"header":false,"loading":_vm.isLoading,"cleaner":"","table-filter":"","items-per-page-select":"","items-per-page":10,"pagination":""},scopedSlots:_vm._u([{key:"user",fn:function(ref){
 var item = ref.item;
 return _c('td',{},[_c('CLink',{staticClass:"text-decoration-none",attrs:{"to":{
-          path: '/projets/' + item.idcontents,
+          path: '/projets/' + item.idcontents
         }}},[_c('div',{on:{"click":_vm.evModalLast}},[_vm._v(" "+_vm._s(item.titre)+" "),(item.privaty == '1')?_c('CBadge',{attrs:{"color":"danger","position":"top-start","shape":"pill"}},[_vm._v(" Privé ")]):_vm._e()],1),_c('div',{staticClass:"small text-muted mt-1"},[_vm._v(" Crée le: "+_vm._s(item.created_at)+" ")])])],1)}},{key:"usage",fn:function(ref){
         var item = ref.item;
 return _c('td',{attrs:{"width":"300"}},[_vm._v(" "+_vm._s(_vm.progressItem(item))+" "),(item.val && item.max)?_c('CProgress',{staticClass:"progress-xs",staticStyle:{"height":"10px"},attrs:{"animated":item.status === '1' || item.status === '3' ? false : true,"showPercentage":"","striped":item.status === '1' || item.status === '3' ? false : true,"max":item.max,"value":item.val,"color":_vm.color(item.val, item.max)}}):_vm._e()],1)}},{key:"activity",fn:function(ref){
         var item = ref.item;
 return _c('td',{},[_c('CRow',{staticClass:"ml-4 d-flex justify-content-arround flex-nowrap"},[_c('CLink',{staticClass:"mx-3",attrs:{"color":"primary","variant":"ghost","shape":"pill","size":"sm"}},[_vm._v(" "+_vm._s(item.type)+" ")])],1)],1)}}])}),_c('template',{slot:"footer"},[_c('div',{staticClass:"d-flex justify-content-end mr-3"},[_c('CLink',{directives:[{name:"c-tooltip",rawName:"v-c-tooltip",value:('Actualiser'),expression:"'Actualiser'"}]},[_c('CButton',{attrs:{"size":"sm","shape":"pill","color":"secondary"},on:{"click":function($event){return _vm.LoadTacheData(false)}}},[_c('CIcon',{attrs:{"name":"cil-reload","size":"sm"}})],1)],1)],1)])],2)}
-var TacheEncoursvue_type_template_id_d67257b8_scoped_true_staticRenderFns = []
+var TacheEncoursvue_type_template_id_1d109f68_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/Steph/Header/TacheEncours.vue?vue&type=template&id=d67257b8&scoped=true&
+// CONCATENATED MODULE: ./src/Steph/Header/TacheEncours.vue?vue&type=template&id=1d109f68&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/moment/moment.js
 var moment = __webpack_require__("c1df");
@@ -2036,7 +2036,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _this = this;
 
       if (val) {
-        console.log('Current User: ', val);
+        console.log("Current User: ", val);
         this.current_user = val;
       }
 
@@ -2128,11 +2128,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var TacheEncours_component = Object(componentNormalizer["a" /* default */])(
   Header_TacheEncoursvue_type_script_lang_js_,
-  TacheEncoursvue_type_template_id_d67257b8_scoped_true_render,
-  TacheEncoursvue_type_template_id_d67257b8_scoped_true_staticRenderFns,
+  TacheEncoursvue_type_template_id_1d109f68_scoped_true_render,
+  TacheEncoursvue_type_template_id_1d109f68_scoped_true_staticRenderFns,
   false,
   null,
-  "d67257b8",
+  "1d109f68",
   null
   
 )

@@ -62747,7 +62747,12 @@ const basicRequest = {
   },
   post: function(url, datas, configs) {
     return new Promise((resolv, reject) => {
-      if (this.languageId) url = "/" + this.languageId + url;
+      if (
+        this.languageId !== "" &&
+        this.languageId !== undefined &&
+        this.languageId !== null
+      )
+        url = "/" + this.languageId + url;
       console.log(" LanguageId : ", this.languageId);
       const urlFinal = url.includes("://") ? url : this.getBaseUrl() + url;
       InstAxios.post(urlFinal, datas, configs)
@@ -62784,8 +62789,14 @@ const basicRequest = {
   },
   get: function(url, configs) {
     return new Promise((resolv, reject) => {
-      if (this.languageId) url = "/" + this.languageId + url;
+      if (
+        this.languageId !== "" &&
+        this.languageId !== undefined &&
+        this.languageId !== null
+      )
+        url = "/" + this.languageId + url;
       const urlFinal = url.includes("://") ? url : this.getBaseUrl() + url;
+      console.log(" get : ", url);
       InstAxios.get(urlFinal, configs)
         .then((reponse) => {
           resolv({ status: true, data: reponse.data, reponse: reponse });
@@ -62812,11 +62823,11 @@ const basicRequest = {
         var myInit = {
           method: "POST",
           headers: headers,
-          //mode: "cors",
+          // mode: "cors",
           body: JSON.stringify({
             upload: fileEncode.base64,
-            filename: fileCompose[0],
-            ext: fileCompose[1],
+            ext: fileCompose.pop(),
+            filename: fileCompose.join("."),
             id: id,
           }),
           cache: "default",
