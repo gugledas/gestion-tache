@@ -34,7 +34,7 @@
       <td slot="user" slot-scope="{ item }">
         <CLink
           :to="{
-            path: '/projets/' + item.idcontents
+            path: '/projets/' + item.idcontents,
           }"
           class="text-decoration-none"
         >
@@ -114,21 +114,21 @@ export default {
   props: {
     colorModal: {
       type: String,
-      default: "success"
+      default: "success",
     },
     titleModal: {
       type: String,
-      default: "Dernières mises à jours"
+      default: "Dernières mises à jours ...",
     },
     type: {
       type: String,
-      default: "encour"
+      default: "encour",
     },
     modalLast: {
       type: Boolean,
       required: true,
-      default: false
-    }
+      default: false,
+    },
   },
   components: {
     //
@@ -141,13 +141,13 @@ export default {
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" }
+        { key: "activity", _style: "width:600px;" },
       ],
       progress: {
         max: 0,
-        val: 0
+        val: 0,
       },
-      currentTime: moment().unix()
+      currentTime: moment().unix(),
     };
   },
   mounted() {
@@ -183,8 +183,8 @@ export default {
       },
       set(val) {
         this.$emit("update-modal", val);
-      }
-    }
+      },
+    },
   },
   methods: {
     LoadTacheData(val) {
@@ -264,8 +264,8 @@ export default {
     },
     color(valueCurent, maxValue) {
       return config.color(valueCurent, maxValue);
-    }
-  }
+    },
+  },
 };
 </script>
 
