@@ -83,9 +83,9 @@
           >
             <CIcon name="cil-plus" />
           </CLink>
-          <CLink href="#" class="btn-close p-2" @click="modalRessourceOn">
+          <!-- <CLink href="#" class="btn-close p-2" @click="modalRessourceOn">
             <CIcon name="cil-settings" />
-          </CLink>
+          </CLink> -->
           <CLink
             class="p-2 btn-minimize"
             @click="Collapsed"
@@ -152,10 +152,11 @@
 
     <!-- Modal for change hierarchie -->
     <CModal
+     size="lg"
       title="Modification de la hiérarchie"
       color="dark"
       :show.sync="hierarchiModal"
-      class=" modal-dialog-scrollable"
+      class="  "
     >
       <CRow>
         <CCol col="8" sm="5" class="mr-0 pr-0">
@@ -170,7 +171,11 @@
           <SSearch @parent-selected="parentSelected"></SSearch>
           <small>Choisir le nouveau parent</small> <br />
           <small
-            >Parent Actuel: <strong>{{ dataLoad.idcontentsparent }}</strong>
+            >Parent Actuel: <strong>{{ dataLoad.titre }}</strong> ({{dataLoad.idcontents}}) 
+          </small>
+          <small class="d-none">{{ newIdParrent }}</small>
+          <small v-if="newParrent" class="d-block mt-2"
+            >Nouveau parent : <strong>{{ newIdParrent.titre }}</strong>({{ newIdParrent.id }})
           </small>
         </CCol>
       </CRow>
@@ -242,6 +247,7 @@ export default {
       newIdParrent: {
         id: "",
         ordre: "",
+        titre: ""
       },
       //isCollapsed: true,
       editorData: "<p>me al rasp sale</p>",
@@ -260,9 +266,13 @@ export default {
     this.timing();
   },
   computed: {
+    newParrent() {
+      if(this.newIdParrent && this.newIdParrent.id != "") return true
+      return false
+    },
     permission() {
       let perm = this.$store.getters.currentUser
-      console.log('perm',perm)
+      //console.log('perm',perm)
       if(perm.uid == this.dataLoad.uid) return true
       return false
     },
@@ -342,8 +352,9 @@ export default {
       return config.color(valueCurent, maxValue);
     },
     parentSelected(data) {
-      //console.log("cccc :", data.idcontents);
+      console.log("cccc :", data.idcontents);
       this.newIdParrent.id = data.idcontents;
+      this.newIdParrent.titre = data.titre;
     },
     ChangeHierarchie() {
       var self = this
@@ -559,5 +570,8 @@ export default {
       border-radius: 0;
       //color:#000000bf
     }
+}
+.tooltip-old  {
+  pointer-events: none;
 }
 </style>
