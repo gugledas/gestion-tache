@@ -6,7 +6,7 @@
     :show.sync="modalLastStatus"
   >
     <CRow>
-      <CCol col="4">
+      <CCol col="4" v-if="type == 'mestaches'">
         <CSelect
           :options="users"
           label="Nom de l'utilisateur :"
@@ -16,17 +16,18 @@
         />
       </CCol>
     </CRow>
-
+    <custom-filter
+      :itemsLoaded="itemsTache"
+      @items_loaded_format="setItemsLoaded"
+    ></custom-filter>
     <CDataTable
       class="m-0 table-borderless"
       hover
       :responsive="false"
-      :items="itemsTache"
+      :items="itemsLoaded"
       :fields="tableFields"
       :header="false"
       :loading="isLoading"
-      cleaner
-      table-filter
       items-per-page-select
       :items-per-page="10"
       pagination
@@ -45,10 +46,20 @@
               color="danger"
               position="top-start"
               shape="pill"
+              class="mr-1"
             >
               Privé
             </CBadge>
+            <CBadge
+              v-if="item.prime_status == '1'"
+              color="warning "
+              position="top-start"
+              shape="pill"
+            >
+              Prime
+            </CBadge>
           </div>
+
           <div class="small text-muted mt-1">
             Crée le: {{ item.created_at }}
           </div>
@@ -59,19 +70,33 @@
           <CIcon :name="item.country.flag" height="25" />
         </td> 
       -->
-      <td slot="usage" slot-scope="{ item }" width="300">
-        {{ progressItem(item) }}
-        <CProgress
-          class="progress-xs"
-          :animated="item.status === '1' || item.status === '3' ? false : true"
-          showPercentage
-          :striped="item.status === '1' || item.status === '3' ? false : true"
-          style="height: 10px"
-          :max="item.max"
-          :value="item.val"
-          :color="color(item.val, item.max)"
-          v-if="item.val && item.max"
-        />
+      <td slot="usage" slot-scope="{ item }" class="usage-progress">
+        <div v-if="type != 'lastupdates'">
+          {{ progressItem(item) }}
+          <CProgress
+            class="progress-xs"
+            :animated="
+              item.status === '1' || item.status === '3' ? false : true
+            "
+            showPercentage
+            :striped="item.status === '1' || item.status === '3' ? false : true"
+            style="height: 10px"
+            :max="item.max"
+            :value="item.val"
+            :color="color(item.val, item.max)"
+            v-if="item.val && item.max"
+          />
+        </div>
+        <div class="clearfix" v-if="type == 'lastupdates'">
+          <div class="float-left">
+            <!-- <strong>{{ 20 }}%</strong> -->
+          </div>
+          <div class="float-right">
+            <small class="text-bold"
+              ><strong>Updated: </strong> {{ item.update_at }}</small
+            >
+          </div>
+        </div>
       </td>
 
       <td slot="activity" slot-scope="{ item }">
@@ -108,6 +133,7 @@
 import SelectDb from "../../views/App/config/SelectDb";
 import config from "../../views/App/config/config";
 import moment from "moment";
+import CustomFilter from "../project/CustomFilter.vue";
 
 export default {
   name: "TacheEncours",
@@ -118,7 +144,7 @@ export default {
     },
     titleModal: {
       type: String,
-      default: "Dernières mises à jours"
+      default: "Tâches Encours"
     },
     type: {
       type: String,
@@ -131,6 +157,7 @@ export default {
     }
   },
   components: {
+    CustomFilter
     //
   },
   data() {
@@ -138,9 +165,10 @@ export default {
       current_user: "",
       isLoading: false,
       itemsTache: [],
+      itemsLoaded: [],
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
-        { key: "usage", _style: "min-width:200px;" },
+        { key: "usage", _classes: "bg-success", _style: "min-width:200px;" },
         { key: "activity", _style: "width:600px;" }
       ],
       progress: {
@@ -182,17 +210,33 @@ export default {
         return this.modalLast;
       },
       set(val) {
+        console.log("amerr");
         this.$emit("update-modal", val);
       }
     }
   },
   methods: {
+    setItemsLoaded(data) {
+      this.itemsLoaded = data.datas;
+    },
     LoadTacheData(val) {
       if (val) {
         console.log("Current User: ", val);
         this.current_user = val;
       }
       switch (this.type) {
+        case "lastupdates":
+          this.isLoading = true;
+          SelectDb.selectAll()
+            .then((response) => {
+              this.itemsTache = response;
+              this.isLoading = false;
+            })
+            .catch((er) => {
+              console.log("error lastupdates", er);
+              this.isLoading = false;
+            });
+          break;
         case "encour":
           this.isLoading = true;
           SelectDb.SelectTacheEnours()
@@ -269,7 +313,19 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.tr {
+  display: flex;
+  align-items: center;
+}
+.usage-progress {
+  min-width: 12rem;
+  //max-width: 200px;
+  @media only screen and (max-width: 600px) {
+    min-width: 5rem;
+  }
+}
+</style>
 
 <!--
  //nom du fichier en pascal.
