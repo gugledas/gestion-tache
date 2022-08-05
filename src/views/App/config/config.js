@@ -91,7 +91,7 @@ export default {
         where[i].value +
         "'" +
         " ";
-      if (i < where.length - 1) query += "and ";
+      if (i < where.length - 1) query += "or ";
     }
     return query;
   }

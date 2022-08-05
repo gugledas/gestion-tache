@@ -12,7 +12,7 @@
     />
 
     <CHeaderNav>
-      <CButton
+      <!-- <CButton
         @click="loadLastUpdates"
         size="sm"
         variant="ghost"
@@ -25,7 +25,7 @@
         }"
       >
         <CIcon name="cilEyedropper"> </CIcon>
-      </CButton>
+      </CButton> -->
       <CButton
         @click="loadTacheEncour"
         size="sm"
@@ -124,183 +124,23 @@
       </div>
     </CSubheader>
 
-    <!-- modal -->
-    <CModal
-      title="Dernière mise à jour"
-      color="dark"
-      size="lg"
-      :show.sync="modalLast"
-    >
-      <CRow>
-        itemsTache:
-        <pre> {{ allTacheLoaded[100] }} </pre>
-        ||e:
-        <pre> {{ allTacheLoaded.length }} </pre>
-        <CCol sm="6">
-          <div class="form-inlinee">
-            <div class="mb-2">Critère de filtrage :</div>
-            {{ filterType }}
-            <CSelect
-              :value.sync="filterType"
-              :options="filterOptions"
-            ></CSelect>
-          </div>
-        </CCol>
-        <CCol sm="6"> </CCol>
-        <CCol sm="6" v-show="filterType == 'typeprojet'">
-          <div class="form-inlinee">
-            <div class="mb-2">Choisir un type :</div>
-            {{ typeValue }}
-            <CSelect :value.sync="typeValue" :options="typeOptions"></CSelect>
-          </div>
-        </CCol>
-        <CCol sm="6" v-show="filterType == 'status'">
-          <div class="form-inlinee">
-            <div class="mb-2">Choisir un status:</div>
-            {{ statuValue }}
-            <CSelect
-              :value.sync="statuValue"
-              :options="statusOptions"
-            ></CSelect>
-          </div>
-        </CCol>
-        <CCol sm="6" v-show="filterType == 'duree'">
-          <div class="form-inlinee">
-            <div class="mb-2">Condition :</div>
-            {{ conditionValue }}
-            <CSelect
-              :value.sync="conditionValue"
-              :options="conditionOptions"
-            ></CSelect>
-          </div>
-        </CCol>
-        <CCol sm="6" v-show="filterType == 'duree'">
-          <div class="form-inlinee">
-            <div class="mb-2">
-              Choisissez un <strong>%</strong> d'exécution :
-            </div>
-            {{ dureeValue }}
-            <CSelect :value.sync="dureeValue" :options="dureeOptions"></CSelect>
-          </div>
-        </CCol>
-      </CRow>
-
-      <CDataTable
-        class="m-0 table-borderless"
-        hover
-        :responsive="false"
-        :items="allTacheLoaded"
-        :fields="tableFields"
-        :header="false"
-        :loading="isLoading"
-        cleanere
-        table-filtere
-        items-per-page-select
-        :items-per-page="10"
-        pagination
-      >
-        <td slot="user" slot-scope="{ item }">
-          <CLink
-            :to="{
-              path: '/projets/' + item.idcontents
-            }"
-            class="text-decoration-none"
-            ><div @click="modalLast = !modalLast">
-              {{ item.titre }}
-              <CBadge
-                v-if="item.privaty == '1'"
-                color="danger"
-                position="top-start"
-                shape="pill"
-              >
-                Privé
-              </CBadge>
-            </div>
-            <div class="small text-muted mt-1">
-              <span>
-                <template>New</template>
-                <template v-if="false">Recurring</template>
-              </span>
-              | Crée le: {{ item.created_at }}
-            </div>
-          </CLink>
-        </td>
-        <!-- <td slot="country" slot-scope="{ item }" class="text-center">
-            <CIcon :name="item.country.flag" height="25" />
-          </td> -->
-        <td slot="usage" slot-scope="{ item }">
-          <div class="clearfix">
-            <div class="float-left">
-              <!-- <strong>{{ 20 }}%</strong> -->
-            </div>
-            <div class="float-right">
-              <small class="text-bold"
-                ><strong>Updated: </strong> {{ item.update_at }}</small
-              >
-            </div>
-          </div>
-          <!-- <CProgress class="progress-xs" :value="20" color="primary" /> -->
-        </td>
-
-        <td slot="activity" slot-scope="{ item }">
-          <CRow class="ml-4 d-flex justify-content-arround flex-nowrap">
-            <CLink
-              color="primary"
-              variant="ghost"
-              shape="pill"
-              size="sm"
-              class="mx-3"
-            >
-              <!-- <CIcon name="cilList" class="mr-1 text-info "></CIcon> -->
-              {{ item.type }}
-            </CLink>
-            <!-- <CButton
-                color="primary"
-                variant="ghost"
-                shape="pill"
-                size="sm"
-                class="mx-2"
-                ><CIcon name="cilFolder" class="mr-1 text-info "></CIcon
-              ></CButton>
-              <CButton
-                color="primary"
-                variant="ghost"
-                shape="pill"
-                size="sm"
-                class="mx-2"
-                ><CIcon name="cilPlus" class="mr-1 text-info "></CIcon
-              ></CButton> -->
-          </CRow>
-        </td>
-      </CDataTable>
-      <template slot="footer">
-        <div class="d-flex justify-content-end border-bottom-1 mr-3">
-          <CLink v-c-tooltip="'Actualiser'"
-            ><CButton
-              size="sm"
-              shape="pill"
-              color="secondary"
-              @click="LoadTacheData"
-            >
-              <CIcon name="cil-reload" size="sm" /> </CButton
-          ></CLink>
-        </div>
-        <div class="d-flex justify-content-end mr-3"></div>
-      </template>
-    </CModal>
+    <!-- taches encours -->
     <TacheEncours
       @ev_modal_last="ev_modal_last"
       :modalLast="tacheEncoursModal"
       @update-modal="UpdateModalEncour"
     ></TacheEncours>
-    <TacheEncours
+
+    <!-- dernières mise à jours -->
+    <!-- <TacheEncours
       @ev_modal_last="ev_modal_last"
       :type="lastUpdate"
       :titleModal="titlelastUpdate"
       :colorModal="colorlastUpdate"
       :modalLast="LastUpdateModal"
       @update-modal="UpdateLastModal"
-    ></TacheEncours>
+    ></TacheEncours> -->
+    <!-- mes taches -->
     <TacheEncours
       @ev_modal_last="ev_modal_last"
       :type="mesTaches"

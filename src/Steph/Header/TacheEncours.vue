@@ -4,7 +4,20 @@
     size="lg"
     :color="colorModal"
     :show.sync="modalLastStatus"
+    scrollable
   >
+    <div class="d-flex justify-content-end mr-3">
+      <CLink v-c-tooltip="'Actualiser'"
+        ><CButton
+          size="sm"
+          shape="pill"
+          color="secondary"
+          @click="LoadTacheData(false)"
+        >
+          <CIcon name="cil-reload" size="sm" /> </CButton
+      ></CLink>
+    </div>
+
     <CRow>
       <CCol col="4" v-if="type == 'mestaches'">
         <CSelect
@@ -113,19 +126,6 @@
         </CRow>
       </td>
     </CDataTable>
-    <template slot="footer">
-      <div class="d-flex justify-content-end mr-3">
-        <CLink v-c-tooltip="'Actualiser'"
-          ><CButton
-            size="sm"
-            shape="pill"
-            color="secondary"
-            @click="LoadTacheData(false)"
-          >
-            <CIcon name="cil-reload" size="sm" /> </CButton
-        ></CLink>
-      </div>
-    </template>
   </CModal>
 </template>
 
@@ -183,6 +183,11 @@ export default {
 
     this.LoadTacheData();
     this.timing();
+    if (this.type == "mestaches") {
+      setInterval(() => {
+        this.LoadTacheData();
+      }, 350000);
+    }
   },
   watch: {
     //

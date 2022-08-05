@@ -1,21 +1,21 @@
 <template lang="html">
   <div>
     <CRow>
-      <!-- itemsLoaded:
-      
-      ||e:
-      <pre> {{ allTacheLoaded.length }} </pre> -->
+      <!-- itemsLoaded:-->
+
+      <!-- <pre> {{ itemsLoaded.length }} </pre>
+      ||e: -->
       <div class="d-none">
-        <pre> {{ allTacheLoaded[0] }} </pre>
+        <pre> {{ allTacheLoaded.length }} </pre>
       </div>
       <CCol sm="6">
         <div class="form-inlinee">
-          <div class="mb-2">Critère de filtrage :</div>
+          <div class="mb-2">Filtrer par :</div>
 
           <CSelect :value.sync="filterType" :options="filterOptions"></CSelect>
         </div>
       </CCol>
-      <CCol sm="6"> </CCol>
+
       <CCol sm="6" v-show="filterType == 'typeprojet'">
         <div class="form-inlinee">
           <div class="mb-2">Choisir un type :</div>
@@ -30,6 +30,8 @@
           <CSelect :value.sync="statuValue" :options="statusOptions"></CSelect>
         </div>
       </CCol>
+    </CRow>
+    <CRow>
       <CCol sm="6" v-show="filterType == 'duree'">
         <div class="form-inlinee">
           <div class="mb-2">Condition :</div>
@@ -42,7 +44,6 @@
       <CCol sm="6" v-show="filterType == 'duree'">
         <div class="form-inlinee">
           <div class="mb-2">Choisissez un <strong>%</strong> d'exécution :</div>
-          {{ dureeValue }}
           <CSelect :value.sync="dureeValue" :options="dureeOptions"></CSelect>
         </div>
       </CCol>
@@ -71,7 +72,7 @@ export default {
   data() {
     return {
       /* filter */
-      filterType: "",
+      filterType: "status",
       filterOptions: [
         { value: "", label: "Aucun" },
         { value: "typeprojet", label: "Type de projet" },
@@ -97,7 +98,7 @@ export default {
       ],
       typeValue: "tache",
       conditionValue: "superieur",
-      statuValue: "1",
+      statuValue: "0",
       dureeValue: "50"
     };
   },

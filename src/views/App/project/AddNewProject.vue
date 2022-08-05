@@ -1,13 +1,12 @@
 <template>
   <div>
-    <CRow class="ml-2  d-flex" alignVertical="center">
+    <CRow class="ml-2 d-flex" alignVertical="center">
       <CButton
         @click="modalAddOn"
         v-c-tooltip="'Nouveau projet'"
         size="sm"
         color="warning"
         shape="pill"
-       
       >
         <CIcon class="text-white" name="cilPlus" :height="35" size="xl" />
       </CButton>
@@ -19,7 +18,7 @@
       color="warning"
       :show.sync="modalAdd"
       :footer="false"
-       class=" modal-dialog-scrollable"
+      class="modal-dialog-scrollable"
     >
       <PopUpContent
         ref="child"
@@ -33,20 +32,20 @@
           <CButton @click="modalAdd = false" class="mx-1" color="light">
             Cancel
           </CButton>
-          
+
           <CButton
             @click="PostNewProject"
             class="mx-1 d-flex align-items-center"
             :color="btnStateAdd.state ? 'warning' : 'light'"
           >
-            Save 
-      <CSpinner v-if="spinner"
-        class="mx-2"
-        tag="div"
-        color="primary"
-        style="width: 0.8rem; height: 0.8rem"
-      />
-   
+            Save
+            <CSpinner
+              v-if="spinner"
+              class="mx-2"
+              tag="div"
+              color="primary"
+              style="width: 0.8rem; height: 0.8rem"
+            />
           </CButton>
         </div>
       </template>
@@ -62,8 +61,8 @@ export default {
   props: {
     showSideText: {
       type: Boolean,
-      default: null,
-    },
+      default: null
+    }
   },
   data() {
     return {
@@ -72,7 +71,7 @@ export default {
         starttime: "",
         endtime: "",
         title: "",
-        text: "",
+        text: ""
       },
       btnStateAdd: { state: false },
       editorData: "<p>content...</p>",
@@ -80,21 +79,20 @@ export default {
       modalAdd: false,
       editorConfig: {
         extraPlugins: "codesnippet",
-        codeSnippet_theme: "monokai_sublime",
+        codeSnippet_theme: "monokai_sublime"
       },
       options: [
         { value: "projet", label: "Projet" },
         { value: "tache", label: "Tâche" },
-        { value: "memos", label: "Mémos" },
+        { value: "memos", label: "Mémos" }
       ],
-      formValues: {},
+      formValues: {}
     };
   },
-  mounted() {
-  },
+  mounted() {},
   computed: {
-    utilisateur (){
-      return this.$store.state.utilisateur
+    utilisateur() {
+      return this.$store.state.utilisateur;
     },
     ser() {
       var newDiv = document.createElement("div");
@@ -104,7 +102,7 @@ export default {
       });
 
       return newDiv.outerHTML;
-    },
+    }
   },
   methods: {
     modalAddOn() {
@@ -125,32 +123,30 @@ export default {
         text: "",
         primeStatus: null,
         primePrice: "",
-        privaty: true,
+        privaty: false,
         executant: []
-      }
-       this.modalAdd = true;
+      };
+      this.modalAdd = true;
       this.$refs.child.TimeNow();
     },
     PostNewProject() {
-      this.spinner  = true
+      this.spinner = true;
       if (this.btnStateAdd.state) {
         this.$refs.child.PostNewProject();
       }
     },
     addnewOk(data) {
-      this.spinner = false
+      this.spinner = false;
       this.modalAdd = false;
-      console.log('reponse add', data)
-      console.log('router', this)
-      this.$router.push({name:'Projet',params: {idcontents:data.id}})
-      this.spinner = false
+      console.log("reponse add", data);
+      console.log("router", this);
+      this.$router.push({ name: "Projet", params: { idcontents: data.id } });
+      this.spinner = false;
     },
     addnewError() {
-      alert("Une erreur s'est produit")
-      this.spinner = false
-    },
-    
-   
-  },
+      alert("Une erreur s'est produit");
+      this.spinner = false;
+    }
+  }
 };
 </script>

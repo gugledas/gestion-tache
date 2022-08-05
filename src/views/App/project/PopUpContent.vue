@@ -4,6 +4,10 @@
 <template lang="html">
   <div :check-valid-form="checkForSave">
     <div>
+      <!-- currentUser:
+      <pre>{{ currentUser }}</pre>
+      postData:
+      <pre>{{ postData }}</pre>  -->
       <CRow :gutters="false" class="form-group">
         <!-- <pre> {{ postData }} </pre> -->
         <br />
@@ -13,6 +17,7 @@
           ><CInputRadioGroup
             :options="options"
             :checked.sync="postData.type"
+            @update:checked="typeProjectChange"
             custom
             inline
           />
@@ -25,80 +30,125 @@
     <hr />
 
     <div class="pl-sm-2">
-       <CRow @click="togleVisible" class="mb-4 mt-n2">
-         <CCol><CButton variant="ghost" color="light w-100" href="#" class="text-dark d-fleex plus-bouton" >
-           <span>plus</span>
-           <span  v-show="!visible"><CIcon class="ml-auto" style="float:right;" name="cil-chevron-bottom"  /></span>
-           <span  v-show="visible"><CIcon class="ml-auto" style="float:right;" name="cil-chevron-top"  /></span>
-           </CButton></CCol>
-       </CRow>
-       <CCollapse :show="visible" :navbar="true" >
-      <CRow
-        :gutters="false"
-        class="form-group"
-        v-if="postData.type !== 'memos' && postData.date_fin_reel === ''"
-      >
-        <CCol sm="2"> <p>Statut:</p> </CCol>
-        <CCol sm="10">
-          <CInputRadioGroup
-            :options="statusOpt"
-            :checked.sync="postData.status"
-            custom
-            inline
-          />
-        </CCol>
-        <CCol sm="8" md="7" v-if="showInputRaison">
-          <CTextarea
-            label="Raison:"
-            type="textarea"
-            v-model="postData.raison"
-            horizontal
-            placeholder="writes something..."
-            rows="2"
-            description="Une description de la raison du changement de status"
-          />
-        </CCol>
+      <CRow @click="togleVisible" class="mb-4 mt-n2">
+        <CCol
+          ><CButton
+            variant="ghost"
+            color="light w-100"
+            href="#"
+            class="text-dark d-fleex plus-bouton"
+          >
+            <span>plus</span>
+            <span v-show="!visible"
+              ><CIcon
+                class="ml-auto"
+                style="float: right"
+                name="cil-chevron-bottom"
+            /></span>
+            <span v-show="visible"
+              ><CIcon
+                class="ml-auto"
+                style="float: right"
+                name="cil-chevron-top"
+            /></span> </CButton
+        ></CCol>
       </CRow>
-    
-      <CRow v-if="postData.type !== 'memos'">
-        <CCol col="12" lg="6">
-          <CRow class="">
-            <CInput
-              label="Debut:"
-              type="date"
-              v-model="postData.date_depart_proposer"
-              :readonly="postData.date_fin_reel > 0 ? true : false"
-              horizontal
-              class="col-10 col-sm-7"
+      <CCollapse :show="visible" :navbar="true">
+        <CRow
+          :gutters="false"
+          class="form-group"
+          v-if="postData.type !== 'memos' && postData.date_fin_reel === ''"
+        >
+          <CCol sm="2"> <p>Statut:</p> </CCol>
+          <CCol sm="10">
+            <CInputRadioGroup
+              :options="statusOpt"
+              :checked.sync="postData.status"
+              custom
+              inline
             />
-            <CInput
-              v-model="postData.heure_debut"
-              :readonly="postData.date_fin_reel > 0 ? true : false"
-              type="time"
-              class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
+          </CCol>
+          <CCol sm="8" md="7" v-if="showInputRaison">
+            <CTextarea
+              label="Raison:"
+              type="textarea"
+              v-model="postData.raison"
               horizontal
+              placeholder="writes something..."
+              rows="2"
+              description="Une description de la raison du changement de status"
             />
+          </CCol>
+        </CRow>
+        <pre> {{ postData }} </pre>
+        <CRow v-if="postData.type !== 'memos'">
+          <CCol col="12" lg="6">
+            <CRow class="">
+              <CInput
+                label="Debut:"
+                type="date"
+                v-model="postData.date_depart_proposer"
+                :readonly="
+                  postData.date_fin_reel > 0 ||
+                  disableTempDebut ||
+                  postData.status == '2'
+                    ? true
+                    : false
+                "
+                horizontal
+                class="col-10 col-sm-7"
+              />
+              <CInput
+                v-model="postData.heure_debut"
+                :readonly="
+                  postData.date_fin_reel > 0 ||
+                  disableTempDebut ||
+                  postData.status == '2'
+                    ? true
+                    : false
+                "
+                type="time"
+                class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
+                horizontal
+              />
+            </CRow>
+          </CCol>
+          <CCol col="10" lg="6">
+            <CRow class="">
+              <CInput
+                label="Fin:"
+                v-model="postData.date_fin_proposer"
+                :readonly="postData.date_fin_reel > 0 ? true : false"
+                type="date"
+                horizontal
+                class="col-10 col-sm-7"
+              /><CInput
+                v-model="postData.heure_fin"
+                :readonly="postData.date_fin_reel > 0 ? true : false"
+                type="time"
+                class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
+                horizontal
+              />
+            </CRow>
+          </CCol>
+        </CRow>
+        <div class="mb-3" v-show="this.postData.date_fin_reel < 1">
+          <CRow>
+            <CInput
+              type="number"
+              class="my-0 col-5 col-md-3"
+              v-model="startValue"
+            />
+            <CButton
+              class=""
+              :disabled="!startValue"
+              color="success"
+              @click="startTache"
+              >{{ StartBtnText }}</CButton
+            >
           </CRow>
-        </CCol>
-        <CCol col="10" lg="6">
-          <CRow class="">
-            <CInput
-              label="Fin:"
-              v-model="postData.date_fin_proposer"
-              :readonly="postData.date_fin_reel > 0 ? true : false"
-              type="date"
-              horizontal
-              class="col-10 col-sm-7"
-            /><CInput
-              v-model="postData.heure_fin"
-              :readonly="postData.date_fin_reel > 0 ? true : false"
-              type="time"
-              class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
-              horizontal
-            />
-          </CRow>
-        </CCol>
-      </CRow>
+          <small>Définir un temps d'exécution(en minutes)</small>
+        </div>
       </CCollapse>
 
       <CRow>
@@ -129,10 +179,14 @@
             />
           </div>
         </CCol>
-        
-        <CCol v-if="postData.prime_status"  sm="5" class="d-flex align-items-start">
+
+        <CCol
+          v-if="postData.prime_status"
+          sm="5"
+          class="d-flex align-items-start"
+        >
           <CInput
-           type="number"
+            type="number"
             append=".00"
             description="Montant de la prime:"
             prepend="F"
@@ -141,7 +195,7 @@
             v-model="postData.prime_montant"
           />
         </CCol>
-   
+
         <CCol sm="10">
           <div class="form-group d-none">
             Assigné :
@@ -170,11 +224,12 @@
         </CCol>
         <CCol
           lg="5"
+          class="mb-2"
           v-if="postData.type !== 'ressource' && postData.type !== 'memos'"
         >
           <label class="typo__label">Exécuter par:</label>
           <multiselect
-          :disabled="!cantUpdatePrime"
+            :disabled="!cantUpdatePrime"
             :options="users"
             placeholder="Selectionnez un utilisateur"
             :multiple="true"
@@ -192,6 +247,9 @@
             @remove="deleteExecutant"
           >
           </multiselect>
+          <small class="text-danger" v-show="executantRequired"
+            >Un exécutant requis</small
+          >
         </CCol>
       </CRow>
       <CRow>
@@ -204,7 +262,7 @@
           ></ckeditor>
         </CCol>
       </CRow>
-      <CRow v-if="postData.type == 'project'">
+      <!-- <CRow v-if="postData.type == 'project'">
         <CCol col="8" lg="4">
           <CInput
             label="Estimation du coût:"
@@ -214,14 +272,12 @@
             v-model="postData.price"
           />
         </CCol>
-      </CRow>
-      
+      </CRow> -->
     </div>
   </div>
 </template>
 
 <script>
-
 import Utilities from "./Utilities.js";
 import CKEditor from "ckeditor4-vue";
 import hljs from "highlight.js";
@@ -237,7 +293,7 @@ export default {
       type: [Object],
       required: true
     },
-   
+
     btnState: {
       type: Object,
       default: function () {
@@ -274,16 +330,19 @@ export default {
         text: "",
         prime_status: null,
         prime_montant: 0,
-        privaty: true,
+        privaty: false,
         executant: []
       },
       fHeure: "",
       dHeure: "",
       wasValidated: null,
       showInputRaison: false,
+      disableTempDebut: false,
+      StartBtnText: "Start",
       editorData: "",
       warningModal: false,
       extraPlugins: "",
+      startValue: null,
       preEditorConfig: {
         codeSnippet_theme: "monokai_sublime",
         stylesSet: [],
@@ -379,9 +438,11 @@ export default {
     ProjectOptionsType.loadType().then((reponse) => {
       this.options = reponse;
     });
-    let sm = window.matchMedia('(max-width:768px)')
-    sm.addEventListener('change',this.smallMedia)
-    this.smallMedia(sm)
+
+    let sm = window.matchMedia("(max-width:768px)");
+    sm.addEventListener("change", this.smallMedia);
+    this.smallMedia(sm);
+    //this.TimeNow();
   },
   watch: {
     formValues: {
@@ -395,19 +456,29 @@ export default {
     }
   },
   computed: {
-    cantUpdatePrime() {
-      let current =this.$store.getters.currentUser
-      if(this.formValues &&  this.formValues.uid) {
-        if(current.uid == this.formValues.uid) {
-        return true
-       }else {
-         return false
-       }
+    executantRequired() {
+      let type = this.postData.type;
+      if (type == "tache" && !this.postData.executant.length) {
+        return true;
       }
-      return true
+      return false;
+    },
+    cantUpdatePrime() {
+      let current = this.$store.getters.currentUser;
+      if (this.formValues && this.formValues.uid) {
+        if (current.uid == this.formValues.uid) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return true;
     },
     users() {
-      return this.$store.getters.userList
+      return this.$store.getters.userList;
+    },
+    currentUser() {
+      return this.$store.getters.currentUser;
     },
     dureeProjet() {
       var el;
@@ -435,7 +506,11 @@ export default {
       return tal;
     },
     checkForSave() {
-      if (this.wasValidated == true && this.postData.type.length > 2) {
+      if (
+        this.wasValidated == true &&
+        this.postData.type.length > 2 &&
+        !this.executantRequired
+      ) {
         this.setBtnState(true);
         return true;
       } else {
@@ -482,92 +557,93 @@ export default {
   },
   methods: {
     smallMedia(bp) {
-      if(bp.matches) {
+      if (bp.matches) {
         this.visible = false;
-      }else {
+      } else {
         this.visible = true;
       }
     },
-    togleVisible()  {
-      this.visible = !this.visible
+    togleVisible() {
+      this.visible = !this.visible;
     },
     reUpdatePrime(val) {
-      console.log('reUpdate Prime: ',val)
-      this.updatePrime(this.postData.prime_status)
+      console.log("reUpdate Prime: ", val);
+      this.updatePrime(this.postData.prime_status);
     },
-   async updatePrime(value) {
-     var self = this
-      if(this.postData.idcontents) {
+    async updatePrime(value) {
+      var self = this;
+      if (this.postData.idcontents) {
         let params = {
-           id:this.postData.idcontents,
-           status:value,
-           montant:this.postData.prime_montant}
-         
-         var data  = await Utilities.formatPrimeData(params, this.formValues.prime_status !== null ? true: false)
-         console.log("formatPrimeData",data );
-           config
-        .post("/gestion-project/save-update",
-         data,
-          {
+          id: this.postData.idcontents,
+          status: value,
+          montant: this.postData.prime_montant
+        };
+
+        var data = await Utilities.formatPrimeData(
+          params,
+          this.formValues.prime_status !== null ? true : false
+        );
+        console.log("formatPrimeData", data);
+        config
+          .post("/gestion-project/save-update", data, {
             headers: {
               Authorization: config.auth
             }
-          }
-        )
-        .then((reponse) => {
-          if (reponse.status) {
-            console.log("prime update :", reponse);
-            this.formValues.prime_status = value 
-            this.formValues.prime_montant = this.postData.prime_montant 
-          }
-        })
-        .catch(function (error) {
-          alert('Erreur lors de l\'activation de la prime sur cette tâche')
-          console.log("error", error);
-          self.postData.prime_status = null
-        });
-      // try   {
-      //   let reponse = await config.post('' + value)
-      //   console.log("user",reponse );
-      // }
-      // catch (er) {
-      //   console.log('er',er)
-      // }
-      //let self = this;
-    // if(this.postData.idcontents) {
-      
-     //}
+          })
+          .then((reponse) => {
+            if (reponse.status) {
+              console.log("prime update :", reponse);
+              this.formValues.prime_status = value;
+              this.formValues.prime_montant = this.postData.prime_montant;
+            }
+          })
+          .catch(function (error) {
+            alert("Erreur lors de l'activation de la prime sur cette tâche");
+            console.log("error", error);
+            self.postData.prime_status = null;
+          });
+        // try   {
+        //   let reponse = await config.post('' + value)
+        //   console.log("user",reponse );
+        // }
+        // catch (er) {
+        //   console.log('er',er)
+        // }
+        //let self = this;
+        // if(this.postData.idcontents) {
+
+        //}
       }
     },
     deleteExecutant(value) {
       //console.log("user delet", value);
       var self = this;
-      if(this.postData.idcontents) {
+      if (this.postData.idcontents) {
         this.selectLoading = true;
         config
-        .delete(
-          "/gestion-project/executant/" +
-            this.postData.idcontents +
-            "/" +
-            value.uid,
-          {},
-          {
-            headers: {
-              Authorization: config.auth
+          .delete(
+            "/gestion-project/executant/" +
+              this.postData.idcontents +
+              "/" +
+              value.uid,
+            {},
+            {
+              headers: {
+                Authorization: config.auth
+              }
             }
-          }
-        )
-        .then((reponse) => {
-          if (reponse.status) {
-            //console.log("data after edit :", reponse);
-            self.updateFormValue(false, value);
+          )
+          .then((reponse) => {
+            if (reponse.status) {
+              //console.log("data after edit :", reponse);
+              self.updateFormValue(false, value);
+              self.selectLoading = false;
+            }
+          })
+          .catch(function (error) {
             self.selectLoading = false;
-          }
-        })
-        .catch(function (error) {
-          self.selectLoading = false;
-          console.log("error", error);
-        });
+            console.log("error", error);
+          });
       }
     },
     updateFormValue(add, user) {
@@ -576,7 +652,7 @@ export default {
         form.push(user);
       } else {
         let existe = form.filter((el) => el.uid == user.uid);
-       // console.log("existe", existe);
+        // console.log("existe", existe);
         for (let i in form) {
           if (existe[0].uid == form[i].uid) {
             form.splice(i, 1);
@@ -585,36 +661,34 @@ export default {
       }
     },
     addExecutant(value) {
-      
-
-     // console.log("user add", value, config.auth);
+      // console.log("user add", value, config.auth);
       let self = this;
-      if(this.postData.idcontents) {
+      if (this.postData.idcontents) {
         this.selectLoading = true;
         config
-        .post(
-          "/gestion-project/executant/" +
-            this.postData.idcontents +
-            "/" +
-            value.uid,
-          {},
-          {
-            headers: {
-              Authorization: config.auth
+          .post(
+            "/gestion-project/executant/" +
+              this.postData.idcontents +
+              "/" +
+              value.uid,
+            {},
+            {
+              headers: {
+                Authorization: config.auth
+              }
             }
-          }
-        )
-        .then((reponse) => {
-          if (reponse.status) {
-            //console.log("data after edit :", reponse);
+          )
+          .then((reponse) => {
+            if (reponse.status) {
+              //console.log("data after edit :", reponse);
+              self.selectLoading = false;
+              self.updateFormValue(true, value);
+            }
+          })
+          .catch(function (error) {
             self.selectLoading = false;
-            self.updateFormValue(true, value);
-          }
-        })
-        .catch(function (error) {
-          self.selectLoading = false;
-          console.log("error", error);
-        });
+            console.log("error", error);
+          });
       }
     },
     onNamespaceLoaded(CKEDITOR) {
@@ -640,6 +714,9 @@ export default {
     },
 
     setBtnState(val) {
+      if (this.postData.status == "2") {
+        this.StartBtnText = "Ajouter le temps d'exécution";
+      }
       this.btnState.state = val;
     },
     inputValidation(val) {
@@ -655,15 +732,6 @@ export default {
       //console.log("object");
     },
 
-    TimeNow() {
-      let today = moment().format("YYYY-MM-DD");
-      let hours = moment().format("HH:mm");
-      this.postData.date_depart_proposer = today;
-      this.postData.heure_debut = hours;
-      this.postData.date_fin_proposer = today;
-      this.postData.heure_fin = hours;
-      //console.log(today, hours);
-    },
     changeType() {
       this.options = this.optionsTache;
       //console.log("files : ", this.options);
@@ -747,11 +815,11 @@ export default {
       });
       return result;
     },
-    PostNewProject(idc,level) {
+    PostNewProject(idc, level) {
       var self = this;
       Utilities.formatAddData(this.postData, idc, this.level).then(
         (reponse) => {
-        //  console.log("created", reponse);
+          //  console.log("created", reponse);
 
           config
             .post("/gestion-project/save-update", reponse, {
@@ -762,13 +830,12 @@ export default {
             .then((reponse) => {
               if (reponse.status) {
                 self.request = reponse.data[0];
-            
-                if(level) {
-                  self.$emit("addnew-ok", {id:idc,level:level});
-                }else {
-                  self.$emit("addnew-ok", {id: reponse.data[0].result});
+
+                if (level) {
+                  self.$emit("addnew-ok", { id: idc, level: level });
+                } else {
+                  self.$emit("addnew-ok", { id: reponse.data[0].result });
                 }
-              
               }
               this.isLoading = false;
             })
@@ -778,14 +845,68 @@ export default {
             });
         }
       );
+    },
+    TimeNow() {
+      let today = moment().format("YYYY-MM-DD");
+      let hours = moment().format("HH:mm");
+      this.postData.date_depart_proposer = today;
+      this.postData.heure_debut = hours;
+      this.postData.date_fin_proposer = today;
+      this.postData.heure_fin = hours;
+      //console.log(today, hours);
+    },
+    startTache() {
+      if (this.startValue) {
+        let today = moment().format("YYYY-MM-DD");
+        let hours = moment().format("HH:mm");
+
+        this.postData.date_depart_proposer = today;
+        if (!this.disableTempDebut && this.postData.status != "2") {
+          this.postData.heure_debut = hours;
+          this.postData.date_fin_proposer = today;
+          let minutes =
+            parseInt(moment.duration(hours).asMinutes(), 10) +
+            parseInt(this.startValue, 10);
+          this.postData.heure_fin = this.getTimeFromMins(minutes);
+          this.StartBtnText = "Add time";
+          this.disableTempDebut = true;
+          this.startValue = null;
+        } else {
+          this.postData.date_fin_proposer = today;
+          let minutes =
+            parseInt(moment.duration(this.postData.heure_fin).asMinutes(), 10) +
+            parseInt(this.startValue, 10);
+          this.postData.heure_fin = this.getTimeFromMins(minutes);
+          this.startValue = null;
+        }
+
+        //console.log(today, hours, "--");
+        this.postData.status = "2";
+      }
+    },
+    getTimeFromMins(mins) {
+      if (mins >= 24 * 60 || mins < 0) {
+        throw new RangeError(
+          "Le tempds d'exécution doit être supérieur ou égale 0 et inférieur à 1440."
+        );
+      }
+      var h = (mins / 60) | 0,
+        m = mins % 60 | 0;
+      return moment.utc().hours(h).minutes(m).format("HH:mm");
+    },
+    typeProjectChange(val) {
+      console.log("type change", val);
+      if (val == "tache" && !this.postData.executant.length) {
+        this.postData.executant.push(this.currentUser);
+      }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.plus-bouton{
-  box-shadow: 0px 0px 5px rgba(224, 224, 224, 0.664)
+.plus-bouton {
+  box-shadow: 0px 0px 5px rgba(224, 224, 224, 0.664);
 }
 </style>
 
