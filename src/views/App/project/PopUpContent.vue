@@ -33,7 +33,7 @@
             href="#"
             class="text-dark d-fleex plus-bouton"
           >
-            <span>plus</span>
+            <span> plus </span>
             <span v-show="!visible"
               ><CIcon
                 class="ml-auto"
@@ -113,6 +113,19 @@
                 horizontal
               />
             </CRow>
+          </CCol>
+          <CCol
+            col="12"
+            lg="12"
+            v-if="postData.date_depart_proposer && postData.heure_debut"
+          >
+            <CIcon class="ml-auto" name="cil-clock" />
+            {{
+              getDiffDates(
+                postData.date_depart_proposer + " " + postData.heure_debut,
+                postData.date_fin_proposer + " " + postData.heure_fin
+              )
+            }}
           </CCol>
         </CRow>
       </CCollapse>
@@ -793,6 +806,24 @@ export default {
             });
         }
       );
+    },
+    getDiffDates(date_string2, date_string1) {
+      const date1 = moment(date_string1);
+      const date2 = moment(date_string2);
+      var diff_string = "";
+      //
+      const days = date1.diff(date2, "days");
+      if (days) diff_string += days + "jr ";
+      //
+      const hours = date1.diff(date2, "hours");
+      if (hours) diff_string += hours - days * 24 + "h ";
+      //
+      const minutes = date1.diff(date2, "minutes");
+      if (minutes) diff_string += minutes - hours * 60 + "mn ";
+      //
+      if (diff_string) {
+        return diff_string;
+      }
     },
   },
 };
