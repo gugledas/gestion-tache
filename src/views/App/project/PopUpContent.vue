@@ -4,6 +4,10 @@
 <template lang="html">
   <div :check-valid-form="checkForSave">
     <div>
+      <!-- currentUser:
+      <pre>{{ currentUser }}</pre>
+      postData:
+      <pre>{{ postData }}</pre>  -->
       <CRow :gutters="false" class="form-group">
         <!-- <pre> {{ postData }} </pre> -->
         <br />
@@ -13,6 +17,7 @@
           ><CInputRadioGroup
             :options="options"
             :checked.sync="postData.type"
+            @update:checked="typeProjectChange"
             custom
             inline
           />
@@ -33,17 +38,17 @@
             href="#"
             class="text-dark d-fleex plus-bouton"
           >
-            <span> plus </span>
+            <span>plus</span>
             <span v-show="!visible"
               ><CIcon
                 class="ml-auto"
-                style="float:right;"
+                style="float: right"
                 name="cil-chevron-bottom"
             /></span>
             <span v-show="visible"
               ><CIcon
                 class="ml-auto"
-                style="float:right;"
+                style="float: right"
                 name="cil-chevron-top"
             /></span> </CButton
         ></CCol>
@@ -75,7 +80,7 @@
             />
           </CCol>
         </CRow>
-
+        <pre> {{ postData }} </pre>
         <CRow v-if="postData.type !== 'memos'">
           <CCol col="12" lg="6">
             <CRow class="">
@@ -83,13 +88,25 @@
                 label="Debut:"
                 type="date"
                 v-model="postData.date_depart_proposer"
-                :readonly="postData.date_fin_reel > 0 ? true : false"
+                :readonly="
+                  postData.date_fin_reel > 0 ||
+                  disableTempDebut ||
+                  postData.status == '2'
+                    ? true
+                    : false
+                "
                 horizontal
                 class="col-10 col-sm-7"
               />
               <CInput
                 v-model="postData.heure_debut"
-                :readonly="postData.date_fin_reel > 0 ? true : false"
+                :readonly="
+                  postData.date_fin_reel > 0 ||
+                  disableTempDebut ||
+                  postData.status == '2'
+                    ? true
+                    : false
+                "
                 type="time"
                 class="col-8 ml-sm-0 pl-sm-0 col-sm-5"
                 horizontal
@@ -114,20 +131,24 @@
               />
             </CRow>
           </CCol>
-          <CCol
-            col="12"
-            lg="12"
-            v-if="postData.date_depart_proposer && postData.heure_debut"
-          >
-            <CIcon class="ml-auto" name="cil-clock" />
-            {{
-              getDiffDates(
-                postData.date_depart_proposer + " " + postData.heure_debut,
-                postData.date_fin_proposer + " " + postData.heure_fin
-              )
-            }}
-          </CCol>
         </CRow>
+        <div class="mb-3" v-show="this.postData.date_fin_reel < 1">
+          <CRow>
+            <CInput
+              type="number"
+              class="my-0 col-5 col-md-3"
+              v-model="startValue"
+            />
+            <CButton
+              class=""
+              :disabled="!startValue"
+              color="success"
+              @click="startTache"
+              >{{ StartBtnText }}</CButton
+            >
+          </CRow>
+          <small>Définir un temps d'exécution(en minutes)</small>
+        </div>
       </CCollapse>
 
       <CRow>
@@ -203,6 +224,7 @@
         </CCol>
         <CCol
           lg="5"
+          class="mb-2"
           v-if="postData.type !== 'ressource' && postData.type !== 'memos'"
         >
           <label class="typo__label">Exécuter par:</label>
@@ -225,6 +247,9 @@
             @remove="deleteExecutant"
           >
           </multiselect>
+          <small class="text-danger" v-show="executantRequired"
+            >Un exécutant requis</small
+          >
         </CCol>
       </CRow>
       <CRow>
@@ -237,7 +262,7 @@
           ></ckeditor>
         </CCol>
       </CRow>
-      <CRow v-if="postData.type == 'project'">
+      <!-- <CRow v-if="postData.type == 'project'">
         <CCol col="8" lg="4">
           <CInput
             label="Estimation du coût:"
@@ -247,7 +272,7 @@
             v-model="postData.price"
           />
         </CCol>
-      </CRow>
+      </CRow> -->
     </div>
   </div>
 </template>
@@ -260,7 +285,6 @@ import config from "../config/config";
 import moment from "moment";
 import ProjectOptionsType from "./ProjectOptionsType";
 import Multiselect from "vue-multiselect";
-
 export default {
   name: "PopUpContent",
   props: {
@@ -268,7 +292,6 @@ export default {
       type: [Object],
       required: true,
     },
-
     btnState: {
       type: Object,
       default: function() {
@@ -305,16 +328,19 @@ export default {
         text: "",
         prime_status: null,
         prime_montant: 0,
-        privaty: true,
+        privaty: false,
         executant: [],
       },
       fHeure: "",
       dHeure: "",
       wasValidated: null,
       showInputRaison: false,
+      disableTempDebut: false,
+      StartBtnText: "Start",
       editorData: "",
       warningModal: false,
       extraPlugins: "",
+      startValue: null,
       preEditorConfig: {
         codeSnippet_theme: "monokai_sublime",
         stylesSet: [],
@@ -347,7 +373,6 @@ export default {
               breakBeforeClose: false,
               breakAfterClose: false,
             });
-
             ev.sender.dataProcessor.writer.setRules("h2", {
               indent: true,
               breakBeforeOpen: false,
@@ -413,6 +438,7 @@ export default {
     let sm = window.matchMedia("(max-width:768px)");
     sm.addEventListener("change", this.smallMedia);
     this.smallMedia(sm);
+    //this.TimeNow();
   },
   watch: {
     formValues: {
@@ -426,6 +452,13 @@ export default {
     },
   },
   computed: {
+    executantRequired() {
+      let type = this.postData.type;
+      if (type == "tache" && !this.postData.executant.length) {
+        return true;
+      }
+      return false;
+    },
     cantUpdatePrime() {
       let current = this.$store.getters.currentUser;
       if (this.formValues && this.formValues.uid) {
@@ -439,6 +472,9 @@ export default {
     },
     users() {
       return this.$store.getters.userList;
+    },
+    currentUser() {
+      return this.$store.getters.currentUser;
     },
     dureeProjet() {
       var el;
@@ -466,7 +502,11 @@ export default {
       return tal;
     },
     checkForSave() {
-      if (this.wasValidated == true && this.postData.type.length > 2) {
+      if (
+        this.wasValidated == true &&
+        this.postData.type.length > 2 &&
+        !this.executantRequired
+      ) {
         this.setBtnState(true);
         return true;
       } else {
@@ -480,7 +520,6 @@ export default {
       newDiv.querySelectorAll("pre code").forEach((block) => {
         hljs.highlightBlock(block);
       });
-
       return newDiv.outerHTML;
     },
     editorConfig() {
@@ -534,7 +573,6 @@ export default {
           status: value,
           montant: this.postData.prime_montant,
         };
-
         var data = await Utilities.formatPrimeData(
           params,
           this.formValues.prime_status !== null ? true : false
@@ -567,7 +605,6 @@ export default {
         // }
         //let self = this;
         // if(this.postData.idcontents) {
-
         //}
       }
     },
@@ -662,13 +699,15 @@ export default {
       CKEDITOR.config.htmlEncodeOutput = false;
       CKEDITOR.config.entities = false;
       CKEDITOR.config.quickuploaderUploadUrl = config.baseUrl;
-      //                                     CKEDITOR.config.entities_processNumerical = 'force';
+      // CKEDITOR.config.entities_processNumerical = 'force';
       CKEDITOR.dtd.$removeEmpty.span = 0;
       CKEDITOR.dtd.$removeEmpty.i = 0;
       CKEDITOR.dtd.$removeEmpty.label = 0;
     },
-
     setBtnState(val) {
+      if (this.postData.status == "2") {
+        this.StartBtnText = "Ajouter le temps d'exécution";
+      }
       this.btnState.state = val;
     },
     inputValidation(val) {
@@ -682,16 +721,6 @@ export default {
     },
     EventShowInput() {
       //console.log("object");
-    },
-
-    TimeNow() {
-      let today = moment().format("YYYY-MM-DD");
-      let hours = moment().format("HH:mm");
-      this.postData.date_depart_proposer = today;
-      this.postData.heure_debut = hours;
-      this.postData.date_fin_proposer = today;
-      this.postData.heure_fin = hours;
-      //console.log(today, hours);
     },
     changeType() {
       this.options = this.optionsTache;
@@ -728,7 +757,6 @@ export default {
       var ddp = moment(data.date_depart_proposer, "YYYY-MM-DD  HH:mm").unix();
       var dfp = moment(data.date_fin_proposer, "YYYY-MM-DD  HH:mm").unix();
       //var status = data.status;
-
       var rest = [];
       rest.push({
         idcontents: id,
@@ -781,7 +809,6 @@ export default {
       Utilities.formatAddData(this.postData, idc, this.level).then(
         (reponse) => {
           //  console.log("created", reponse);
-
           config
             .post("/gestion-project/save-update", reponse, {
               headers: {
@@ -791,7 +818,6 @@ export default {
             .then((reponse) => {
               if (reponse.status) {
                 self.request = reponse.data[0];
-
                 if (level) {
                   self.$emit("addnew-ok", { id: idc, level: level });
                 } else {
@@ -807,22 +833,60 @@ export default {
         }
       );
     },
-    getDiffDates(date_string2, date_string1) {
-      const date1 = moment(date_string1);
-      const date2 = moment(date_string2);
-      var diff_string = "";
-      //
-      const days = date1.diff(date2, "days");
-      if (days) diff_string += days + "jr ";
-      //
-      const hours = date1.diff(date2, "hours");
-      if (hours) diff_string += hours - days * 24 + "h ";
-      //
-      const minutes = date1.diff(date2, "minutes");
-      if (minutes) diff_string += minutes - hours * 60 + "mn ";
-      //
-      if (diff_string) {
-        return diff_string;
+    TimeNow() {
+      let today = moment().format("YYYY-MM-DD");
+      let hours = moment().format("HH:mm");
+      this.postData.date_depart_proposer = today;
+      this.postData.heure_debut = hours;
+      this.postData.date_fin_proposer = today;
+      this.postData.heure_fin = hours;
+      //console.log(today, hours);
+    },
+    startTache() {
+      if (this.startValue) {
+        let today = moment().format("YYYY-MM-DD");
+        let hours = moment().format("HH:mm");
+        this.postData.date_depart_proposer = today;
+        if (!this.disableTempDebut && this.postData.status != "2") {
+          this.postData.heure_debut = hours;
+          this.postData.date_fin_proposer = today;
+          let minutes =
+            parseInt(moment.duration(hours).asMinutes(), 10) +
+            parseInt(this.startValue, 10);
+          this.postData.heure_fin = this.getTimeFromMins(minutes);
+          this.StartBtnText = "Add time";
+          this.disableTempDebut = true;
+          this.startValue = null;
+        } else {
+          this.postData.date_fin_proposer = today;
+          let minutes =
+            parseInt(moment.duration(this.postData.heure_fin).asMinutes(), 10) +
+            parseInt(this.startValue, 10);
+          this.postData.heure_fin = this.getTimeFromMins(minutes);
+          this.startValue = null;
+        }
+        //console.log(today, hours, "--");
+        this.postData.status = "2";
+      }
+    },
+    getTimeFromMins(mins) {
+      if (mins >= 24 * 60 || mins < 0) {
+        throw new RangeError(
+          "Le tempds d'exécution doit être supérieur ou égale 0 et inférieur à 1440."
+        );
+      }
+      var h = (mins / 60) | 0,
+        m = mins % 60 | 0;
+      return moment
+        .utc()
+        .hours(h)
+        .minutes(m)
+        .format("HH:mm");
+    },
+    typeProjectChange(val) {
+      console.log("type change", val);
+      if (val == "tache" && !this.postData.executant.length) {
+        this.postData.executant.push(this.currentUser);
       }
     },
   },

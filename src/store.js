@@ -2,13 +2,16 @@ import Vue from "vue";
 import Vuex from "vuex";
 //import { users } from "drupal-vuejs";
 import config from "./views/App/config/config";
+
+import ProjectType from "./views/App/project/ProjectOptionsType";
 Vue.use(Vuex);
 
 const state = {
   sidebarShow: "responsive",
   sidebarMinimize: false,
   user: null,
-  utilisateur: []
+  utilisateur: [],
+  allType: []
 };
 const getters = {
   userList(state) {
@@ -54,6 +57,9 @@ const mutations = {
   },
   SET_UTILISATEUR(state, utilisateur) {
     state.utilisateur = utilisateur;
+  },
+  SET_TYPE_PROJET(state, allType) {
+    state.allType = allType;
   }
 };
 const actions = {
@@ -68,6 +74,12 @@ const actions = {
     def();
     /**/
     commit("SET_USER", user);
+  },
+  getAllProjectType({ commit }) {
+    ProjectType.loadType().then((reponse) => {
+      this.options = reponse;
+      commit("SET_TYPE_PROJET", reponse);
+    });
   },
   getUtilisateur({ commit }) {
     config

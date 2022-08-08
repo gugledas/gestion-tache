@@ -10,6 +10,7 @@ export default {
       this.$store.dispatch("getUtilisateur");
     }
     this.$store.dispatch("getUser");
+    this.$store.dispatch('getAllProjectType')
   },
   computed: {
     currentRouteName() {

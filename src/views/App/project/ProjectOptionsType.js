@@ -21,7 +21,7 @@ const OptionsType = {
               fm.push({
                 value: reponse[i].name,
                 label: reponse[i].label,
-                description: reponse[i].description,
+                description: reponse[i].description
               });
             }
             this.opts = fm;
@@ -31,6 +31,6 @@ const OptionsType = {
         }
       }
     });
-  },
+  }
 };
 export default OptionsType;
