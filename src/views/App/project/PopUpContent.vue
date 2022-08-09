@@ -4,12 +4,7 @@
 <template lang="html">
   <div :check-valid-form="checkForSave">
     <div>
-      <!-- currentUser:
-      <pre>{{ currentUser }}</pre>
-      postData:
-      <pre>{{ postData }}</pre>  -->
       <CRow :gutters="false" class="form-group">
-        <!-- <pre> {{ postData }} </pre> -->
         <br />
         <CCol sm="3"> <p>Choisir un type:</p> </CCol>
 
@@ -80,7 +75,6 @@
             />
           </CCol>
         </CRow>
-        <pre> {{ postData }} </pre>
         <CRow v-if="postData.type !== 'memos'">
           <CCol col="12" lg="6">
             <CRow class="">
@@ -134,18 +128,36 @@
         </CRow>
         <div class="mb-3" v-show="this.postData.date_fin_reel < 1">
           <CRow>
-            <CInput
-              type="number"
-              class="my-0 col-5 col-md-3"
-              v-model="startValue"
-            />
-            <CButton
-              class=""
-              :disabled="!startValue"
-              color="success"
-              @click="startTache"
-              >{{ StartBtnText }}</CButton
+            <CCol col="6" class="d-flex">
+              <CInput
+                type="number"
+                class="my-0 col-8 px-0"
+                v-model="startValue"
+              />
+              <CButton
+                class=""
+                :disabled="!startValue"
+                color="success"
+                @click="startTache"
+                >{{ StartBtnText }}</CButton
+              >
+            </CCol>
+            <CCol
+              col="6"
+              class="d-flex justify-content-around align-items-center"
             >
+              <div
+                class="float-right"
+                v-html="
+                  getDiffTime(
+                    postData.date_depart_proposer,
+                    postData.heure_debut,
+                    postData.date_fin_proposer,
+                    postData.heure_fin
+                  )
+                "
+              ></div>
+            </CCol>
           </CRow>
           <small>Définir un temps d'exécution(en minutes)</small>
         </div>
@@ -262,17 +274,6 @@
           ></ckeditor>
         </CCol>
       </CRow>
-      <!-- <CRow v-if="postData.type == 'project'">
-        <CCol col="8" lg="4">
-          <CInput
-            label="Estimation du coût:"
-            append=".00"
-            description="montant"
-            prepend="$"
-            v-model="postData.price"
-          />
-        </CCol>
-      </CRow> -->
     </div>
   </div>
 </template>
@@ -887,6 +888,41 @@ export default {
       console.log("type change", val);
       if (val == "tache" && !this.postData.executant.length) {
         this.postData.executant.push(this.currentUser);
+      }
+    },
+    /**
+     *
+     * @param {*} jourDebut
+     * @param {*} heureDebut
+     * @param {*} JourFin
+     * @param {*} heureFin
+     */
+    getDiffTime(jourDebut, heureDebut, JourFin, heureFin) {
+      //
+      console.log(
+        "jourDebut : ",
+        jourDebut,
+        " heureDebut : ",
+        heureDebut,
+        " JourFin : ",
+        JourFin,
+        " heureFin: ",
+        heureFin
+      );
+      if (jourDebut && heureDebut && JourFin && heureFin) {
+        var string = "";
+        var timeDebut = moment(
+          jourDebut + " " + heureDebut,
+          "YYYY-MM-DD HH:mm"
+        );
+        var timeFin = moment(JourFin + " " + heureFin, "YYYY-MM-DD HH:mm");
+        var day = timeFin.diff(timeDebut, "days");
+        if (day) string += day + " jour ";
+        var hours = timeFin.diff(timeDebut, "hours");
+        if (hours) if (hours) string += hours - day * 24 + "h ";
+        var min = timeFin.diff(timeDebut, "minutes");
+        if (min) string += min - hours * 60 + "min ";
+        return string;
       }
     },
   },
