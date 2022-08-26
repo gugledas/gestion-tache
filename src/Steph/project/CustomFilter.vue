@@ -63,6 +63,9 @@ export default {
       default: function () {
         return [];
       }
+    },
+    type: {
+      type: String
     }
     //
   },
@@ -104,6 +107,9 @@ export default {
   },
   mounted() {
     this.timing();
+    if (this.type != "mestaches") {
+      this.filterType = "";
+    }
     //
   },
   watch: {

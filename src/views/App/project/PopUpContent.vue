@@ -126,12 +126,12 @@
             </CRow>
           </CCol>
         </CRow>
-        <div class="mb-3" v-show="this.postData.date_fin_reel < 1">
+        <div class="mb-4" v-show="this.postData.date_fin_reel < 1">
           <CRow>
-            <CCol col="6" class="d-flex">
+            <CCol col="8" class="d-flex align-items-center">
               <CInput
                 type="number"
-                class="my-0 col-8 px-0"
+                class="my-0 col-6 pr-2"
                 v-model="startValue"
               />
               <CButton
@@ -143,7 +143,7 @@
               >
             </CCol>
             <CCol
-              col="6"
+              col="4"
               class="d-flex justify-content-around align-items-center"
             >
               <div
@@ -291,22 +291,22 @@ export default {
   props: {
     formValues: {
       type: [Object],
-      required: true,
+      required: true
     },
     btnState: {
       type: Object,
-      default: function() {
+      default: function () {
         return { state: false };
-      },
+      }
     },
     level: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   components: {
     ckeditor: CKEditor.component,
-    Multiselect,
+    Multiselect
   },
   data() {
     return {
@@ -330,7 +330,7 @@ export default {
         prime_status: null,
         prime_montant: 0,
         privaty: false,
-        executant: [],
+        executant: []
       },
       fHeure: "",
       dHeure: "",
@@ -350,7 +350,7 @@ export default {
           config.baseUrl +
           "/modules/custom/gestion_tache/files/gestionTache.css'; body{margin:1em !important; background: #FFF;}",
         on: {
-          instanceReady: function(ev) {
+          instanceReady: function (ev) {
             // Output paragraphs as <p>Text</p>.
             //console.log('this',ev)
             ev.sender.dataProcessor.writer.setRules("p", {
@@ -358,66 +358,66 @@ export default {
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: true,
-              breakAfterClose: true,
+              breakAfterClose: true
             });
             ev.sender.dataProcessor.writer.setRules("img", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h1", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h2", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h3", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h4", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h5", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("h6", {
               indent: true,
               breakBeforeOpen: false,
               breakAfterOpen: false,
               breakBeforeClose: false,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
             ev.sender.dataProcessor.writer.setRules("div", {
               indent: true,
               breakBeforeOpen: true,
               breakAfterOpen: true,
               breakBeforeClose: true,
-              breakAfterClose: false,
+              breakAfterClose: false
             });
-          },
-        },
+          }
+        }
       },
       options: [
         // { value: "project", label: "Projet" },
@@ -428,8 +428,8 @@ export default {
         { value: "0", label: "New" },
         { value: "2", label: "Encours" },
         { value: "1", label: "Terminé" },
-        { value: "3", label: "Annulé" },
-      ],
+        { value: "3", label: "Annulé" }
+      ]
     };
   },
   mounted() {
@@ -444,13 +444,13 @@ export default {
   watch: {
     formValues: {
       deep: true,
-      handler: function(val) {
+      handler: function (val) {
         console.log("val : ", val);
         Utilities.fomatVal(val, this.postData, this.users).then(() => {});
         //console.log("result :", this.postData, this.fHeure);
         //console.log("debut heure : ", this.dHeure);
-      },
-    },
+      }
+    }
   },
   computed: {
     executantRequired() {
@@ -529,12 +529,12 @@ export default {
       if (!window.location.host.includes("localhost--")) {
         return {
           extraPlugins: extraPlugins + ",quickuploader",
-          ...this.preEditorConfig,
+          ...this.preEditorConfig
         };
       } else {
         return {
           extraPlugins: extraPlugins,
-          ...this.preEditorConfig,
+          ...this.preEditorConfig
         };
       }
     },
@@ -549,7 +549,7 @@ export default {
       }
       //console.log("rs", rs);
       return rs;
-    },
+    }
   },
   methods: {
     smallMedia(bp) {
@@ -572,7 +572,7 @@ export default {
         let params = {
           id: this.postData.idcontents,
           status: value,
-          montant: this.postData.prime_montant,
+          montant: this.postData.prime_montant
         };
         var data = await Utilities.formatPrimeData(
           params,
@@ -582,8 +582,8 @@ export default {
         config
           .post("/gestion-project/save-update", data, {
             headers: {
-              Authorization: config.auth,
-            },
+              Authorization: config.auth
+            }
           })
           .then((reponse) => {
             if (reponse.status) {
@@ -592,7 +592,7 @@ export default {
               this.formValues.prime_montant = this.postData.prime_montant;
             }
           })
-          .catch(function(error) {
+          .catch(function (error) {
             alert("Erreur lors de l'activation de la prime sur cette tâche");
             console.log("error", error);
             self.postData.prime_status = null;
@@ -623,8 +623,8 @@ export default {
             {},
             {
               headers: {
-                Authorization: config.auth,
-              },
+                Authorization: config.auth
+              }
             }
           )
           .then((reponse) => {
@@ -634,7 +634,7 @@ export default {
               self.selectLoading = false;
             }
           })
-          .catch(function(error) {
+          .catch(function (error) {
             self.selectLoading = false;
             console.log("error", error);
           });
@@ -668,8 +668,8 @@ export default {
             {},
             {
               headers: {
-                Authorization: config.auth,
-              },
+                Authorization: config.auth
+              }
             }
           )
           .then((reponse) => {
@@ -679,7 +679,7 @@ export default {
               self.updateFormValue(true, value);
             }
           })
-          .catch(function(error) {
+          .catch(function (error) {
             self.selectLoading = false;
             console.log("error", error);
           });
@@ -736,8 +736,8 @@ export default {
           config
             .post("/gestion-project/save-update", reponse, {
               headers: {
-                Authorization: config.auth,
-              },
+                Authorization: config.auth
+              }
             })
             .then((reponse) => {
               if (reponse.status) {
@@ -746,7 +746,7 @@ export default {
               }
               this.isLoading = false;
             })
-            .catch(function(error) {
+            .catch(function (error) {
               self.$emit("edition-error");
               console.log("error", error);
             });
@@ -762,7 +762,7 @@ export default {
       rest.push({
         idcontents: id,
         date_depart_proposer: ddp,
-        date_fin_proposer: dfp,
+        date_fin_proposer: dfp
         // date_fin_reel: "reelD",
         // status: status,
         // temps_pause: "temps_pause",
@@ -780,7 +780,7 @@ export default {
         fields: {
           text: data.text,
           titre: data.titre,
-          type: data.type,
+          type: data.type
         },
         childstable: {
           colum_id_name: "idcontents",
@@ -790,18 +790,18 @@ export default {
               fields: {
                 date_depart_proposer: ddp,
                 date_fin_proposer: dfp,
-                status: state,
-              },
+                status: state
+              }
             },
             {
               table: "gestion_project_hierachie",
               fields: {
                 idcontentsparent: idc,
-                ordre: 0,
-              },
-            },
-          ],
-        },
+                ordre: 0
+              }
+            }
+          ]
+        }
       });
       return result;
     },
@@ -813,8 +813,8 @@ export default {
           config
             .post("/gestion-project/save-update", reponse, {
               headers: {
-                Authorization: config.auth,
-              },
+                Authorization: config.auth
+              }
             })
             .then((reponse) => {
               if (reponse.status) {
@@ -827,7 +827,7 @@ export default {
               }
               this.isLoading = false;
             })
-            .catch(function(error) {
+            .catch(function (error) {
               self.$emit("addnew-error");
               console.log("error", error);
             });
@@ -878,11 +878,7 @@ export default {
       }
       var h = (mins / 60) | 0,
         m = mins % 60 | 0;
-      return moment
-        .utc()
-        .hours(h)
-        .minutes(m)
-        .format("HH:mm");
+      return moment.utc().hours(h).minutes(m).format("HH:mm");
     },
     typeProjectChange(val) {
       console.log("type change", val);
@@ -924,8 +920,8 @@ export default {
         if (min) string += min - hours * 60 + "min ";
         return string;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

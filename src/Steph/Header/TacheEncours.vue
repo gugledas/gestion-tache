@@ -31,6 +31,7 @@
     </CRow>
     <custom-filter
       :itemsLoaded="itemsTache"
+      :type="type"
       @items_loaded_format="setItemsLoaded"
     ></custom-filter>
     <CDataTable
@@ -48,7 +49,7 @@
       <td slot="user" slot-scope="{ item }">
         <CLink
           :to="{
-            path: '/projets/' + item.idcontents,
+            path: '/projets/' + item.idcontents
           }"
           class="text-decoration-none"
         >
@@ -139,24 +140,24 @@ export default {
   props: {
     colorModal: {
       type: String,
-      default: "success",
+      default: "success"
     },
     titleModal: {
       type: String,
-      default: "Tâches Encours",
+      default: "Tâches Encours"
     },
     type: {
       type: String,
-      default: "encour",
+      default: "encour"
     },
     modalLast: {
       type: Boolean,
       required: true,
-      default: false,
-    },
+      default: false
+    }
   },
   components: {
-    CustomFilter,
+    CustomFilter
     //
   },
   data() {
@@ -168,13 +169,13 @@ export default {
       tableFields: [
         { key: "user", _style: "min-width:550px;", filter: false },
         { key: "usage", _classes: "bg-success", _style: "min-width:200px;" },
-        { key: "activity", _style: "width:600px;" },
+        { key: "activity", _style: "width:600px;" }
       ],
       progress: {
         max: 0,
-        val: 0,
+        val: 0
       },
-      currentTime: moment().unix(),
+      currentTime: moment().unix()
     };
   },
   mounted() {
@@ -214,8 +215,8 @@ export default {
       set(val) {
         console.log("amerr");
         this.$emit("update-modal", val);
-      },
-    },
+      }
+    }
   },
   methods: {
     setItemsLoaded(data) {
@@ -310,8 +311,8 @@ export default {
     },
     color(valueCurent, maxValue) {
       return config.color(valueCurent, maxValue);
-    },
-  },
+    }
+  }
 };
 </script>
 

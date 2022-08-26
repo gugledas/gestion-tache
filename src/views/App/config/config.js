@@ -79,8 +79,9 @@ export default {
     }
     return $color;
   },
-  formatWhere: function (where) {
+  formatWhere: function (where, and) {
     let query = "";
+    console.log("and", and);
     for (const i in where) {
       query +=
         where[i].column +
@@ -91,7 +92,7 @@ export default {
         where[i].value +
         "'" +
         " ";
-      if (i < where.length - 1) query += "or ";
+      if (i < where.length - 1) query += and ? "or " : "and ";
     }
     return query;
   }

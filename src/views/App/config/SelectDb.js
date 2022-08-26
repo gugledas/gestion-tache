@@ -316,10 +316,7 @@ export default {
   },
   SelectMesTaches: function (
     uid,
-    where = [
-      { column: "gpe.uid", operator: "=", value: uid },
-      { column: "gpc.uid", operator: "=", value: uid }
-    ]
+    where = [{ column: "gpe.uid", operator: "=", value: uid }]
   ) {
     return new Promise((resolv, error) => {
       var query = {
@@ -328,7 +325,7 @@ export default {
       };
 
       if (where.length) {
-        query.where += config.formatWhere(where);
+        query.where += config.formatWhere(where, true);
       }
       query.orther_query += " ORDER BY  gpc.`idcontents` DESC ";
       query.orther_query += " limit 0,50 ";
